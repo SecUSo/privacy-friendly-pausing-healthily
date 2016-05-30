@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Privacy Friendly Break Reminder</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- General settings -->
+    <!-- Strings for the Interval-Slider -->
+    <string name="settings_dialog_message">Select your work interval</string>
+    <string name="settings_summary">Current value is $1</string>
+    <string name="settings_unit">Minutes</string>
+    <string name="settings_title">Select your work Interval</string>
+
+    <!-- Strings for the Break-Slider -->
+    <string name="settings_break_dialog_message">Select your break time</string>
+    <string name="settings_break_summary">Current value is $1</string>
+    <string name="settings_break_title">Select your break time</string>
+
+    <!-- Strings for Name -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_display_name">Profile name</string>
+    <string name="pref_default_display_name">Pomodoro</string>
+
+
+    <!-- settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+    <!-- settings for BreakActivity -->
+    <string name="title_activity_break">Break</string>
+    <string name="section_format">Please get ready for Exercise %1$d</string>
+</resources>

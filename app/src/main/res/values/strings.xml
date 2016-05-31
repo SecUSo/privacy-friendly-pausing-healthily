@@ -38,6 +38,5 @@
     <string name="pref_title_vibrate">Vibrate</string>
 
     <!-- settings for BreakActivity -->
-    <string name="title_activity_break">Break</string>
-    <string name="section_format">Please get ready for Exercise %1$d</string>
+
 </resources>

@@ -122,6 +122,7 @@ public class BreakReminder extends AppCompatActivity
         String bufferZeroMinute = "";
         String bufferZeroSecond = "";
         int time = mins * 60 * 1000;
+        time = 5000;
         int oldTime = time;
 
         if(stopTime == "" && !isRunning) {
@@ -176,6 +177,7 @@ public class BreakReminder extends AppCompatActivity
                         }
 
                         public void onFinish() {
+                            isRunning = false;
                             ct_text.setText("00:00");
                             //TODO trigger the alarm
 
@@ -202,7 +204,7 @@ public class BreakReminder extends AppCompatActivity
     }
 
     public void startBreak(){
-        Intent intent = new Intent(this, BreakDecider.class);
+        Intent intent = new Intent(this, BreakDeciderActivity.class);
         this.startActivity(intent);
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);

@@ -5,8 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 
-public class BreakDecider extends AppCompatActivity implements View.OnClickListener {
+public class BreakDeciderActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class BreakDecider extends AppCompatActivity implements View.OnClickListe
         Button breakButton = (Button)findViewById(R.id.button_break);
         breakButton.setOnClickListener(this);
 
+
     }
 
     public void onClick(View v) {
@@ -26,6 +28,7 @@ public class BreakDecider extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.button_break:
+                finish();
                 Intent intent = new Intent(this, BreakActivity.class);
                 this.startActivity(intent);
                 break;

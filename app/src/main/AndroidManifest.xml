@@ -26,16 +26,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder" />
         </activity>
-        <activity
-            android:name=".BreakActivity"
-            android:label="@string/title_activity_break"
-            android:parentActivityName=".BreakReminder"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder" />
-        </activity>
-        <activity android:name=".BreakDecider"></activity>
+        <activity android:name=".BreakDeciderActivity" />
+        <activity android:name=".BreakActivity"></activity>
     </application>
 
 </manifest>

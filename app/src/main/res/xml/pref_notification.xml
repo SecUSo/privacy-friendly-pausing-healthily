@@ -24,4 +24,15 @@
         android:key="notifications_new_message_vibrate"
         android:title="@string/pref_title_vibrate" />
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="notifications_stayOn"
+        android:title="@string/pref_title_stayOn" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:dependency="notifications_new_message"
+        android:key="notifications_new_message_timeLeft"
+        android:title="@string/pref_title_timeLeft" />
+
 </PreferenceScreen>

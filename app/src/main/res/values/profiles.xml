@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="profile_entries">
+        <item>Sport</item>
+        <item>Exam</item>
+        <item>Work</item>
+        <item>New Profile</item>
+    </string-array>
+</resources>

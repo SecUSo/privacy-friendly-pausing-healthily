@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.widget.TextView;
+
 import orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference;
 
 import java.util.List;
@@ -186,6 +187,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private SeekBarPreference _seekBarWork;
         private SeekBarPreference _seekBarBreak;
 
+        private String currentProfile = "";
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -199,12 +202,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Set listener :
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
+            //Get profile name
+            currentProfile = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
+
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
-            _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", ""+radius));
+            _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
             radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
-            _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", ""+radius));
+            _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
@@ -229,11 +235,55 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
+
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
-            _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", ""+radius));
+            _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
             radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
-            _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", ""+radius));
+            _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
+
+        }
+
+
+        @Override
+        public void onPause() {
+            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+
+            int work_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
+            int break_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
+            String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
+            String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
+
+            if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius)) {
+                //Nothing changes
+                System.out.println("No changes for a profile in general settings");
+            } else {
+                //FIXME Check for doubles
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).edit();
+                String[] profiles = allProfiles.split(";");
+                for (int i = 0; i < profiles.length; i++) {
+                    if (profiles[i].split(",")[0].equals(currentProfile)) {
+                        profiles[i] = newProfileName + "," + work_radius + "," + break_radius;
+                        break;
+                    }
+                }
+                StringBuilder builder = new StringBuilder();
+                for (String s : profiles) {
+                    builder.append(s + ";");
+                }
+                editor.putString("profiles", builder.toString());
+                editor.apply();
+            }
+
+
+            super.onPause();
+        }
+
+        @Override
+        public void onResume() {
+            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+            currentProfile = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
+            super.onResume();
         }
     }
 

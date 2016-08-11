@@ -149,7 +149,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                                 r.play();
                             }
 
-                            //FIXME Vibrate
+                            //FIXME Test Vibration
                             boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
                             System.out.println("Vibrate is : " + vibrateChecked);
                             if (vibrateChecked) {

@@ -4,27 +4,64 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private SeekBar interval_seekbar, break_seekbar;
+    private TextView interval_text, break_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_profile);
+
+        interval_seekbar = (SeekBar) findViewById(R.id.new_profile_interval);
+        interval_seekbar.setProgress(1);
+        break_seekbar = (SeekBar) findViewById(R.id.new_profile_break);
+        break_seekbar.setProgress(1);
+
+        interval_text = (TextView) findViewById(R.id.interval_text);
+        interval_text.setText("1 Minutes");
+        break_text = (TextView) findViewById(R.id.break_text);
+        break_text.setText("1 Minutes");
+
+        interval_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                interval_text.setText(progress + " Minutes");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
+        break_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                break_text.setText(progress + " Minutes");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
 
         Button cancelButton = (Button) findViewById(R.id.button_profile_cancel);
         cancelButton.setOnClickListener(this);
@@ -40,18 +77,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_profile_save:
-                //Fixme Add new Profile to the Array of Profiles (doesn´t work with xml because it is not possible to add values dynamically to any part of resources)
+                //Fixme Check names for doubles
                 System.out.println("Save new profile!");
-//                Spinner profileSpinner = (Spinner) findViewById(R.id.spinner);
-//                String[] array = getResources().getStringArray(R.array.profile_entries);
-//                List<String> stringList = new ArrayList<String>(Arrays.asList(array));
-//                EditText profileName =
-//                        (EditText) findViewById(R.id.editProfileName);
-//                stringList.add(4, profileName.getText().toString());
-//                ArrayAdapter<String> adapter = new
-//                        ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, stringList);
-//                profileSpinner.setAdapter(adapter);
 
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                EditText profileName =
+                        (EditText) findViewById(R.id.editProfileName);
+                String name = profileName.getText().toString();
+                editor.putString("name_text", name);
+                editor.putInt("work_value",interval_seekbar.getProgress());
+                editor.putInt("break_value",break_seekbar.getProgress());
+                editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + ";");
+                editor.apply();
                 finish();
                 break;
 
@@ -73,4 +111,5 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         this.startActivity(intent);
         System.out.println("Exercise Type Activity!");
     }
+
 }

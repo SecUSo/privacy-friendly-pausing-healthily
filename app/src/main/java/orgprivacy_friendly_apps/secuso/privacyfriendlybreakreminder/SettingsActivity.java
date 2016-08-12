@@ -21,9 +21,8 @@ import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference;
 
 import java.util.List;
 
@@ -254,29 +253,60 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
             String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
 
-            if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius)) {
+            System.out.println("SETTINGS ACTIVITY0: " + newProfileName + "," + work_radius + "," + break_radius);
+            if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius) && newProfileName.equals(currentProfile)) {
                 //Nothing changes
                 System.out.println("No changes for a profile in general settings");
             } else {
-                //FIXME Check for doubles
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).edit();
-                String[] profiles = allProfiles.split(";");
-                for (int i = 0; i < profiles.length; i++) {
-                    if (profiles[i].split(",")[0].equals(currentProfile)) {
-                        profiles[i] = newProfileName + "," + work_radius + "," + break_radius;
-                        break;
+
+                System.out.println("SETTINGS ACTIVITY: " + newProfileName);
+                if (newProfileName.equals("")) {
+                    // Profile name empty
+                    System.out.println("EMPTY NAME IN SETTINGS ACTIVITY");
+                    Toast.makeText(this.getActivity(), R.string.settings_emptyName, Toast.LENGTH_SHORT).show();
+                    editor.putString("name_text", currentProfile);
+                    editor.apply();
+
+                } else if (currentProfile != newProfileName && prefContainsName(newProfileName)) {
+                    // Profile name exists already
+                    Toast.makeText(this.getActivity(), R.string.settings_doubleName, Toast.LENGTH_SHORT).show();
+                    editor.putString("name_text", currentProfile);
+                    editor.apply();
+
+                } else {
+
+                    String[] profiles = allProfiles.split(";");
+                    for (int i = 0; i < profiles.length; i++) {
+                        if (profiles[i].split(",")[0].equals(currentProfile)) {
+                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius;
+                            break;
+                        }
                     }
+                    StringBuilder builder = new StringBuilder();
+                    for (String s : profiles) {
+                        builder.append(s + ";");
+                    }
+                    editor.putString("profiles", builder.toString());
+                    editor.apply();
                 }
-                StringBuilder builder = new StringBuilder();
-                for (String s : profiles) {
-                    builder.append(s + ";");
-                }
-                editor.putString("profiles", builder.toString());
-                editor.apply();
             }
 
 
             super.onPause();
+        }
+
+        private boolean prefContainsName(String profileName) {
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+            String allProfiles = sharedPrefs.getString("profiles", "");
+            String[] profiles = allProfiles.split(";");
+            for (String profile : profiles) {
+                if (profile.split(",")[0].equalsIgnoreCase(profileName)) {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         @Override

@@ -8,22 +8,23 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="@string/title_activity_settings" />
         <item
             android:id="@+id/nav_statistics"
             android:icon="@drawable/statistic_logo"
-            android:title="Statistics" />
+            android:title="@string/statistics" />
     </group>
 
-    <item android:title="Informations">
-        <menu>
-            <item
-                android:id="@+id/nav_help"
-                android:title="Help" />
-            <item
-                android:id="@+id/nav_about"
-                android:title="About" />
-        </menu>
-    </item>
-
+    <group android:checkableBehavior="single">
+        <item android:title="@string/information">
+            <menu>
+                <item
+                    android:id="@+id/nav_help"
+                    android:title="@string/help" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:title="@string/about" />
+            </menu>
+        </item>
+    </group>
 </menu>

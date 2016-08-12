@@ -13,12 +13,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="10:00"
+        android:text="@string/_10_00"
         android:id="@+id/textViewBreak"
         android:clickable="true"
         android:enabled="true"
         android:textStyle="bold"
-        android:textSize="60dp"
+        android:textSize="60sp"
         android:textIsSelectable="false"
         android:layout_centerHorizontal="true" />
 
@@ -26,7 +26,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play/Stop"
+        android:text="@string/break_play_stop"
         android:id="@+id/button_playStopBreak"
         android:layout_below="@+id/textViewBreak"
         android:layout_centerHorizontal="true" />
@@ -35,7 +35,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancel"
+        android:text="@string/break_cancel"
         android:id="@+id/button_cancel"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="name of the Exercise"
+        android:text="@string/name_of_the_exercise"
         android:id="@+id/textViewExercise"
         android:layout_above="@+id/horizontalScrollView2"
         android:layout_centerHorizontal="true" />
@@ -70,9 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You have to train hard, you little bitch"
+        android:text="@string/break_explanation"
         android:id="@+id/textViewDescription"
         android:layout_below="@+id/horizontalScrollView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
 
 </RelativeLayout>

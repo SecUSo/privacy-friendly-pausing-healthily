@@ -20,7 +20,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -38,6 +37,7 @@ public class BreakReminder extends AppCompatActivity
     private TextView ct_text;
     private CountDownTimer ct;
     private String stopTime = "";
+    private int oldTime = 0;
 
     private Spinner profileSpinner;
 
@@ -135,7 +135,6 @@ public class BreakReminder extends AppCompatActivity
 
         String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1);
 
-        System.out.println("Current PROFILE: " + currentProfile + " , PROFILE SELECTED: " + profileSelected);
         if (allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
             System.out.println("Profile didn´t change");
         } else {
@@ -230,28 +229,6 @@ public class BreakReminder extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.break_reminder, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -263,11 +240,17 @@ public class BreakReminder extends AppCompatActivity
             Intent intent = new Intent(this, SettingsActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_statistics) {
-
+            // Show statistics
+            Intent intent = new Intent(this, StatisticsActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_help) {
-
+            // Show help
+            Intent intent = new Intent(this, HelpActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_about) {
-
+            // Show about page
+            Intent intent = new Intent(this, AboutActivity.class);
+            this.startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -281,8 +264,13 @@ public class BreakReminder extends AppCompatActivity
         String bufferZeroMinute = "";
         String bufferZeroSecond = "";
         int time = mins * 60 * 1000;
-        time = 5000;
-        int oldTime = time;
+
+        //FIXME Hardcoded for testing
+        //time = 5000;
+
+
+        stopTime = (String) ct_text.getText();
+        oldTime = time;
 
         if (stopTime == "" && !isRunning) {
             if (time / 1000 / 60 < 10)
@@ -398,6 +386,7 @@ public class BreakReminder extends AppCompatActivity
             case R.id.button_reset:
                 if (ct != null) {
                     //Reset clock
+                    ct.cancel();
                     int interval = sharedPrefs.getInt("work_value", 1);
 
                     bufferZeroMinute = "";
@@ -406,8 +395,9 @@ public class BreakReminder extends AppCompatActivity
                         bufferZeroMinute = "0";
 
                     ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
-
-
+                    stopTime = (String) ct_text.getText();
+                    isRunning = false;
+                    break;
                 }
 
 

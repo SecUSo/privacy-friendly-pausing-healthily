@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -77,22 +78,30 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_profile_save:
-                //Fixme Check names for doubles
                 System.out.println("Save new profile!");
-
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-                SharedPreferences.Editor editor = sharedPrefs.edit();
                 EditText profileName =
                         (EditText) findViewById(R.id.editProfileName);
                 String name = profileName.getText().toString();
-                editor.putString("name_text", name);
-                editor.putInt("work_value",interval_seekbar.getProgress());
-                editor.putInt("break_value",break_seekbar.getProgress());
-                editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + ";");
-                editor.apply();
-                finish();
-                break;
 
+                if (name.equals("")) {
+                    Toast.makeText(this, R.string.new_profile_emptyName, Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (prefContainsName(name)) {
+                    Toast.makeText(this, R.string.new_profile_doubleName, Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+
+                    // Add to preferences
+                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("name_text", name);
+                    editor.putInt("work_value", interval_seekbar.getProgress());
+                    editor.putInt("break_value", break_seekbar.getProgress());
+                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + ";");
+                    editor.apply();
+                    finish();
+                    break;
+                }
             case R.id.button_profile_cancel:
                 System.out.println("New profile canceled!");
                 finish();
@@ -105,6 +114,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+
+    private boolean prefContainsName(String profileName) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String allProfiles = sharedPrefs.getString("profiles", "");
+        String[] profiles = allProfiles.split(";");
+        for (String profile : profiles) {
+            if (profile.split(",")[0].equalsIgnoreCase(profileName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private void createExerciseType() {
         Intent intent = new Intent(this, ExerciseTypeActivity.class);

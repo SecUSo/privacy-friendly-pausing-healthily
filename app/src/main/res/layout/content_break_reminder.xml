@@ -34,7 +34,7 @@
         android:layout_alignTop="@+id/button_reset"
         android:layout_toLeftOf="@+id/button_reset"
         android:layout_toStartOf="@+id/button_reset"
-        android:text="Play/Stop" />
+        android:text="@string/play_stop" />
 
     <Button
         android:id="@+id/button_reset"
@@ -45,7 +45,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textView"
         android:layout_marginBottom="182dp"
-        android:text="Reset" />
+        android:text="@string/reset" />
 
     <TextView
         android:id="@+id/textView"
@@ -55,10 +55,10 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:enabled="true"
-        android:text="30:00"
+        android:text="@string/_30_00"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false"
-        android:textSize="60dp"
+        android:textSize="60sp"
         android:textStyle="bold" />
 
 

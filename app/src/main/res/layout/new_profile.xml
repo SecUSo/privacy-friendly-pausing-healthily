@@ -17,9 +17,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="53dp"
-            android:text="Profile Name"
+            android:text="@string/profile_name"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/editProfileName"
@@ -31,7 +31,7 @@
             android:layout_marginEnd="42dp"
             android:layout_marginRight="42dp"
             android:inputType="text"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <SeekBar
             android:id="@+id/new_profile_interval"
@@ -48,7 +48,7 @@
             android:layout_below="@+id/editProfileName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:text="interval"
+            android:text="@string/interval"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -59,15 +59,15 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/new_profile_break"
             android:layout_marginTop="48dp"
-            android:text="Exercise Type"
+            android:text="@string/exercise_type"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Break"
+            android:text="@string/new_profile_break"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_above="@+id/new_profile_break"
             android:layout_centerHorizontal="true" />
@@ -100,7 +100,7 @@
             android:layout_alignBottom="@+id/checkBox"
             android:layout_toEndOf="@+id/checkBox"
             android:layout_toRightOf="@+id/checkBox"
-            android:text="Select" />
+            android:text="@string/new_profile_select" />
 
         <TextView
             android:id="@+id/textView7"
@@ -110,7 +110,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView6"
             android:layout_marginTop="40dp"
-            android:text="Continuosly"
+            android:text="@string/new_profile_continuously"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="24sp" />
 
@@ -130,7 +130,7 @@
             android:layout_below="@+id/checkBox2"
             android:layout_toLeftOf="@+id/checkBox2"
             android:layout_toStartOf="@+id/checkBox2"
-            android:text="Save" />
+            android:text="@string/new_profile_save" />
 
         <Button
             android:id="@+id/button_profile_cancel"
@@ -139,13 +139,13 @@
             android:layout_below="@+id/checkBox2"
             android:layout_toEndOf="@+id/textView4"
             android:layout_toRightOf="@+id/textView4"
-            android:text="Cancel" />
+            android:text="@string/new_profile_cancel" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="0"
+            android:text="@string/_0"
             android:id="@+id/interval_text"
             android:layout_alignTop="@+id/textView4"
             android:layout_toRightOf="@+id/new_profile_interval"

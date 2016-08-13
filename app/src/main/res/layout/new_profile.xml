@@ -115,7 +115,7 @@
             android:textSize="24sp" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/continuouslyCB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/checkBox"
@@ -127,19 +127,19 @@
             android:id="@+id/button_profile_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/checkBox2"
-            android:layout_toLeftOf="@+id/checkBox2"
-            android:layout_toStartOf="@+id/checkBox2"
-            android:text="@string/new_profile_save" />
+            android:text="@string/new_profile_save"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/textView4"
+            android:layout_toStartOf="@+id/textView4" />
 
         <Button
             android:id="@+id/button_profile_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/checkBox2"
-            android:layout_toEndOf="@+id/textView4"
+            android:text="@string/new_profile_cancel"
+            android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/textView4"
-            android:text="@string/new_profile_cancel" />
+            android:layout_toEndOf="@+id/textView4" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -160,6 +160,29 @@
             android:layout_toRightOf="@+id/new_profile_break"
             android:layout_toEndOf="@+id/new_profile_break"
             android:text="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="If checked, there will be no possibillity to skip the exercises"
+            android:id="@+id/textView15"
+            android:layout_below="@+id/continuouslyCB"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="If checked, there will be exercises in the break. Make sure, to select some exercises!"
+            android:id="@+id/textView16"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@+id/continuouslyCB" />
 
     </RelativeLayout>
 

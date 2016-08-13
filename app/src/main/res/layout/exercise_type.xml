@@ -109,8 +109,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add"
             android:id="@+id/button_et_add"
-            android:layout_marginTop="23dp"
-            android:layout_below="@+id/textView12"
+            android:layout_above="@+id/button_et_save"
             android:layout_alignRight="@+id/checkBox3"
             android:layout_alignEnd="@+id/checkBox3" />
 
@@ -129,9 +128,8 @@
             android:text="@string/save"
             android:id="@+id/button_et_save"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/button_et_add"
-            android:layout_alignEnd="@+id/button_et_add"
-            android:layout_marginBottom="30dp" />
+            android:layout_alignLeft="@+id/button_et_add"
+            android:layout_alignStart="@+id/button_et_add" />
 
         <Button
             android:layout_width="wrap_content"
@@ -141,6 +139,50 @@
             android:layout_alignBottom="@+id/button_et_save"
             android:layout_alignLeft="@+id/button_et_edit"
             android:layout_alignStart="@+id/button_et_edit" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:layout_alignTop="@+id/textView11"
+            android:layout_alignLeft="@+id/checkBox3"
+            android:layout_alignStart="@+id/checkBox3"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="If checked, the exercises will be executed in a row without choice. \nIf not checked, the exercises can be choosen"
+            android:id="@+id/textView17"
+            android:layout_below="@+id/textView12"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@+id/button_et_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/_0"
+            android:id="@+id/textView18"
+            android:layout_alignBottom="@+id/seekBar3"
+            android:layout_alignTop="@+id/textView9"
+            android:layout_toEndOf="@+id/seekBar3"
+            android:layout_toRightOf="@+id/seekBar3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/_0"
+            android:id="@+id/textView19"
+            android:layout_below="@+id/seekBar3"
+            android:layout_toRightOf="@+id/seekBar3"
+            android:layout_toEndOf="@+id/seekBar3" />
 
     </RelativeLayout>
 </LinearLayout>

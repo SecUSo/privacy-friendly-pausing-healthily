@@ -8,6 +8,16 @@ import android.widget.Button;
 
 public class ExerciseTypeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // FIXME provisorische Form des Strings:
+    // "NAME_DES_PROFILS,LAENGE_DER_ARBEITSZEIT,LAENGE_DER_PAUSE,CONTINIOUSLY"
+
+    // FIXME HashSet of Exercises
+    // NAME_DES_PROFILS - "UEBUNG1,UE1_LAENGE,UE1_WIEDERHOLUNG,UE1_IMG_NR,UE1_DESCR_NR#UE2....,SEQUENTIAL"
+
+    // FIXME HashSet of Statistical Values
+    // NAME_DES_PROFILS - DATUM_DES_ERSTELLENS,ANGEWANDTE_ZEITNAHMEN,UE_ID#ANZAHL_DERANWENDUNGEN,UE_ID2#ANZAHL_DERANWENDUNGEN,...
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

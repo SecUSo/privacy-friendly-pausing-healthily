@@ -64,7 +64,7 @@ public class BreakReminder extends AppCompatActivity
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
             SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putString("profiles", "Sport,5,1;Exams,90,15;Pomodoro,30,5;");
+            editor.putString("profiles", "Sport,5,1,false;Exams,90,15,false;Pomodoro,30,5,false;");
             editor.apply();
         }
 
@@ -266,10 +266,7 @@ public class BreakReminder extends AppCompatActivity
         int time = mins * 60 * 1000;
 
         //FIXME Hardcoded for testing
-        //time = 5000;
-
-
-        stopTime = (String) ct_text.getText();
+        stopTime = (String) "00:05";//ct_text.getText();
         oldTime = time;
 
         if (stopTime == "" && !isRunning) {
@@ -417,19 +414,19 @@ public class BreakReminder extends AppCompatActivity
     }
 
     public void startBreak() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String allProfiles = sharedPrefs.getString("profiles", "");
+        String[] profiles = allProfiles.split(";");
+        String currentProfile = sharedPrefs.getString("name_text", "");
+
+        for (int i = 0; i < profiles.length; i++){
+            if(profiles[i].split(",")[0].equals(currentProfile) && profiles[i].split(",")[3].equals("true")){
+                Intent intent = new Intent(this, BreakActivity.class);
+                this.startActivity(intent);
+                return;
+            }
+        }
         Intent intent = new Intent(this, BreakDeciderActivity.class);
         this.startActivity(intent);
-
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int mins = sharedPrefs.getInt("work_value", 50);
-        String bufferZeroMinute = "";
-        int time = mins * 60 * 1000;
-
-        if (time / 1000 / 60 < 10)
-            bufferZeroMinute = "0";
-
-        ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
     }
-
-
 }

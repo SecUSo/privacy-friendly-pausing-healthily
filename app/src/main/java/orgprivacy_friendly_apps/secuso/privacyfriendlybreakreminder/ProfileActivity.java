@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -90,14 +91,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     Toast.makeText(this, R.string.new_profile_doubleName, Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-
+                    CheckBox cb_Cont = (CheckBox) findViewById(R.id.continuouslyCB);
+                    Boolean cont = cb_Cont.isChecked();
                     // Add to preferences
                     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putString("name_text", name);
                     editor.putInt("work_value", interval_seekbar.getProgress());
                     editor.putInt("break_value", break_seekbar.getProgress());
-                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + ";");
+                    System.out.println("BoolValue: "+cont);
+                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + ";");
                     editor.apply();
                     finish();
                     break;

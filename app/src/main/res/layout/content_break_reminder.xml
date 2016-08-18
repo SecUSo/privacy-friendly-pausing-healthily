@@ -9,6 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@color/middleblue"
     tools:context="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder"
     tools:showIn="@layout/app_bar_break_reminder">
 
@@ -26,15 +27,18 @@
         android:popupBackground="@drawable/side_nav_bar"
         android:spinnerMode="dropdown" />
 
+
     <Button
         android:id="@+id/button_playStop"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/button_normal"
+        android:text="@string/play_stop"
         android:layout_alignTop="@+id/button_reset"
-        android:layout_toLeftOf="@+id/button_reset"
-        android:layout_toStartOf="@+id/button_reset"
-        android:text="@string/play_stop" />
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 
     <Button
         android:id="@+id/button_reset"
@@ -45,7 +49,25 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/textView"
         android:layout_marginBottom="182dp"
-        android:text="@string/reset" />
+        android:textColor="@color/white"
+        android:background="@drawable/button_normal"
+        android:text="@string/reset"
+        android:layout_toRightOf="@+id/button_playStop"
+        android:layout_toEndOf="@+id/button_playStop" />
+
+
+    <!--
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shape="ring">
+        <stroke android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="2dp"
+            android:color="@color/black" />
+
+    </shape>
+    -->
 
     <TextView
         android:id="@+id/textView"

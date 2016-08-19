@@ -38,7 +38,7 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="play_stop">Play/Stop</string>
     <string name="reset">Reset</string>
-    <string name="_30_00" translatable="false">30:00</string>
+    <string name="break_reminder_time" translatable="false">30:00</string>
     <string name="exercise_name">Exercise-name</string>
     <string name="exercise_time">Exercise time</string>
     <string name="repetitions">Repetitions</string>
@@ -90,6 +90,8 @@
     <string name="more_info">More Information can be found here:</string>
     <string name="url" translatable="false"><a href="https://www.secuso.informatik.tu-darmstadt.de/en/research/results/">https://www.secuso.org</a></string>
     <string name="break_explanation">You have to train your chest hard! Eat healthy</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
     <!-- settings for BreakActivity -->
 

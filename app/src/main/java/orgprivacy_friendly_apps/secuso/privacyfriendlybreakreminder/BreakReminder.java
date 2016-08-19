@@ -2,6 +2,8 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,13 +40,26 @@ public class BreakReminder extends AppCompatActivity
     private CountDownTimer ct;
     private String stopTime = "";
     private int oldTime = 0;
-
+    private boolean addNewProfile = false;
     private Spinner profileSpinner;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean onPause = sharedPrefs.getBoolean("onPause", false);
+        if (onPause) {
+            System.out.println("ON PAUSE WAS TRUE!!!!");
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putBoolean("onPause", false);
+            editor.apply();
+            return;
+        }
+
         super.onCreate(savedInstanceState);
+
+        System.out.println("WELCOME TO THE MOTHER FUCKING JUNGLE BIIIIIIIIIIIIIIIIIIIIIIIIIIITCH");
 
         setContentView(R.layout.activity_break_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,7 +74,7 @@ public class BreakReminder extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
@@ -157,6 +172,9 @@ public class BreakReminder extends AppCompatActivity
                         bufferZeroMinute = "0";
 
                     ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
+
+                    //FIXME Update Widgets
+                    updateWidgets(bufferZeroMinute + time / 1000 / 60 + ":00");
                     break;
                 }
             }
@@ -213,10 +231,38 @@ public class BreakReminder extends AppCompatActivity
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("onPause", true);
+        editor.apply();
+        System.out.println("IM ON PAUSE BITCH 1111111");
+    }
+
+
+    @Override
     public void onResume() {
         super.onResume();
-        fillProfiles();
-        profileSpinner = (Spinner) findViewById(R.id.spinner);
+
+        //FIXME Add flag if New Profile or Resume
+        if (addNewProfile) {
+            fillProfiles();
+            profileSpinner = (Spinner) findViewById(R.id.spinner);
+            addNewProfile = false;
+        } else {
+
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        System.out.println("ON PAUSE CALLED!");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("onPause", false);
+        editor.apply();
     }
 
     @Override
@@ -266,7 +312,7 @@ public class BreakReminder extends AppCompatActivity
         int time = mins * 60 * 1000;
 
         //FIXME Hardcoded for testing
-        stopTime = (String) "00:05";//ct_text.getText();
+        stopTime = (String) ct_text.getText();
         oldTime = time;
 
         if (stopTime == "" && !isRunning) {
@@ -319,6 +365,10 @@ public class BreakReminder extends AppCompatActivity
 
                             ct_text.setText(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
 
+                            //Fixme Update widgets
+
+                            updateWidgets(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
+
                             //Show how much time is left
                             //String timeLeft = bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60;
                             //System.out.println("Time left: " + timeLeft);
@@ -339,6 +389,9 @@ public class BreakReminder extends AppCompatActivity
                         public void onFinish() {
                             isRunning = false;
                             ct_text.setText("00:00");
+
+                            updateWidgets("00:00");
+
                             //trigger the alarm
                             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
@@ -409,8 +462,20 @@ public class BreakReminder extends AppCompatActivity
     }
 
     private void createNewProfile() {
+        addNewProfile = true;
         Intent intent = new Intent(this, ProfileActivity.class);
         this.startActivity(intent);
+    }
+
+    private void updateWidgets(String time) {
+        System.out.println("UPDATING THE WIDGET -------");
+        Intent intent = new Intent(this, AppWidget.class);
+        intent.putExtra("time", time);
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(this.getApplicationContext(), AppWidget.class));
+        System.out.println("Number of WIDGETS : " + ids.length);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        sendBroadcast(intent);
     }
 
     public void startBreak() {
@@ -419,8 +484,8 @@ public class BreakReminder extends AppCompatActivity
         String[] profiles = allProfiles.split(";");
         String currentProfile = sharedPrefs.getString("name_text", "");
 
-        for (int i = 0; i < profiles.length; i++){
-            if(profiles[i].split(",")[0].equals(currentProfile) && profiles[i].split(",")[3].equals("true")){
+        for (int i = 0; i < profiles.length; i++) {
+            if (profiles[i].split(",")[0].equals(currentProfile) && profiles[i].split(",")[3].equals("true")) {
                 Intent intent = new Intent(this, BreakActivity.class);
                 this.startActivity(intent);
                 return;

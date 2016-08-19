@@ -55,7 +55,7 @@
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:enabled="true"
-        android:text="@string/_30_00"
+        android:text="@string/break_reminder_time"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false"
         android:textSize="60sp"

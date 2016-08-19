@@ -3,6 +3,7 @@
     package="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,12 +29,26 @@
                 android:value="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder" />
         </activity>
         <activity android:name=".BreakDeciderActivity" />
-        <activity android:name=".BreakActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".ExerciseTypeActivity"></activity>
-        <activity android:name=".AboutActivity"></activity>
-        <activity android:name=".StatisticsActivity"></activity>
-        <activity android:name=".HelpActivity"></activity>
+        <activity android:name=".BreakActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ExerciseTypeActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".HelpActivity" />
+
+        <receiver
+            android:name=".AppWidget"
+            android:label="Resizable Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget2x1_info" />
+
+        </receiver>
+
     </application>
 
 </manifest>

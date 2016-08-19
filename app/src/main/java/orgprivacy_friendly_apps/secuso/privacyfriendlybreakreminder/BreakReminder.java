@@ -253,11 +253,11 @@ public class BreakReminder extends AppCompatActivity
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         //FIXME Add flag if New Profile or Resume
-        if (addNewProfile) {
+        //if (addNewProfile) {
             fillProfiles();
             profileSpinner = (Spinner) findViewById(R.id.spinner);
-            addNewProfile = false;
-        }
+          //  addNewProfile = false;
+        //}
     }
 
     @Override

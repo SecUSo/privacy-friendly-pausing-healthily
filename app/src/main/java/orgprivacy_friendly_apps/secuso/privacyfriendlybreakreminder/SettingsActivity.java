@@ -186,6 +186,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private SeekBarPreference _seekBarWork;
         private SeekBarPreference _seekBarBreak;
 
+        private DynamicListPreference dlp;
+
         private String currentProfile = "";
 
         @Override
@@ -197,6 +199,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Get widgets :
             _seekBarWork = (SeekBarPreference) this.findPreference("work_value");
             _seekBarBreak = (SeekBarPreference) this.findPreference("break_value");
+
+            dlp = (DynamicListPreference) this.findPreference("current_profile");
 
             // Set listener :
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
@@ -235,11 +239,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
 
+            if(key.equals("current_profile")){
+                System.out.println("HOOOOOOOOOOOOOLY SHIIIIIIIIIIIIT");
+            }
+
+
+            System.out.println("--------We change something!!!!!   Key: " + key);
+
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
             _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
             radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
             _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
+
+            //FIXME Update the preferences of the selected profile
+            if (!key.equals("profiles"))
+                updateProfilesPreference();
 
         }
 
@@ -248,12 +263,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onPause() {
             getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 
+            updateProfilesPreference();
+
+            super.onPause();
+        }
+
+        private void updateProfilesPreference() {
             int work_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
             int break_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
             String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
             String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
 
             System.out.println("SETTINGS ACTIVITY0: " + newProfileName + "," + work_radius + "," + break_radius);
+            System.out.println("SETTING ACTIVITY1: " + allProfiles);
             if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius) && newProfileName.equals(currentProfile)) {
                 //Nothing changes
                 System.out.println("No changes for a profile in general settings");
@@ -264,16 +286,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 if (newProfileName.equals("")) {
                     // Profile name empty
                     System.out.println("EMPTY NAME IN SETTINGS ACTIVITY");
-                    Toast.makeText(this.getActivity(), R.string.settings_emptyName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.getActivity(), R.string.settings_emptyName, Toast.LENGTH_LONG).show();
                     editor.putString("name_text", currentProfile);
                     editor.apply();
+                    findPreference("name_text").setSummary(currentProfile);
 
                 } else if (currentProfile != newProfileName && prefContainsName(newProfileName)) {
                     // Profile name exists already
-                    Toast.makeText(this.getActivity(), R.string.settings_doubleName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.getActivity(), R.string.settings_doubleName, Toast.LENGTH_LONG).show();
                     editor.putString("name_text", currentProfile);
                     editor.apply();
-
+                    findPreference("name_text").setSummary(currentProfile);
                 } else {
 
                     String[] profiles = allProfiles.split(";");
@@ -289,11 +312,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                     editor.putString("profiles", builder.toString());
                     editor.apply();
+
+                    currentProfile = newProfileName;
                 }
             }
 
 
-            super.onPause();
         }
 
         private boolean prefContainsName(String profileName) {

@@ -24,7 +24,8 @@
     <string name="pref_header_general">General</string>
     <string name="pref_title_display_name">Profile name</string>
     <string name="pref_default_display_name">Pomodoro</string>
-
+    <string name="pref_current_profile">Select profile</string>
+    <string name="pref_default_profile">Sport</string>
 
     <!-- settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>

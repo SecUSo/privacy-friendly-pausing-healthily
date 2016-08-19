@@ -1,18 +1,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.DynamicListPreference
+        android:defaultValue="@string/pref_current_profile"
+        android:key="current_profile"
+        android:title="@string/pref_current_profile" />
+
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
 
     <EditTextPreference
         android:capitalize="words"
         android:defaultValue="@string/pref_default_display_name"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
         android:inputType="textCapWords"
         android:key="name_text"
+        android:maxLength="9"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-        android:maxLength="9"
         android:title="@string/pref_title_display_name" />
 
 
@@ -33,5 +39,6 @@
         android:summary="@string/settings_break_summary"
         android:text="@string/settings_unit"
         android:title="@string/settings_break_title" />
+
 
 </PreferenceScreen>

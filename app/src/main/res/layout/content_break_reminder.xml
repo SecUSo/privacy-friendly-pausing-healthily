@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@color/middleblue"
+    android:background="@color/white"
     tools:context="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder"
     tools:showIn="@layout/app_bar_break_reminder">
 
@@ -18,14 +18,10 @@
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignLeft="@+id/button_playStop"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignStart="@+id/button_playStop"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="83dp"
         android:popupBackground="@color/white"
-        android:spinnerMode="dropdown" />
+        android:spinnerMode="dropdown"
+        android:layout_centerHorizontal="true" />
 
 
     <Button
@@ -45,15 +41,14 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView"
         android:layout_marginBottom="182dp"
         android:textColor="@color/white"
         android:background="@drawable/button_normal"
         android:text="@string/reset"
         android:layout_toRightOf="@+id/button_playStop"
-        android:layout_toEndOf="@+id/button_playStop" />
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
 
     <!--
@@ -73,15 +68,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_playStop"
-        android:layout_centerHorizontal="true"
         android:clickable="true"
         android:enabled="true"
         android:text="@string/break_reminder_time"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false"
         android:textSize="60sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_above="@+id/button_reset"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

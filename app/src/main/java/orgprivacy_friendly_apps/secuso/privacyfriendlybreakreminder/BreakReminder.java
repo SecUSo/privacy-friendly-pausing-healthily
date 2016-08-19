@@ -245,13 +245,18 @@ public class BreakReminder extends AppCompatActivity
     public void onResume() {
         super.onResume();
 
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // If chosen, set screen to "stay on"
+        boolean stayOn = sharedPrefs.getBoolean("notifications_stayOn", false);
+
+        if (stayOn)
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         //FIXME Add flag if New Profile or Resume
         if (addNewProfile) {
             fillProfiles();
             profileSpinner = (Spinner) findViewById(R.id.spinner);
             addNewProfile = false;
-        } else {
-
         }
     }
 

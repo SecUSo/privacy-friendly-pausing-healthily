@@ -5,4 +5,5 @@
     android:gravity="center"
     android:padding="5dip"
     android:textColor="@color/black"
-    android:textSize="26sp" />
+    android:textSize="26sp"
+    android:layout_centerHorizontal="true"/>

@@ -24,7 +24,7 @@
         android:layout_alignRight="@+id/textView"
         android:layout_alignStart="@+id/button_playStop"
         android:layout_marginTop="84dp"
-        android:popupBackground="@drawable/side_nav_bar"
+        android:popupBackground="@color/white"
         android:spinnerMode="dropdown" />
 
 

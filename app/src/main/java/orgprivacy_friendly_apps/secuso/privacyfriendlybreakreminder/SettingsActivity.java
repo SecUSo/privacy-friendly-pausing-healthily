@@ -2,6 +2,7 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -25,6 +27,8 @@ import android.widget.Toast;
 
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -176,6 +180,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 || NotificationPreferenceFragment.class.getName().equals(fragmentName);
     }
 
+
+
+
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
@@ -190,8 +197,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         private String currentProfile = "";
 
+        private Bundle bundle;
         @Override
         public void onCreate(Bundle savedInstanceState) {
+            bundle = savedInstanceState;
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
@@ -221,7 +230,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("name_text"));
-            //bindPreferenceSummaryToValue(findPreference("example_list"));
         }
 
         @Override
@@ -241,7 +249,32 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             if(key.equals("current_profile")){
                 System.out.println("HOOOOOOOOOOOOOLY SHIIIIIIIIIIIIT");
+
+                ListPreference listPref = (ListPreference) findPreference("current_profile");
+                int i = Integer.parseInt(listPref.getValue());
+
+                System.out.println("!!!!!! "+i);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("current_profile", ""+i);
+
+                String[] allProfile = sharedPreferences.getString("profiles", "").split(";");
+
+                //FIXME Deactivate the onPrefListener in SettingsActivity
+                getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+                editor.putString("name_text",allProfile[i].split(",")[0]);
+                editor.putInt("work_value",Integer.parseInt(allProfile[i].split(",")[1]));
+                editor.putInt("break_value",Integer.parseInt(allProfile[i].split(",")[2]));
+                editor.apply();
+                getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+                onDestroy();
+                onCreate(bundle);
+                return;
             }
+
+
+
+
 
 
             System.out.println("--------We change something!!!!!   Key: " + key);

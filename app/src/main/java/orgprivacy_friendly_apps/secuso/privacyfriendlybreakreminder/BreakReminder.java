@@ -49,13 +49,14 @@ public class BreakReminder extends AppCompatActivity
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean onPause = sharedPrefs.getBoolean("onPause", false);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
         if (onPause) {
             System.out.println("ON PAUSE WAS TRUE!!!!");
-            SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putBoolean("onPause", false);
             editor.apply();
             return;
         }
+
 
         super.onCreate(savedInstanceState);
 
@@ -78,7 +79,6 @@ public class BreakReminder extends AppCompatActivity
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
-            SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putString("profiles", "Sport,5,1,false;Exams,90,15,false;Pomodoro,30,5,false;");
             editor.apply();
         }
@@ -160,6 +160,7 @@ public class BreakReminder extends AppCompatActivity
                 int break_time = Integer.parseInt(profileNames[i].split(",")[2]);
                 if (profileName.equals(profileSelected)) {
                     SharedPreferences.Editor editor = sharedPrefs.edit();
+                    editor.putString("current_profile", ""+i);
                     editor.putString("name_text", profileName);
                     editor.putInt("work_value", interval);
                     editor.putInt("break_value", break_time);

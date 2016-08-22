@@ -40,27 +40,16 @@ public class BreakReminder extends AppCompatActivity
     private CountDownTimer ct;
     private String stopTime = "";
     private int oldTime = 0;
-    private boolean addNewProfile = false;
     private Spinner profileSpinner;
+    private SharedPreferences sharedPrefs;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean onPause = sharedPrefs.getBoolean("onPause", false);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        if (onPause) {
-            System.out.println("ON PAUSE WAS TRUE!!!!");
-            editor.putBoolean("onPause", false);
-            editor.apply();
-            return;
-        }
-
-
         super.onCreate(savedInstanceState);
-
-        System.out.println("WELCOME TO THE MOTHER FUCKING JUNGLE BIIIIIIIIIIIIIIIIIIIIIIIIIIITCH");
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
 
         setContentView(R.layout.activity_break_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,7 +68,9 @@ public class BreakReminder extends AppCompatActivity
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
-            editor.putString("profiles", "Sport,5,1,false;Exams,90,15,false;Pomodoro,30,5,false;");
+            allProfiles = "Sport,5,1,false;Exams,90,15,false;Pomodoro,30,5,false;";
+            editor.putString("profiles", allProfiles);
+
             editor.apply();
         }
 
@@ -90,15 +81,16 @@ public class BreakReminder extends AppCompatActivity
 
         if (stayOn)
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        else
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        int mins = sharedPrefs.getInt("work_value", 50);
+        int mins = sharedPrefs.getInt("work_value", 5);
         String bufferZeroMinute = "";
 
         if (mins < 10)
             bufferZeroMinute = "0";
 
         ct_text = (TextView)
-
                 findViewById(R.id.textView);
 
         ct_text.setText(bufferZeroMinute + mins + ":00");
@@ -115,6 +107,7 @@ public class BreakReminder extends AppCompatActivity
         String[] fillProfileNames = allProfiles.split(";");
         for (int i = 0; i < profileNames.length - 1; i++) {
             profileNames[i] = fillProfileNames[i].split(",")[0];
+            System.out.println("Profile name:" + profileNames[i]);
         }
         profileNames[profileNames.length - 1] = "New Profile...";
         ArrayAdapter<String> adapter = new
@@ -122,12 +115,8 @@ public class BreakReminder extends AppCompatActivity
         profileSpinner.setAdapter(adapter);
 
         //Set the ClickListener for Spinner
-        profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-
-        {
-
+        profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Selected item: " + parent.getItemAtPosition(position) + " with id: " + id);
 
                 String profileSelected = (String) parent.getItemAtPosition(position);
                 if (profileSelected.equals("New Profile...")) {
@@ -144,7 +133,6 @@ public class BreakReminder extends AppCompatActivity
     }
 
     private void updatePreference(String profileSelected) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String allProfiles = sharedPrefs.getString("profiles", "");
 
@@ -153,6 +141,11 @@ public class BreakReminder extends AppCompatActivity
         if (allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
             System.out.println("Profile didn´t change");
         } else {
+            if (ct != null) {
+                ct.cancel();
+                isRunning = false;
+            }
+
             String[] profileNames = allProfiles.split(";");
             for (int i = 0; i < profileNames.length; i++) {
                 String profileName = profileNames[i].split(",")[0];
@@ -160,7 +153,7 @@ public class BreakReminder extends AppCompatActivity
                 int break_time = Integer.parseInt(profileNames[i].split(",")[2]);
                 if (profileName.equals(profileSelected)) {
                     SharedPreferences.Editor editor = sharedPrefs.edit();
-                    editor.putString("current_profile", ""+i);
+                    editor.putString("current_profile", "" + i);
                     editor.putString("name_text", profileName);
                     editor.putInt("work_value", interval);
                     editor.putInt("break_value", break_time);
@@ -183,7 +176,12 @@ public class BreakReminder extends AppCompatActivity
     }
 
     private void fillProfiles() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (ct != null) {
+            ct.cancel();
+            isRunning = false;
+        }
+
         String allProfiles = sharedPrefs.getString("profiles", "");
 
         String[] profileNames = new String[allProfiles.split(";").length + 1];
@@ -197,9 +195,10 @@ public class BreakReminder extends AppCompatActivity
         profileSpinner.setAdapter(adapter);
 
         //Set Spinner on the current Profile
-        String currentProfile = sharedPrefs.getString("name_text", "Sport");
+        //String currentProfile = sharedPrefs.getString("name_text", "Sport");
         int interval = sharedPrefs.getInt("work_value", 1);
-        profileSpinner.setSelection(Arrays.asList(profileNames).indexOf(currentProfile));
+        //profileSpinner.setSelection(Arrays.asList(profileNames).indexOf(currentProfile));
+        profileSpinner.setSelection(Integer.parseInt(sharedPrefs.getString("current_profile", "-1")));
 
         //Update clock
         String bufferZeroMinute = "";
@@ -210,13 +209,8 @@ public class BreakReminder extends AppCompatActivity
         ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
 
         //Set the ClickListener for Spinner
-        profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-
-        {
-
+        profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Selected item: " + parent.getItemAtPosition(position) + " with id: " + id);
-
                 String profileSelected = (String) parent.getItemAtPosition(position);
                 if (profileSelected.equals("New Profile...")) {
                     createNewProfile();
@@ -232,43 +226,31 @@ public class BreakReminder extends AppCompatActivity
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("onPause", true);
-        editor.apply();
-        System.out.println("IM ON PAUSE BITCH 1111111");
-    }
-
-
-    @Override
     public void onResume() {
         super.onResume();
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         // If chosen, set screen to "stay on"
         boolean stayOn = sharedPrefs.getBoolean("notifications_stayOn", false);
 
         if (stayOn)
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        else
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        System.out.println("Activity resumed!!");
 
         //FIXME Add flag if New Profile or Resume
-        //if (addNewProfile) {
+        if (sharedPrefs.getBoolean("change_profiles", false)) {
+            System.out.println("Change Profiles is true!");
             fillProfiles();
-            profileSpinner = (Spinner) findViewById(R.id.spinner);
-          //  addNewProfile = false;
-        //}
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        System.out.println("ON PAUSE CALLED!");
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("onPause", false);
-        editor.apply();
+            //profileSpinner = (Spinner) findViewById(R.id.spinner);
+
+
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putBoolean("change_profiles", false);
+            editor.apply();
+        }
     }
 
     @Override
@@ -311,7 +293,6 @@ public class BreakReminder extends AppCompatActivity
     }
 
     public void onClick(View v) {
-        final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         int mins = sharedPrefs.getInt("work_value", 50);
         String bufferZeroMinute = "";
         String bufferZeroSecond = "";
@@ -321,7 +302,7 @@ public class BreakReminder extends AppCompatActivity
         stopTime = (String) ct_text.getText();
         oldTime = time;
 
-        if (stopTime == "" && !isRunning) {
+        if (stopTime.equals("") && !isRunning) {
             if (time / 1000 / 60 < 10)
                 bufferZeroMinute = "0";
 
@@ -332,7 +313,6 @@ public class BreakReminder extends AppCompatActivity
             String[] timef = stringTime.split(":");
             int minute = Integer.parseInt(timef[0]);
             int second = Integer.parseInt(timef[1]);
-            System.out.println("Minute: " + minute + "  Second: " + second);
             time = (1000 * (minute * 60)) + (1000 * second);
 
             if (minute < 10)
@@ -342,9 +322,6 @@ public class BreakReminder extends AppCompatActivity
 
             ct_text.setText(bufferZeroMinute + minute + ":" + bufferZeroSecond + second);
         }
-
-
-        System.out.println(time + " " + ct_text.getText());
 
 
         switch (v.getId()) {
@@ -376,8 +353,7 @@ public class BreakReminder extends AppCompatActivity
                             updateWidgets(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
 
                             //Show how much time is left
-                            //String timeLeft = bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60;
-                            //System.out.println("Time left: " + timeLeft);
+
                             timeLeft = sharedPrefs.getBoolean("notifications_new_message_timeLeft", false);
                             if (timeLeft) {
                                 Notification notification = new NotificationCompat.Builder(getApplicationContext()).setCategory(Notification.CATEGORY_MESSAGE)
@@ -399,11 +375,9 @@ public class BreakReminder extends AppCompatActivity
                             updateWidgets("00:00");
 
                             //trigger the alarm
-                            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
-                            System.out.println("Sound: " + ringPref);
+
                             if (!ringPref.equals("")) {
-                                System.out.println("-----------------PLAY NOTIFICATION SOUND----------------");
                                 // Get the current ringtone
                                 Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
 
@@ -412,7 +386,6 @@ public class BreakReminder extends AppCompatActivity
                             }
                             //FIXME Test Vibration
                             boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
-                            System.out.println("Vibrate is : " + vibrateChecked);
                             if (vibrateChecked) {
                                 // Get instance of Vibrator from current Context
                                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -420,9 +393,8 @@ public class BreakReminder extends AppCompatActivity
                                 if (v == null) {
                                     System.out.println("No vibrator! :D");
                                 } else {
-                                    // Vibrate for 3000 milliseconds
-                                    System.out.println("Vibrate for 3000 ms");
-                                    v.vibrate(3000);
+                                    // Vibrate for 1500 milliseconds
+                                    v.vibrate(1500);
                                 }
                             }
 
@@ -453,6 +425,8 @@ public class BreakReminder extends AppCompatActivity
                     ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
                     stopTime = (String) ct_text.getText();
                     isRunning = false;
+
+                    updateWidgets(stopTime);
                     break;
                 }
 
@@ -468,24 +442,25 @@ public class BreakReminder extends AppCompatActivity
     }
 
     private void createNewProfile() {
-        addNewProfile = true;
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("change_profiles", true);
+        editor.apply();
         Intent intent = new Intent(this, ProfileActivity.class);
         this.startActivity(intent);
     }
 
     private void updateWidgets(String time) {
-        System.out.println("UPDATING THE WIDGET -------");
         Intent intent = new Intent(this, AppWidget.class);
         intent.putExtra("time", time);
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(this.getApplicationContext(), AppWidget.class));
-        System.out.println("Number of WIDGETS : " + ids.length);
-        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
-        sendBroadcast(intent);
+        if (ids.length != 0) {
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+            sendBroadcast(intent);
+        }
     }
 
     public void startBreak() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String allProfiles = sharedPrefs.getString("profiles", "");
         String[] profiles = allProfiles.split(";");
         String currentProfile = sharedPrefs.getString("name_text", "");

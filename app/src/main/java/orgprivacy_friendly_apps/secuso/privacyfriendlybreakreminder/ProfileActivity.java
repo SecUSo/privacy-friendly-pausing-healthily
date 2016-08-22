@@ -99,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     editor.putString("name_text", name);
                     editor.putInt("work_value", interval_seekbar.getProgress());
                     editor.putInt("break_value", break_seekbar.getProgress());
-                    System.out.println("BoolValue: "+cont);
+                    editor.putString("current_profile", "" + (sharedPrefs.getString("profiles", "").split(";").length));
                     editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + ";");
                     editor.apply();
                     finish();

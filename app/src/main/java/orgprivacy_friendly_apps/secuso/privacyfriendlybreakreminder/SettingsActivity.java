@@ -2,7 +2,6 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -25,10 +23,7 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.widget.Toast;
 
-
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -181,8 +176,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
 
-
-
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
@@ -196,8 +189,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private DynamicListPreference dlp;
 
         private String currentProfile = "";
-
         private Bundle bundle;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             bundle = savedInstanceState;
@@ -245,39 +238,27 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-
-            if(key.equals("current_profile")){
-                System.out.println("HOOOOOOOOOOOOOLY SHIIIIIIIIIIIIT");
-
+            if (key.equals("current_profile")) {
                 ListPreference listPref = (ListPreference) findPreference("current_profile");
                 int i = Integer.parseInt(listPref.getValue());
 
-                System.out.println("!!!!!! "+i);
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("current_profile", ""+i);
-
+                editor.putString("current_profile", "" + i);
+                editor.putBoolean("change_profiles", true);
                 String[] allProfile = sharedPreferences.getString("profiles", "").split(";");
 
                 //FIXME Deactivate the onPrefListener in SettingsActivity
                 getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-                editor.putString("name_text",allProfile[i].split(",")[0]);
-                editor.putInt("work_value",Integer.parseInt(allProfile[i].split(",")[1]));
-                editor.putInt("break_value",Integer.parseInt(allProfile[i].split(",")[2]));
+                editor.putString("name_text", allProfile[i].split(",")[0]);
+                editor.putInt("work_value", Integer.parseInt(allProfile[i].split(",")[1]));
+                editor.putInt("break_value", Integer.parseInt(allProfile[i].split(",")[2]));
                 editor.apply();
                 getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
                 onDestroy();
                 onCreate(bundle);
                 return;
             }
-
-
-
-
-
-
-            System.out.println("--------We change something!!!!!   Key: " + key);
 
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
@@ -286,8 +267,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
             //FIXME Update the preferences of the selected profile
-            if (!key.equals("profiles"))
+
+            if (!key.equals("profiles")) {
+                getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
                 updateProfilesPreference();
+                getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+            }
 
         }
 
@@ -295,9 +280,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onPause() {
             getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-
-            updateProfilesPreference();
-
             super.onPause();
         }
 
@@ -307,8 +289,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
             String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
 
-            System.out.println("SETTINGS ACTIVITY0: " + newProfileName + "," + work_radius + "," + break_radius);
-            System.out.println("SETTING ACTIVITY1: " + allProfiles);
             if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius) && newProfileName.equals(currentProfile)) {
                 //Nothing changes
                 System.out.println("No changes for a profile in general settings");
@@ -333,9 +313,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 } else {
 
                     String[] profiles = allProfiles.split(";");
+
                     for (int i = 0; i < profiles.length; i++) {
                         if (profiles[i].split(",")[0].equals(currentProfile)) {
-                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius;
+                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius + "," + profiles[i].split(",")[3];
                             break;
                         }
                     }
@@ -343,10 +324,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     for (String s : profiles) {
                         builder.append(s + ";");
                     }
+
+                    System.out.println("All Profiles: " + builder.toString());
+                    editor.putBoolean("change_profiles", true);
                     editor.putString("profiles", builder.toString());
                     editor.apply();
 
                     currentProfile = newProfileName;
+                    findPreference("name_text").setSummary(currentProfile);
                 }
             }
 

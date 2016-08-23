@@ -25,6 +25,8 @@
     <string name="pref_title_display_name">Profile name</string>
     <string name="pref_default_display_name">Pomodoro</string>
     <string name="pref_current_profile">Select profile</string>
+    <string name="pref_current_exercises">Select exercises</string>
+    <string name="pref_title_cont">Continuously</string>
     <string name="pref_default_profile">Sport</string>
 
     <!-- settings for Notifications -->
@@ -106,6 +108,15 @@
         <item>Spinal Column</item>
         <item>Pelvis</item>
         <item>Legs</item>
+    </string-array>
+    <string-array name="value_spinner">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
 
 </resources>

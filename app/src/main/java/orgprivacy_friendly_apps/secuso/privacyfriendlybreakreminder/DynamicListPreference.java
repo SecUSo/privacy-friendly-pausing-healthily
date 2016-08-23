@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
-public class DynamicListPreference extends ListPreference implements Preference.OnPreferenceChangeListener,DialogInterface.OnClickListener {
+public class DynamicListPreference extends ListPreference implements DialogInterface.OnClickListener {
 
     Context mContext;
     SharedPreferences sharedPreferences;
@@ -74,33 +74,6 @@ public class DynamicListPreference extends ListPreference implements Preference.
             entries[i] = "" + i;
         }
         return entries;
-    }
-
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        System.out.println("Geschafft!!!");
-        ListPreference listPref = (ListPreference) preference;
-        int index = listPref.findIndexOfValue((String) newValue);
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("current_profile", ""+index);
-        editor.apply();
-
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        String[] allProfile = sharedPreferences.getString("profiles", "").split(";");
-
-        //FIXME Deactivate the onPrefListener in SettingsActivity
-        for (int i = 0; i < allProfile.length; i++) {
-            if (allProfile[i].split(",")[0].equals(getValue())){
-                editor.putString("name_text",allProfile[i].split(",")[0]);
-                editor.putString("work_value",allProfile[i].split(",")[1]);
-                editor.putString("break_value",allProfile[i].split(",")[2]);
-                editor.apply();
-            }
-
-        }
-
-        return true;
     }
 
 

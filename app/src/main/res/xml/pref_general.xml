@@ -40,5 +40,17 @@
         android:text="@string/settings_unit"
         android:title="@string/settings_break_title" />
 
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="cont_value"
+        android:title="@string/pref_title_cont" />
+
+    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.ExerciseListPreference
+        android:defaultValue="1"
+        android:entryValues="@array/value_spinner"
+        android:entries="@array/type_spinner"
+        android:title="@string/pref_current_exercises" />
+
 
 </PreferenceScreen>
+    <!--android:key="exercise"-->

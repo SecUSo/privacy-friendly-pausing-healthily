@@ -63,7 +63,6 @@ public class ExerciseTypeActivity extends AppCompatActivity implements View.OnCl
                 for (int i = 0;i<adapter.size();i++){
                     exerciseTypes += adapter.get(i) + ".";
                 }
-
                 editor.putString("exercise_value",exerciseTypes);
                 editor.apply();
 

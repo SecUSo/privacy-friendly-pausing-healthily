@@ -187,6 +187,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private SeekBarPreference _seekBarBreak;
 
         private DynamicListPreference dlp;
+        private ExerciseListPreference elp;
 
         private String currentProfile = "";
         private Bundle bundle;
@@ -203,6 +204,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             _seekBarBreak = (SeekBarPreference) this.findPreference("break_value");
 
             dlp = (DynamicListPreference) this.findPreference("current_profile");
+            elp = (ExerciseListPreference) this.findPreference("exercise");
 
             // Set listener :
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
@@ -238,6 +240,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+            if(key.equals("exercise")) {
+                System.out.println("GOGOGOGOGOG");
+
+                System.out.println(sharedPreferences.getString("exercise", "Damn"));
+
+            }
+
+
             if (key.equals("current_profile")) {
                 ListPreference listPref = (ListPreference) findPreference("current_profile");
                 int i = Integer.parseInt(listPref.getValue());
@@ -255,10 +266,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 editor.putInt("break_value", Integer.parseInt(allProfile[i].split(",")[2]));
                 editor.apply();
                 getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+
+                // FIXME Has to be done because the summary of the name
                 onDestroy();
                 onCreate(bundle);
                 return;
             }
+
+            if(key.equals("cont_value"))
+                System.out.println("Cont: " + sharedPreferences.getBoolean("cont_value", false));
 
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
@@ -280,6 +296,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onPause() {
             getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+
+            System.out.println("All Profiles" + PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", ""));
+
             super.onPause();
         }
 
@@ -288,8 +307,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             int break_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
             String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
             String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
+            boolean cont = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getBoolean("cont_value", false);
+            String exercises = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("exercise_value", "-1");
 
-            if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius) && newProfileName.equals(currentProfile)) {
+            if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius + "," + cont + "," + exercises) && newProfileName.equals(currentProfile)) {
                 //Nothing changes
                 System.out.println("No changes for a profile in general settings");
             } else {
@@ -316,7 +337,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                     for (int i = 0; i < profiles.length; i++) {
                         if (profiles[i].split(",")[0].equals(currentProfile)) {
-                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius + "," + profiles[i].split(",")[3] + "," + profiles[i].split(",")[4];
+                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius + "," + cont + "," + exercises;
                             break;
                         }
                     }

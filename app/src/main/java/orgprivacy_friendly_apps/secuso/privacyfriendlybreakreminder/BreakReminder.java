@@ -136,7 +136,7 @@ public class BreakReminder extends AppCompatActivity
 
         String allProfiles = sharedPrefs.getString("profiles", "");
 
-        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1)+ "," + sharedPrefs.getString("exercise_value", "-1");
+        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1) + "," + sharedPrefs.getBoolean("cont_value", false)+ "," + sharedPrefs.getString("exercise_value", "-1");
 
         if (allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
             System.out.println("Profile didn´t change");
@@ -151,13 +151,15 @@ public class BreakReminder extends AppCompatActivity
                 String profileName = profileNames[i].split(",")[0];
                 int interval = Integer.parseInt(profileNames[i].split(",")[1]);
                 int break_time = Integer.parseInt(profileNames[i].split(",")[2]);
-                String exercises = profileNames[i].split(",")[3];
+                boolean cont = Boolean.parseBoolean(profileNames[i].split(",")[3]);
+                String exercises = profileNames[i].split(",")[4];
                 if (profileName.equals(profileSelected)) {
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putString("current_profile", "" + i);
                     editor.putString("name_text", profileName);
                     editor.putInt("work_value", interval);
                     editor.putInt("break_value", break_time);
+                    editor.putBoolean("cont_value", cont);
                     editor.putString("exercise_value", exercises);
                     editor.apply();
 

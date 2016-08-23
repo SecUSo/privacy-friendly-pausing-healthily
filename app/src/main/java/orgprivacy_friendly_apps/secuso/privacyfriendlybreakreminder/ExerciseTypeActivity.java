@@ -1,22 +1,27 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class ExerciseTypeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // FIXME provisorische Form des Strings:
-    // "NAME_DES_PROFILS,LAENGE_DER_ARBEITSZEIT,LAENGE_DER_PAUSE,CONTINIOUSLY"
 
-    // FIXME HashSet of Exercises
-    // NAME_DES_PROFILS - "UEBUNG1,UE1_LAENGE,UE1_WIEDERHOLUNG,UE1_IMG_NR,UE1_DESCR_NR#UE2....,SEQUENTIAL"
-
-    // FIXME HashSet of Statistical Values
-    // NAME_DES_PROFILS - DATUM_DES_ERSTELLENS,ANGEWANDTE_ZEITNAHMEN,UE_ID#ANZAHL_DERANWENDUNGEN,UE_ID2#ANZAHL_DERANWENDUNGEN,...
-
+    Spinner typeSpinner;
+    ListView listView;
+    ArrayList<String> adapter;
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,39 +31,46 @@ public class ExerciseTypeActivity extends AppCompatActivity implements View.OnCl
         Button addButton = (Button) findViewById(R.id.button_et_add);
         addButton.setOnClickListener(this);
 
-        Button editButton = (Button) findViewById(R.id.button_et_edit);
-        editButton.setOnClickListener(this);
-
         Button saveButton = (Button) findViewById(R.id.button_et_save);
         saveButton.setOnClickListener(this);
 
         Button cancelButton = (Button) findViewById(R.id.button_et_cancel);
         cancelButton.setOnClickListener(this);
 
+        typeSpinner = (Spinner) findViewById(R.id.type_spinner);
+        listView = (ListView) findViewById(R.id.listView);
 
+        adapter = new ArrayList<String>();
+        listView.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_layout, adapter));
     }
 
     @Override
     public void onClick(View v) {
-        //TODO
+
         switch (v.getId()) {
             case R.id.button_et_add:
-                System.out.println("Add new Exercise Type!");
-
-                break;
-
-            case R.id.button_et_edit:
-                System.out.println("Edit new Exercise Type!");
-
+                if(!adapter.contains((String)typeSpinner.getSelectedItem())){
+                    adapter.add((String)typeSpinner.getSelectedItem());
+                    listView.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_layout, adapter));
+                }
                 break;
 
             case R.id.button_et_save:
-                System.out.println("Save new Exercise Type!");
+                sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = sharedPrefs.edit();
 
+                String exerciseTypes = "";
+                for (int i = 0;i<adapter.size();i++){
+                    exerciseTypes += adapter.get(i) + ".";
+                }
+
+                editor.putString("exercise_value",exerciseTypes);
+                editor.apply();
+
+                finish();
                 break;
 
             case R.id.button_et_cancel:
-                System.out.println("Cancel!");
                 finish();
                 break;
         }

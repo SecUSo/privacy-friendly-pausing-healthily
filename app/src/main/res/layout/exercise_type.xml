@@ -8,71 +8,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/exercise_name"
-            android:id="@+id/textView8"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="43dp"
-            android:textSize="24sp" />
-
-        <EditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:layout_marginLeft="54dp"
-            android:layout_marginStart="54dp"
-            android:layout_alignBottom="@+id/textView8"
-            android:layout_toRightOf="@+id/textView8"
-            android:layout_toEndOf="@+id/textView8"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-            android:maxLength="9"
-            android:inputType="text" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/exercise_time"
-            android:id="@+id/textView9"
-            android:layout_marginTop="42dp"
-            android:layout_below="@+id/textView8"
-            android:layout_toRightOf="@+id/textView8"
-            android:layout_toEndOf="@+id/textView8" />
-
-        <SeekBar
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar3"
-            android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_below="@+id/textView9"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/repetitions"
-            android:id="@+id/textView10"
-            android:layout_below="@+id/seekBar3"
-            android:layout_alignLeft="@+id/textView9"
-            android:layout_alignStart="@+id/textView9" />
-
-        <SeekBar
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/seekBar4"
-            android:layout_below="@+id/textView10"
-            android:layout_alignLeft="@+id/seekBar3"
-            android:layout_alignStart="@+id/seekBar3" />
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp">
 
         <TextView
             android:layout_width="100dp"
@@ -81,118 +18,71 @@
             android:text="@string/type"
             android:id="@+id/textView11"
             android:textSize="24sp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/editText2"
-            android:layout_toStartOf="@+id/editText2" />
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/sequential"
-            android:id="@+id/textView12"
-            android:textSize="24sp"
-            android:layout_below="@+id/textView11"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="46dp" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox3"
-            android:layout_alignBottom="@+id/textView12"
-            android:layout_toRightOf="@+id/textView12"
-            android:layout_toEndOf="@+id/textView12"
-            android:checked="false" />
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
             android:id="@+id/button_et_add"
-            android:layout_above="@+id/button_et_save"
-            android:layout_alignRight="@+id/checkBox3"
             android:background="@drawable/button_normal"
             android:textColor="@color/white"
-            android:layout_alignEnd="@+id/checkBox3" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit"
-            android:id="@+id/button_et_edit"
-            android:layout_alignBottom="@+id/button_et_add"
-            android:layout_toRightOf="@+id/textView9"
-            android:background="@drawable/button_normal"
-            android:textColor="@color/white"
-            android:layout_toEndOf="@+id/textView9" />
+            android:layout_below="@+id/type_spinner"
+            android:layout_alignLeft="@+id/button_et_cancel"
+            android:layout_alignStart="@+id/button_et_cancel"
+            android:layout_marginTop="44dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
             android:id="@+id/button_et_save"
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/button_et_add"
             android:background="@drawable/button_normal"
             android:textColor="@color/white"
-            android:layout_alignStart="@+id/button_et_add" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:id="@+id/button_et_cancel"
-            android:layout_alignBottom="@+id/button_et_save"
-            android:layout_alignLeft="@+id/button_et_edit"
             android:background="@drawable/button_normal"
             android:textColor="@color/white"
-            android:layout_alignStart="@+id/button_et_edit" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner2"
-            android:layout_alignTop="@+id/textView11"
-            android:layout_alignLeft="@+id/checkBox3"
-            android:layout_alignStart="@+id/checkBox3"
-            android:layout_alignRight="@+id/editText2"
-            android:layout_alignEnd="@+id/editText2" />
+            android:id="@+id/type_spinner"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/textView11"
+            android:layout_toRightOf="@+id/textView11"
+            android:entries="@array/type_spinner"/>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:layout_below="@+id/textView8"
+            android:layout_centerHorizontal="true"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:layout_above="@+id/button_et_save" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="If checked, the exercises will be executed in a row without choice. \nIf not checked, the exercises can be choosen"
-            android:id="@+id/textView17"
-            android:layout_below="@+id/textView12"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/exercise_summary"
+            android:id="@+id/textView8"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_above="@+id/button_et_add" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/_0"
-            android:id="@+id/textView18"
-            android:layout_alignBottom="@+id/seekBar3"
-            android:layout_alignTop="@+id/textView9"
-            android:layout_toEndOf="@+id/seekBar3"
-            android:layout_toRightOf="@+id/seekBar3" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/_0"
-            android:id="@+id/textView19"
-            android:layout_below="@+id/seekBar3"
-            android:layout_toRightOf="@+id/seekBar3"
-            android:layout_toEndOf="@+id/seekBar3" />
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 </LinearLayout>

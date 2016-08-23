@@ -18,11 +18,21 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private SeekBar interval_seekbar, break_seekbar;
     private TextView interval_text, break_text;
+    private String oldExerciseValue = "";
+    SharedPreferences sharedPrefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_profile);
+
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        oldExerciseValue = sharedPrefs.getString("exercise_value","-1");
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("exercise_value", "-1");
+        editor.apply();
 
         interval_seekbar = (SeekBar) findViewById(R.id.new_profile_interval);
         interval_seekbar.setProgress(1);
@@ -94,19 +104,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     CheckBox cb_Cont = (CheckBox) findViewById(R.id.continuouslyCB);
                     Boolean cont = cb_Cont.isChecked();
                     // Add to preferences
-                    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putString("name_text", name);
                     editor.putInt("work_value", interval_seekbar.getProgress());
                     editor.putInt("break_value", break_seekbar.getProgress());
                     editor.putString("current_profile", "" + (sharedPrefs.getString("profiles", "").split(";").length));
-                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + ";");
+                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + "," + sharedPrefs.getString("exercise_value", "-1") + ";");
                     editor.apply();
                     finish();
                     break;
                 }
             case R.id.button_profile_cancel:
                 System.out.println("New profile canceled!");
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString("exercise_value", oldExerciseValue);
+                editor.apply();
                 finish();
                 break;
 

@@ -316,7 +316,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                     for (int i = 0; i < profiles.length; i++) {
                         if (profiles[i].split(",")[0].equals(currentProfile)) {
-                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius + "," + profiles[i].split(",")[3];
+                            profiles[i] = newProfileName + "," + work_radius + "," + break_radius + "," + profiles[i].split(",")[3] + "," + profiles[i].split(",")[4];
                             break;
                         }
                     }

@@ -68,7 +68,7 @@ public class BreakReminder extends AppCompatActivity
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
-            allProfiles = "Sport,5,1,false;Exams,90,15,false;Pomodoro,30,5,false;";
+            allProfiles = "Sport,5,1,false,-1;Exams,90,15,false,-1;Pomodoro,30,5,false,-1;";
             editor.putString("profiles", allProfiles);
 
             editor.apply();
@@ -136,7 +136,7 @@ public class BreakReminder extends AppCompatActivity
 
         String allProfiles = sharedPrefs.getString("profiles", "");
 
-        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1);
+        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1)+ "," + sharedPrefs.getString("exercise_value", "-1");
 
         if (allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
             System.out.println("Profile didn´t change");
@@ -151,12 +151,14 @@ public class BreakReminder extends AppCompatActivity
                 String profileName = profileNames[i].split(",")[0];
                 int interval = Integer.parseInt(profileNames[i].split(",")[1]);
                 int break_time = Integer.parseInt(profileNames[i].split(",")[2]);
+                String exercises = profileNames[i].split(",")[3];
                 if (profileName.equals(profileSelected)) {
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putString("current_profile", "" + i);
                     editor.putString("name_text", profileName);
                     editor.putInt("work_value", interval);
                     editor.putInt("break_value", break_time);
+                    editor.putString("exercise_value", exercises);
                     editor.apply();
 
                     //Update clock
@@ -167,7 +169,6 @@ public class BreakReminder extends AppCompatActivity
 
                     ct_text.setText(bufferZeroMinute + time / 1000 / 60 + ":00");
 
-                    //FIXME Update Widgets
                     updateWidgets(bufferZeroMinute + time / 1000 / 60 + ":00");
                     break;
                 }
@@ -298,7 +299,6 @@ public class BreakReminder extends AppCompatActivity
         String bufferZeroSecond = "";
         int time = mins * 60 * 1000;
 
-        //FIXME Hardcoded for testing
         stopTime = (String) ct_text.getText();
         oldTime = time;
 
@@ -382,7 +382,7 @@ public class BreakReminder extends AppCompatActivity
                                 // Play ringtone
                                 r.play();
                             }
-                            //FIXME Test Vibration
+
                             boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
                             if (vibrateChecked) {
                                 // Get instance of Vibrator from current Context

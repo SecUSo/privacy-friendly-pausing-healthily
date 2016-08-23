@@ -50,7 +50,7 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="profile_name">Profile Name</string>
-    <string name="interval">interval</string>
+    <string name="interval">Interval</string>
     <string name="exercise_type">Exercise Type</string>
 
 
@@ -95,5 +95,17 @@
     <string name="add_widget">Add widget</string>
 
     <!-- settings for BreakActivity -->
+    <string name="exercise_summary">Your break will contain exercises for:</string>
+    <string name="continuously">If checked, there will be no possibillity to skip the exercises</string>
+    <string name="exercise_description">Make sure, to select some exercises! If nothing is selected, there will be no training in the breaks!</string>
+    <string-array name="type_spinner">
+        <item>Head</item>
+        <item>Neck</item>
+        <item>Arms</item>
+        <item>Trunk</item>
+        <item>Spinal Column</item>
+        <item>Pelvis</item>
+        <item>Legs</item>
+    </string-array>
 
 </resources>

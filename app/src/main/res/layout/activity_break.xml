@@ -29,6 +29,7 @@
         android:text="@string/break_play_stop"
         android:id="@+id/button_playStopBreak"
         android:layout_below="@+id/textViewBreak"
+        android:background="@drawable/button_normal"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -38,6 +39,7 @@
         android:text="@string/break_cancel"
         android:id="@+id/button_cancel"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/button_normal"
         android:layout_centerHorizontal="true" />
 
 

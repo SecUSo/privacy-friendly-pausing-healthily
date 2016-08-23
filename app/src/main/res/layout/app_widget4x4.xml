@@ -2,39 +2,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:gravity="center|center_horizontal|center_vertical">
 
 
     <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:background="#000000">
+        android:background="@drawable/white_circle">
 
         <TextView
             android:id="@+id/appwidget_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#000000"
             android:text="@string/profile_name"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff"
-            android:textSize="60sp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center" />
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            android:gravity="center"
+            android:layout_above="@+id/time"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/appwidget_text"
-            android:layout_centerHorizontal="true"
-            android:background="#000000"
             android:text="@string/break_reminder_time"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff"
-            android:textSize="100sp"
+            android:textColor="@color/white"
+            android:textSize="90dp"
             android:textIsSelectable="false"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </LinearLayout>

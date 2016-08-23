@@ -348,8 +348,6 @@ public class BreakReminder extends AppCompatActivity
 
                             ct_text.setText(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
 
-                            //Fixme Update widgets
-
                             updateWidgets(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
 
                             //Show how much time is left
@@ -404,6 +402,13 @@ public class BreakReminder extends AppCompatActivity
                                 notificationManager.cancel(1000);
                             }
                             startBreak();
+
+                            String workTime = "" + sharedPrefs.getInt("work_value", 0);
+                            if(workTime.length() == 1)
+                                workTime = "0" + workTime;
+
+                            ct_text.setText(workTime + ":00");
+                            updateWidgets(workTime + ":00");
                         }
                     }.start();
                     isRunning = true;

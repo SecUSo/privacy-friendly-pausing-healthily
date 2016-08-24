@@ -97,6 +97,7 @@
     <string name="add_widget">Add widget</string>
 
     <!-- settings for BreakActivity -->
+    <string name="break_next">Next</string>
     <string name="exercise_summary">Your break will contain exercises for:</string>
     <string name="continuously">If checked, there will be no possibillity to skip the exercises</string>
     <string name="exercise_description">Make sure, to select some exercises! If nothing is selected, there will be no training in the breaks!</string>
@@ -133,5 +134,6 @@
     <string name="help_break_screen_title">Break Screen</string>
     <string name="help_break_screen">PLACEHOLDER</string>
     <string name="help_click_information">To see the images in real size simply click on them. To return back to this view re-click on the image!</string>
+    <string name="side_repetition">Side/Repetition</string>
 
 </resources>

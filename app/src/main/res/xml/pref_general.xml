@@ -12,10 +12,10 @@
     <EditTextPreference
         android:capitalize="words"
         android:defaultValue="@string/pref_default_display_name"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"
         android:inputType="textCapWords"
         android:key="name_text"
-        android:maxLength="9"
+        android:maxLength="10"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"

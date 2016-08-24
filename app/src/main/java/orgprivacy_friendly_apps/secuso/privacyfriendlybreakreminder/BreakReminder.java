@@ -1,5 +1,9 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
@@ -15,6 +19,8 @@ import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,7 +36,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Arrays;
 
 public class BreakReminder extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -68,11 +73,15 @@ public class BreakReminder extends AppCompatActivity
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             System.out.println("Es gibt noch keine Profile!!");
-            allProfiles = "Sport,5,1,false,-1;Exams,90,15,false,-1;Pomodoro,30,5,false,-1;";
+            allProfiles = "Random,90,5,false,Arms.Legs.Head.Neck.Pelvis.Spinal Column.Trunk.;Upper-Body,90,15,true,Arms.Neck.Head.;Torso,30,5,true,Spinal Column.Trunk.;Under-Body,30,5,true,Legs.Pelvis.;";
             editor.putString("profiles", allProfiles);
-
             editor.apply();
+
+            WelcomeDialog welcomeDialog = new WelcomeDialog();
+            welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
         }
+
+
 
         System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "FAIL"));
 
@@ -481,5 +490,27 @@ public class BreakReminder extends AppCompatActivity
         }
         Intent intent = new Intent(this, BreakDeciderActivity.class);
         this.startActivity(intent);
+    }
+
+    public static class WelcomeDialog extends DialogFragment {
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            LayoutInflater i = getActivity().getLayoutInflater();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            builder.setView(i.inflate(R.layout.first_dialog, null));
+            builder.setIcon(R.mipmap.ic_launcher);
+            builder.setTitle(getActivity().getString(R.string.app_name_long));
+            builder.setPositiveButton("Ok", null);
+
+            return builder.create();
+        }
     }
 }

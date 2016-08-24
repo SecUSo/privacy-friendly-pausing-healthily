@@ -241,14 +241,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-            if(key.equals("exercise")) {
-                System.out.println("GOGOGOGOGOG");
-
-                System.out.println(sharedPreferences.getString("exercise", "Damn"));
-
-            }
-
-
             if (key.equals("current_profile")) {
                 ListPreference listPref = (ListPreference) findPreference("current_profile");
                 int i = Integer.parseInt(listPref.getValue());
@@ -259,11 +251,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 editor.putBoolean("change_profiles", true);
                 String[] allProfile = sharedPreferences.getString("profiles", "").split(";");
 
-                //FIXME Deactivate the onPrefListener in SettingsActivity
+                // Deactivate the onPrefListener in SettingsActivity
                 getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
                 editor.putString("name_text", allProfile[i].split(",")[0]);
                 editor.putInt("work_value", Integer.parseInt(allProfile[i].split(",")[1]));
                 editor.putInt("break_value", Integer.parseInt(allProfile[i].split(",")[2]));
+                editor.putBoolean("cont_value", Boolean.parseBoolean(allProfile[i].split(",")[3]));
+                editor.putString("exercise_value", allProfile[i].split(",")[4]);
                 editor.apply();
                 getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
@@ -273,8 +267,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return;
             }
 
-            if(key.equals("cont_value"))
-                System.out.println("Cont: " + sharedPreferences.getBoolean("cont_value", false));
 
             // Set seekbar summary :
             int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);

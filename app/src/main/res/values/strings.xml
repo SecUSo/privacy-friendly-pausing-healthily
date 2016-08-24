@@ -136,4 +136,23 @@
     <string name="help_click_information">To see the images in real size simply click on them. To return back to this view re-click on the image!</string>
     <string name="side_repetition">Side/Repetition</string>
 
+
+
+
+    <!-- settings for Disclaimer -->
+    <string name="disclaimer">DISCLAIMER PLACEHOLDER</string>
+
+
+
+    <!-- settings for TutorialActivity -->
+    <string name="tutorial_profiles">Select profiles</string>
+    <string name="tutorial_reset_description">Press the button to reset the clock</string>
+    <string name="tutorial_reset">Reset the clock</string>
+    <string name="tutorial_clock_description">By pressing one of them, the clock starts or stops</string>
+    <string name="tutorial_or">or</string>
+    <string name="tutorial_profile_description">By clicking on the current profile (sport), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings</string>
+    <string name="tutorial_clock">Start/Stop the clock</string>
+    <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
+
+
 </resources>

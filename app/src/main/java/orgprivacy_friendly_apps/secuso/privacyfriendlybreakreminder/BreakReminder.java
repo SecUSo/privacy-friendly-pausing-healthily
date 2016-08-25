@@ -122,7 +122,6 @@ public class BreakReminder extends AppCompatActivity
         //Set the ClickListener for Spinner
         profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 String profileSelected = (String) parent.getItemAtPosition(position);
                 if (profileSelected.equals(getResources().getText(R.string.new_profile).toString())) {
                     createNewProfile();

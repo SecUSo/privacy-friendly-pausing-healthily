@@ -72,8 +72,7 @@ public class BreakReminder extends AppCompatActivity
 
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
-            System.out.println("Es gibt noch keine Profile!!");
-            allProfiles = "Random,90,5,false,Arms.Legs.Head.Neck.Pelvis.Spinal Column.Trunk.;Upper-Body,90,15,true,Arms.Neck.Head.;Torso,30,5,true,Spinal Column.Trunk.;Under-Body,30,5,true,Legs.Pelvis.;";
+            allProfiles = this.getResources().getText(R.string.standard_profile).toString();
             editor.putString("profiles", allProfiles);
             editor.apply();
 
@@ -81,9 +80,7 @@ public class BreakReminder extends AppCompatActivity
             welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
         }
 
-
-
-        System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "FAIL"));
+        System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "-1"));
 
         // If chosen, set screen to "stay on"
         boolean stayOn = sharedPrefs.getBoolean("notifications_stayOn", false);
@@ -116,9 +113,8 @@ public class BreakReminder extends AppCompatActivity
         String[] fillProfileNames = allProfiles.split(";");
         for (int i = 0; i < profileNames.length - 1; i++) {
             profileNames[i] = fillProfileNames[i].split(",")[0];
-            System.out.println("Profile name:" + profileNames[i]);
         }
-        profileNames[profileNames.length - 1] = "New Profile...";
+        profileNames[profileNames.length - 1] = this.getResources().getText(R.string.new_profile).toString();
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(this, R.layout.spinner_layout, profileNames);
         profileSpinner.setAdapter(adapter);
@@ -128,7 +124,6 @@ public class BreakReminder extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 String profileSelected = (String) parent.getItemAtPosition(position);
-                if (profileSelected.equals("New Profile...")) {
                     createNewProfile();
                 } else {
                     updatePreference(profileSelected);
@@ -145,11 +140,9 @@ public class BreakReminder extends AppCompatActivity
 
         String allProfiles = sharedPrefs.getString("profiles", "");
 
-        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1) + "," + sharedPrefs.getBoolean("cont_value", false)+ "," + sharedPrefs.getString("exercise_value", "-1");
+        String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1) + "," + sharedPrefs.getBoolean("cont_value", false) + "," + sharedPrefs.getString("exercise_value", "-1");
 
-        if (allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
-            System.out.println("Profile didn´t change");
-        } else {
+        if (!allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
             if (ct != null) {
                 ct.cancel();
                 isRunning = false;
@@ -201,7 +194,6 @@ public class BreakReminder extends AppCompatActivity
         for (int i = 0; i < profileNames.length - 1; i++) {
             profileNames[i] = fillProfileNames[i].split(",")[0];
         }
-        profileNames[profileNames.length - 1] = "New Profile...";
         ArrayAdapter<String> adapter = new
                 ArrayAdapter<String>(this, R.layout.spinner_layout, profileNames);
         profileSpinner.setAdapter(adapter);
@@ -224,7 +216,6 @@ public class BreakReminder extends AppCompatActivity
         profileSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String profileSelected = (String) parent.getItemAtPosition(position);
-                if (profileSelected.equals("New Profile...")) {
                     createNewProfile();
                 } else {
                     updatePreference(profileSelected);
@@ -249,15 +240,10 @@ public class BreakReminder extends AppCompatActivity
         else
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        System.out.println("Activity resumed!!");
-
         //FIXME Add flag if New Profile or Resume
         if (sharedPrefs.getBoolean("change_profiles", false)) {
             System.out.println("Change Profiles is true!");
             fillProfiles();
-
-            //profileSpinner = (Spinner) findViewById(R.id.spinner);
-
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putBoolean("change_profiles", false);
@@ -344,85 +330,7 @@ public class BreakReminder extends AppCompatActivity
                     stopTime = (String) ct_text.getText();
                     isRunning = false;
                 } else {
-                    ct = new CountDownTimer(time, 1000) {
-                        boolean timeLeft = false;
-
-                        public void onTick(long millisUntilFinished) {
-                            String bufferZeroMinute = "";
-                            String bufferZeroSecond = "";
-
-                            if ((millisUntilFinished / 1000) / 60 < 10)
-                                bufferZeroMinute = "0";
-
-                            if (millisUntilFinished / 1000 % 60 < 10)
-                                bufferZeroSecond = "0";
-
-                            ct_text.setText(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
-
-                            updateWidgets(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
-
-                            //Show how much time is left
-
-                            timeLeft = sharedPrefs.getBoolean("notifications_new_message_timeLeft", false);
-                            if (timeLeft) {
-                                Notification notification = new NotificationCompat.Builder(getApplicationContext()).setCategory(Notification.CATEGORY_MESSAGE)
-                                        .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                                        .setContentTitle("Break Reminder: ")
-                                        .setContentText("Take a break in " + ((millisUntilFinished / 1000) / 60) + " minutes and " + ((millisUntilFinished / 1000) % 60) + " seconds")
-                                        .setAutoCancel(true)
-                                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC).build();
-                                NotificationManager notificationManager =
-                                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                notificationManager.notify(1000, notification);
-                            }
-                        }
-
-                        public void onFinish() {
-                            isRunning = false;
-                            ct_text.setText("00:00");
-
-                            updateWidgets("00:00");
-
-                            //trigger the alarm
-                            String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
-
-                            if (!ringPref.equals("")) {
-                                // Get the current ringtone
-                                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
-
-                                // Play ringtone
-                                r.play();
-                            }
-
-                            boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
-                            if (vibrateChecked) {
-                                // Get instance of Vibrator from current Context
-                                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-
-                                if (v == null) {
-                                    System.out.println("No vibrator! :D");
-                                } else {
-                                    // Vibrate for 1500 milliseconds
-                                    v.vibrate(1500);
-                                }
-                            }
-
-                            //Cancel the notification
-                            if (timeLeft) {
-                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                notificationManager.cancel(1000);
-                            }
-                            startBreak();
-
-                            String workTime = "" + sharedPrefs.getInt("work_value", 0);
-                            if(workTime.length() == 1)
-                                workTime = "0" + workTime;
-
-                            ct_text.setText(workTime + ":00");
-                            updateWidgets(workTime + ":00");
-                        }
-                    }.start();
-                    isRunning = true;
+                    startTimer(time);
                 }
                 break;
 
@@ -455,6 +363,87 @@ public class BreakReminder extends AppCompatActivity
                 isRunning = false;
                 break;
         }
+    }
+
+
+    private void startTimer(int time) {
+        ct = new CountDownTimer(time, 1000) {
+            boolean timeLeft = false;
+
+            public void onTick(long millisUntilFinished) {
+                String bufferZeroMinute = "";
+                String bufferZeroSecond = "";
+
+                if ((millisUntilFinished / 1000) / 60 < 10)
+                    bufferZeroMinute = "0";
+
+                if (millisUntilFinished / 1000 % 60 < 10)
+                    bufferZeroSecond = "0";
+
+                ct_text.setText(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
+
+                updateWidgets(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
+
+                //Show how much time is left
+
+                timeLeft = sharedPrefs.getBoolean("notifications_new_message_timeLeft", false);
+                if (timeLeft) {
+                    Notification notification = new NotificationCompat.Builder(getApplicationContext()).setCategory(Notification.CATEGORY_MESSAGE)
+                            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                            .setContentTitle("Break Reminder: ")
+                            .setContentText("Take a break in " + ((millisUntilFinished / 1000) / 60) + " minutes and " + ((millisUntilFinished / 1000) % 60) + " seconds")
+                            .setAutoCancel(true)
+                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC).build();
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    notificationManager.notify(1000, notification);
+                }
+            }
+
+            public void onFinish() {
+                isRunning = false;
+                ct_text.setText("00:00");
+
+                updateWidgets("00:00");
+
+                //trigger the alarm
+                String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
+
+                if (!ringPref.equals("")) {
+                    // Get the current ringtone
+                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
+
+                    // Play ringtone
+                    r.play();
+                }
+
+                boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
+                if (vibrateChecked) {
+                    // Get instance of Vibrator from current Context
+                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+                    if (v != null) {
+                        // Vibrate for 1500 milliseconds
+                        v.vibrate(1500);
+                    }
+                }
+
+                //Cancel the notification
+                if (timeLeft) {
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    notificationManager.cancel(1000);
+                }
+                startBreak();
+
+                String workTime = "" + sharedPrefs.getInt("work_value", 0);
+                if (workTime.length() == 1)
+                    workTime = "0" + workTime;
+
+                ct_text.setText(workTime + ":00");
+                updateWidgets(workTime + ":00");
+            }
+        }.start();
+        isRunning = true;
     }
 
     private void createNewProfile() {

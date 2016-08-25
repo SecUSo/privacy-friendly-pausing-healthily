@@ -4,222 +4,231 @@
     android:layout_height="fill_parent">
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
-    android:layout_margin="20dp"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:scrollbars="vertical">
-
-
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_click_information"
-        android:id="@+id/textView20"
-        android:layout_alignParentTop="true"
-        android:textSize="10pt"
-        android:textColor="@color/yellow"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_start_screen_title"
-        android:id="@+id/textView10"
-        android:textSize="12pt"
-        android:layout_below="@+id/textView20"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/start_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="130dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/textView10"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_start_screen"
-        android:id="@+id/textView9"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_below="@+id/textView10"
-        android:textSize="7pt"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_settings_screen_title"
-        android:id="@+id/textView11"
-        android:textSize="12pt"
-        android:layout_below="@+id/imageView"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
+        android:weightSum="1">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView1"
-        android:src="@drawable/settings_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="210dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/textView11"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal"
+            android:text="@string/help_click_information"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/yellow"
+            android:textSize="10pt"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_settings_screen"
-        android:id="@+id/textView12"
-        android:layout_toRightOf="@+id/imageView1"
-        android:layout_below="@+id/textView11"
-        android:textSize="6pt"/>
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView20"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/help_start_screen_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12pt" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView4"
-        android:src="@drawable/general_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="130dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/imageView1"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView10"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="130dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/start_screen" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_settings_screen1"
-        android:id="@+id/textView18"
-        android:layout_toRightOf="@+id/imageView4"
-        android:layout_below="@+id/imageView1"
-        android:textSize="6pt"/>
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView10"
+            android:layout_toRightOf="@+id/imageView"
+            android:text="@string/help_start_screen"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="7pt" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView5"
-        android:src="@drawable/notification_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="130dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/imageView4"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_settings_screen2"
-        android:id="@+id/textView19"
-        android:layout_toRightOf="@+id/imageView5"
-        android:layout_below="@+id/imageView4"
-        android:textSize="6pt"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_create_profile_screen_title"
-        android:id="@+id/textView13"
-        android:textSize="12pt"
-        android:layout_below="@+id/imageView5"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/help_settings_screen_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12pt" />
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:src="@drawable/create_profile_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="130dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/textView13"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView11"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="210dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/settings_screen" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_create_profile_screen"
-        android:id="@+id/textView14"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_below="@+id/textView13"
-        android:textSize="6pt"/>
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView11"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="@string/help_settings_screen"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="6pt" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_break_screen_title"
-        android:id="@+id/textView15"
-        android:textSize="12pt"
-        android:layout_below="@+id/imageView2"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="15dp"/>
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="130dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/general_screen" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
+            android:layout_toRightOf="@+id/imageView4"
+            android:text="@string/help_settings_screen1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="6pt"
+            android:layout_marginTop="10dp"/>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView4"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="130dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/notification_screen" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView4"
+            android:layout_toRightOf="@+id/imageView5"
+            android:text="@string/help_settings_screen2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="6pt" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView5"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/help_create_profile_screen_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12pt" />
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView3"
-        android:src="@drawable/create_profile_screen"
-        android:adjustViewBounds="true"
-        android:maxWidth="130dp"
-        android:maxHeight="190dp"
-        android:layout_below="@+id/textView15"
-        android:layout_gravity="top|left"
-        android:clickable="true"
-        android:onClick="clickHandler"/>
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView13"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="130dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/create_profile_screen" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/help_break_screen"
-        android:id="@+id/textView16"
-        android:layout_toRightOf="@+id/imageView3"
-        android:layout_below="@+id/textView15"
-        android:textSize="6pt"/>
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView13"
+            android:layout_toRightOf="@+id/imageView2"
+            android:text="@string/help_create_profile_screen"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="6pt" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView2"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/help_break_screen_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12pt" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
-        android:id="@+id/textView17"
-        android:textSize="12pt"
-        android:layout_below="@+id/imageView3"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="20dp"/>
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:maxHeight="190dp"
+            android:maxWidth="130dp"
+            android:onClick="clickHandler"
+            android:src="@drawable/create_profile_screen" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_toRightOf="@+id/imageView3"
+            android:text="@string/help_break_screen"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="6pt" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView16"
+            android:gravity="center"
+            android:text="@string/disclaimer" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="12pt" />
+    </RelativeLayout>
 </ScrollView>

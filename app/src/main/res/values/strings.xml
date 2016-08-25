@@ -1,111 +1,93 @@
 <resources>
     <string name="app_name">Break Reminder</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="title_activity_settings">Settings</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="statistics">Statistics</string>
+    <string name="information">Information</string>
+    <string name="help">Help</string>
 
     <!-- General settings -->
     <!-- Strings for the Interval-Slider -->
     <string name="settings_dialog_message">Select your work interval</string>
     <string name="settings_summary">Current value is $1</string>
     <string name="settings_unit">Minutes</string>
-    <string name="settings_title">Select your work Interval</string>
+    <string name="settings_title">Select your work interval</string>
 
     <!-- Strings for the Break-Slider -->
-    <string name="settings_break_dialog_message">Select your break time</string>
     <string name="settings_break_summary">Current value is $1</string>
     <string name="settings_break_title">Select your break time</string>
 
     <!-- Strings for Name -->
     <string name="pref_header_general">General</string>
     <string name="pref_title_display_name">Profile name</string>
-    <string name="pref_default_display_name">Pomodoro</string>
+    <string name="pref_default_display_name">Random</string>
     <string name="pref_current_profile">Select profile</string>
     <string name="pref_current_exercises">Select exercises</string>
-    <string name="pref_title_cont">Continuously</string>
-    <string name="pref_default_profile">Sport</string>
+
+
+    <!-- settings for BreakReminder -->
+    <string name= "new_profile">New Profile...</string>
+    <string name="play_stop" translatable="false">Play/Stop</string>
+    <string name="reset" translatable="false">Reset</string>
+    <string name="break_reminder_time" translatable="false">30:00</string>
+    <string name="standard_profile">Random,90,5,false,Arms.Legs.Head.Neck.Pelvis.Spinal Column.Torso.;Upper-Body,90,15,true,Arms.Neck.Head.;Torso,30,5,true,Spinal Column.Torso.;Lower-Body,30,5,true,Legs.Pelvis.;</string>
 
     <!-- settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">Allowing notifications</string>
-
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
     <string name="pref_title_stayOn">Screen stays on</string>
     <string name="pref_title_timeLeft">Time left</string>
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="play_stop">Play/Stop</string>
-    <string name="reset">Reset</string>
-    <string name="break_reminder_time" translatable="false">30:00</string>
-    <string name="exercise_name">Exercise-name</string>
-    <string name="exercise_time">Exercise time</string>
-    <string name="repetitions">Repetitions</string>
+    <string name="pref_title_vibrate">Vibration</string>
+
+    <!-- settings for ProfileActivity -->
+    <string name="_0" translatable="false">0</string>
     <string name="type">Type</string>
-    <string name="sequential">Sequential</string>
     <string name="add">Add</string>
-    <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="profile_name">Profile Name</string>
     <string name="interval">Interval</string>
-    <string name="exercise_type">Exercise Type</string>
 
-
-    <string name="_0" translatable="false">0</string>
+    <!-- settings for BreakDeciderActivity -->
     <string name="take_the_break">Take the Break</string>
     <string name="skip_the_break">Skip the Break</string>
     <string name="do_you_want_to_take_the_break">Do you want to take the break?</string>
-    <string name="_10_00" translatable="false">10:00</string>
-    <string name="name_of_the_exercise">name of the Exercise</string>
-    <string name="break_cancel">Cancel</string>
-    <string name="break_play_stop">Play/Stop</string>
-    <string name="break_reminder">Break Reminder</string>
-    <string name="statistics">Statistics</string>
-    <string name="information">Information</string>
-    <string name="help">Help</string>
 
     <!--settings for SettingsActivity -->
     <string name="settings_emptyName">The changes could not be applied because the name for the profile was empty!</string>
     <string name="settings_doubleName">The changes could not be applied because there is already a profile with the same name!</string>
 
     <!--settings for ProfileActivity -->
-    <string name="new_profile_save">Save</string>
-    <string name="new_profile_cancel">Cancel</string>
     <string name="new_profile_break">Break</string>
     <string name="new_profile_select">Select</string>
     <string name="new_profile_continuously">Continuously</string>
-    <string name="new_profile_emptyName">Please enter a name for the profile</string>
+    <string name="new_profile_emptyName">Please enter a name for the profile!</string>
     <string name="new_profile_doubleName">Enter another name, there is already a profile with the same name!</string>
+    <string name="continuously">If checked, there will be no possibility to skip the break</string>
+    <string name="exercise_description">Make sure to select some exercises! If nothing is selected, there will be no exercises in the break!</string>
 
     <!-- settings for AboutActivity -->
-    <string name="about">About</string>
-    <string name="app_name_long">Privacy Friendly Break Reminder</string>
-    <string name="version_number">1.0</string>
+    <string name="about" translatable="false">About</string>
+    <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
+    <string name="version_number" translatable="false">v1.0</string>
     <string name="about_author">Authors of the App:</string>
     <string name="about_author_names" translatable="false">Sergej Alexeev, \n Jannik Schildknecht</string>
     <string name="about_affiliation">In Affiliation with</string>
     <string name="privacy_friendly">This application belongs to the Privacy Friendly Apps.</string>
     <string name="more_info">More Information can be found here:</string>
     <string name="url" translatable="false"><a href="https://www.secuso.informatik.tu-darmstadt.de/en/research/results/">https://www.secuso.org</a></string>
-    <string name="break_explanation">You have to train your chest hard! Eat healthy</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
 
-    <!-- settings for BreakActivity -->
-    <string name="break_next">Next</string>
-    <string name="exercise_summary">Your break will contain exercises for:</string>
-    <string name="continuously">If checked, there will be no possibillity to skip the exercises</string>
-    <string name="exercise_description">Make sure, to select some exercises! If nothing is selected, there will be no training in the breaks!</string>
+    <!-- settings for ExerciseTypeActivity -->
+    <string name="exercise_summary">Your break will contain exercises for the following body sections:</string>
     <string-array name="type_spinner">
         <item>Head</item>
         <item>Neck</item>
         <item>Arms</item>
-        <item>Trunk</item>
+        <item>Torso</item>
         <item>Spinal Column</item>
         <item>Pelvis</item>
         <item>Legs</item>
@@ -120,29 +102,33 @@
         <item>6</item>
     </string-array>
 
-
+    <!-- settings for BreakActivity -->
+    <string name="_10_00" translatable="false">10:00</string>
+    <string name="break_next">Next</string>
+    <string name="break_description">Description:</string>
+    <string name="break_explanation">Description of the Exercise</string>
+    <string name="break_ex">Execution of the Exercise</string>
+    <string name="break_execution">Execution:</string>
+    <string name="exercise_type">Exercise Type</string>
+    <string name="exercise_break">Break</string>
+    <string name="exercise_side">Side</string>
+    <string name="exercise_repetition">Repetition</string>
 
     <!-- settings for HelpActivity -->
-    <string name="help_start_screen">1. Spinner to select the used profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button start and stops the time. \n4. Resets the time</string>
+    <string name="help_start_screen">1. Spinner to select the profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button start and stops the time. \n4. Resets the time</string>
     <string name="help_start_screen_title">Main Screen</string>
     <string name="help_settings_screen">1. Open the drawer and select \'Settings\' \n2. Select \'General\' to enter the profile settings. There you can change name, time and exercises of the profile. \n3. Select \'Notifications\' to activate or deactivate notifications. </string>
-    <string name="help_settings_screen2">1. If selected it allows to vibrate, to use ringtones and message-notifications. If its disabled, non of the notifications will work.\n2. Select a ringtone. \n3. Choose if the mobile phone should vibrate, when the countdown ends. \n4. Choose if you want message notifications.\n5. If the flag is set the screen will stay on, while on main or exercise screen. </string>
+    <string name="help_settings_screen2">1. Select a ringtone. \n2. Choose if the mobile phone should vibrate, when the countdown ends. \n3. Choose if you want message notifications.\n4. If the flag is set the screen will stay on, while on main screen.</string>
     <string name="help_settings_screen1">1. Choose the profile to change \n2. Enter the new name \n3. Alter the working time \n4. Alter the break time \n5. Choose if the \'Continuously\' flag is set or not. if it is, the break will start directly. if not, you can choose to take or to skip it. \n6. Choose the sections you want to train in the breaks. </string>
     <string name="help_settings_screen_title">Settings Screen</string>
     <string name="help_create_profile_screen">1. Choose the name of the profile \n2. Choose the time of your work-interval \n3. Choose the break-time of this profile \n4. Press on \'Select\', if you want to enter the exercise screen to select the training region of your profile. Ignore it, if you don\'t want to train on this profile. \n5. Check it if you want to take the break directly. Uncheck it, if you want to decide every time if you\'ll take the break. </string>
     <string name="help_create_profile_screen_title">Create New Profile Screen</string>
     <string name="help_break_screen_title">Break Screen</string>
-    <string name="help_break_screen">PLACEHOLDER</string>
+    <string name="help_break_screen">1. Body section for your current exercise. \n2. Clock shows remaining time for the break. If you click on it, it starts or stops.\n3. If it shows \'Break\', it means you have currently break between the exercises and you see the image for the next exercise. If it shows \'Side left or Side right\' then you have to perform the exercise as shown in the picture. If it shows \'Repetition\' then you just repeat current exercise.\n4. Explanation of how the exercise should be performed.\n5. Description of current exercise.</string>
     <string name="help_click_information">To see the images in real size simply click on them. To return back to this view re-click on the image!</string>
-    <string name="side_repetition">Side/Repetition</string>
-
-
-
 
     <!-- settings for Disclaimer -->
     <string name="disclaimer">DISCLAIMER PLACEHOLDER</string>
-
-
 
     <!-- settings for TutorialActivity -->
     <string name="tutorial_profiles">Select profiles</string>
@@ -150,9 +136,8 @@
     <string name="tutorial_reset">Reset the clock</string>
     <string name="tutorial_clock_description">By pressing one of them, the clock starts or stops</string>
     <string name="tutorial_or">or</string>
-    <string name="tutorial_profile_description">By clicking on the current profile (sport), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings</string>
+    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings</string>
     <string name="tutorial_clock">Start/Stop the clock</string>
     <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
-
 
 </resources>

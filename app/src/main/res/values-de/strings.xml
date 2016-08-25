@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Break Reminder</string>
+    <string name="about_affiliation">In Zusammenarbeit mit</string>
+    <string name="about_author">Die Autoren dieser App:</string>
+    <string name="add">Hinzufügen</string>
+    <string name="break_description">Beschreibung:</string>
+    <string name="break_ex">Ausführung der Übung</string>
+    <string name="break_execution">Ausführung:</string>
+    <string name="break_explanation">Beschreibung der Übung:</string>
+    <string name="break_reminder_time" translatable="false"></string>
+    <string name="cancel">Abbrechen</string>
+    <string name="continuously">Falls gesetzt, gibt es keine Möglichkeit die Pause zu überspringen</string>
+    <string name="do_you_want_to_take_the_break">Möchten Sie die Pause nehmen?</string>
+    <string name="exercise_break">Pause</string>
+    <string name="exercise_description">Stellen Sie sicher, dass sie einige Übungen ausgewählt haben! Sollte nichts ausgewählt sein, wird es keine Übungen in der Pause geben</string>
+    <string name="exercise_repetition">Wiederholung</string>
+    <string name="exercise_side">Seite</string>
+    <string name="exercise_summary">Deine Pause wird Übungen für folgende Regionen enthalten:</string>
+    <string name="exercise_type">Übungstyp</string>
+    <string name="help">Hilfe</string>
+    <string name="help_break_screen">1. Körperbereich ihrer aktuellen Übung.\n2. Die Uhr zeigt die verbleibende Zeit für die Pause an. Beim Klicken darauf startet oder hält die Zeit an.\n3. Zeigt der Bildschirm den Schriftzug \'Pause\' an, befindet man sich in einer 10Sek Pause. Dabei sieht man ein Vorschaubild der kommenden Übung. Sollte \'Seite 1/2\' oder \'Wiederholung 1/2\' angezeigt werden, soll die gezeigte und beschriebene Übung ausgeführt werden.\n4. Erläuterung der Ausgangslage.\n5. Beschreibung der Übung </string>
+    <string name="help_break_screen_title">Pausenbildschirm</string>
+    <string name="help_click_information">Um die Bilder in voller Größe zu betrachten, klicken sie auf die Bilder. Um die Bilder auf ursprüngliche Größe zu verkleinern, klicken Sie erneut auf das Bild!</string>
+    <string name="help_create_profile_screen">1. Wähle den Namen des Profils aus.\n2. Wählen Sie einen Arbeitsintervall aus.\n3. Wählen Sie eine Pausenlänge aus.\n4. Drücken Sie auf \'Auswählen\', um für Sie passende Übung auszuwählen. Sollten Sie keine Übungen in ihre Pause wünschen, ignorieren Sie diesen Knopf.\n5. Falls Sie diese Option auswählen, können Sie die Pause nicht überspringen.</string>
+    <string name="help_create_profile_screen_title">Erstellen eines neuen Profil Bildschirms</string>
+    <string name="help_settings_screen">1. Öffnen Sie das Seitenmenü oben links und wählen Sie \'Settings\' aus.\n2. Wählen Sie \'Allgemein\' aus, um die Einstellungen des Profils zu öffnen.\n3. Wählen Sie \'Benachrichtigungen\' aus, um die Benachrichtigungen ein- oder auszuschalten.</string>
+    <string name="help_settings_screen1">1. Wählen Sie das zu ändernde Profil aus.\n2. Geben Sie den neuen Namen ein.\n3. Ändern des Arbeitsinvalls.\n4. Ändern der Pausenzeit.\n5. Wählen Sie \'Kontinuierlich\' aus, falls Sie die Pause nicht überspringen wollen.\n6. Wählen Sie die Körperbereiche aus, die Sie in der Pause ansprechen wollen.</string>
+    <string name="tutorial_or">oder</string>
+    <string name="help_settings_screen2">1. Wählen Sie den Klingelton aus.\n2. Falls ausgewählt, vibriert ihr Gerät.\n3. Entscheiden Sie, ob Sie die Benachrichtung haben wollen, wie lange es bis zu der Pause dauert beziehungsweise wie lange Sie noch zu arbeiten haben.\n4. Sollte diese Option ausgewählt sein, bleibt der Startbildschirm an</string>
+    <string name="help_start_screen_title">Starttbildschirm</string>
+    <string name="help_settings_screen_title">Einstellungsbildschirm</string>
+    <string name="help_start_screen">1. Klicken Sie auf die Fläche, um die Profile einzusehen und auszuwählen.\n2. Die Uhr zeigt die Zeit an und fungiert als Knopf, der die Zeit starten und stoppen kann.\n3. Der Knopf startet und stopt die Zeit.\n4. Der Knopf setzt die Zeit zurück.</string>
+    <string name="information">Information</string>
+    <string name="interval">Intervall</string>
+    <string name="disclaimer">DISCLAIMER Platzhalter</string>
+    <string name="more_info">Mehr Information finden Sie hier:</string>
+    <string name="navigation_drawer_close"></string>
+    <string name="new_profile_break">Pause</string>
+    <string name="new_profile_continuously">Kontinuierlich</string>
+    <string name="new_profile_doubleName">Geben Sie einen anderen Namen ein! Es existiert schon ein Profil mit demselben Namen!</string>
+    <string name="new_profile_emptyName">Bitte geben Sie einen Namen für das Profil ein!</string>
+    <string name="new_profile_select">Auswählen</string>
+    <string name="pref_current_exercises">Auswahl der Übungen</string>
+    <string name="pref_current_profile">Auswahl des Profils</string>
+    <string name="pref_default_display_name">Zufall</string>
+    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_header_notifications">Benachrichtigungen</string>
+    <string name="pref_ringtone_silent">Lautlos</string>
+    <string name="pref_title_display_name">Profil Name</string>
+    <string name="pref_title_stayOn">Bildschirm bleibt an</string>
+    <string name="pref_title_ringtone">Klingelton</string>
+    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil...\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.</string>
+    <string name="tutorial_clock_description">Beim Klicken auf eins der beiden Symbole, startet die Uhr oder hält diese an</string>
+    <string name="pref_title_timeLeft">Verbleibende Zeit</string>
+    <string name="pref_title_vibrate">Vibration</string>
+    <string name="profile_name">Profil Name</string>
+    <string name="privacy_friendly">Diese Applikation gehört der Privacy Friendly Apps.</string>
+    <string name="save">Speichern</string>
+    <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
+    <string name="settings_dialog_message">Wählen Sie ihren Arbeitsintevall aus</string>
+    <string name="settings_break_title">Wählen Sie ihre Pausenzeit aus</string>
+    <string name="settings_doubleName">Die </string>
+    <string name="settings_emptyName">Die Änderungen konnten nicht gespeichert werden, da das Feld für den Profilnamen leer ist! </string>
+    <string name="settings_title">Wählen Sie ihren Arbeitsintervall aus</string>
+    <string name="settings_summary">Derzeitiger Wert ist $1</string>
+    <string name="settings_unit">Minuten</string>
+    <string name="skip_the_break">Überspringen</string>
+    <string name="standard_profile">Zufall,90,5,false,Arme.Beine.Kopf.Nacken.Becken.Wirbelsaeule.Rumpf;Oberkoerper,90,15,true,Arme.Nacken.Kopf.;Rumpf,30,5,true,Wirbelsauele.Rumpf.;Unterkoerper,30,5,true,Beine.Becken.;</string>
+    <string name="take_the_break">Pause nehmen</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="tutorial_clock">Starten/Anhalten der Uhr</string>
+    <string name="tutorial_description">Willkommen zur Privacy Friendly Break Reminder</string>
+    <string name="tutorial_profiles">Auswahl des Profils</string>
+    <string name="tutorial_reset">Zurücksetzen der Uhr</string>
+    <string name="tutorial_reset_description">Drücken Sie den Knopf, um die Uhr zurückzusetzen</string>
+    <string name="type">Typ</string>
+
+    <string-array name="type_spinner">
+        <item>Kopf</item>
+        <item>Nacken</item>
+        <item>Arme</item>
+        <item>Rumpf</item>
+        <item>Wirbelsauele</item>
+        <item>Becken</item>
+        <item>Beine</item>
+    </string-array>
+    <string name="new_profile">Neues Profil...</string>
+</resources>

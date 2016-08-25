@@ -27,11 +27,6 @@ public class ExerciseListPreference extends ListPreference implements DialogInte
         mClickedDialogEntryIndices = new boolean[getEntries().length];
     }
 
-    public ExerciseListPreference(Context context) {
-        this(context, null);
-        mClickedDialogEntryIndices = new boolean[getEntries().length];
-    }
-
     @Override
     protected View onCreateDialogView() {
 
@@ -51,7 +46,7 @@ public class ExerciseListPreference extends ListPreference implements DialogInte
         CharSequence[] entries = getEntries();
         CharSequence[] entryValues = getEntryValues();
 
-        if (entries == null || entryValues == null || entries.length != entryValues.length ) {
+        if (entries == null || entryValues == null || entries.length != entryValues.length) {
             throw new IllegalStateException(
                     "ListPreference requires an entries array and an entryValues array which are both the same length");
         }
@@ -67,18 +62,17 @@ public class ExerciseListPreference extends ListPreference implements DialogInte
 
     private void restoreCheckedEntries() {
         CharSequence[] entryValues = getEntries();
-        System.out.println("VALUE-CHECK" + getValue());
 
-            for ( int j=0; j<exercises.length; j++ ) {
-                String val = exercises[j].trim();
-                for ( int i=0; i<entryValues.length; i++ ) {
-                    CharSequence entry = entryValues[i];
-                    if ( entry.equals(val) ) {
-                        mClickedDialogEntryIndices[i] = true;
-                        break;
-                    }
+        for (int j = 0; j < exercises.length; j++) {
+            String val = exercises[j].trim();
+            for (int i = 0; i < entryValues.length; i++) {
+                CharSequence entry = entryValues[i];
+                if (entry.equals(val)) {
+                    mClickedDialogEntryIndices[i] = true;
+                    break;
                 }
             }
+        }
 
     }
 
@@ -89,23 +83,19 @@ public class ExerciseListPreference extends ListPreference implements DialogInte
 
     @Override
     protected void onDialogClosed(boolean positiveResult) {
-//        super.onDialogClosed(positiveResult);
-
         CharSequence[] entryValues = getEntries();
         String exs = "";
         if (positiveResult && entryValues != null) {
-            for ( int i=0; i<entryValues.length; i++ ) {
-                if ( mClickedDialogEntryIndices[i] ) {
+            for (int i = 0; i < entryValues.length; i++) {
+                if (mClickedDialogEntryIndices[i]) {
                     exs += entryValues[i] + ".";
                 }
             }
 
-            //if (callChangeListener(exs)) {
-            //    if ( exs.length() > 0 )
-            //        exs = exs.substring(0, exs.length());
-            //    setValue(exs);
-            //}
         }
+
+        if (exs.equals(""))
+            exs = "-1";
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("exercise_value", exs);

@@ -4,7 +4,7 @@
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.DynamicListPreference
         android:defaultValue="@string/pref_current_profile"
         android:key="current_profile"
-        android:title="@string/pref_current_profile"/>
+        android:title="@string/pref_current_profile" />
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
@@ -15,7 +15,7 @@
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"
         android:inputType="textCapWords"
         android:key="name_text"
-        android:maxLength="10"
+        android:maxLength="12"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
@@ -33,7 +33,7 @@
 
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference
         android:defaultValue="10"
-        android:dialogMessage="@string/settings_break_dialog_message"
+        android:dialogMessage="@string/settings_break_title"
         android:key="break_value"
         android:max="30"
         android:summary="@string/settings_break_summary"
@@ -43,14 +43,13 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="cont_value"
-        android:title="@string/pref_title_cont" />
+        android:title="@string/new_profile_continuously" />
 
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.ExerciseListPreference
         android:defaultValue="1"
-        android:entryValues="@array/value_spinner"
         android:entries="@array/type_spinner"
+        android:entryValues="@array/value_spinner"
         android:title="@string/pref_current_exercises" />
 
 
-</PreferenceScreen>
-    <!--android:key="exercise"-->
+</PreferenceScreen><!--android:key="exercise"-->

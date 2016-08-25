@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="@string/exercise_type"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textViewBreak"
@@ -47,43 +47,20 @@
         android:layout_below="@+id/textViewBreak"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/side_repetition"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_below="@+id/textSideRepetition"
-        android:layout_toLeftOf="@+id/break_exercise_type"
-        android:layout_toStartOf="@+id/break_exercise_type"
-        android:contentDescription="Current Exercise" />
+        android:text="@string/exercise_break"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/yellow"
+        android:textStyle="bold" />
 
 
     <ImageView
         android:id="@+id/imageMid"
         android:layout_width="fill_parent"
         android:layout_height="120dp"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignEnd="@+id/break_exercise_type"
-        android:layout_alignRight="@+id/break_exercise_type"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_below="@+id/textSideRepetition"
-        android:layout_toRightOf="@+id/imageView"
-        android:contentDescription="Current Exercise" />
-
-    <ImageView
-        android:id="@+id/imageRight"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_alignTop="@+id/imageMid"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_toEndOf="@+id/imageMid"
-        android:layout_toRightOf="@+id/imageMid"
-        android:contentDescription="Current Exercise" />
+        android:layout_below="@+id/textSideRepetition" />
 
     <Button
         android:id="@+id/button_next"
@@ -101,27 +78,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_next"
-        android:layout_alignEnd="@+id/imageRight"
-        android:layout_alignRight="@+id/imageRight"
         android:layout_below="@+id/imageMid">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/break_execution"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textViewExecution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/break_ex"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/break_description"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
                 android:gravity="left|center"
                 android:text="@string/break_explanation"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp" />
         </LinearLayout>
     </ScrollView>
 

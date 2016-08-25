@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.new_profile);
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        oldExerciseValue = sharedPrefs.getString("exercise_value","-1");
+        oldExerciseValue = sharedPrefs.getString("exercise_value", "-1");
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("exercise_value", "-1");
@@ -40,14 +40,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         break_seekbar.setProgress(1);
 
         interval_text = (TextView) findViewById(R.id.interval_text);
-        interval_text.setText("1 Minutes");
+        interval_text.setText("1 " + getResources().getText(R.string.settings_unit));
         break_text = (TextView) findViewById(R.id.break_text);
-        break_text.setText("1 Minutes");
+        break_text.setText("1 " + getResources().getText(R.string.settings_unit));
 
         interval_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                interval_text.setText(progress + " Minutes");
+                interval_text.setText(progress + " " + getResources().getText(R.string.settings_unit));
             }
 
             @Override
@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         break_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                break_text.setText(progress + " Minutes");
+                break_text.setText(progress + " " + getResources().getText(R.string.settings_unit));
             }
 
             @Override
@@ -147,7 +147,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private void createExerciseType() {
         Intent intent = new Intent(this, ExerciseTypeActivity.class);
         this.startActivity(intent);
-        System.out.println("Exercise Type Activity!");
     }
 
 }

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,20 +39,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
         DEVICE_LANGUAGE = Locale.getDefault().getLanguage();
+        if(!DEVICE_LANGUAGE.equals("de") && !DEVICE_LANGUAGE.equals("fr") && !DEVICE_LANGUAGE.equals("ru"))
+            DEVICE_LANGUAGE = "en";
         System.out.println("Current Language: " + DEVICE_LANGUAGE);
-        //If Database exists open
-        if (checkDataBase()) {
-            openDataBase();
-        } else {
+
+        //Check if database exists
+        File databaseFile = mContext.getDatabasePath(DATABASE_NAME);
+        if (false == databaseFile.exists()) {
+            this.getReadableDatabase();
             try {
-                this.getReadableDatabase();
                 copyDataBase();
                 this.close();
-                openDataBase();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                Log.v("db log", "Copying data didn´t work!!");
             }
         }
+
     }
 
     @Override
@@ -83,8 +86,6 @@ public class DBHandler extends SQLiteOpenHelper {
         Exercise exercise;
         List<Exercise> exerciseList = new ArrayList<>();
         dataBase = this.getReadableDatabase();
-        if (DEVICE_LANGUAGE.equals("de"))
-            section = "nacken";
 
         Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + DEVICE_LANGUAGE + " WHERE " + EXERCISES_SECTION + " LIKE " + "\"%" + section + "%\"", null);
         res.moveToFirst();
@@ -96,25 +97,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         res.close();
         return exerciseList;
-    }
-
-
-    private boolean checkDataBase() {
-        dataBase = null;
-        boolean exist = false;
-        try {
-            String dbPath = DATABASE_PATH + DATABASE_NAME;
-            dataBase = SQLiteDatabase.openDatabase(dbPath, null,
-                    SQLiteDatabase.OPEN_READONLY);
-        } catch (SQLiteException e) {
-            Log.v("db log", "Database doesn't exist!!");
-        }
-
-        if (dataBase != null) {
-            exist = true;
-            closeDataBase();
-        }
-        return exist;
     }
 
     public void openDataBase() throws SQLException {

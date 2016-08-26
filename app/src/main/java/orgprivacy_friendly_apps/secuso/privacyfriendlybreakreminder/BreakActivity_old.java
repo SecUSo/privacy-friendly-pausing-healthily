@@ -6,27 +6,25 @@ import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.Random;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class BreakActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * Created by badri_000 on 26.08.2016.
+ */
+public class BreakActivity_old extends AppCompatActivity implements View.OnClickListener {
 
     private TextView ct_text;
     private CountDownTimer ct;
@@ -159,6 +157,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                         if (!sections.contains(currentExerciseSection)) {
                             sections.add(currentExerciseSection);
                             exerciseList = allAvailableExercises.get(currentExerciseSection);
+                            break_exercise_type.setText(exercises[currentExerciseSection]);
                             System.out.println("Random id for section election: " + currentExerciseSection);
                             break;
                         }
@@ -208,38 +207,16 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
     private void setRandomExercises() {
 
         allAvailableExercises = new ArrayList<>();
         System.out.println("Number of sections: " + exercises.length);
 
-
-        String usedSectionsString = sharedPrefs.getString("currently_done_exercises", "");
-        System.out.println("Number of used sections " + usedSectionsString.split("\\.").length + "  " + usedSectionsString);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-
-
-        if(exercises.length == usedSectionsString.split("\\.").length) {
-            usedSectionsString = "";
+        for (int i = 0; i < exercises.length; i++) {
+            List<Exercise> list = dbHandler.getExercisesFromSection(exercises[i]);
+            allAvailableExercises.add(list);
+            System.out.println("Section: " + exercises[i] + " and number of ex for it: " + list.size());
         }
-
-        //Selection of the Section
-        boolean notFoundYet = true;
-
-        while(notFoundYet){
-            currentExerciseSection = random.nextInt(exercises.length);
-            if(!usedSectionsString.contains(exercises[currentExerciseSection])){
-                List<Exercise> list = dbHandler.getExercisesFromSection(exercises[currentExerciseSection]);
-                allAvailableExercises.add(list);
-                usedSectionsString += exercises[currentExerciseSection] + ".";
-                editor.putString("currently_done_exercises", usedSectionsString);
-                notFoundYet = false;
-                System.out.println("Section: " + exercises[currentExerciseSection] + " and number of ex for it: " + list.size());
-            }
-        }
-
-        editor.apply();
 
         currentExerciseSection = random.nextInt(allAvailableExercises.size());
         System.out.println("Random id for section election: " + currentExerciseSection);
@@ -333,6 +310,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                         if (!sections.contains(currentExerciseSection)) {
                             sections.add(currentExerciseSection);
                             exerciseList = allAvailableExercises.get(currentExerciseSection);
+                            break_exercise_type.setText(exercises[currentExerciseSection]);
                             System.out.println("Random id for section election: " + currentExerciseSection);
                             break;
                         }
@@ -367,6 +345,20 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
                 // Update image and description of the exercise
                 update();
+
+//                //Show how much time is left
+//                timeLeft = sharedPrefs.getBoolean("notifications_new_message_timeLeft", false);
+//                if (timeLeft) {
+//                    Notification notification = new NotificationCompat.Builder(getApplicationContext()).setCategory(Notification.CATEGORY_MESSAGE)
+//                            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+//                            .setContentTitle("Break Activity Reminder: ")
+//                            .setContentText(((millisUntilFinished / 1000) / 60) + "Minutes and " + (millisUntilFinished / 1000 % 60) + " seconds")
+//                            .setAutoCancel(true)
+//                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC).build();
+//                    NotificationManager notificationManager =
+//                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//                    notificationManager.notify(999, notification);
+//                }
             }
 
             public void onFinish() {

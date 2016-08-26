@@ -35,6 +35,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 
 public class BreakReminder extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -75,11 +78,31 @@ public class BreakReminder extends AppCompatActivity
             String exercises = this.getResources().getText(R.string.all_exercises).toString();
             editor.putString("exercise_value", exercises);
             editor.putString("profiles", allProfiles);
+            editor.putString("current_language", Locale.getDefault().getLanguage());
             editor.apply();
 
             WelcomeDialog welcomeDialog = new WelcomeDialog();
             welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
+        } else if(!sharedPrefs.getString("current_language", "en").equals(Locale.getDefault().getLanguage())){
+            //FIXME could be nice to translate the body parts hear... but it would be a complex function
+            editor.putString("current_language", Locale.getDefault().getLanguage());
+            String[] profiles = allProfiles.split(";");
+            allProfiles = "";
+
+            for(int j = 0; j < profiles.length; j++) {
+                String[] profile = profiles[j].split(",");
+                profile[4] = "-1";
+                profiles[j] = "";
+                for(int i = 0; i<profile.length; i++){
+                    profiles[j] += profile[i]+",";
+                }
+                allProfiles += profiles[j] + ";";
+            }
+
+            editor.putString("profiles", allProfiles);
+            editor.apply();
         }
+
 
         System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "-1"));
 

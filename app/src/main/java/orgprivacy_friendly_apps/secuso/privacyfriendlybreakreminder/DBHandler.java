@@ -86,7 +86,14 @@ public class DBHandler extends SQLiteOpenHelper {
         List<Exercise> exerciseList = new ArrayList<>();
         dataBase = this.getReadableDatabase();
 
-        Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + DEVICE_LANGUAGE + " WHERE " + EXERCISES_SECTION + " LIKE " + "\"%" + section + "%\"", null);
+        //FIXME DES GRAUENS
+        String table = "";
+        if(DEVICE_LANGUAGE.equals("fr"))
+            table = "en";
+        else
+            table = DEVICE_LANGUAGE;
+
+        Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + table + " WHERE " + EXERCISES_SECTION + " LIKE " + "\"%" + section + "%\"", null);
         res.moveToFirst();
         while (!res.isAfterLast()) {
             exercise = new Exercise(res.getInt(0), res.getString(1), section, res.getString(3), res.getString(4));

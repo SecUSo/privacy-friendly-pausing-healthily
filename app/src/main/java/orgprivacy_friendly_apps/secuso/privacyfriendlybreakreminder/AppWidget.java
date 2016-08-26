@@ -34,8 +34,12 @@ public class AppWidget extends AppWidgetProvider {
             clockTime = workTime + ":00";
 
         // Construct the RemoteViews object
-        if (views == null)
-            onAppWidgetOptionsReset(context,appWidgetManager,appWidgetId,appWidgetManager.getAppWidgetOptions(appWidgetId));
+        if (views == null){
+            int minWidth = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+            int minHeight = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+
+            getRemoteViews(context, minWidth, minHeight);
+        }
 
         views.setTextViewText(R.id.appwidget_text, widgetText);
         if (time.equals(""))
@@ -84,20 +88,6 @@ public class AppWidget extends AppWidgetProvider {
                 time = data;
         }
         super.onReceive(context, intent);
-    }
-
-    public static void onAppWidgetOptionsReset(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-
-
-        System.out.println("Minimal width: " + newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) + " minimal height: " + newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT));
-
-        // Get min width and height.
-        int minWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
-        int minHeight = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
-
-
-        getRemoteViews(context, minWidth, minHeight);
-
     }
 
 

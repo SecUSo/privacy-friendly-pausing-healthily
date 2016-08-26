@@ -8,7 +8,6 @@
     <string name="break_ex">Ausführung der Übung</string>
     <string name="break_execution">Ausführung:</string>
     <string name="break_explanation">Beschreibung der Übung:</string>
-    <string name="break_reminder_time" translatable="false"></string>
     <string name="cancel">Abbrechen</string>
     <string name="continuously">Falls gesetzt, gibt es keine Möglichkeit die Pause zu überspringen</string>
     <string name="do_you_want_to_take_the_break">Möchten Sie die Pause nehmen?</string>

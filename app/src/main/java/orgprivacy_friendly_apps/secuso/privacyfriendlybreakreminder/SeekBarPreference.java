@@ -107,7 +107,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
     {
         super.onSetInitialValue(restore, defaultValue);
         if (restore)
-            mValue = shouldPersist() ? getPersistedInt(mDefault) : 0;
+            mValue = shouldPersist() ? getPersistedInt(mDefault) : 1;
         else
             mValue = (Integer)defaultValue;
     }

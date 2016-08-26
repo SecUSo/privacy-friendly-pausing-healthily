@@ -18,7 +18,6 @@ public class AppWidget extends AppWidgetProvider {
 
     static String time = "";
     static RemoteViews views = null;
-    //int[] appWidgetIds;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -36,7 +35,7 @@ public class AppWidget extends AppWidgetProvider {
 
         // Construct the RemoteViews object
         if (views == null)
-            views = new RemoteViews(context.getPackageName(), R.layout.app_widget2x1);
+            onAppWidgetOptionsReset(context,appWidgetManager,appWidgetId,appWidgetManager.getAppWidgetOptions(appWidgetId));
 
         views.setTextViewText(R.id.appwidget_text, widgetText);
         if (time.equals(""))
@@ -58,7 +57,6 @@ public class AppWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
-        //this.appWidgetIds = appWidgetIds;
 
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
@@ -87,6 +85,21 @@ public class AppWidget extends AppWidgetProvider {
         }
         super.onReceive(context, intent);
     }
+
+    public static void onAppWidgetOptionsReset(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+
+
+        System.out.println("Minimal width: " + newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) + " minimal height: " + newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT));
+
+        // Get min width and height.
+        int minWidth = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+        int minHeight = newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+
+
+        getRemoteViews(context, minWidth, minHeight);
+
+    }
+
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
@@ -119,7 +132,7 @@ public class AppWidget extends AppWidgetProvider {
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
     }
 
-    private RemoteViews getRemoteViews(Context context, int minWidth, int minHeight) {
+    private static RemoteViews getRemoteViews(Context context, int minWidth, int minHeight) {
         // First find out rows and columns based on width provided.
         int rows = getCellsForSize(minHeight);
         int columns = getCellsForSize(minWidth);

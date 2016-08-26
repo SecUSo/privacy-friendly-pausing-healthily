@@ -2,10 +2,10 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 
 public class Exercise {
-    private int id, imageID;
-    private String section, execution, description;
+    private int id;
+    private String section, execution, description, imageID;
 
-    public Exercise(int id, String description, String section, int imageID, String execution) {
+    public Exercise(int id, String description, String section, String imageID, String execution) {
         this.id = id;
         this.imageID = imageID;
         this.section = section;
@@ -30,11 +30,11 @@ public class Exercise {
         this.execution = execution;
     }
 
-    public int getImageID() {
+    public String getImageID() {
         return imageID;
     }
 
-    public void setImageID(int imageID) {
+    public void setImageID(String imageID) {
         this.imageID = imageID;
     }
 

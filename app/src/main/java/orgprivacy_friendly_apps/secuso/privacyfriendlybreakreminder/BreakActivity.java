@@ -1,6 +1,5 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,7 +9,6 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,26 +17,36 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Random;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BreakActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView ct_text;
     private CountDownTimer ct;
-    private String stopTime = "";
+    private String stopTime = "", sideRepetition = "";
+    String image1, image2;
     private boolean isRunning = false;
     private List<Exercise> exerciseList;
     private SharedPreferences sharedPrefs;
     private TextView description, side_repetition, break_exercise_type, execution;
-    private int currentExercise, breakTime = 0;
+    private int currentExercise, breakTime = 0, currentExerciseSection;
     private ImageView image;
     private String[] exercises;
+    private DBHandler dbHandler;
+    private List<List<Exercise>> allAvailableExercises;
+    private List<Integer> sections;
+    private Random random;
+    private boolean exerciseSide = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         currentExercise = 0;
+        currentExerciseSection = 0;
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         int mins = sharedPrefs.getInt("break_value", 5);
         String bufferZeroMinute = "";
@@ -46,9 +54,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         if (mins < 10)
             bufferZeroMinute = "0";
 
-        ct_text = (TextView) findViewById(R.id.textViewBreak);
-
-        DBHandler dbHandler = new DBHandler(this);
         String[] allProfiles = sharedPrefs.getString("profiles", "").split(";");
         String currentProfile = sharedPrefs.getString("name_text", "");
 
@@ -74,23 +79,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             ct_text.setText(bufferZeroMinute + mins + ":00");
             ct_text.setOnClickListener(this);
 
-
-            //TODO Iterate over all
-            exerciseList = dbHandler.getExercisesFromSection(exercises[currentExercise]);
-            description = (TextView) findViewById(R.id.textViewDescription);
-            description.setText(exerciseList.get(currentExercise).getDescription());
-
-            execution = (TextView) findViewById(R.id.textViewExecution);
-            execution.setText(exerciseList.get(currentExercise).getExecution());
-
-            side_repetition = (TextView) findViewById(R.id.textSideRepetition);
-            side_repetition.setText(R.string.exercise_break);
-
-            break_exercise_type = (TextView) findViewById(R.id.break_exercise_type);
-            break_exercise_type.setText(exerciseList.get(currentExercise).getSection());
-
-            image = (ImageView) findViewById(R.id.imageMid);
-            image.setImageResource(R.drawable.train_left);
+            dbHandler = new DBHandler(this);
+            random = new Random();
+            sections = new ArrayList<>();
+            setRandomExercises();
         }
 
         //Keep screen on while on break
@@ -126,10 +118,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
-
-        System.out.println(time + " " + ct_text.getText());
-
-
         switch (v.getId()) {
 
             case R.id.textViewBreak1:
@@ -155,17 +143,37 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 // Next Exercise
                 currentExercise++;
                 side_repetition.setText(R.string.exercise_break);
-                if (currentExercise > exerciseList.size() - 1)
+                if (currentExercise > exerciseList.size() - 1) {
                     currentExercise = 0;
+                    if (sections.size() == allAvailableExercises.size()) {
+                        System.out.println("Did all exercises, restart!");
+                        sections = new ArrayList<>();
+                    }
+                    while (true) {
+
+                        currentExerciseSection = random.nextInt(allAvailableExercises.size());
+                        if (!sections.contains(currentExerciseSection)) {
+                            sections.add(currentExerciseSection);
+                            exerciseList = allAvailableExercises.get(currentExerciseSection);
+                            break_exercise_type.setText(exercises[currentExerciseSection]);
+                            System.out.println("Random id for section election: " + currentExerciseSection);
+                            break;
+                        }
+
+                    }
+                }
+
+                //Set description and execution text of current exercise
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
 
+                //FIXME
+                setExerciseImage();
+
                 //Update Timer
                 String[] currentTime = ((String) ct_text.getText()).split(":");
-
                 int minute = Integer.parseInt(currentTime[0]);
                 int second = Integer.parseInt(currentTime[1]);
-                System.out.println("Current Minute: " + minute + " and current second: " + second);
 
                 if (second != 0) {
                     ct.cancel();
@@ -197,34 +205,121 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void update() {
+    private void setRandomExercises() {
 
-        //FIXME Change to the correct picture and whether its side or repetetion
+        allAvailableExercises = new ArrayList<>();
+        System.out.println("Number of sections: " + exercises.length);
+
+        for (int i = 0; i < exercises.length; i++) {
+            List<Exercise> list = dbHandler.getExercisesFromSection(exercises[i]);
+            allAvailableExercises.add(list);
+            System.out.println("Section: " + exercises[i] + " and number of ex for it: " + list.size());
+        }
+
+        currentExerciseSection = random.nextInt(allAvailableExercises.size());
+        System.out.println("Random id for section election: " + currentExerciseSection);
+
+        // Set exercise list to current section
+        exerciseList = allAvailableExercises.get(currentExerciseSection);
+        sections.add(currentExerciseSection);
+
+        description = (TextView) findViewById(R.id.textViewDescription);
+        description.setText(exerciseList.get(currentExercise).getDescription());
+
+        execution = (TextView) findViewById(R.id.textViewExecution);
+        execution.setText(exerciseList.get(currentExercise).getExecution());
+
+        side_repetition = (TextView) findViewById(R.id.textSideRepetition);
+        side_repetition.setText(R.string.exercise_break);
+
+        break_exercise_type = (TextView) findViewById(R.id.break_exercise_type);
+        break_exercise_type.setText(exerciseList.get(currentExercise).getSection());
+
+        //FIXME
+        setExerciseImage();
+    }
+
+    private void setExerciseImage() {
+        String imageID = exerciseList.get(currentExercise).getImageID();
+        image = (ImageView) findViewById(R.id.imageMid);
+        if (imageID.split(",").length == 1) {
+            sideRepetition = getResources().getText(R.string.exercise_repetition).toString();
+            //FIXME Set correct image depending on imageID
+            image1 = imageID;
+            //Hardcoded
+            image.setImageResource(R.drawable.train_left);
+            exerciseSide = false;
+//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
+//            image.setImageResource(imageResID);
+        } else {
+            // There are 2 sides for an exercise
+            exerciseSide = true;
+            sideRepetition = getResources().getText(R.string.exercise_side).toString();
+            image1 = imageID.split(",")[0];
+            image2 = imageID.split(",")[1];
+            System.out.println("Id of first image: " + image1 + " , id of second: " + image2);
+
+            image.setImageResource(R.drawable.train_middle);
+
+            //image ID from Resource
+//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
+//            image.setImageResource(imageResID);
+
+        }
+    }
+
+    //FIXME Change to the correct picture and whether its side or repetition
+    private void update() {
+        //After 10 seconds first side/repetition, then after 20 seconds break for 10 seconds, afterwards second side/repetition and after 20 seconds break and new exercise
         breakTime++;
         switch (breakTime) {
             case 10:
                 System.out.println("Time for Exercise: Left!");
-                side_repetition.setText(R.string.exercise_repetition + " 1");
+                side_repetition.setText(sideRepetition + " 1");
                 break;
             case 30:
                 System.out.println("Time for Break between sides!");
                 side_repetition.setText(R.string.exercise_break);
-                image.setImageResource(R.drawable.train_middle);
+                //If exercise contains 2 images, set ImageView to the second image
+                if (exerciseSide) {
+                    image.setImageResource(R.drawable.train_right);
+                    //image ID from Resource
+//                    int imageResID = getResources().getIdentifier(image2, "drawable", getPackageName());
+//                    image.setImageResource(imageResID);
+                }
                 break;
             case 40:
                 System.out.println("Time for Exercise: Right!");
-                side_repetition.setText(R.string.exercise_repetition + " 2");
+                side_repetition.setText(sideRepetition + " 2");
                 break;
             case 60:
                 System.out.println("Next Exercise!");
-                image.setImageResource(R.drawable.train_right);
                 breakTime = 0;
                 currentExercise++;
-                if (currentExercise > exerciseList.size() - 1)
+                if (currentExercise > exerciseList.size() - 1) {
                     currentExercise = 0;
+                    if (sections.size() == allAvailableExercises.size()) {
+                        System.out.println("Did all exercises, restart!");
+                        sections = new ArrayList<>();
+                    }
+                    while (true) {
+
+                        currentExerciseSection = random.nextInt(allAvailableExercises.size());
+                        if (!sections.contains(currentExerciseSection)) {
+                            sections.add(currentExerciseSection);
+                            exerciseList = allAvailableExercises.get(currentExerciseSection);
+                            break_exercise_type.setText(exercises[currentExerciseSection]);
+                            System.out.println("Random id for section election: " + currentExerciseSection);
+                            break;
+                        }
+
+                    }
+                }
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
-                side_repetition.setText("Break");
+                side_repetition.setText(R.string.exercise_break);
+                //FIXME
+                setExerciseImage();
                 break;
         }
     }
@@ -295,6 +390,9 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 }
                 //Remove lag to keep screen on when the break ends
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+                //Close database connection
+                dbHandler.close();
                 finish();
             }
         }.start();

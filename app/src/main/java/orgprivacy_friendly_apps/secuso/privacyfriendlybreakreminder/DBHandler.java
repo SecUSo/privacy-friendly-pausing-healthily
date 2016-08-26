@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -72,7 +71,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + DEVICE_LANGUAGE, null);
         res.moveToFirst();
         while (!res.isAfterLast()) {
-            exercise = new Exercise(res.getInt(0), res.getString(1), res.getString(2), res.getInt(3), res.getString(4));
+            exercise = new Exercise(res.getInt(0), res.getString(1), res.getString(2), res.getString(3), res.getString(4));
             exerciseList.add(exercise);
             res.moveToNext();
         }
@@ -90,23 +89,13 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + DEVICE_LANGUAGE + " WHERE " + EXERCISES_SECTION + " LIKE " + "\"%" + section + "%\"", null);
         res.moveToFirst();
         while (!res.isAfterLast()) {
-            exercise = new Exercise(res.getInt(0), res.getString(1), res.getString(2), res.getInt(3), res.getString(4));
+            exercise = new Exercise(res.getInt(0), res.getString(1), section, res.getString(3), res.getString(4));
             exerciseList.add(exercise);
             res.moveToNext();
         }
 
         res.close();
         return exerciseList;
-    }
-
-    public void openDataBase() throws SQLException {
-        String dbPath = DATABASE_PATH + DATABASE_NAME;
-        dataBase = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
-    }
-
-    public void closeDataBase() {
-        if (dataBase != null)
-            dataBase.close();
     }
 
     private void copyDataBase() throws IOException {

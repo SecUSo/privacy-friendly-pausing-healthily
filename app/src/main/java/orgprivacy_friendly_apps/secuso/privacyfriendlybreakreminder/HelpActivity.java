@@ -63,7 +63,7 @@ public class HelpActivity extends AppCompatActivity {
             case R.id.imageView3:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.create_profile_screen);
+                img.setImageResource(R.drawable.break_screen);
                 break;
             case R.id.imageView4:
                 setContentView(R.layout.help2);

@@ -205,7 +205,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/create_profile_screen"/>
+            android:src="@drawable/break_screen"/>
 
         <TextView
             android:id="@+id/textView16"

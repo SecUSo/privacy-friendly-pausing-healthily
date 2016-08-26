@@ -58,7 +58,8 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="@string/help_start_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="7pt" />
+            android:textSize="7pt"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/textView11"
@@ -81,7 +82,7 @@
             android:adjustViewBounds="true"
             android:clickable="true"
             android:maxHeight="190dp"
-            android:maxWidth="210dp"
+            android:maxWidth="200dp"
             android:onClick="clickHandler"
             android:src="@drawable/settings_screen" />
 
@@ -93,7 +94,8 @@
             android:layout_toRightOf="@+id/imageView1"
             android:text="@string/help_settings_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt" />
+            android:textSize="5pt"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -117,7 +119,8 @@
             android:text="@string/help_settings_screen1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="6pt"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
             android:id="@+id/imageView5"
@@ -140,7 +143,8 @@
             android:layout_toRightOf="@+id/imageView5"
             android:text="@string/help_settings_screen2"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt" />
+            android:textSize="6pt"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/textView13"
@@ -175,7 +179,8 @@
             android:layout_toRightOf="@+id/imageView2"
             android:text="@string/help_create_profile_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt" />
+            android:textSize="6pt"
+            android:layout_marginLeft="5dp"/>
 
         <TextView
             android:id="@+id/textView15"
@@ -200,7 +205,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/create_profile_screen" />
+            android:src="@drawable/create_profile_screen"/>
 
         <TextView
             android:id="@+id/textView16"
@@ -210,21 +215,24 @@
             android:layout_toRightOf="@+id/imageView3"
             android:text="@string/help_break_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt" />
+            android:textSize="6pt"
+            android:layout_marginLeft="5dp"/>
 
 
         <TextView
+            android:id="@+id/textView21"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView16"
+            android:layout_below="@+id/imageView3"
             android:gravity="center"
-            android:text="@string/disclaimer" />
+            android:text="@string/disclaimer"
+            android:layout_marginTop="35dp"/>
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView3"
+            android:layout_below="@+id/textView21"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text=""

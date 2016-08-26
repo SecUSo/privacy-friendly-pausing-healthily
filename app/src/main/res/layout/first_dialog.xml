@@ -27,22 +27,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layoutDirection="ltr"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:src="@drawable/clock"/>
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/tutorial_or"/>
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:src="@drawable/play_button"/>
         </LinearLayout>
@@ -60,7 +61,7 @@
             android:layout_marginTop="20dp"
             style="@style/Base.DialogWindowTitle.AppCompat"/>
         <ImageView
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:src="@drawable/reset_button"/>

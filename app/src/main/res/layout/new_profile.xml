@@ -47,12 +47,12 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
             android:text="@string/interval"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_below="@+id/textView3"
+            android:layout_below="@+id/editProfileName"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -61,7 +61,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/new_profile_break"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="40dp"
             android:text="@string/exercise_type"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="24sp" />
@@ -75,7 +75,7 @@
             android:layout_below="@+id/new_profile_interval"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="44dp" />
+            android:layout_marginTop="5dp"/>
 
         <SeekBar
             android:id="@+id/new_profile_break"
@@ -109,7 +109,7 @@
             android:layout_below="@+id/textView16"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="25dp"/>
 
         <CheckBox
             android:id="@+id/continuouslyCB"

@@ -66,7 +66,7 @@
     <string name="settings_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_unit">Minuten</string>
     <string name="skip_the_break">Überspringen</string>
-    <string name="standard_profile">Zufall,90,5,false,Arme.Beine.Kopf.Nacken.Becken.Wirbelsaeule.Rumpf;Oberkoerper,90,15,true,Arme.Nacken.Kopf.;Rumpf,30,5,true,Wirbelsauele.Rumpf.;Unterkoerper,30,5,true,Beine.Becken.;</string>
+    <string name="standard_profile">Zufall,90,5,false,Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.;Oberkoerper,90,15,true,Arme.Nacken.Kopf.;Rumpf,30,5,true,Wirbelsäule.Rumpf.;Unterkoerper,30,5,true,Beine.Becken.;</string>
     <string name="take_the_break">Pause nehmen</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="tutorial_clock">Starten/Anhalten der Uhr</string>
@@ -81,9 +81,11 @@
         <item>Nacken</item>
         <item>Arme</item>
         <item>Rumpf</item>
-        <item>Wirbelsauele</item>
+        <item>Wirbelsäule</item>
         <item>Becken</item>
         <item>Beine</item>
     </string-array>
     <string name="new_profile">Neues Profil...</string>
+    <string name="statistics">Statistik</string>
+    <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
 </resources>

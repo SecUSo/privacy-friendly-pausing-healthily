@@ -2,7 +2,7 @@
 
 
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.DynamicListPreference
-        android:defaultValue="@string/pref_current_profile"
+        android:defaultValue="@string/pref_current_profile_value"
         android:key="current_profile"
         android:title="@string/pref_current_profile" />
 

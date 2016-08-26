@@ -18,6 +18,7 @@ public class AppWidget extends AppWidgetProvider {
 
     static String time = "";
     static RemoteViews views = null;
+    //int[] appWidgetIds;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -25,6 +26,13 @@ public class AppWidget extends AppWidgetProvider {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         CharSequence widgetText = prefs.getString("name_text", "Help");
+        int workTime = prefs.getInt("work_value", 0);
+        String clockTime = "";
+
+        if(workTime<10)
+            clockTime = "0" + workTime + ":00";
+        else
+            clockTime = workTime + ":00";
 
         // Construct the RemoteViews object
         if (views == null)
@@ -32,7 +40,7 @@ public class AppWidget extends AppWidgetProvider {
 
         views.setTextViewText(R.id.appwidget_text, widgetText);
         if (time.equals(""))
-            views.setTextViewText(R.id.time, "00:00");
+            views.setTextViewText(R.id.time, clockTime);
         else
             views.setTextViewText(R.id.time, time);
 
@@ -50,6 +58,8 @@ public class AppWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
+        //this.appWidgetIds = appWidgetIds;
+
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
@@ -101,9 +111,10 @@ public class AppWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
         views.setOnClickPendingIntent(R.id.time, pendingIntent);
 
-
         // Obtain appropriate widget and update it.
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
+        updateAppWidget(context,appWidgetManager,appWidgetId);
 
         super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
     }

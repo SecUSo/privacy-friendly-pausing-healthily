@@ -3,7 +3,6 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
@@ -73,6 +72,8 @@ public class BreakReminder extends AppCompatActivity
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
             allProfiles = this.getResources().getText(R.string.standard_profile).toString();
+            String exercises = this.getResources().getText(R.string.all_exercises).toString();
+            editor.putString("exercise_value", exercises);
             editor.putString("profiles", allProfiles);
             editor.apply();
 
@@ -142,7 +143,7 @@ public class BreakReminder extends AppCompatActivity
 
         String currentProfile = sharedPrefs.getString("name_text", "") + "," + sharedPrefs.getInt("work_value", -1) + "," + sharedPrefs.getInt("break_value", -1) + "," + sharedPrefs.getBoolean("cont_value", false) + "," + sharedPrefs.getString("exercise_value", "-1");
 
-        if (!allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", ""))) {
+        if (!(allProfiles.contains(currentProfile) && profileSelected.equals(sharedPrefs.getString("name_text", "")))) {
             if (ct != null) {
                 ct.cancel();
                 isRunning = false;

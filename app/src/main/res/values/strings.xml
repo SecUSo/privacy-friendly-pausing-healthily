@@ -104,7 +104,7 @@
 
     <!-- settings for BreakActivity -->
     <string name="_10_00" translatable="false">10:00</string>
-    <string name="break_next">Next</string>
+    <string name="break_next" translatable="false">Next</string>
     <string name="break_description">Description:</string>
     <string name="break_explanation">Description of the Exercise</string>
     <string name="break_ex">Execution of the Exercise</string>
@@ -139,5 +139,9 @@
     <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings</string>
     <string name="tutorial_clock">Start/Stop the clock</string>
     <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
+    <string name="pref_current_profile_value" translatable="false">0</string>
+
+    <string name="all_exercises">Legs.Arms.Pelvis.Spinal Column.Torso.Neck.Head.</string>
+
 
 </resources>

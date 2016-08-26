@@ -94,12 +94,14 @@ public class ExerciseListPreference extends ListPreference implements DialogInte
 
         }
 
-        if (exs.equals(""))
+        if (exs.equals("") && positiveResult)
             exs = "-1";
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("exercise_value", exs);
-        editor.apply();
+        if(positiveResult) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("exercise_value", exs);
+            editor.apply();
+        }
     }
 
 }

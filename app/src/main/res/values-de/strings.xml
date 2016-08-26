@@ -59,7 +59,7 @@
     <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_dialog_message">Wählen Sie ihren Arbeitsintevall aus</string>
     <string name="settings_break_title">Wählen Sie ihre Pausenzeit aus</string>
-    <string name="settings_doubleName">Die </string>
+    <string name="settings_doubleName">Die Änderungen konnten nicht gespeichert werden, da das dieser Profilname bereits existiert!</string>
     <string name="settings_emptyName">Die Änderungen konnten nicht gespeichert werden, da das Feld für den Profilnamen leer ist! </string>
     <string name="settings_title">Wählen Sie ihren Arbeitsintervall aus</string>
     <string name="settings_summary">Derzeitiger Wert ist $1</string>

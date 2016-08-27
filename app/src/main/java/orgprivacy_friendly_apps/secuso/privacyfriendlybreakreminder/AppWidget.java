@@ -151,7 +151,7 @@ public class AppWidget extends AppWidgetProvider {
                 views = new RemoteViews(context.getPackageName(), R.layout.app_widget4x4);
                 return views;
             default:
-                views = new RemoteViews(context.getPackageName(), R.layout.app_widget2x1);
+                views = new RemoteViews(context.getPackageName(), R.layout.app_widget4x4);
                 return views;
         }
 

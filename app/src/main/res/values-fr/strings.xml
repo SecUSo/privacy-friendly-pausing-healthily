@@ -67,4 +67,18 @@
     <string name="help_start_screen_title">Écran principal</string>
     <string name="help_break_screen">1. Région du corps de l\'exercise actuel\n2.L\'horloge montre le temps restant de la pause. Si vous cliquez dessus, le temps démarre ou il arrête.\n3.Si l\'écran montre \'pause\', vous êtes dans une pause de 10sec. Si c\'est montrer \'coté 1/2\' ou \'rèpétition 1/2\' il faut faire des exercise.\n4.Expliquation de la situation initiale.\n5. Description de l\'exercise</string>
     <string name="help_click_information">Pour voir les images en pleine grandeur, cliquer sure les images. Pour retourner a la grandeur initial re-cliquer sur l\'image.</string>
+
+    <string-array name="type_spinner">
+        <item>Tête</item>
+        <item>Nuque</item>
+        <item>Bras</item>
+        <item>Torse</item>
+        <item>Colonne vertébrale</item>
+        <item>Bassin</item>
+        <item>Jambes</item>
+    </string-array>
+    <string name="standard_profile">Hasard,90,5,false,Bras.Jambes.Tête.Nuque.Bassin.Colonne vertébrale.Torse.;HautDuCorps,90,15,true,Bras.Nuque.Tête.;Torse,30,5,true,Colonne vertébrale.Torse.;BasDuCorps,30,5,true,Jambes.Bassin.;</string>
+    <string name="tutorial_description">Bienvenue au Privacy Friendly Break Reminder</string>
+    <string name="all_exercises">Jambes.Bras.Bassin.Colonne vertébrale.Torse.Nuque.Tête.</string>
+
 </resources>

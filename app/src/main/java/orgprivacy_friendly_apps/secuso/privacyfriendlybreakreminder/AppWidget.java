@@ -54,7 +54,7 @@ public class AppWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
         views.setOnClickPendingIntent(R.id.time, pendingIntent);
 
-        // Instruct the widget manager to update the widget
+        // Instruct the widget_preview manager to update the widget_preview
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
@@ -69,12 +69,12 @@ public class AppWidget extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
+        // Enter relevant functionality for when the first widget_preview is created
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
+        // Enter relevant functionality for when the last widget_preview is disabled
     }
 
     @Override
@@ -114,7 +114,7 @@ public class AppWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.appwidget_text, pendingIntent);
         views.setOnClickPendingIntent(R.id.time, pendingIntent);
 
-        // Obtain appropriate widget and update it.
+        // Obtain appropriate widget_preview and update it.
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
         updateAppWidget(context,appWidgetManager,appWidgetId);
@@ -159,7 +159,7 @@ public class AppWidget extends AppWidgetProvider {
     }
 
     /**
-     * Returns number of cells needed for given size of the widget.
+     * Returns number of cells needed for given size of the widget_preview.
      *
      * @param size Widget size in dp.
      * @return Size in number of cells.

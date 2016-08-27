@@ -33,7 +33,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/clock"/>
+                android:src="@drawable/tutorial_clock"/>
             <TextView
                 android:layout_width="60dp"
                 android:layout_height="100dp"
@@ -45,7 +45,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/play_button"/>
+                android:src="@drawable/tutorial_play_button"/>
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/reset_button"/>
+            android:src="@drawable/tutorial_reset_button"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_gravity="center"
-            android:src="@drawable/spinner"/>
+            android:src="@drawable/tutorial_spinner"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

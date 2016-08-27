@@ -26,7 +26,7 @@
         android:layout_below="@+id/break_exercise_type"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@drawable/circle"
+        android:background="@drawable/circle_black"
         android:clickable="true"
         android:enabled="true"
         android:gravity="center"

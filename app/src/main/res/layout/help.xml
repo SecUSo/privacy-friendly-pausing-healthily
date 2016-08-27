@@ -48,7 +48,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/start_screen" />
+            android:src="@drawable/help_start_screen" />
 
         <TextView
             android:id="@+id/textView9"
@@ -84,7 +84,7 @@
             android:maxHeight="190dp"
             android:maxWidth="200dp"
             android:onClick="clickHandler"
-            android:src="@drawable/settings_screen" />
+            android:src="@drawable/help_settings_screen" />
 
         <TextView
             android:id="@+id/textView12"
@@ -108,7 +108,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/general_screen" />
+            android:src="@drawable/help_general_screen" />
 
         <TextView
             android:id="@+id/textView18"
@@ -133,7 +133,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/notification_screen" />
+            android:src="@drawable/help_notification_screen" />
 
         <TextView
             android:id="@+id/textView19"
@@ -169,7 +169,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/create_profile_screen" />
+            android:src="@drawable/help_create_profile_screen" />
 
         <TextView
             android:id="@+id/textView14"
@@ -205,7 +205,7 @@
             android:maxHeight="190dp"
             android:maxWidth="130dp"
             android:onClick="clickHandler"
-            android:src="@drawable/break_screen"/>
+            android:src="@drawable/help_break_screen"/>
 
         <TextView
             android:id="@+id/textView16"

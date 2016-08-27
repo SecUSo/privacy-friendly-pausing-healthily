@@ -11,7 +11,7 @@
             android:title="@string/title_activity_settings" />
         <item
             android:id="@+id/nav_statistics"
-            android:icon="@drawable/statistic_logo"
+            android:icon="@drawable/drawer_statistic_logo"
             android:title="@string/statistics" />
     </group>
 

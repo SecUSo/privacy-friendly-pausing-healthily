@@ -65,4 +65,6 @@
     <string name="tutorial_reset_description">Appuyez sur le bouton pour réinitialiser l\'horloge</string>
     <string name="type">Type</string>
     <string name="help_start_screen_title">Écran principal</string>
+    <string name="help_break_screen">1. Région du corps de l\'exercise actuel\n2.L\'horloge montre le temps restant de la pause. Si vous cliquez dessus, le temps démarre ou il arrête.\n3.Si l\'écran montre \'pause\', vous êtes dans une pause de 10sec. Si c\'est montrer \'coté 1/2\' ou \'rèpétition 1/2\' il faut faire des exercise.\n4.Expliquation de la situation initiale.\n5. Description de l\'exercise</string>
+    <string name="help_click_information">Pour voir les images en pleine grandeur, cliquer sure les images. Pour retourner a la grandeur initial re-cliquer sur l\'image.</string>
 </resources>

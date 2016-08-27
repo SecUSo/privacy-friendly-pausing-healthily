@@ -189,7 +189,7 @@ public class BreakReminder extends AppCompatActivity
                     editor.putString("exercise_value", exercises);
                     editor.apply();
 
-                    //Update clock
+                    //Update tutorial_clock
                     String bufferZeroMinute = "";
                     int time = interval * 60 * 1000;
                     if (time / 1000 / 60 < 10)
@@ -229,7 +229,7 @@ public class BreakReminder extends AppCompatActivity
         //profileSpinner.setSelection(Arrays.asList(profileNames).indexOf(currentProfile));
         profileSpinner.setSelection(Integer.parseInt(sharedPrefs.getString("current_profile", "-1")));
 
-        //Update clock
+        //Update tutorial_clock
         String bufferZeroMinute = "";
         int time = interval * 60 * 1000;
         if (time / 1000 / 60 < 10)
@@ -363,7 +363,7 @@ public class BreakReminder extends AppCompatActivity
 
             case R.id.button_reset:
                 if (ct != null) {
-                    //Reset clock
+                    //Reset tutorial_clock
                     ct.cancel();
                     int interval = sharedPrefs.getInt("work_value", 1);
 

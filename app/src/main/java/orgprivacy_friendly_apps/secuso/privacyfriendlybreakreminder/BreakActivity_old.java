@@ -249,10 +249,9 @@ public class BreakActivity_old extends AppCompatActivity implements View.OnClick
             //FIXME Set correct image depending on imageID
             image1 = imageID;
             //Hardcoded
-            image.setImageResource(R.drawable.train_left);
             exerciseSide = false;
-//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
-//            image.setImageResource(imageResID);
+            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
+            image.setImageResource(imageResID);
         } else {
             // There are 2 sides for an exercise
             exerciseSide = true;
@@ -261,11 +260,9 @@ public class BreakActivity_old extends AppCompatActivity implements View.OnClick
             image2 = imageID.split(",")[1];
             System.out.println("Id of first image: " + image1 + " , id of second: " + image2);
 
-            image.setImageResource(R.drawable.train_middle);
-
             //image ID from Resource
-//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
-//            image.setImageResource(imageResID);
+            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
+            image.setImageResource(imageResID);
 
         }
     }
@@ -284,10 +281,9 @@ public class BreakActivity_old extends AppCompatActivity implements View.OnClick
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
                 if (exerciseSide) {
-                    image.setImageResource(R.drawable.train_right);
                     //image ID from Resource
-//                    int imageResID = getResources().getIdentifier(image2, "drawable", getPackageName());
-//                    image.setImageResource(imageResID);
+                    int imageResID = getResources().getIdentifier(image2, "drawable", getPackageName());
+                    image.setImageResource(imageResID);
                 }
                 break;
             case 40:

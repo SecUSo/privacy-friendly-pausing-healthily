@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:background="@drawable/white_circle">
+        android:background="@drawable/circle_white">
 
         <TextView
             android:id="@+id/appwidget_text"

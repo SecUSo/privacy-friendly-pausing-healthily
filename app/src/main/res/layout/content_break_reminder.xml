@@ -55,7 +55,7 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/circle"
+        android:background="@drawable/circle_black"
         android:clickable="true"
         android:enabled="true"
         android:gravity="center"

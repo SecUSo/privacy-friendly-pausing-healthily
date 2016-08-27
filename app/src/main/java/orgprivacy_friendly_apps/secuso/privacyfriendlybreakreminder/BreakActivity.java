@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,9 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ListIterator;
+import java.util.Collections;
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -155,7 +152,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                     }
                     while (true) {
 
-                        currentExerciseSection = random.nextInt(allAvailableExercises.size());
+                        currentExerciseSection = currentExerciseSection + 1 % allAvailableExercises.size();
                         if (!sections.contains(currentExerciseSection)) {
                             sections.add(currentExerciseSection);
                             exerciseList = allAvailableExercises.get(currentExerciseSection);
@@ -170,7 +167,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
 
-                //FIXME
                 setExerciseImage();
 
                 //Update Timer
@@ -241,8 +237,14 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
         editor.apply();
 
-        currentExerciseSection = random.nextInt(allAvailableExercises.size());
-        System.out.println("Random id for section election: " + currentExerciseSection);
+        currentExerciseSection = 0;
+        Collections.shuffle(allAvailableExercises.get(currentExerciseSection));
+
+        String allExe = "";
+        for (int i = 0; i< allAvailableExercises.get(currentExerciseSection).size();i++)
+            allExe += allAvailableExercises.get(currentExerciseSection).get(i).getImageID()+ " ";
+
+        System.out.println("Random list for section election: " + allExe);
 
         // Set exercise list to current section
         exerciseList = allAvailableExercises.get(currentExerciseSection);
@@ -269,13 +271,11 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         image = (ImageView) findViewById(R.id.imageMid);
         if (imageID.split(",").length == 1) {
             sideRepetition = getResources().getText(R.string.exercise_repetition).toString();
-            //FIXME Set correct image depending on imageID
+
             image1 = imageID;
-            //Hardcoded
-            image.setImageResource(R.drawable.train_left);
             exerciseSide = false;
-//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
-//            image.setImageResource(imageResID);
+            int imageResID = getResources().getIdentifier("exercise_"+image1, "drawable", getPackageName());
+            image.setImageResource(imageResID);
         } else {
             // There are 2 sides for an exercise
             exerciseSide = true;
@@ -284,11 +284,9 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             image2 = imageID.split(",")[1];
             System.out.println("Id of first image: " + image1 + " , id of second: " + image2);
 
-            image.setImageResource(R.drawable.train_middle);
-
             //image ID from Resource
-//            int imageResID = getResources().getIdentifier(image1, "drawable", getPackageName());
-//            image.setImageResource(imageResID);
+            int imageResID = getResources().getIdentifier("exercise_"+image1, "drawable", getPackageName());
+            image.setImageResource(imageResID);
 
         }
     }
@@ -307,10 +305,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
                 if (exerciseSide) {
-                    image.setImageResource(R.drawable.train_right);
-                    //image ID from Resource
-//                    int imageResID = getResources().getIdentifier(image2, "drawable", getPackageName());
-//                    image.setImageResource(imageResID);
+                    int imageResID = getResources().getIdentifier("exercise_"+image2, "drawable", getPackageName());
+                    image.setImageResource(imageResID);
                 }
                 break;
             case 40:
@@ -329,7 +325,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                     }
                     while (true) {
 
-                        currentExerciseSection = random.nextInt(allAvailableExercises.size());
+                        currentExerciseSection = currentExerciseSection + 1 % allAvailableExercises.size();
                         if (!sections.contains(currentExerciseSection)) {
                             sections.add(currentExerciseSection);
                             exerciseList = allAvailableExercises.get(currentExerciseSection);
@@ -342,7 +338,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
                 side_repetition.setText(R.string.exercise_break);
-                //FIXME
+
                 setExerciseImage();
                 break;
         }

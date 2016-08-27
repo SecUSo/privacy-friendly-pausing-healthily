@@ -1,17 +1,11 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -48,32 +42,32 @@ public class HelpActivity extends AppCompatActivity {
             case R.id.imageView:
                 setContentView(R.layout.help2);
                 ImageView img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.start_screen);
+                img.setImageResource(R.drawable.help_start_screen);
                 break;
             case R.id.imageView1:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.settings_screen);
+                img.setImageResource(R.drawable.help_settings_screen);
                 break;
             case R.id.imageView2:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.create_profile_screen);
+                img.setImageResource(R.drawable.help_create_profile_screen);
                 break;
             case R.id.imageView3:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.break_screen);
+                img.setImageResource(R.drawable.help_break_screen);
                 break;
             case R.id.imageView4:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.general_screen);
+                img.setImageResource(R.drawable.help_general_screen);
                 break;
             case R.id.imageView5:
                 setContentView(R.layout.help2);
                 img = (ImageView) findViewById(R.id.img_back);
-                img.setImageResource(R.drawable.notification_screen);
+                img.setImageResource(R.drawable.help_notification_screen);
                 break;
             case R.id.img_back:
                 setContentView(R.layout.help);

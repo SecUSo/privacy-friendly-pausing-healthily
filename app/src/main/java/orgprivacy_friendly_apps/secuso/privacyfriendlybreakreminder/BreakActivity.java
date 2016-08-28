@@ -216,7 +216,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
 
-        if(exercises.length == usedSectionsString.split("\\.").length) {
+        if(exercises.length <= usedSectionsString.split("\\.").length) {
             usedSectionsString = "";
         }
 

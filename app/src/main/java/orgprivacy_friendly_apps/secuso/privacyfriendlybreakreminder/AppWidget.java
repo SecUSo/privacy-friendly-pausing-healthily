@@ -34,12 +34,12 @@ public class AppWidget extends AppWidgetProvider {
             clockTime = workTime + ":00";
 
         // Construct the RemoteViews object
-        if (views == null){
-            int minWidth = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
-            int minHeight = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
 
-            getRemoteViews(context, minWidth, minHeight);
-        }
+        int minWidth = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+        int minHeight = appWidgetManager.getAppWidgetOptions(appWidgetId).getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+
+        getRemoteViews(context, minWidth, minHeight);
+
 
         views.setTextViewText(R.id.appwidget_text, widgetText);
         if (time.equals(""))

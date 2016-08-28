@@ -92,9 +92,6 @@ public class DBHandler extends SQLiteOpenHelper {
         else
             table = DEVICE_LANGUAGE;
 
-        System.out.println("AKTUELLE GEWAEHLTE SPRACHE: " +table);
-        System.out.println("AKTUELLE SPRACHE: " +DEVICE_LANGUAGE);
-
         Cursor res = dataBase.rawQuery("SELECT * FROM EXERCISES_" + table + " WHERE " + EXERCISES_SECTION + " LIKE " + "\"%" + section + "%\"", null);
         res.moveToFirst();
         while (!res.isAfterLast()) {

@@ -20,7 +20,7 @@
     <string name="exercise_summary">Votre pause comprendra des exercices pour les sections suivantes:</string>
     <string name="exercise_type">Type d\'exercice</string>
     <string name="help">Aide</string>
-    <string name="help_break_screen_title">Écran de pause</string>
+    <string name="help_break_screen_title">Écran: pause</string>
     <string name="information">Information</string>
     <string name="interval">Intervalle</string>
     <string name="more_info">Plus d\'informations peuvent être trouvées ici:</string>
@@ -65,7 +65,7 @@
     <string name="tutorial_reset_description">Appuyez sur le bouton pour réinitialiser l\'horloge</string>
     <string name="type">Type</string>
     <string name="help_start_screen_title">Écran principal</string>
-    <string name="help_break_screen">1. Région du corps de l\'exercise actuel\n2.L\'horloge montre le temps restant de la pause. Si vous cliquez dessus, le temps démarre ou il arrête.\n3.Si l\'écran montre \'pause\', vous êtes dans une pause de 10sec. Si c\'est montrer \'coté 1/2\' ou \'rèpétition 1/2\' il faut faire des exercise.\n4.Expliquation de la situation initiale.\n5. Description de l\'exercise</string>
+    <string name="help_break_screen">1. Région du corps de l\'exercice actuel\n2.L\'horloge montre le temps restant de la pause. Si vous cliquez dessus, le temps démarre ou il arrête.\n3.Si l\'écran montre \'pause\', vous êtes dans une pause de 10sec. Si c\'est montrer \'coté 1/2\' ou \'répétition 1/2\' il faut faire des exercice.\n4.Expliquation de la situation initiale.\n5. Description de l\'exercice</string>
     <string name="help_click_information">Pour voir les images en pleine grandeur, cliquer sure les images. Pour retourner a la grandeur initial re-cliquer sur l\'image.</string>
 
     <string-array name="type_spinner">
@@ -80,5 +80,12 @@
     <string name="standard_profile">Hasard,90,5,false,Bras.Jambes.Tête.Nuque.Bassin.Colonne vertébrale.Torse.;HautDuCorps,90,15,true,Bras.Nuque.Tête.;Torse,30,5,true,Colonne vertébrale.Torse.;BasDuCorps,30,5,true,Jambes.Bassin.;</string>
     <string name="tutorial_description">Bienvenue au Privacy Friendly Break Reminder</string>
     <string name="all_exercises">Jambes.Bras.Bassin.Colonne vertébrale.Torse.Nuque.Tête.</string>
+    <string name="help_create_profile_screen">1.	Choisissez le nom du profil\n2. Choisissez-la value de votre travail-intervalle\n3. Choisissez le temps de la pause de ce profil\n4. Appuyez sur ‘sélectionner’, si vous voulez entrer dans l\'écran d\'exercice pour sélectionner les régions pour l’entrainement de votre profil. Ignorer la touche, si vous ne voulez pas d’entrainement sur ce profil.\n5. Cocher si vous voulez prendre directement la pause. Décochez, si vous voulez décider à chaque fois si vous allez prendre la pause.</string>
+    <string name="help_create_profile_screen_title">Écran: Créer un nouveau profil</string>
+    <string name="help_settings_screen_title">Écran: paramètre</string>
+    <string name="help_settings_screen">1. Ouvrez le tiroir de navigation et sélectionnez ‘Paramètres’\n2. Sélectionnez ‘Général’ pour entrer les paramètres du profil. Là, vous pouvez modifier le nom, le temps et les exercices du profil. \n3. Sélectionnez \'Notifications\' pour activer ou désactiver les notifications.</string>
+    <string name="help_settings_screen1">1.	Choisissez le profil pour changer\n2. Entrez le nouveau nom \n3. Modifiez le temps de travail \n4. Modifiez le temps de pause \n5. Choisissez si le \' Continuellement\' est cocher ou pas. Dans ce cas, la pause va commencer directement. Si non, vous pouvez choisir de la prendre ou de le la sauter. \n6. Choisissez les sections que vous souhaitez d’entrainer dans les pauses.</string>
+    <string name="help_settings_screen2">1. Sélectionnez une sonnerie.\n2. Choisissez si le mobile doit vibrer, lorsque l’horloge est sure zéro. \n3. Choisissez si vous souhaitez des notifications en forme de messages.\n4. Si le drapeau est réglé l\'écran reste allumé, si vous êtes sur l\'écran principal.</string>
+    <string name="help_start_screen">1. Zone pour sélectionner le profil \n2. Horloge affiche l\'heure et est cliquable. Commence et peut arrêter le temps.\n3. Bouton démarrer et arrête le temps. \n4. Remet le temps</string>
 
 </resources>

@@ -456,8 +456,15 @@ public class BreakReminder extends AppCompatActivity
 
                 //Cancel the notification
                 if (timeLeft) {
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.cancel(1000);
+                    Notification notification = new NotificationCompat.Builder(getApplicationContext()).setCategory(Notification.CATEGORY_MESSAGE)
+                            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                            .setContentTitle("Break Reminder: ")
+                            .setContentText("Take your break now!!")
+                            .setAutoCancel(true)
+                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC).build();
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    notificationManager.notify(1000, notification);
                 }
                 startBreak();
 

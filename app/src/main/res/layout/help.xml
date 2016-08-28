@@ -58,7 +58,7 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="@string/help_start_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="7pt"
+            android:textSize="6pt"
             android:layout_marginLeft="5dp"/>
 
         <TextView

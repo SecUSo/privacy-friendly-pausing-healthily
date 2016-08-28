@@ -115,7 +115,7 @@
     <string name="exercise_repetition">Repetition</string>
 
     <!-- settings for HelpActivity -->
-    <string name="help_start_screen">1. Spinner to select the profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button start and stops the time. \n4. Resets the time</string>
+    <string name="help_start_screen">1. Spinner to select the profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button starts and stops the time. \n4. Resets the time</string>
     <string name="help_start_screen_title">Main Screen</string>
     <string name="help_settings_screen">1. Open the drawer and select \'Settings\' \n2. Select \'General\' to enter the profile settings. There you can change name, time and exercises of the profile. \n3. Select \'Notifications\' to activate or deactivate notifications. </string>
     <string name="help_settings_screen2">1. Select a ringtone. \n2. Choose if the mobile phone should vibrate, when the countdown ends. \n3. Choose if you want message notifications.\n4. If the flag is set the screen will stay on, while on main screen.</string>

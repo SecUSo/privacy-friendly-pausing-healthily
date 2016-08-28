@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Break Reminder</string>
+    <string name="about_affiliation"> В сотрудничестве с</string>
+    <string name="about_author">Авторы этого приложения:</string>
+    <string name="add">Добавить</string>
+    <string name="all_exercises">Руки.Ноги.Голова.Шея.Таз.Позвоночник.Туловище.</string>
+    <string name="break_description">Описание:</string>
+    <string name="break_ex">Исполнение упражнения</string>
+    <string name="break_explanation">Описание упражнения</string>
+    <string name="break_execution">Исполнение</string>
+    <string name="cancel">Отмена</string>
+    <string name="disclaimer">DISCLAIMER Заполнитель</string>
+    <string name="do_you_want_to_take_the_break">Вы хотите взять перерыв?</string>
+    <string name="continuously">Если выбран, у вас не будет возможности пропустить перерыв</string>
+    <string name="exercise_break">Перерыв</string>
+    <string name="exercise_description">Убедитесь в том, что вы выбрали несколько упражнений! Если ничего не выбрано, то у вас не будет ни одного упражнения в перерыве!</string>
+    <string name="exercise_repetition">Повторение</string>
+    <string name="exercise_side">Сторона</string>
+    <string name="exercise_summary">Ваш перерыв будет содержать упражнения для следующих областей тела</string>
+    <string name="exercise_type">Тип упражнения</string>
+    <string name="help">Помощь</string>
+    <string name="help_break_screen_title">Перерыв экран</string>
+    <string name="help_create_profile_screen_title">Создание нового профиля экран</string>
+    <string name="type">Тип</string>
+    <string name="tutorial_description">Добро пожаловать в Privacy Friendly Break Reminder</string>
+    <string name="tutorial_or">или</string>
+    <string name="tutorial_profiles">Выберите профиль</string>
+    <string name="tutorial_reset">Сбросить часы</string>
+    <string name="tutorial_reset_description">Нажмите на кнопку, чтобы сбросить часы</string>
+    <string name="statistics">Статистика</string>
+    <string name="take_the_break">Взять перерыв</string>
+    <string name="skip_the_break">Пропустить перерыв</string>
+    <string name="settings_title">Выберите длительность времени работы</string>
+    <string name="settings_unit">Минут</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="tutorial_clock">Запустить/Остановить часы</string>
+    <string name="pref_default_display_name">Случайный</string>
+    <string name="pref_header_notifications">Уведомления</string>
+    <string name="pref_header_general">Общие</string>
+    <string name="standard_profile">Случайный,90,5,false,Руки.Ноги.Голова.Шея.Таз.Позвоночник.Туловище.;Талии вверх,90,15,true,Руки.Шея.Голова.;Корпус,30,5,true,Позвоночник.Туловище.;Нижний Корпус,30,5,true,Ноги.Таз.;</string>
+    <string name="pref_ringtone_silent">Без звука</string>
+    <string name="pref_title_display_name">Имя профиля</string>
+    <string name="pref_title_ringtone">Рингтон</string>
+    <string name="pref_title_stayOn">Экран остается включенным</string>
+    <string name="pref_title_vibrate">Вибрация</string>
+    <string name="privacy_friendly">Это приложение принадлежит</string>
+    <string name="profile_name">Имя профиля</string>
+    <string name="interval">Интервал</string>
+    <string name="information">Информация</string>
+    <string name="more_info">Более подробную информацию можно найти здесь</string>
+    <string name="new_profile">Новый профиль...</string>
+    <string name="help_start_screen_title">Главный экран</string>
+    <string name="help_settings_screen_title">Экран настроек</string>
+    <string name="new_profile_break">Перерыв</string>
+    <string name="new_profile_doubleName">Введите другое имя, профиль с таким же именем уже существует!</string>
+    <string name="new_profile_continuously">Беспрерывно</string>
+    <string name="new_profile_select">Выбрать</string>
+    <string name="pref_current_exercises">Выберите упражнения</string>
+    <string name="pref_current_profile">Выберите профиль</string>
+    <string name="save">Сохранить</string>
+    <string name="pref_title_timeLeft">Оставшееся время</string>
+    <string name="settings_break_summary">Текущее величина $1</string>
+    <string name="settings_break_title">Выберите длительность времени перерыва</string>
+    <string name="settings_dialog_message">Выберите длительность времени работы</string>
+    <string name="settings_doubleName">Изменения не могут быть применены, так как уже существует профиль с таким же именем!</string>
+    <string name="settings_emptyName">Изменения не могут быть применены, так как иия профиля было пусто!</string>
+    <string name="settings_summary">Текущее величина $1</string>
+    <string name="new_profile_emptyName">Пожалуйста введите имя для профиля!</string>
+    <string name="tutorial_clock_description">Нажимая на одну из них, часы начинаются или остановливаются</string>
+    <string name="help_click_information">Для просмотра изображений в реальном размере просто нажмите на них. Чтобы вернуться назад, нажмите ище раз на изображение!</string>
+    <string name="tutorial_profile_description">При нажатии на текущем профиле (\'Случайный\'), вы увидите все доступные профили. Нажав на \'Новый Профиль...\', вы можете добавить новый профиль, и изменить существующих в настойках.</string>
+    <string name="help_break_screen">1. Область тела вашего текущего упражнения.\n2.Часы показывают время, оставшееся на перерыв. Если вы нажмете на них, они запускаются или останавливаются.\n3. Если показывает \'Перерыв\', тогда у вас в данный момент перерыв между упражнениями и вы видите изображение для следущего упражнения. Если показывает \'Сторона 1/2\', то вы должны выполнить упражнение, как показано на изображение. Если показывает \'Повторение 1/2\', то вы просто повторите текущее упражнение.\n4. Объяснение того, как следует выполнять упражнение.\n5. Описание текущего упражнения. </string>
+    <string name="help_create_profile_screen">1. Выберите имя профиля.\n2. Выберите длительность времени работы.\n3. Выберите длительность времени перерыва \n4. Нажмите на \'Выбрать\' чтобы выбрать упражнения для вас. Если вы не хотите упражнения в перерыве, игнорировайте эту кнопку \n5. Если выбрано, вы не можете пропустить перерыв.</string>
+    <string name="help_settings_screen">1. Откройте меню страницы в верхнем левом углу и выберите \'Настройки\'.\n2. Выберите \'Общие\', чтобы открыть настройки профиля\n3. Выберите \'Уведомления\' aus, чтобы включить или отключить уведомления.</string>
+    <string name="help_settings_screen1">1. Выберите профиль.\n2. Введите новое имя.\n3. Выберите длительность времени работы.\n4. Выберите длительность времени перерыва.\n5. Выберите \'Беспрерывно\', если вы не хотите пропустить перерыв.\n6. Выберите участки тела, которые вы хотите тренировать в вашем перерыве.</string>
+    <string name="help_settings_screen2">1. Выберите мелодию.\n2. Если выбрано, ваше устройство будет вибрировать.\n3. Если выбрано, уведомление будет показывать, сколько времени до перерыва осталось.\n4. Если выбрано, главный экран остается включенным.</string>
+    <string name="help_start_screen">1. Нажмите на область для просмотра и выбора профиля.\n2. Часы показывают время и действует как кнопка, которая может запускать и останавливать время.\n3. Кнопка запускает и останавливает часы.\n4. Кнопка сбрасывает время.</string>
+
+    <string-array name="type_spinner">
+        <item>Голова</item>
+        <item>Шея</item>
+        <item>Руки</item>
+        <item>Туловище</item>
+        <item>Позвоночник</item>
+        <item>Таз</item>
+        <item>Ноги</item>
+    </string-array>
+</resources>

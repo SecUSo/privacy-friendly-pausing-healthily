@@ -118,7 +118,7 @@
             android:layout_toRightOf="@+id/imageView4"
             android:text="@string/help_settings_screen1"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt"
+            android:textSize="5pt"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"/>
 
@@ -143,7 +143,7 @@
             android:layout_toRightOf="@+id/imageView5"
             android:text="@string/help_settings_screen2"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt"
+            android:textSize="5pt"
             android:layout_marginLeft="5dp"/>
 
         <TextView
@@ -179,7 +179,7 @@
             android:layout_toRightOf="@+id/imageView2"
             android:text="@string/help_create_profile_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt"
+            android:textSize="5pt"
             android:layout_marginLeft="5dp"/>
 
         <TextView
@@ -215,7 +215,7 @@
             android:layout_toRightOf="@+id/imageView3"
             android:text="@string/help_break_screen"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="6pt"
+            android:textSize="5pt"
             android:layout_marginLeft="5dp"/>
 
 

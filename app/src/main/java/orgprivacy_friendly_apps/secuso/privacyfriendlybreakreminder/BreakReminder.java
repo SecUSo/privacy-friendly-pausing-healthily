@@ -297,10 +297,10 @@ public class BreakReminder extends AppCompatActivity
             // Handle the profile action
             Intent intent = new Intent(this, SettingsActivity.class);
             this.startActivity(intent);
-        } else if (id == R.id.nav_statistics) {
+        //} else if (id == R.id.nav_statistics) {
             // Show statistics
-            Intent intent = new Intent(this, StatisticsActivity.class);
-            this.startActivity(intent);
+            //Intent intent = new Intent(this, StatisticsActivity.class);
+            //this.startActivity(intent);
         } else if (id == R.id.nav_help) {
             // Show help
             Intent intent = new Intent(this, HelpActivity.class);

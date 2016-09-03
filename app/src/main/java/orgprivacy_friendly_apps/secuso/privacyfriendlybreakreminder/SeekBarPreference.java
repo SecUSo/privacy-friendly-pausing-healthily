@@ -150,6 +150,7 @@ public class SeekBarPreference extends DialogPreference implements SeekBar.OnSee
         super.showDialog(state);
 
         Button positiveButton = ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setText(mContext.getString(R.string.dialog_positive));
         positiveButton.setOnClickListener(this);
     }
 

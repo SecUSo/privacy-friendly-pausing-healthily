@@ -19,7 +19,8 @@
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
+        android:title="@string/pref_title_display_name"
+        android:positiveButtonText="@string/dialog_positive"/>
 
 
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference
@@ -49,7 +50,8 @@
         android:defaultValue="1"
         android:entries="@array/type_spinner"
         android:entryValues="@array/value_spinner"
-        android:title="@string/pref_current_exercises" />
+        android:title="@string/pref_current_exercises"
+        android:positiveButtonText="@string/dialog_positive"/>
 
 
 </PreferenceScreen><!--android:key="exercise"-->

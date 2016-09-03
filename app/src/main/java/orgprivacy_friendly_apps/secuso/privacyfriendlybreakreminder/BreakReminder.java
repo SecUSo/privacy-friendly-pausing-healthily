@@ -1,5 +1,6 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -8,11 +9,13 @@ import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -79,6 +82,7 @@ public class BreakReminder extends AppCompatActivity
             editor.putString("exercise_value", exercises);
             editor.putString("profiles", allProfiles);
             editor.putString("current_language", Locale.getDefault().getLanguage());
+            editor.putBoolean("notifications_stayOn", true);
             editor.apply();
 
             WelcomeDialog welcomeDialog = new WelcomeDialog();
@@ -102,7 +106,6 @@ public class BreakReminder extends AppCompatActivity
             editor.putString("profiles", allProfiles);
             editor.apply();
         }
-
 
         System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "-1"));
 
@@ -514,7 +517,7 @@ public class BreakReminder extends AppCompatActivity
         this.startActivity(intent);
     }
 
-    public static class WelcomeDialog extends DialogFragment {
+    public static class WelcomeDialog extends DialogFragment{
 
         @Override
         public void onAttach(Activity activity) {
@@ -530,9 +533,20 @@ public class BreakReminder extends AppCompatActivity
             builder.setView(i.inflate(R.layout.first_dialog, null));
             builder.setIcon(R.mipmap.ic_launcher);
             builder.setTitle(getActivity().getString(R.string.app_name_long));
-            builder.setPositiveButton("Ok", null);
+
+            builder.setPositiveButton(getActivity().getString(R.string.dialog_positive), null);
+            builder.setNegativeButton(getActivity().getString(R.string.tutorial_help), new DialogInterface.OnClickListener() {
+                @TargetApi(Build.VERSION_CODES.M)
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Context context = getContext();
+                    Intent intent = new Intent(context, HelpActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
             return builder.create();
         }
+
     }
 }

@@ -22,18 +22,18 @@
     <string name="help">Aide</string>
     <string name="help_break_screen_title">Écran: pause</string>
     <string name="information">Information</string>
-    <string name="interval">Intervalle</string>
+    <string name="interval">Temps de travail</string>
     <string name="more_info">Plus d\'informations peuvent être trouvées ici:</string>
     <string name="new_profile">Nouveau profil...</string>
     <string name="new_profile_break">Pause</string>
-    <string name="new_profile_continuously">Continuellement</string>
+    <string name="new_profile_continuously">Démarrer la pause automatiquement </string>
     <string name="new_profile_select">Sélectionner</string>
     <string name="new_profile_emptyName">S\'il vous plaît entrer un nom pour le profil!</string>
     <string name="new_profile_doubleName">Entrez un autre nom, il existe déjà un profil avec le même nom!</string>
     <string name="pref_current_exercises">Choisissez des exercices</string>
     <string name="pref_current_profile">Choisissez un profil</string>
     <string name="pref_default_display_name">Hasard</string>
-    <string name="pref_header_general">Général</string>
+    <string name="pref_header_general">Modifier les profils</string>
     <string name="pref_header_notifications">Notifications</string>
     <string name="pref_ringtone_silent">Silencieux</string>
     <string name="pref_title_display_name">Nom du profil</string>
@@ -46,11 +46,11 @@
     <string name="save">Sauvegarder</string>
     <string name="settings_break_summary">La valeur actuelle est $1</string>
     <string name="settings_break_title">Sélectionnez votre temps de pause</string>
-    <string name="settings_dialog_message">Sélectionnez votre intervalle de travail</string>
+    <string name="settings_dialog_message">Sélectionnez votre temps de travail</string>
     <string name="settings_doubleName">Les changements ne pouvaient être appliquées car il existe déjà un profil avec le même nom!</string>
     <string name="settings_emptyName">Les changements ne pouvaient être appliquées parce que le nom du profil était vide!</string>
     <string name="settings_summary">La valeur actuelle est de $1</string>
-    <string name="settings_title">Sélectionnez votre intervalle de travail</string>
+    <string name="settings_title">Sélectionnez votre temps de travail</string>
     <string name="settings_unit">Minutes</string>
     <string name="skip_the_break">Passer la pause</string>
     <string name="statistics">Statistiques</string>
@@ -59,7 +59,7 @@
     <string name="tutorial_clock">Démarrer/Arrêter l\'horloge</string>
     <string name="tutorial_clock_description">En appuyant sur l\'un d\'eux, l\'horloge démarre ou s\'arrête</string>
     <string name="tutorial_or">ou</string>
-    <string name="tutorial_profile_description">En cliquant sur le profil actuel (\'Hasard\'), vous pouvez voir tous les profils actuellement disponibles. \n Vous pouvez ajouter de nouveaux profils en cliquant sur \'Nouveaux profils ...\' et modifier les profils actuels dans les paramètres</string>
+    <string name="tutorial_profile_description">En cliquant sur le profil actuel (\'Hasard\'), vous pouvez voir tous les profils actuellement disponibles. \n Vous pouvez ajouter de nouveaux profils en cliquant sur \'Nouveaux profils ...\' et modifier les profils actuels dans les paramètres\nAu début, il y aura 3 profils prédéfinis</string>
     <string name="tutorial_profiles">Sélectionnez le profil</string>
     <string name="tutorial_reset">Réinitialiser l\'horloge</string>
     <string name="tutorial_reset_description">Appuyez sur le bouton pour réinitialiser l\'horloge</string>
@@ -77,15 +77,30 @@
         <item>Bassin</item>
         <item>Jambes</item>
     </string-array>
+
+    <string-array name="help_overview_strings">
+        <item>Ècran principal</item>
+        <item>Écran: paramètre - Aperçu</item>
+        <item>Écran: paramètre - Paramètres de profil</item>
+        <item>Écran: paramètre - Notification</item>
+        <item>Écran: Créer un nouveau profil</item>
+        <item>Écran: pause</item>
+        <item>Désistement</item>
+    </string-array>
+
     <string name="standard_profile">Hasard,90,5,false,Bras.Jambes.Tête.Nuque.Bassin.Colonne vertébrale.Torse.;HautDuCorps,90,15,true,Bras.Nuque.Tête.;Torse,30,5,true,Colonne vertébrale.Torse.;BasDuCorps,30,5,true,Jambes.Bassin.;</string>
     <string name="tutorial_description">Bienvenue au Privacy Friendly Break Reminder</string>
     <string name="all_exercises">Jambes.Bras.Bassin.Colonne vertébrale.Torse.Nuque.Tête.</string>
-    <string name="help_create_profile_screen">1. Choisissez le nom du profil\n2. Choisissez la valeur de votre intervalle de travail\n3. Choisissez le temps de la pause de ce profil\n4. Appuyez sur ‘sélectionner’, si vous voulez entrer dans l\'écran d\'exercice pour sélectionner les groupes musculaires pour l’entrainement de votre profil. Ignorer la touche, si vous ne voulez pas d’entrainement sur ce profil.\n5. Cocher la case si vous voulez prendre les pauses directement. Décochez là, si vous voulez choisir à chaque fois si vous voulez prendre la pause.</string>
+    <string name="help_create_profile_screen">1. Choisissez le nom du profil\n2. Choisissez la durée de votre travail\n3. Choisissez le temps de la pause de ce profil\n4. Appuyez sur ‘sélectionner’, si vous voulez entrer dans l\'écran d\'exercice pour sélectionner les groupes musculaires pour l’entrainement de votre profil. Ignorer la touche, si vous ne voulez pas d’entrainement sur ce profil.\n5. Cocher la case si vous voulez prendre les pauses directement. Décochez là, si vous voulez choisir à chaque fois si vous voulez prendre la pause.</string>
     <string name="help_create_profile_screen_title">Écran: Créer un nouveau profil</string>
     <string name="help_settings_screen_title">Écran: paramètre</string>
     <string name="help_settings_screen">1. Ouvrez le tiroir de navigation et sélectionnez ‘Paramètres’\n2. Sélectionnez ‘Général’ pour entrer les paramètres du profil. Là, vous pouvez modifier le nom, le temps et les exercices du profil. \n3. Sélectionnez \'Notifications\' pour activer ou désactiver les notifications.</string>
     <string name="help_settings_screen1">1. Choisissez le profil pour changer\n2. Entrez le nouveau nom \n3. Modifiez le temps de travail \n4. Modifiez le temps de pause \n5. Vous pouvez choisir d\'activer le bouton \'continuellement\'. Dans ce cas, vous êtes obligé de prendre la pause. Si non, vous aurez l\'option de prendrela pause ou de passer directement aux exercises suivants.\n6. Choisissez les groupes musculaires que vous souhaitez entrainer durant les pauses.</string>
     <string name="help_settings_screen2">1. Sélectionnez une sonnerie.\n2. Choisissez si votre mobile doit vibrer lorsque l’horloge arrive à zéro. \n3. Choisissez si vous souhaitez des notifications sous forme de messages.\n4. Si le bouton est activé, l\'écran reste allumé quand vous êtes sur l\'écran principal.</string>
     <string name="help_start_screen">1. Zone pour sélectionner le profil \n2. L\'horloge affiche l\'heure et est cliquable. Elle commence et peut arrêter le temps.\n3. Ce bouton démarre et arrête le temps. \n4. Ce Bouton remet le temps</string>
+    <string name="about">Sur</string>
+    <string name="tutorial_help">Voir l\'aide</string>
+    <string name="dialog_positive">D\'accord</string>
+    <string name="new_profile_success">Exercices créé avec succès!</string>
 
 </resources>

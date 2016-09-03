@@ -34,6 +34,7 @@ public class DynamicListPreference extends ListPreference implements DialogInter
         setEntries(entries());
         setEntryValues(entryValues());
         setValueIndex(Integer.parseInt(sharedPreferences.getString("current_profile", "1")));
+        setPositiveButtonText(mContext.getString(R.string.dialog_positive));
         return view;
     }
 

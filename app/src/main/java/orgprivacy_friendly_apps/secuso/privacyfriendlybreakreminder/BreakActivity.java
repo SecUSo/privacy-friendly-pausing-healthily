@@ -88,6 +88,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
         //Keep screen on while on break
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        View view = (View) findViewById(R.id.textViewBreak);
+        onClick(view);
+
     }
 
     public void onClick(View v) {

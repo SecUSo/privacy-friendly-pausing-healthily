@@ -23,7 +23,7 @@
 
 
     <SwitchPreference
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="notifications_stayOn"
         android:title="@string/pref_title_stayOn" />
 

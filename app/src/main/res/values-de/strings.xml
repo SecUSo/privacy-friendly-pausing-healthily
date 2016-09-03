@@ -21,7 +21,7 @@
     <string name="help_break_screen">1. Körperbereich ihrer aktuellen Übung.\n2. Die Uhr zeigt die verbleibende Zeit für die Pause an. Beim Klicken darauf startet oder hält die Zeit an.\n3. Zeigt der Bildschirm den Schriftzug \'Pause\' an, befindet man sich in einer 10Sek Pause. Dabei sieht man ein Vorschaubild der kommenden Übung. Sollte \'Seite 1/2\' oder \'Wiederholung 1/2\' angezeigt werden, soll die gezeigte und beschriebene Übung ausgeführt werden.\n4. Erläuterung der Ausgangslage.\n5. Beschreibung der Übung </string>
     <string name="help_break_screen_title">Pausenbildschirm</string>
     <string name="help_click_information">Um die Bilder in voller Größe zu betrachten, klicken sie auf die Bilder. Um die Bilder auf ursprüngliche Größe zu verkleinern, klicken Sie erneut auf das Bild!</string>
-    <string name="help_create_profile_screen">1. Wähle den Namen des Profils aus.\n2. Wählen Sie einen Arbeitsintervall aus.\n3. Wählen Sie eine Pausenlänge aus.\n4. Drücken Sie auf \'Auswählen\', um für Sie passende Übung auszuwählen. Sollten Sie keine Übungen in ihre Pause wünschen, ignorieren Sie diesen Knopf.\n5. Falls Sie diese Option auswählen, können Sie die Pause nicht überspringen.</string>
+    <string name="help_create_profile_screen">1. Wähle den Namen des Profils aus.\n2. Wählen Sie ihre Arbeitsdauer aus.\n3. Wählen Sie eine Pausenlänge aus.\n4. Drücken Sie auf \'Auswählen\', um für Sie passende Übung auszuwählen. Sollten Sie keine Übungen in ihre Pause wünschen, ignorieren Sie diesen Knopf.\n5. Falls Sie diese Option auswählen, können Sie die Pause nicht überspringen.</string>
     <string name="help_create_profile_screen_title">Erstellen eines neuen Profil Bildschirms</string>
     <string name="help_settings_screen">1. Öffnen Sie das Seitenmenü oben links und wählen Sie \'Einstellungen\' aus.\n2. Wählen Sie \'Allgemein\' aus, um die Einstellungen des Profils zu öffnen.\n3. Wählen Sie \'Benachrichtigungen\' aus, um die Benachrichtigungen ein- oder auszuschalten.</string>
     <string name="help_settings_screen1">1. Wählen Sie das zu ändernde Profil aus.\n2. Geben Sie den neuen Namen ein.\n3. Ändern des Arbeitsinvalls.\n4. Ändern der Pausenzeit.\n5. Wählen Sie \'Kontinuierlich\' aus, falls Sie die Pause nicht überspringen wollen.\n6. Wählen Sie die Körperbereiche aus, die Sie in der Pause ansprechen wollen.</string>
@@ -31,25 +31,25 @@
     <string name="help_settings_screen_title">Einstellungsbildschirm</string>
     <string name="help_start_screen">1. Klicken Sie auf die Fläche, um die Profile einzusehen und auszuwählen.\n2. Die Uhr zeigt die Zeit an und fungiert als Knopf, der die Zeit starten und stoppen kann.\n3. Der Knopf startet und stopt die Zeit.\n4. Der Knopf setzt die Zeit zurück.</string>
     <string name="information">Information</string>
-    <string name="interval">Intervall</string>
+    <string name="interval">Arbeitszeit</string>
     <string name="disclaimer">DISCLAIMER Platzhalter</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
     <string name="navigation_drawer_close"></string>
     <string name="new_profile_break">Pause</string>
-    <string name="new_profile_continuously">Kontinuierlich</string>
+    <string name="new_profile_continuously">Pause automatisch starten</string>
     <string name="new_profile_doubleName">Geben Sie einen anderen Namen ein! Es existiert schon ein Profil mit demselben Namen!</string>
     <string name="new_profile_emptyName">Bitte geben Sie einen Namen für das Profil ein!</string>
     <string name="new_profile_select">Auswählen</string>
     <string name="pref_current_exercises">Auswahl der Übungen</string>
     <string name="pref_current_profile">Auswahl des Profils</string>
     <string name="pref_default_display_name">Zufall</string>
-    <string name="pref_header_general">Allgemein</string>
+    <string name="pref_header_general">Profile Bearbeiten</string>
     <string name="pref_header_notifications">Benachrichtigungen</string>
     <string name="pref_ringtone_silent">Lautlos</string>
     <string name="pref_title_display_name">Profil Name</string>
     <string name="pref_title_stayOn">Bildschirm bleibt an</string>
     <string name="pref_title_ringtone">Klingelton</string>
-    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil...\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.</string>
+    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil...\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.\nAm Anfange existieren 3 voreingestellte Profile</string>
     <string name="tutorial_clock_description">Beim Klicken auf eins der beiden Symbole, startet die Uhr oder hält diese an</string>
     <string name="pref_title_timeLeft">Verbleibende Zeit</string>
     <string name="pref_title_vibrate">Vibration</string>
@@ -57,11 +57,11 @@
     <string name="privacy_friendly">Diese Applikation gehört der Privacy Friendly Apps.</string>
     <string name="save">Speichern</string>
     <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
-    <string name="settings_dialog_message">Wählen Sie ihren Arbeitsintevall aus</string>
+    <string name="settings_dialog_message">Wählen Sie ihre Arbeitszeit aus</string>
     <string name="settings_break_title">Wählen Sie ihre Pausenzeit aus</string>
     <string name="settings_doubleName">Die Änderungen konnten nicht gespeichert werden, da das dieser Profilname bereits existiert!</string>
     <string name="settings_emptyName">Die Änderungen konnten nicht gespeichert werden, da das Feld für den Profilnamen leer ist! </string>
-    <string name="settings_title">Wählen Sie ihren Arbeitsintervall aus</string>
+    <string name="settings_title">Wählen Sie ihren Arbeitszeit aus</string>
     <string name="settings_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_unit">Minuten</string>
     <string name="skip_the_break">Überspringen</string>
@@ -84,7 +84,22 @@
         <item>Becken</item>
         <item>Beine</item>
     </string-array>
+
+    <string-array name="help_overview_strings">
+        <item>Startbildschirm</item>
+        <item>Einstellungen - Übersicht</item>
+        <item>Einstellungen - Profile Settings</item>
+        <item>Einstellungen - Benachrichtigungen</item>
+        <item>Neues Profil Bildschirm</item>
+        <item>Pausenbildschirm</item>
+        <item>Haftungsausschluss</item>
+    </string-array>
+
     <string name="new_profile">Neues Profil...</string>
     <string name="statistics">Statistik</string>
     <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
+    <string name="about">Über</string>
+    <string name="tutorial_help">Hilfe öffnen</string>
+    <string name="dialog_positive">Okay</string>
+    <string name="new_profile_success">Übungen wurden erfolgreich erstellt!</string>
 </resources>

@@ -11,17 +11,17 @@
 
     <!-- General settings -->
     <!-- Strings for the Interval-Slider -->
-    <string name="settings_dialog_message">Select your work interval</string>
+    <string name="settings_dialog_message">Select your work time</string>
     <string name="settings_summary">Current value is $1</string>
     <string name="settings_unit">Minutes</string>
-    <string name="settings_title">Select your work interval</string>
+    <string name="settings_title">Select your work time</string>
 
     <!-- Strings for the Break-Slider -->
     <string name="settings_break_summary">Current value is $1</string>
     <string name="settings_break_title">Select your break time</string>
 
     <!-- Strings for Name -->
-    <string name="pref_header_general">General</string>
+    <string name="pref_header_general">Edit Profiles</string>
     <string name="pref_title_display_name">Profile name</string>
     <string name="pref_default_display_name">Random</string>
     <string name="pref_current_profile">Select profile</string>
@@ -50,7 +50,7 @@
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="profile_name">Profile Name</string>
-    <string name="interval">Interval</string>
+    <string name="interval">Work-Time</string>
 
     <!-- settings for BreakDeciderActivity -->
     <string name="take_the_break">Take the Break</string>
@@ -64,14 +64,14 @@
     <!--settings for ProfileActivity -->
     <string name="new_profile_break">Break</string>
     <string name="new_profile_select">Select</string>
-    <string name="new_profile_continuously">Continuously</string>
+    <string name="new_profile_continuously">Start pause automatically</string>
     <string name="new_profile_emptyName">Please enter a name for the profile!</string>
     <string name="new_profile_doubleName">Enter another name, there is already a profile with the same name!</string>
     <string name="continuously">If checked, there will be no possibility to skip the break</string>
     <string name="exercise_description">Make sure to select some exercises! If nothing is selected, there will be no exercises in the break!</string>
 
     <!-- settings for AboutActivity -->
-    <string name="about" translatable="false">About</string>
+    <string name="about">About</string>
     <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
     <string name="version_number" translatable="false">v1.0</string>
     <string name="about_author">Authors of the App:</string>
@@ -102,6 +102,16 @@
         <item>6</item>
     </string-array>
 
+    <string-array name="help_overview_strings">
+        <item>Main Screen</item>
+        <item>Settings Screen - Overview</item>
+        <item>Settings Screen - Profile Settings</item>
+        <item>Settings Screen - Notification</item>
+        <item>New Profile Screen</item>
+        <item>Break Screen</item>
+        <item>Disclaimer</item>
+    </string-array>
+
     <!-- settings for BreakActivity -->
     <string name="_10_00" translatable="false">10:00</string>
     <string name="break_next" translatable="false">Next</string>
@@ -121,7 +131,7 @@
     <string name="help_settings_screen2">1. Select a ringtone. \n2. Choose if the mobile phone should vibrate, when the countdown ends. \n3. Choose if you want message notifications.\n4. If the flag is set the screen will stay on, while on main screen.</string>
     <string name="help_settings_screen1">1. Choose the profile to change \n2. Enter the new name \n3. Alter the working time \n4. Alter the break time \n5. Choose if the \'Continuously\' flag is set or not. If it is, the break will start directly. If not, you can choose to take or to skip it. \n6. Choose the sections you want to train in the breaks.</string>
     <string name="help_settings_screen_title">Settings Screen</string>
-    <string name="help_create_profile_screen">1. Choose the name of the profile \n2. Choose the time of your work-interval \n3. Choose the break-time of this profile \n4. Press on \'Select\', if you want to enter the exercise screen to select the training region of your profile. Ignore it, if you don\'t want to train on this profile. \n5. Check it if you want to take the break directly. Uncheck it, if you want to decide every time if you\'ll take the break. </string>
+    <string name="help_create_profile_screen">1. Choose the name of the profile \n2. Choose your work-time\n3. Choose the break-time of this profile \n4. Press on \'Select\', if you want to enter the exercise screen to select the training region of your profile. Ignore it, if you don\'t want to train on this profile. \n5. Check it if you want to take the break directly. Uncheck it, if you want to decide every time if you\'ll take the break.</string>
     <string name="help_create_profile_screen_title">Create New Profile Screen</string>
     <string name="help_break_screen_title">Break Screen</string>
     <string name="help_break_screen">1. Body section for your current exercise. \n2. Clock shows remaining time for the break. If you click on it, it starts or stops.\n3. If it shows \'Break\', it means you have currently break between the exercises and you see the image for the next exercise. If it shows \'Side left or Side right\' then you have to perform the exercise as shown in the picture. If it shows \'Repetition\' then you just repeat current exercise.\n4. Explanation of how the exercise should be performed.\n5. Description of current exercise.</string>
@@ -136,12 +146,14 @@
     <string name="tutorial_reset">Reset the clock</string>
     <string name="tutorial_clock_description">By pressing one of them, the clock starts or stops</string>
     <string name="tutorial_or">or</string>
-    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings</string>
+    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings\nIn the beginning there will be 3 predefined profiles</string>
     <string name="tutorial_clock">Start/Stop the clock</string>
     <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
     <string name="pref_current_profile_value" translatable="false">0</string>
+    <string name="tutorial_help">View Help</string>
 
     <string name="all_exercises">Legs.Arms.Pelvis.Spinal Column.Torso.Neck.Head.</string>
-
+    <string name="dialog_positive">Okay</string>
+    <string name="new_profile_success">Exercises successfully created!</string>
 
 </resources>

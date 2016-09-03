@@ -16,6 +16,25 @@
             android:layout_height="wrap_content"
             android:text="@string/tutorial_description" />
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/tutorial_profiles"
+            android:layout_marginTop="20dp"
+            style="@style/Base.DialogWindowTitle.AppCompat"/>
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tutorial_spinner"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/tutorial_profile_description"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,50 +64,14 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/tutorial_play_button"/>
+                android:src="@drawable/tutorial_play_button2"/>
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/tutorial_clock_description"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/tutorial_reset"
-            android:layout_marginTop="20dp"
-            style="@style/Base.DialogWindowTitle.AppCompat"/>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/tutorial_reset_button"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/tutorial_reset_description"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/tutorial_profiles"
-            android:layout_marginTop="20dp"
-            style="@style/Base.DialogWindowTitle.AppCompat"/>
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:src="@drawable/tutorial_spinner"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/tutorial_profile_description"/>
 
 
         <TextView
@@ -96,6 +79,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/disclaimer"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
             android:layout_marginTop="20dp"/>
 
     </LinearLayout>

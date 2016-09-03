@@ -113,6 +113,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + "," + sharedPrefs.getString("exercise_value", "-1") + ";");
                     editor.apply();
                     finish();
+                    Toast.makeText(this, R.string.new_profile_success, Toast.LENGTH_LONG).show();
                     break;
                 }
             case R.id.button_profile_cancel:

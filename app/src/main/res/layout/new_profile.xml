@@ -40,7 +40,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:max="120"
-            android:layout_toRightOf="@+id/button_profile_save"
+            android:layout_toRightOf="@+id/button_profile_cancel"
             android:layout_below="@+id/textView4"
             android:layout_alignRight="@+id/button_profile_select"
             android:layout_alignEnd="@+id/button_profile_select" />

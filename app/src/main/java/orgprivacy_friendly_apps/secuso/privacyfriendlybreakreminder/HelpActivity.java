@@ -66,7 +66,7 @@ public class HelpActivity extends AppCompatActivity {
                         break;
                     case 6:
                         title.setText(R.string.disclaimer);
-                        img.setImageResource(R.drawable.ic_help);
+                        img.setImageResource(R.drawable.ic_law);
                         description.setText(R.string.disclaimer);
                         break;
                     default:

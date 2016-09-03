@@ -1,6 +1,5 @@
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -37,8 +36,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -64,16 +61,6 @@ public class BreakReminder extends AppCompatActivity
         setContentView(R.layout.activity_break_reminder);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
 
         String allProfiles = sharedPrefs.getString("profiles", "");
         if (allProfiles.equals("")) {
@@ -161,6 +148,16 @@ public class BreakReminder extends AppCompatActivity
 
             }
         });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void updatePreference(String profileSelected) {
@@ -536,12 +533,14 @@ public class BreakReminder extends AppCompatActivity
 
             builder.setPositiveButton(getActivity().getString(R.string.dialog_positive), null);
             builder.setNegativeButton(getActivity().getString(R.string.tutorial_help), new DialogInterface.OnClickListener() {
-                @TargetApi(Build.VERSION_CODES.M)
+
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Context context = getContext();
-                    Intent intent = new Intent(context, HelpActivity.class);
-                    context.startActivity(intent);
+                    // FIXME need api 21
+                    // Context context = getContext();
+                    Activity act = getActivity();
+                    Intent intent = new Intent(act, HelpActivity.class);
+                    act.startActivity(intent);
                 }
             });
 

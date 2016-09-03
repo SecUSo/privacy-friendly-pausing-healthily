@@ -76,7 +76,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/white"
-            app:headerLayout="@layout/nav_header_break_reminder"
             app:menu="@menu/activity_break_reminder_drawer"/>
 
     </android.support.v4.widget.DrawerLayout>

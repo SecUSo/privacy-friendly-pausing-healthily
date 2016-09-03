@@ -28,7 +28,7 @@ public class HelpActivity extends AppCompatActivity {
                 String selectedFromList =(String) (lv.getItemAtPosition(myItemInt));
                 isInNextView = true;
 
-                setContentView(R.layout.help2);
+                setContentView(R.layout.help_content);
                 TextView title = (TextView)  findViewById(R.id.titleText);
                 TextView description = (TextView)  findViewById(R.id.descriptionText);
                 ImageView img = (ImageView) findViewById(R.id.img);

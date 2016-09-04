@@ -42,8 +42,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StatisticsActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".HelpActivity"
             android:screenOrientation="portrait"/>
 

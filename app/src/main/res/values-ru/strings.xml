@@ -54,7 +54,7 @@
     <string name="help_settings_screen_title">Экран настроек</string>
     <string name="new_profile_break">Перерыв</string>
     <string name="new_profile_doubleName">Введите другое имя, профиль с таким же именем уже существует!</string>
-    <string name="new_profile_continuously">Беспрерывно</string>
+    <string name="new_profile_continuously">Начать паузу автоматически</string>
     <string name="new_profile_select">Выбрать</string>
     <string name="pref_current_exercises">Выберите упражнения</string>
     <string name="pref_current_profile">Выберите профиль</string>
@@ -96,7 +96,7 @@
         <item>Настройки - Обзор</item>
         <item>Настройки - Профиль настройки</item>
         <item>Настройки - Уведомления</item>
-        <item>Новый профидь экран</item>
+        <item>Новый профиль экран</item>
         <item>Перерыв экран</item>
         <item>Дисклеймер</item>
     </string-array>

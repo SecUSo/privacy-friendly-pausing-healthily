@@ -36,6 +36,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import java.util.Locale;
 
 
@@ -74,18 +75,18 @@ public class BreakReminder extends AppCompatActivity
 
             WelcomeDialog welcomeDialog = new WelcomeDialog();
             welcomeDialog.show(getFragmentManager(), "WelcomeDialog");
-        } else if(!sharedPrefs.getString("current_language", "en").equals(Locale.getDefault().getLanguage())){
+        } else if (!sharedPrefs.getString("current_language", "en").equals(Locale.getDefault().getLanguage())) {
             //FIXME could be nice to translate the body parts hear... but it would be a complex function
             editor.putString("current_language", Locale.getDefault().getLanguage());
             String[] profiles = allProfiles.split(";");
             allProfiles = "";
 
-            for(int j = 0; j < profiles.length; j++) {
+            for (int j = 0; j < profiles.length; j++) {
                 String[] profile = profiles[j].split(",");
                 profile[4] = "-1";
                 profiles[j] = "";
-                for(int i = 0; i<profile.length; i++){
-                    profiles[j] += profile[i]+",";
+                for (int i = 0; i < profile.length; i++) {
+                    profiles[j] += profile[i] + ",";
                 }
                 allProfiles += profiles[j] + ";";
             }
@@ -104,7 +105,7 @@ public class BreakReminder extends AppCompatActivity
         else
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        int mins = sharedPrefs.getInt("work_value", 5);
+        int mins = sharedPrefs.getInt("work_value", 5) + 1;
         String bufferZeroMinute = "";
 
         if (mins < 10)
@@ -140,6 +141,7 @@ public class BreakReminder extends AppCompatActivity
                 if (profileSelected.equals(getResources().getText(R.string.new_profile).toString())) {
                     createNewProfile();
                 } else {
+                    System.out.println("######################");
                     updatePreference(profileSelected);
                 }
             }
@@ -183,8 +185,8 @@ public class BreakReminder extends AppCompatActivity
                     SharedPreferences.Editor editor = sharedPrefs.edit();
                     editor.putString("current_profile", "" + i);
                     editor.putString("name_text", profileName);
-                    editor.putInt("work_value", interval);
-                    editor.putInt("break_value", break_time);
+                    editor.putInt("work_value", interval - 1);
+                    editor.putInt("break_value", break_time - 1);
                     editor.putBoolean("cont_value", cont);
                     editor.putString("exercise_value", exercises);
                     editor.apply();
@@ -255,7 +257,7 @@ public class BreakReminder extends AppCompatActivity
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         NotificationManager nManager = ((NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE));
         nManager.cancelAll();
@@ -305,7 +307,7 @@ public class BreakReminder extends AppCompatActivity
             // Handle the profile action
             Intent intent = new Intent(this, SettingsActivity.class);
             this.startActivity(intent);
-        //} else if (id == R.id.nav_statistics) {
+            //} else if (id == R.id.nav_statistics) {
             // Show statistics
             //Intent intent = new Intent(this, StatisticsActivity.class);
             //this.startActivity(intent);
@@ -476,7 +478,7 @@ public class BreakReminder extends AppCompatActivity
                 }
                 startBreak();
 
-                String workTime = "" + sharedPrefs.getInt("work_value", 0);
+                String workTime = "" + sharedPrefs.getInt("work_value", 0) + 1;
                 if (workTime.length() == 1)
                     workTime = "0" + workTime;
 
@@ -522,7 +524,7 @@ public class BreakReminder extends AppCompatActivity
         this.startActivity(intent);
     }
 
-    public static class WelcomeDialog extends DialogFragment{
+    public static class WelcomeDialog extends DialogFragment {
 
         @Override
         public void onAttach(Activity activity) {

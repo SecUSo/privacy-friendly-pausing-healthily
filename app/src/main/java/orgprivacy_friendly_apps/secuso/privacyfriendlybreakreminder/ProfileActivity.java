@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         interval_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                interval_text.setText(progress + " " + getResources().getText(R.string.settings_unit));
+                interval_text.setText((progress + 1) + " " + getResources().getText(R.string.settings_unit));
             }
 
             @Override
@@ -62,7 +62,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         break_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                break_text.setText(progress + " " + getResources().getText(R.string.settings_unit));
+                break_text.setText((progress + 1) + " " + getResources().getText(R.string.settings_unit));
             }
 
             @Override

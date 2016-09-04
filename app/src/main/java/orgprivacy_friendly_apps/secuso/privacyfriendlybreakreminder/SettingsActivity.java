@@ -1,3 +1,4 @@
+
 package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 
@@ -140,7 +141,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            if(isXLargeTablet(this)) {
+            if (isXLargeTablet(this)) {
                 finish();
                 return true;
             }
@@ -198,6 +199,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
+            System.out.println("Created!!!!");
             bundle = savedInstanceState;
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
@@ -217,10 +219,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             currentProfile = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
 
             // Set seekbar summary :
-            int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
+            int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50) + 1;
             _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
-            radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
+            radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10) + 1;
             _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
 
@@ -244,7 +246,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
             if (key.equals("current_profile")) {
                 ListPreference listPref = (ListPreference) findPreference("current_profile");
                 int i = Integer.parseInt(listPref.getValue());
@@ -258,8 +259,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 // Deactivate the onPrefListener in SettingsActivity
                 getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
                 editor.putString("name_text", allProfile[i].split(",")[0]);
-                editor.putInt("work_value", Integer.parseInt(allProfile[i].split(",")[1]));
-                editor.putInt("break_value", Integer.parseInt(allProfile[i].split(",")[2]));
+                editor.putInt("work_value", Integer.parseInt(allProfile[i].split(",")[1]) - 1);
+                editor.putInt("break_value", Integer.parseInt(allProfile[i].split(",")[2]) - 1);
                 editor.putBoolean("cont_value", Boolean.parseBoolean(allProfile[i].split(",")[3]));
                 editor.putString("exercise_value", allProfile[i].split(",")[4]);
                 editor.apply();
@@ -271,21 +272,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return;
             }
 
-
             // Set seekbar summary :
-            int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
+            int radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50) + 1;
             _seekBarWork.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
-            radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
+            radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10) + 1;
             _seekBarBreak.setSummary(this.getString(R.string.settings_summary).replace("$1", "" + radius));
 
             //FIXME Update the preferences of the selected profile
-
             if (!key.equals("profiles")) {
                 getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
                 updateProfilesPreference();
                 getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
             }
-
         }
 
 
@@ -299,8 +297,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
 
         private void updateProfilesPreference() {
-            int work_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50);
-            int break_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10);
+            int work_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("work_value", 50) + 1;
+            int break_radius = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getInt("break_value", 10) + 1;
             String newProfileName = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("name_text", "");
             String allProfiles = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", "");
             boolean cont = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getBoolean("cont_value", false);

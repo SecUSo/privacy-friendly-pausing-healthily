@@ -53,7 +53,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         currentExercise = 0;
         currentExerciseSection = 0;
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        int mins = sharedPrefs.getInt("break_value", 5);
+        int mins = sharedPrefs.getInt("break_value", 5) + 1;
         String bufferZeroMinute = "";
 
         if (mins < 10)
@@ -103,8 +103,15 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ct.cancel();
+        ad.cancel();
+    }
+
     public void onClick(View v) {
-        int mins = sharedPrefs.getInt("break_value", 10);
+        int mins = sharedPrefs.getInt("break_value", 10) + 1;
         String bufferZeroMinute = "";
         String bufferZeroSecond = "";
         int time = mins * 60 * 1000;
@@ -235,16 +242,16 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
 
-        if(exercises.length <= usedSectionsString.split("\\.").length) {
+        if (exercises.length <= usedSectionsString.split("\\.").length) {
             usedSectionsString = "";
         }
 
         //Selection of the Section
         boolean notFoundYet = true;
 
-        while(notFoundYet){
+        while (notFoundYet) {
             currentExerciseSection = random.nextInt(exercises.length);
-            if(!usedSectionsString.contains(exercises[currentExerciseSection])){
+            if (!usedSectionsString.contains(exercises[currentExerciseSection])) {
                 List<Exercise> list = dbHandler.getExercisesFromSection(exercises[currentExerciseSection]);
                 allAvailableExercises.add(list);
                 usedSectionsString += exercises[currentExerciseSection] + ".";
@@ -260,8 +267,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         Collections.shuffle(allAvailableExercises.get(currentExerciseSection));
 
         String allExe = "";
-        for (int i = 0; i< allAvailableExercises.get(currentExerciseSection).size();i++)
-            allExe += allAvailableExercises.get(currentExerciseSection).get(i).getImageID()+ " ";
+        for (int i = 0; i < allAvailableExercises.get(currentExerciseSection).size(); i++)
+            allExe += allAvailableExercises.get(currentExerciseSection).get(i).getImageID() + " ";
 
         System.out.println("Random list for section election: " + allExe);
 
@@ -292,7 +299,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
             image1 = imageID;
             exerciseSide = false;
-            int imageResID = getResources().getIdentifier("exercise_"+image1, "drawable", getPackageName());
+            int imageResID = getResources().getIdentifier("exercise_" + image1, "drawable", getPackageName());
             image.setImageResource(imageResID);
         } else {
             // There are 2 sides for an exercise
@@ -303,7 +310,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             System.out.println("Id of first image: " + image1 + " , id of second: " + image2);
 
             //image ID from Resource
-            int imageResID = getResources().getIdentifier("exercise_"+image1, "drawable", getPackageName());
+            int imageResID = getResources().getIdentifier("exercise_" + image1, "drawable", getPackageName());
             image.setImageResource(imageResID);
 
         }
@@ -331,7 +338,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
                 if (exerciseSide) {
-                    int imageResID = getResources().getIdentifier("exercise_"+image2, "drawable", getPackageName());
+                    int imageResID = getResources().getIdentifier("exercise_" + image2, "drawable", getPackageName());
                     image.setImageResource(imageResID);
                 }
                 break;
@@ -406,20 +413,20 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 //String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
 
                 //if (!ringPref.equals("")) {
-                    //Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
-                    //r.play();
+                //Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
+                //r.play();
                 //}
 
                 //Vibration
                 //boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
                 //if (vibrateChecked) {
-                    // Get instance of Vibrator from current Context
-                    //Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                // Get instance of Vibrator from current Context
+                //Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-                    //if (v != null) {
-                        // Vibrate for 1500 milliseconds
-                        //v.vibrate(1500);
-                    //}
+                //if (v != null) {
+                // Vibrate for 1500 milliseconds
+                //v.vibrate(1500);
+                //}
                 //}
 
                 //Remove lag to keep screen on when the break ends

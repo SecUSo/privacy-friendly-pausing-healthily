@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,9 @@ public class ExerciseTypeActivity extends AppCompatActivity implements View.OnCl
                 editor.apply();
 
                 finish();
+
+                Toast.makeText(this, R.string.new_profile_success, Toast.LENGTH_LONG).show();
+
                 break;
 
             case R.id.button_et_cancel:

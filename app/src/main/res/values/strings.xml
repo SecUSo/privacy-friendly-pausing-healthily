@@ -5,7 +5,6 @@
 
     <!-- Strings related to Settings -->
     <string name="title_activity_settings">Settings</string>
-    <string name="statistics">Statistics</string>
     <string name="information">Information</string>
     <string name="help">Help</string>
 
@@ -76,10 +75,12 @@
     <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
     <string name="version_number" translatable="false">v1.0</string>
     <string name="about_author">Authors of the App:</string>
-    <string name="about_author_names" translatable="false">Sergej Alexeev, \n Jannik Schildknecht</string>
+    <string name="about_author_names" translatable="false">Sergej Alexeev, Jannik Schildknecht</string>
+    <string name="about_author_contributors">and contributors.</string>
     <string name="about_affiliation">In Affiliation with</string>
     <string name="privacy_friendly">This application belongs to the Privacy Friendly Apps.</string>
     <string name="more_info">More Information can be found here:</string>
+    <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-break-reminder/">Github-Repo</a></string>
     <string name="url" translatable="false"><a href="https://www.secuso.informatik.tu-darmstadt.de/en/research/results/">https://www.secuso.org</a></string>
 
     <!-- settings for ExerciseTypeActivity -->
@@ -93,7 +94,7 @@
         <item>Pelvis</item>
         <item>Legs</item>
     </string-array>
-    <string-array name="value_spinner">
+    <string-array name="value_spinner" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>

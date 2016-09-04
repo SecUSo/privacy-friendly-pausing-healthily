@@ -31,7 +31,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private CountDownTimer ct;
     private String stopTime = "", sideRepetition = "";
     String image1, image2;
-    private boolean isRunning = false;
+    private boolean isRunning = false, noExercises = false;
     private List<Exercise> exerciseList;
     private SharedPreferences sharedPrefs;
     private TextView description, side_repetition, break_exercise_type, execution;
@@ -67,7 +67,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 exercises = allProfiles[i].split(",")[4].split("\\.");
             }
         }
-
+        View view;
         if (exercises == null) {
             setContentView(R.layout.activity_break_no_exercises);
             Button cancelButton = (Button) findViewById(R.id.button_cancel);
@@ -76,6 +76,9 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
             ct_text.setText(bufferZeroMinute + mins + ":00");
             ct_text.setOnClickListener(this);
+
+            view = (View) findViewById(R.id.textViewBreak1);
+            noExercises = true;
         } else {
             setContentView(R.layout.activity_break);
             Button nextButton = (Button) findViewById(R.id.button_next);
@@ -88,17 +91,17 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             random = new Random();
             sections = new ArrayList<>();
             setRandomExercises();
+            view = (View) findViewById(R.id.textViewBreak);
+            // Creates a dialog showing the duration of the break between exercises
+            builder = new AlertDialog.Builder(this);
+            builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
+            ad = builder.show();
         }
-
-        // FIXME erstes erstellen vom Dialog
-        builder = new AlertDialog.Builder(this);
-        builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
-        ad = builder.show();
 
         //Keep screen on while on break
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        View view = (View) findViewById(R.id.textViewBreak);
+        // Start timer
         onClick(view);
 
     }
@@ -107,7 +110,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     protected void onPause() {
         super.onPause();
         ct.cancel();
-        ad.cancel();
+        if (ad != null)
+            ad.cancel();
     }
 
     public void onClick(View v) {
@@ -127,7 +131,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             String[] timef = stringTime.split(":");
             int minute = Integer.parseInt(timef[0]);
             int second = Integer.parseInt(timef[1]);
-            System.out.println("Minute: " + minute + "  Second: " + second);
             time = (1000 * (minute * 60)) + (1000 * second);
 
             if (minute < 10)
@@ -215,8 +218,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                     if (second < 10)
                         bufferZeroSecond = "0";
 
-
-                    System.out.println("New Time: " + bufferZeroMinute + minute + ":" + bufferZeroSecond + second);
                     if (isRunning) {
                         time = minute * 60 * 1000;
                         startTimer(time);
@@ -234,13 +235,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private void setRandomExercises() {
 
         allAvailableExercises = new ArrayList<>();
-        System.out.println("Number of sections: " + exercises.length);
-
 
         String usedSectionsString = sharedPrefs.getString("currently_done_exercises", "");
         System.out.println("Number of used sections " + usedSectionsString.split("\\.").length + "  " + usedSectionsString);
         SharedPreferences.Editor editor = sharedPrefs.edit();
-
 
         if (exercises.length <= usedSectionsString.split("\\.").length) {
             usedSectionsString = "";
@@ -307,7 +305,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             sideRepetition = getResources().getText(R.string.exercise_side).toString();
             image1 = imageID.split(",")[0];
             image2 = imageID.split(",")[1];
-            System.out.println("Id of first image: " + image1 + " , id of second: " + image2);
 
             //image ID from Resource
             int imageResID = getResources().getIdentifier("exercise_" + image1, "drawable", getPackageName());
@@ -322,17 +319,15 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         breakTime++;
         switch (breakTime) {
             case 10:
-                System.out.println("Time for Exercise: Left!");
                 side_repetition.setText(sideRepetition + " 1");
 
-                // FIXME cancel dialog
+                // Cancel dialog
                 ad.cancel();
 
                 break;
             case 30:
-                System.out.println("Time for Break between sides!");
 
-                // FIXME Set additional 10 Sek Countdown
+                // Set additional 10 seconds countdown
                 ad.show();
 
                 side_repetition.setText(R.string.exercise_break);
@@ -343,15 +338,12 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case 40:
-                System.out.println("Time for Exercise: Right!");
-
-                // FIXME kill dialog
+                // Cancel dialog
                 ad.cancel();
 
                 side_repetition.setText(sideRepetition + " 2");
                 break;
             case 60:
-                System.out.println("Next Exercise!");
                 breakTime = 0;
                 currentExercise++;
                 if (currentExercise > exerciseList.size() - 1) {
@@ -402,8 +394,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
                 ct_text.setText(bufferZeroMinute + (millisUntilFinished / 1000) / 60 + ":" + bufferZeroSecond + millisUntilFinished / 1000 % 60);
 
-                // Update image and description of the exercise
-                update();
+
+                // Update image and description of the exercise if available
+                if (!noExercises)
+                    update();
             }
 
             public void onFinish() {
@@ -433,7 +427,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
                 //Close database connection
-                dbHandler.close();
+                if (!noExercises)
+                    dbHandler.close();
                 finish();
             }
         }.start();

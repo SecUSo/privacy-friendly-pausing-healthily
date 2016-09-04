@@ -27,7 +27,7 @@
         android:defaultValue="50"
         android:dialogMessage="@string/settings_dialog_message"
         android:key="work_value"
-        android:max="120"
+        android:max="119"
         android:summary="@string/settings_summary"
         android:text="@string/settings_unit"
         android:title="@string/settings_title" />
@@ -36,7 +36,7 @@
         android:defaultValue="10"
         android:dialogMessage="@string/settings_break_title"
         android:key="break_value"
-        android:max="30"
+        android:max="29"
         android:summary="@string/settings_break_summary"
         android:text="@string/settings_unit"
         android:title="@string/settings_break_title" />

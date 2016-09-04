@@ -45,7 +45,7 @@ public class HelpActivity extends AppCompatActivity {
                         description.setText(R.string.help_settings_screen);
                         break;
                     case 2:
-                        img.setImageResource(R.drawable.help_create_profile_screen);
+                        img.setImageResource(R.drawable.help_general_screen);
                         title.setText(R.string.help_settings_screen_title);
                         description.setText(R.string.help_settings_screen1);
                         break;

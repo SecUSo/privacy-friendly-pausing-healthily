@@ -34,7 +34,6 @@
     <string name="interval">Arbeitszeit</string>
     <string name="disclaimer">DISCLAIMER Platzhalter</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
-    <string name="navigation_drawer_close"></string>
     <string name="new_profile_break">Pause</string>
     <string name="new_profile_continuously">Pause automatisch starten</string>
     <string name="new_profile_doubleName">Geben Sie einen anderen Namen ein! Es existiert schon ein Profil mit demselben Namen!</string>
@@ -43,7 +42,7 @@
     <string name="pref_current_exercises">Auswahl der Übungen</string>
     <string name="pref_current_profile">Auswahl des Profils</string>
     <string name="pref_default_display_name">Zufall</string>
-    <string name="pref_header_general">Profile Bearbeiten</string>
+    <string name="pref_header_general">Profile bearbeiten</string>
     <string name="pref_header_notifications">Benachrichtigungen</string>
     <string name="pref_ringtone_silent">Lautlos</string>
     <string name="pref_title_display_name">Profil Name</string>
@@ -96,12 +95,12 @@
     </string-array>
 
     <string name="new_profile">Neues Profil...</string>
-    <string name="statistics">Statistik</string>
     <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
     <string name="about">Über</string>
     <string name="tutorial_help">Hilfe öffnen</string>
     <string name="dialog_positive">Okay</string>
     <string name="new_profile_success">Übungen wurden erfolgreich erstellt!</string>
-    <string name="disclaimer_title">Haftungsausschluss</string>
     <string name="settings_exercise_summary">Wählen Sie die zu trainierenden Körperbereiche aus</string>
+    <string name="disclaimer_title">Haftungsausschluss</string>
+    <string name="about_author_contributors">und Mitwirkende</string>
 </resources>

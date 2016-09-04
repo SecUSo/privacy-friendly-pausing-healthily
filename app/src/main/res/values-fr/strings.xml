@@ -4,7 +4,6 @@
     <string name="about_affiliation">En Affiliation avec</string>
     <string name="about_author">Les auteurs de cette application:</string>
     <string name="add">Ajouter</string>
-    <string name="app_name_long" translatable="false"></string>
     <string name="break_description">Description:</string>
     <string name="break_ex">Exécution de l\'exercice</string>
     <string name="break_execution">Exécution</string>
@@ -53,7 +52,6 @@
     <string name="settings_title">Sélectionnez votre temps de travail</string>
     <string name="settings_unit">Minutes</string>
     <string name="skip_the_break">Passer la pause</string>
-    <string name="statistics">Statistiques</string>
     <string name="take_the_break">Prendre la pause</string>
     <string name="title_activity_settings">Paramètres</string>
     <string name="tutorial_clock">Démarrer/Arrêter l\'horloge</string>
@@ -104,5 +102,6 @@
     <string name="new_profile_success">Exercices créé avec succès!</string>
     <string name="disclaimer_title">Désistement</string>
     <string name="settings_exercise_summary">Sélectionnez les parties du corps pour l\'entrainement</string>
+    <string name="about_author_contributors">et contributeurs</string>
 
 </resources>

@@ -28,7 +28,6 @@
     <string name="tutorial_profiles">Выберите профиль</string>
     <string name="tutorial_reset">Сбросить часы</string>
     <string name="tutorial_reset_description">Нажмите на кнопку, чтобы сбросить часы</string>
-    <string name="statistics">Статистика</string>
     <string name="take_the_break">Взять перерыв</string>
     <string name="skip_the_break">Пропустить перерыв</string>
     <string name="settings_title">Выберите длительность времени работы</string>
@@ -102,4 +101,5 @@
     </string-array>
     <string name="disclaimer_title">Дисклеймер </string>
     <string name="settings_exercise_summary">Выберите части тела, которые вы хотите тренировать</string>
+    <string name="about_author_contributors">и соучастники</string>
 </resources>

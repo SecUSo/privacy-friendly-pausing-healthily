@@ -95,8 +95,6 @@ public class BreakReminder extends AppCompatActivity
             editor.apply();
         }
 
-        System.out.println("Alle Profile: " + sharedPrefs.getString("profiles", "-1"));
-
         // If chosen, set screen to "stay on"
         boolean stayOn = sharedPrefs.getBoolean("notifications_stayOn", false);
 
@@ -141,7 +139,6 @@ public class BreakReminder extends AppCompatActivity
                 if (profileSelected.equals(getResources().getText(R.string.new_profile).toString())) {
                     createNewProfile();
                 } else {
-                    System.out.println("######################");
                     updatePreference(profileSelected);
                 }
             }
@@ -278,7 +275,6 @@ public class BreakReminder extends AppCompatActivity
 
         //FIXME Add flag if New Profile or Resume
         if (sharedPrefs.getBoolean("change_profiles", false)) {
-            System.out.println("Change Profiles is true!");
             fillProfiles();
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
@@ -375,7 +371,7 @@ public class BreakReminder extends AppCompatActivity
                 if (ct != null) {
                     //Reset tutorial_clock
                     ct.cancel();
-                    int interval = sharedPrefs.getInt("work_value", 1);
+                    int interval = sharedPrefs.getInt("work_value", 1) + 1;
 
                     bufferZeroMinute = "";
                     time = interval * 60 * 1000;

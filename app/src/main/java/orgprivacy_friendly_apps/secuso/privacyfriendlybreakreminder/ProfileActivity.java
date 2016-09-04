@@ -35,9 +35,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         editor.apply();
 
         interval_seekbar = (SeekBar) findViewById(R.id.new_profile_interval);
-        interval_seekbar.setProgress(1);
+        interval_seekbar.setProgress(0);
         break_seekbar = (SeekBar) findViewById(R.id.new_profile_break);
-        break_seekbar.setProgress(1);
+        break_seekbar.setProgress(0);
 
         interval_text = (TextView) findViewById(R.id.interval_text);
         interval_text.setText("1 " + getResources().getText(R.string.settings_unit));
@@ -89,7 +89,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_profile_save:
-                System.out.println("Save new profile!");
                 EditText profileName =
                         (EditText) findViewById(R.id.editProfileName);
                 String name = profileName.getText().toString();
@@ -110,14 +109,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     editor.putInt("work_value", interval_seekbar.getProgress());
                     editor.putInt("break_value", break_seekbar.getProgress());
                     editor.putString("current_profile", "" + (sharedPrefs.getString("profiles", "").split(";").length));
-                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + interval_seekbar.getProgress() + "," + break_seekbar.getProgress() + "," + cont + "," + sharedPrefs.getString("exercise_value", "-1") + ";");
+                    editor.putString("profiles", sharedPrefs.getString("profiles", "") + name + "," + (interval_seekbar.getProgress() + 1) + "," + (break_seekbar.getProgress() + 1) + "," + cont + "," + sharedPrefs.getString("exercise_value", "-1") + ";");
                     editor.apply();
                     finish();
 
                     break;
                 }
             case R.id.button_profile_cancel:
-                System.out.println("New profile canceled!");
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 editor.putString("exercise_value", oldExerciseValue);
                 editor.apply();
@@ -125,7 +123,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.button_profile_select:
-                System.out.println("Select Exercise Type!");
                 createExerciseType();
                 break;
         }

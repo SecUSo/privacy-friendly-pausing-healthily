@@ -199,7 +199,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
-            System.out.println("Created!!!!");
             bundle = savedInstanceState;
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
@@ -290,9 +289,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onPause() {
             getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-
-            System.out.println("All Profiles" + PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("profiles", ""));
-
             super.onPause();
         }
 
@@ -306,14 +302,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             if (allProfiles.contains(newProfileName + "," + work_radius + "," + break_radius + "," + cont + "," + exercises) && newProfileName.equals(currentProfile)) {
                 //Nothing changes
-                System.out.println("No changes for a profile in general settings");
+                System.out.println("No changes for a profile in edit settings");
             } else {
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).edit();
-
-                System.out.println("SETTINGS ACTIVITY: " + newProfileName);
                 if (newProfileName.equals("")) {
                     // Profile name empty
-                    System.out.println("EMPTY NAME IN SETTINGS ACTIVITY");
                     Toast.makeText(this.getActivity(), R.string.settings_emptyName, Toast.LENGTH_LONG).show();
                     editor.putString("name_text", currentProfile);
                     editor.apply();
@@ -340,7 +333,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         builder.append(s + ";");
                     }
 
-                    System.out.println("All Profiles: " + builder.toString());
                     editor.putBoolean("change_profiles", true);
                     editor.putString("profiles", builder.toString());
                     editor.apply();

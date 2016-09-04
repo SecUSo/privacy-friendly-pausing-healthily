@@ -255,6 +255,14 @@ public class BreakReminder extends AppCompatActivity
     }
 
     @Override
+    public void onDestroy(){
+        super.onDestroy();
+        NotificationManager nManager = ((NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE));
+        nManager.cancelAll();
+    }
+
+
+    @Override
     public void onResume() {
         super.onResume();
 

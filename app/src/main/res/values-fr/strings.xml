@@ -102,5 +102,7 @@
     <string name="tutorial_help">Voir l\'aide</string>
     <string name="dialog_positive">D\'accord</string>
     <string name="new_profile_success">Exercices créé avec succès!</string>
+    <string name="disclaimer_title">Désistement</string>
+    <string name="settings_exercise_summary">Sélectionnez les parties du corps pour l\'entrainement</string>
 
 </resources>

@@ -102,4 +102,6 @@
     <string name="tutorial_help">Hilfe öffnen</string>
     <string name="dialog_positive">Okay</string>
     <string name="new_profile_success">Übungen wurden erfolgreich erstellt!</string>
+    <string name="disclaimer_title">Haftungsausschluss</string>
+    <string name="settings_exercise_summary">Wählen Sie die zu trainierenden Körperbereiche aus</string>
 </resources>

@@ -60,6 +60,7 @@
     <!--settings for SettingsActivity -->
     <string name="settings_emptyName">The changes could not be applied because the name for the profile was empty!</string>
     <string name="settings_doubleName">The changes could not be applied because there is already a profile with the same name!</string>
+    <string name="settings_exercise_summary">Choose the body parts, you want to exercise</string>
 
     <!--settings for ProfileActivity -->
     <string name="new_profile_break">Break</string>
@@ -139,6 +140,7 @@
 
     <!-- settings for Disclaimer -->
     <string name="disclaimer">DISCLAIMER PLACEHOLDER</string>
+    <string name="disclaimer_title">Disclaimer</string>
 
     <!-- settings for TutorialActivity -->
     <string name="tutorial_profiles">Select profiles</string>

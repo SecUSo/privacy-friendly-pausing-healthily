@@ -2,6 +2,7 @@ package orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +43,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private List<Integer> sections;
     private Random random;
     private boolean exerciseSide = false;
+    private AlertDialog.Builder builder;
+    private AlertDialog ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,11 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             sections = new ArrayList<>();
             setRandomExercises();
         }
+
+        // FIXME erstes erstellen vom Dialog
+        builder = new AlertDialog.Builder(this);
+        builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
+        ad = builder.show();
 
         //Keep screen on while on break
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -148,6 +157,12 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 // Next Exercise
                 currentExercise++;
                 side_repetition.setText(R.string.exercise_break);
+
+                // FIXME Set additional 10 Sek Countdown
+                builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
+                ad = builder.show();
+
                 if (currentExercise > exerciseList.size() - 1) {
                     currentExercise = 0;
                     if (sections.size() == allAvailableExercises.size()) {
@@ -266,7 +281,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         break_exercise_type = (TextView) findViewById(R.id.break_exercise_type);
         break_exercise_type.setText(exerciseList.get(currentExercise).getSection());
 
-        //FIXME
         setExerciseImage();
     }
 
@@ -295,7 +309,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    //FIXME Change to the correct picture and whether its side or repetition
+
     private void update() {
         //After 10 seconds first side/repetition, then after 20 seconds break for 10 seconds, afterwards second side/repetition and after 20 seconds break and new exercise
         breakTime++;
@@ -303,9 +317,17 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             case 10:
                 System.out.println("Time for Exercise: Left!");
                 side_repetition.setText(sideRepetition + " 1");
+
+                // FIXME cancel dialog
+                ad.cancel();
+
                 break;
             case 30:
                 System.out.println("Time for Break between sides!");
+
+                // FIXME Set additional 10 Sek Countdown
+                ad.show();
+
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
                 if (exerciseSide) {
@@ -315,6 +337,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case 40:
                 System.out.println("Time for Exercise: Right!");
+
+                // FIXME kill dialog
+                ad.cancel();
+
                 side_repetition.setText(sideRepetition + " 2");
                 break;
             case 60:
@@ -341,6 +367,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 }
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
+
+                // FIXME Set additional 10 Sek Countdown
+                ad.show();
+
                 side_repetition.setText(R.string.exercise_break);
 
                 setExerciseImage();
@@ -373,31 +403,25 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 isRunning = false;
                 ct_text.setText("00:00");
                 //Trigger the alarm
-                String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
+                //String ringPref = sharedPrefs.getString("notifications_new_message_ringtone", "");
 
-                if (!ringPref.equals("")) {
-                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
-                    r.play();
-                }
+                //if (!ringPref.equals("")) {
+                    //Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), Uri.parse(ringPref));
+                    //r.play();
+                //}
 
                 //Vibration
-                boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
-                if (vibrateChecked) {
+                //boolean vibrateChecked = sharedPrefs.getBoolean("notifications_new_message_vibrate", false);
+                //if (vibrateChecked) {
                     // Get instance of Vibrator from current Context
-                    Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    //Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-                    if (v != null) {
+                    //if (v != null) {
                         // Vibrate for 1500 milliseconds
-                        v.vibrate(1500);
-                    }
-                }
+                        //v.vibrate(1500);
+                    //}
+                //}
 
-                //Cancel the notification
-                if (timeLeft) {
-                    NotificationManager notificationManager =
-                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.cancel(999);
-                }
                 //Remove lag to keep screen on when the break ends
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

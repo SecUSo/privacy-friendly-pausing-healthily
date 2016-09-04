@@ -48,6 +48,7 @@
 
     <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.ExerciseListPreference
         android:defaultValue="1"
+        android:summary="@string/settings_exercise_summary"
         android:entries="@array/type_spinner"
         android:entryValues="@array/value_spinner"
         android:title="@string/pref_current_exercises"

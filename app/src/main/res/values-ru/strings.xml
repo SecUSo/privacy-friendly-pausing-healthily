@@ -37,8 +37,8 @@
     <string name="tutorial_clock">Запустить/Остановить часы</string>
     <string name="pref_default_display_name">Случайный</string>
     <string name="pref_header_notifications">Уведомления</string>
-    <string name="pref_header_general">Общие</string>
-    <string name="standard_profile">Случайный,90,5,false,Руки.Ноги.Голова.Шея.Таз.Позвоночник.Туловище.;Талии вверх,90,15,true,Руки.Шея.Голова.;Корпус,30,5,true,Позвоночник.Туловище.;Нижний Корпус,30,5,true,Ноги.Таз.;</string>
+    <string name="pref_header_general">Редактирование профилей</string>
+    <string name="standard_profile">Случайный,90,5,false,Руки.Ноги.Голова.Шея.Таз.Позвоночник.Туловище.;Талия вверх,90,15,true,Руки.Шея.Голова.;Корпус,30,5,true,Позвоночник.Туловище.;Нижний Корпус,30,5,true,Ноги.Таз.;</string>
     <string name="pref_ringtone_silent">Без звука</string>
     <string name="pref_title_display_name">Имя профиля</string>
     <string name="pref_title_ringtone">Рингтон</string>
@@ -60,12 +60,12 @@
     <string name="pref_current_profile">Выберите профиль</string>
     <string name="save">Сохранить</string>
     <string name="pref_title_timeLeft">Оставшееся время</string>
-    <string name="settings_break_summary">Текущее величина $1</string>
+    <string name="settings_break_summary">Текущая величина $1</string>
     <string name="settings_break_title">Выберите длительность времени перерыва</string>
     <string name="settings_dialog_message">Выберите длительность времени работы</string>
     <string name="settings_doubleName">Изменения не могут быть применены, так как уже существует профиль с таким же именем!</string>
     <string name="settings_emptyName">Изменения не могут быть применены, так как иия профиля было пусто!</string>
-    <string name="settings_summary">Текущее величина $1</string>
+    <string name="settings_summary">Текущая величина $1</string>
     <string name="new_profile_emptyName">Пожалуйста введите имя для профиля!</string>
     <string name="tutorial_clock_description">Нажимая на одну из них, часы начинаются или остановливаются</string>
     <string name="help_click_information">Для просмотра изображений в реальном размере просто нажмите на них. Чтобы вернуться назад, нажмите ище раз на изображение!</string>
@@ -86,4 +86,20 @@
         <item>Таз</item>
         <item>Ноги</item>
     </string-array>
+    <string name="about">О нас</string>
+    <string name="dialog_positive">Потверждаю</string>
+    <string name="new_profile_success">Упражнения созданы! </string>
+    <string name="tutorial_help">Просмотр помощи</string>
+
+    <string-array name="help_overview_strings">
+        <item>Главный экран</item>
+        <item>Настройки - Обзор</item>
+        <item>Настройки - Профиль настройки</item>
+        <item>Настройки - Уведомления</item>
+        <item>Новый профидь экран</item>
+        <item>Перерыв экран</item>
+        <item>Дисклеймер</item>
+    </string-array>
+    <string name="disclaimer_title">Дисклеймер </string>
+    <string name="settings_exercise_summary">Выберите части тела, которые вы хотите тренировать</string>
 </resources>

@@ -109,7 +109,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPause() {
         super.onPause();
-        ct.cancel();
+        //ct.cancel();
         if (ad != null)
             ad.cancel();
     }

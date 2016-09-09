@@ -1,10 +1,10 @@
 ## Privacy Friendly App Break Reminder
 
-This application contains the the functionality for a privacy friendly break reminder. It includes basic functionality for a countdowntimer, the possibility to choose different profiles, the chance to make exercises between the breaks. It further includes the typically privacy friendly help and about sites. This app belongs to the group of Privacy Friendly Apps developed by the Technische Universität Darmstadt. 
+This application contains the the functionality for a privacy friendly break reminder. It includes basic functionality for a countdowntimer, the possibility to choose different profiles and the chance to make exercises between the breaks. It further includes the typically privacy friendly help and about sites. This app belongs to the group of Privacy Friendly Apps developed by the Technische Universität Darmstadt. 
 
 ## Motivation
 
-This application has been developed to for the TU Darmstadt module "Usable Security und Usable Privacy". Privacy Friendly Apps are groups of Android applications which are optimized regarding privacy. Further information can be found on secuso.org/pfa
+As it is part of the Privacy Friendly Apps developed by the SECUSO research group of the Technische Universtität Darmstadt in Germany, it is optimized due to user's privacy. Further information can be found on secuso.org/pfa
 
 ## Download and more Information
 

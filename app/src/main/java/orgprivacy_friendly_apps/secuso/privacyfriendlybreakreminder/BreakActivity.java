@@ -45,6 +45,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private boolean exerciseSide = false;
     private AlertDialog.Builder builder;
     private AlertDialog ad;
+    private TextView SecBreak;
+    private int breakTimeLeft = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +95,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             setRandomExercises();
             view = (View) findViewById(R.id.textViewBreak);
             // Creates a dialog showing the duration of the break between exercises
-            builder = new AlertDialog.Builder(this);
-            builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
-            ad = builder.show();
+
+            breakTimeLeft = 10;
+            SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+            SecBreak.setText("" + breakTimeLeft);
         }
 
         //Keep screen on while on break
@@ -110,8 +113,6 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     protected void onPause() {
         super.onPause();
         //ct.cancel();
-        if (ad != null)
-            ad.cancel();
     }
 
     public void onClick(View v) {
@@ -170,8 +171,11 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
                 // FIXME Set additional 10 Sek Countdown
                 builder = new AlertDialog.Builder(v.getContext());
+                breakTimeLeft = 10;
+                SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+                SecBreak.setText("" + breakTimeLeft);
                 builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
-                ad = builder.show();
+                //ad = builder.show();
 
                 if (currentExercise > exerciseList.size() - 1) {
                     currentExercise = 0;
@@ -317,18 +321,32 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private void update() {
         //After 10 seconds first side/repetition, then after 20 seconds break for 10 seconds, afterwards second side/repetition and after 20 seconds break and new exercise
         breakTime++;
+
+
+
+        if((breakTime >= 0 && breakTime <= 10) || (breakTime >= 30 && breakTime <= 40)) {
+            breakTimeLeft--;
+
+            SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+            SecBreak.setText("" + breakTimeLeft);
+        }
+
         switch (breakTime) {
             case 10:
                 side_repetition.setText(sideRepetition + " 1");
 
                 // Cancel dialog
-                ad.cancel();
+
+                SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+                SecBreak.setText("");
 
                 break;
             case 30:
 
                 // Set additional 10 seconds countdown
-                ad.show();
+                breakTimeLeft = 10;
+                SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+                SecBreak.setText(""+ breakTimeLeft);
 
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
@@ -339,7 +357,8 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case 40:
                 // Cancel dialog
-                ad.cancel();
+                SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+                SecBreak.setText("");
 
                 side_repetition.setText(sideRepetition + " 2");
                 break;
@@ -368,7 +387,9 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 execution.setText(exerciseList.get(currentExercise).getExecution());
 
                 // FIXME Set additional 10 Sek Countdown
-                ad.show();
+                breakTimeLeft = 10;
+                SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+                SecBreak.setText(""+ breakTimeLeft);
 
                 side_repetition.setText(R.string.exercise_break);
 

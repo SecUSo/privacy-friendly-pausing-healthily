@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General">
+        <Preference
+            android:summary="The privacy friendly break reminder helps you to make more regularly breaks and to exercise and get fit!" />
+
+        <Preference
+            android:summary="You can work out at the breaks, but you don't have to! Just create a new profile and select no exercises to take a simple break." />
+
+        <Preference
+            android:summary="Alternatively the break profiles and there exercises can be changed in the profile-settings" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Tipps">
+        <Preference
+            android:summary="Pomodoro: Scientific studies have shown, that after a 30 minute work-time we start to lose concentration. To optimize your workflow take a 5 minute break every 30 minutes!" />
+        <Preference
+            android:summary="Basic Rest Activity Circle: Other scientific studies have shown, that after 70 minute of work most people have a down time of 20 minutes. To cut of this effect, try to make a 10 minute break after 60 minute of work, to be more efficient." />
+    </PreferenceCategory>
+
+    <!--
+    <PreferenceCategory android:title="@string/help_shape_heading">
+        <Preference
+            android:icon="@drawable/one_help"
+            android:summary="@string/help_one_highlighted" />
+        <Preference
+            android:icon="@drawable/two_help"
+            android:summary="@string/help_two_highlighted" />
+        <Preference
+            android:icon="@drawable/three_help"
+            android:summary="@string/help_three_highlighted" />
+        <Preference
+            android:icon="@drawable/four_help"
+            android:summary="@string/help_four_highlighted" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/help_story_heading">
+        <Preference
+            android:icon="@drawable/story_two"
+            android:summary="@string/help_story_description" />
+        <Preference
+            android:icon="@drawable/help_story"
+            android:summary="@string/help_story_example" />
+        <Preference
+            android:summary="@string/help_story_additional"
+            />
+
+    </PreferenceCategory>
+
+-->
+
+    <PreferenceCategory android:title="@string/disclaimer_title">
+        <Preference
+            android:icon="@drawable/ic_law"
+            android:summary="@string/disclaimer" />
+        </PreferenceCategory>
+
+    <PreferenceCategory android:title="Information for data protection">
+        <Preference
+            android:title="Permissions"
+            android:summery="The Privacy Friendly Break Reminder uses only the permission for vibration" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

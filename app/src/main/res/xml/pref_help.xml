@@ -23,6 +23,23 @@
             android:summary="@string/help_tipps_brac" />
     </PreferenceCategory>
 
+
+    <PreferenceCategory android:title="@string/help_support_title">
+        <Preference
+            android:title="@string/help_support_clock_title"
+            android:icon="@drawable/tutorial_clock"
+            android:summary="@string/help_support_clock_descr" />
+        <Preference
+            android:title="@string/tutorial_profiles"
+            android:icon="@drawable/tutorial_spinner"
+            android:summary="@string/tutorial_profile_description" />
+        <Preference
+            android:title="@string/break_next"
+            android:icon="@drawable/help_next_button"
+            android:summary="@string/help_support_next" />
+    </PreferenceCategory>
+
+
     <PreferenceCategory android:title="@string/disclaimer_title">
         <Preference
             android:icon="@drawable/ic_law"

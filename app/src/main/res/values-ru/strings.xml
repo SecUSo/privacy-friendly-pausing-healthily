@@ -102,7 +102,6 @@
     <string name="disclaimer_title">Дисклеймер </string>
     <string name="settings_exercise_summary">Выберите части тела, которые вы хотите тренировать</string>
     <string name="about_author_contributors">и соучастники</string>
-    <string name="help_tipps_pomodoro_title">Pomodoro</string>
     <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
     <string name="help_tipps_title">Рекомендация</string>
     <string name="help_tipps_pomodoro_title">Помодоро</string>
@@ -113,7 +112,6 @@
     <string name="help_general_information">Privacy Friendly Break Reminder помогает вам принимать более регулярно перерывы и заниматься физическими упражнениями, чтобы получить хорошую физическую форму!</string>
     <string name="help_general_settings">Альтернативно профили перева и ихнее упражнения могут быть изменены в настройках профиля</string>
     <string name="help_protection_text">Privacy Friendly Break Reminder использует только разрешение для вибрации</string>
-    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
     <string name="help_tipps_brac">Другие научные исследования показали, что после 70-й минуте работы у большинства людей есть время простоя 20 минут.  Чтобы избежать этого, попробуйте сделать 10-минутный перерыв после 60-й минуте работы, чтобы быть более эффективным.</string>
     <string name="help_tipps_pomodoro">Научные исследования показали, что после 30-минутного рабочего времени, мы начинаем терять концентрацию. Чтобы оптимизировать рабочий процесс, возьмите 5 минут перерыв каждые 30 минут!</string>
 </resources>

@@ -57,7 +57,7 @@
     <string name="tutorial_clock">Démarrer/Arrêter l\'horloge</string>
     <string name="tutorial_clock_description">En appuyant sur l\'un d\'eux, l\'horloge démarre ou s\'arrête</string>
     <string name="tutorial_or">ou</string>
-    <string name="tutorial_profile_description">En cliquant sur le profil actuel (\'Hasard\'), vous pouvez voir tous les profils actuellement disponibles. \n Vous pouvez ajouter de nouveaux profils en cliquant sur \'Nouveaux profils ...\' et modifier les profils actuels dans les paramètres\nAu début, il y aura 3 profils prédéfinis</string>
+    <string name="tutorial_profile_description">En cliquant sur le profil actuel (\'Hasard\'), vous pouvez voir tous les profils actuellement disponibles. \n Vous pouvez ajouter de nouveaux profils en cliquant sur \'Nouveaux profils ...\' et modifier les profils actuels dans les paramètres\nAu début, il y aura 4 profils prédéfinis</string>
     <string name="tutorial_profiles">Sélectionnez le profil</string>
     <string name="tutorial_reset">Réinitialiser l\'horloge</string>
     <string name="tutorial_reset_description">Appuyez sur le bouton pour réinitialiser l\'horloge</string>

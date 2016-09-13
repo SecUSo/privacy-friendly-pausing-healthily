@@ -170,7 +170,7 @@
     <string name="help_protection_text">The Privacy Friendly Break Reminder only uses the permission for vibration</string>
     <string name="help_tipps_pomodoro_title">Pomodoro</string>
     <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
-    <string name="help_support_clock_title">Clickable clock</string>
+    <string name="help_support_clock_title">Interactive clock</string>
     <string name="help_support_clock_descr">By pressing the clock in every stage of this app, the clock can be started and stopped.</string>
     <string name="help_support_next">By clicking on the \'next\' button, the app will choose a new exercise in the current body region. At the same time the clock will be reset on the next full minute, so the time will be spend fully on the exercises.</string>
     <string name="help_support_title">Instruction manual</string>

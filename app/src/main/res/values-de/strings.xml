@@ -115,8 +115,8 @@
     <string name="help_tipps_title">Tipps</string>
     <string name="help_tipps_pomodoro_title">Pomodoro</string>
     <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
-    <string name="help_support_clock_descr">Beim Drücken der Uhr in jedem Layout wird die Uhr gestartet oder gestoppt </string>
-    <string name="help_support_clock_title">Klickbare Uhr</string>
+    <string name="help_support_clock_descr">Das Drücken der Uhr kann in jedem Layout die Uhr starten und wieder stoppen</string>
+    <string name="help_support_clock_title">Interaktive Uhr</string>
     <string name="help_support_next">Beim Klicken auf \'Next\' wird eine andere Übung aus der aktuellen Körperregion ausgewählt. Zugleich wird die Uhr wieder auf die letzte volle Minute gesetzt. Somit geht keine Zeit für die Übungen verloren.</string>
     <string name="help_support_title">Bedienungsanleitung</string>
 </resources>

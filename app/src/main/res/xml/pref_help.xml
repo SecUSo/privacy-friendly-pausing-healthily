@@ -16,8 +16,10 @@
 
     <PreferenceCategory android:title="@string/help_tipps_title">
         <Preference
+            android:title="@string/help_tipps_pomodoro_title"
             android:summary="@string/help_tipps_pomodoro" />
         <Preference
+            android:title="@string/help_tepps_brac_title"
             android:summary="@string/help_tipps_brac" />
     </PreferenceCategory>
 

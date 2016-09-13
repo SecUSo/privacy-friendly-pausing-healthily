@@ -110,7 +110,9 @@
     <string name="help_protection_permission">Berechtigungen</string>
     <string name="help_protection_text">Der Privacy Friendly Break Reminder benötigt nur die Berechtigung für die Vibration</string>
     <string name="help_protection_title">Datenschutz Informationen</string>
-    <string name="help_tipps_brac">Basic Rest Activity Circle: Weitere wissenschaftliche Studien, haben belegt, dass nach 70 Minuten Arbeitszeit eine unproduktive, 20 Minuten lange Phase folgt. Um diese zu umgehen, versuchen sie nach 60 Minuten arbeit, eine 10 Minuten Pause einzulegen, um effizienter zu arbeiten!</string>
-    <string name="help_tipps_pomodoro">Pomodoro: Wissenschaftliche Studien haben gezeigt, dass nach 30 Minuten Arbeit die Konzentration leicht nachlässt. Um ihren Arbeitsablauf zu optimieren, nehmen sie alle 30 Minuten eine 5 Minuten Auszeit!</string>
+    <string name="help_tipps_brac">Weitere wissenschaftliche Studien, haben belegt, dass nach 70 Minuten Arbeitszeit eine unproduktive, 20 Minuten lange Phase folgt. Um diese zu umgehen, versuchen sie nach 60 Minuten arbeit, eine 10 Minuten Pause einzulegen, um effizienter zu arbeiten!</string>
+    <string name="help_tipps_pomodoro">Wissenschaftliche Studien haben gezeigt, dass nach 30 Minuten Arbeit die Konzentration leicht nachlässt. Um ihren Arbeitsablauf zu optimieren, nehmen sie alle 30 Minuten eine 5 Minuten Auszeit!</string>
     <string name="help_tipps_title">Tipps</string>
+    <string name="help_tipps_pomodoro_title">Pomodoro</string>
+    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
 </resources>

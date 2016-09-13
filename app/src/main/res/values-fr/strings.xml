@@ -110,8 +110,10 @@
     <string name="help_protection_permission">Autorisations</string>
     <string name="help_protection_text">Le Privacy Friendly Break Reminder utilise seulement l\'autorisation de vibration</string>
     <string name="help_protection_title">Politique de confidentialité</string>
-    <string name="help_tipps_brac">Basic Rest Activity Circle: D\'autres études scientifiques ont montré que, après 70 minutes de travail la plupart des gens sont pas très productive pour 20 minutes. Pour couper de cet effet, essayez de faire une pause de 10 minutes au bout de 60 minutes de travail, pour être plus efficace.</string>
-    <string name="help_tipps_pomodoro">Pomodoro : Des études scientifiques ont montré que, après 30 minutes de travail, nous commençons à perdre la concentration. Pour optimiser votre flux de travail prenez une pause de 5 minutes toutes les 30 minutes!</string>
+    <string name="help_tipps_brac">D\'autres études scientifiques ont montré que, après 70 minutes de travail la plupart des gens sont pas très productive pour 20 minutes. Pour couper de cet effet, essayez de faire une pause de 10 minutes au bout de 60 minutes de travail, pour être plus efficace.</string>
+    <string name="help_tipps_pomodoro">Des études scientifiques ont montré que, après 30 minutes de travail, nous commençons à perdre la concentration. Pour optimiser votre flux de travail prenez une pause de 5 minutes toutes les 30 minutes!</string>
     <string name="help_tipps_title"> Conseils</string>
+    <string name="help_tipps_pomodoro_title">Pomodoro</string>
+    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
 
 </resources>

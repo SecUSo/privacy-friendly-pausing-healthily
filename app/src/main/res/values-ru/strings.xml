@@ -102,4 +102,6 @@
     <string name="disclaimer_title">Дисклеймер </string>
     <string name="settings_exercise_summary">Выберите части тела, которые вы хотите тренировать</string>
     <string name="about_author_contributors">и соучастники</string>
+    <string name="help_tipps_pomodoro_title">Pomodoro</string>
+    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
 </resources>

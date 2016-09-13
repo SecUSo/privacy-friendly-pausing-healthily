@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Break Reminder</string>
     <string name="about_affiliation">In Zusammenarbeit mit</string>
-    <string name="about_author">Die Autoren dieser App:</string>
+    <string name="about_author">Die Autoren:</string>
     <string name="add">Hinzufügen</string>
     <string name="break_description">Beschreibung:</string>
     <string name="break_ex">Ausführung der Übung</string>
@@ -53,7 +53,7 @@
     <string name="pref_title_timeLeft">Verbleibende Zeit</string>
     <string name="pref_title_vibrate">Vibration</string>
     <string name="profile_name">Profil Name</string>
-    <string name="privacy_friendly">Diese Applikation gehört der Privacy Friendly Apps.</string>
+    <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizensiert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
     <string name="save">Speichern</string>
     <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_dialog_message">Wählen Sie ihre Arbeitszeit aus</string>

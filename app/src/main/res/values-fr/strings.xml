@@ -103,5 +103,15 @@
     <string name="disclaimer_title">Désistement</string>
     <string name="settings_exercise_summary">Sélectionnez les parties du corps pour l\'entrainement</string>
     <string name="about_author_contributors">et contributeurs</string>
+    <string name="help_general_breaks">Vous pouvez faire de l\'entrainement dans les pauses, mais vous n\'etes pas forcé! Il suffit de créer un nouveau profil et de ne pas sélectionnez d\'exercices pour faire une pause simple sans exercise.</string>
+    <string name="help_general_information">Le \'privacy friendly break reminder\' vous aide à faire des pauses plus régulièrement et se mettre en forme avec des exercise pour toute le corps!</string>
+    <string name="help_general_settings">Alternative, les profils et ces exercices peuvent être modifiés dans le paramètres du profils</string>
+    <string name="help_general_title">Généralement</string>
+    <string name="help_protection_permission">Autorisations</string>
+    <string name="help_protection_text">Le Privacy Friendly Break Reminder utilise seulement l\'autorisation de vibration</string>
+    <string name="help_protection_title">Politique de confidentialité</string>
+    <string name="help_tipps_brac">Basic Rest Activity Circle: D\'autres études scientifiques ont montré que, après 70 minutes de travail la plupart des gens sont pas très productive pour 20 minutes. Pour couper de cet effet, essayez de faire une pause de 10 minutes au bout de 60 minutes de travail, pour être plus efficace.</string>
+    <string name="help_tipps_pomodoro">Pomodoro : Des études scientifiques ont montré que, après 30 minutes de travail, nous commençons à perdre la concentration. Pour optimiser votre flux de travail prenez une pause de 5 minutes toutes les 30 minutes!</string>
+    <string name="help_tipps_title"> Conseils</string>
 
 </resources>

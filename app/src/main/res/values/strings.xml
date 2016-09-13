@@ -158,5 +158,15 @@
     <string name="all_exercises">Legs.Arms.Pelvis.Spinal Column.Torso.Neck.Head.</string>
     <string name="dialog_positive">Okay</string>
     <string name="new_profile_success">Exercises successfully created!</string>
+    <string name="help_general_title">General</string>
+    <string name="help_general_information">The privacy friendly break reminder helps you to make more regularly breaks and to exercise and get fit!</string>
+    <string name="help_general_breaks">You can work out at the breaks, but you don\'t have to! Just create a new profile and select no exercises to take a simple break.</string>
+    <string name="help_general_settings">Alternatively the break profiles and there exercises can be changed in the profile-settings</string>
+    <string name="help_tipps_title">Tips</string>
+    <string name="help_tipps_pomodoro">Pomodoro: Scientific studies have shown, that after a 30 minute work-time we start to lose concentration. To optimize your workflow take a 5 minute break every 30 minutes!</string>
+    <string name="help_tipps_brac">Basic Rest Activity Circle: Other scientific studies have shown, that after 70 minute of work most people have a down time of 20 minutes. To cut of this effect, try to make a 10 minute break after 60 minute of work, to be more efficient.</string>
+    <string name="help_protection_title">Information for data protection</string>
+    <string name="help_protection_permission">Permissions</string>
+    <string name="help_protection_text">The Privacy Friendly Break Reminder uses only the permission for vibration</string>
 
 </resources>

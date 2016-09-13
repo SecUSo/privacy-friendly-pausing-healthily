@@ -103,4 +103,14 @@
     <string name="settings_exercise_summary">Wählen Sie die zu trainierenden Körperbereiche aus</string>
     <string name="disclaimer_title">Haftungsausschluss</string>
     <string name="about_author_contributors">und Mitwirkende</string>
+    <string name="help_general_breaks">Sie können in den Pausen trainieren, müssen dies aber nicht! Erstellen Sie einfach ein Profil, ohne Übungen einzustellen.</string>
+    <string name="help_general_information">Der \'Privacy friendly break reminder\' hilft Ihnen regeläßiger Pausen zu nehmen und währenddessen zu trainieren!</string>
+    <string name="help_general_settings">Alternativ können die Profile und die dazugehörigen Übungen in den Profil-Einstellungen bearbeitet werden</string>
+    <string name="help_general_title">Allgemein</string>
+    <string name="help_protection_permission">Berechtigungen</string>
+    <string name="help_protection_text">Der Privacy Friendly Break Reminder benötigt nur die Berechtigung für die Vibration</string>
+    <string name="help_protection_title">Datenschutz Informationen</string>
+    <string name="help_tipps_brac">Basic Rest Activity Circle: Weitere wissenschaftliche Studien, haben belegt, dass nach 70 Minuten Arbeitszeit eine unproduktive, 20 Minuten lange Phase folgt. Um diese zu umgehen, versuchen sie nach 60 Minuten arbeit, eine 10 Minuten Pause einzulegen, um effizienter zu arbeiten!</string>
+    <string name="help_tipps_pomodoro">Pomodoro: Wissenschaftliche Studien haben gezeigt, dass nach 30 Minuten Arbeit die Konzentration leicht nachlässt. Um ihren Arbeitsablauf zu optimieren, nehmen sie alle 30 Minuten eine 5 Minuten Auszeit!</string>
+    <string name="help_tipps_title">Tipps</string>
 </resources>

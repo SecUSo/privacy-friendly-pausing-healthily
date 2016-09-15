@@ -119,4 +119,5 @@
     <string name="help_support_clock_title">Interaktive Uhr</string>
     <string name="help_support_next">Beim Klicken auf \'Next\' wird eine andere Übung aus der aktuellen Körperregion ausgewählt. Zugleich wird die Uhr wieder auf die letzte volle Minute gesetzt. Somit geht keine Zeit für die Übungen verloren.</string>
     <string name="help_support_title">Bedienungsanleitung</string>
+    <string name="about_author_names">Sergej Alexeev, Jannik Schildknecht und Mitwirkende</string>
 </resources>

@@ -99,6 +99,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             breakTimeLeft = 10;
             SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
             SecBreak.setText("" + breakTimeLeft);
+            SecBreak.setTextColor(getResources().getColor(R.color.red));
         }
 
         //Keep screen on while on break
@@ -174,6 +175,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 breakTimeLeft = 10;
                 SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
                 SecBreak.setText("" + breakTimeLeft);
+                SecBreak.setTextColor(getResources().getColor(R.color.red));
                 builder.setMessage("10sec " + getResources().getText(R.string.exercise_break).toString());
                 //ad = builder.show();
 
@@ -324,21 +326,22 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        if((breakTime >= 0 && breakTime <= 10) || (breakTime >= 30 && breakTime <= 40)) {
-            breakTimeLeft--;
 
-            SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
-            SecBreak.setText("" + breakTimeLeft);
-        }
+        breakTimeLeft--;
+
+        SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
+        SecBreak.setText("" + breakTimeLeft);
+
 
         switch (breakTime) {
             case 10:
                 side_repetition.setText(sideRepetition + " 1");
 
                 // Cancel dialog
-
+                breakTimeLeft = 20;
                 SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
-                SecBreak.setText("");
+                SecBreak.setText("" + breakTimeLeft);
+                SecBreak.setTextColor(getResources().getColor(R.color.black));
 
                 break;
             case 30:
@@ -347,6 +350,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 breakTimeLeft = 10;
                 SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
                 SecBreak.setText(""+ breakTimeLeft);
+                SecBreak.setTextColor(getResources().getColor(R.color.red));
 
                 side_repetition.setText(R.string.exercise_break);
                 //If exercise contains 2 images, set ImageView to the second image
@@ -357,8 +361,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case 40:
                 // Cancel dialog
+                breakTimeLeft = 20;
                 SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
-                SecBreak.setText("");
+                SecBreak.setText("" + breakTimeLeft);
+                SecBreak.setTextColor(getResources().getColor(R.color.black));
 
                 side_repetition.setText(sideRepetition + " 2");
                 break;
@@ -386,10 +392,10 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
                 description.setText(exerciseList.get(currentExercise).getDescription());
                 execution.setText(exerciseList.get(currentExercise).getExecution());
 
-                // FIXME Set additional 10 Sek Countdown
                 breakTimeLeft = 10;
                 SecBreak = (TextView) findViewById(R.id.textViewBreakTime);
                 SecBreak.setText(""+ breakTimeLeft);
+                SecBreak.setTextColor(getResources().getColor(R.color.red));
 
                 side_repetition.setText(R.string.exercise_break);
 

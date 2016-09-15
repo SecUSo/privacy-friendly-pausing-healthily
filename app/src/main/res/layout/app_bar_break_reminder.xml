@@ -7,7 +7,8 @@
     android:fitsSystemWindows="true"
     tools:context="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakReminder">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -26,6 +27,5 @@
 
 
     <include layout="@layout/content_break_reminder" />
-
 
 </android.support.design.widget.CoordinatorLayout>

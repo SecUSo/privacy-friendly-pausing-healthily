@@ -6,14 +6,10 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/title_activity_settings" />
-    </group>
-    <group android:id="@+id/group2">
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_help"
             android:title="@string/help" />
-    </group>
-    <group android:id="@+id/group3">
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"

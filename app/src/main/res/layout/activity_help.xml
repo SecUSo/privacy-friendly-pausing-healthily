@@ -24,9 +24,9 @@
             android:background="@color/white"
             android:fitsSystemWindows="true"
             android:orientation="vertical"
-            tools:context=".HelpActivity"
+            tools:context="org.secuso.privacyfriendlybreakreminder.activities.HelpActivity"
             android:weightSum="1">
-            <fragment android:name="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.HelpActivity$HelpFragment"
+            <fragment android:name="org.secuso.privacyfriendlybreakreminder.activities.HelpActivity$HelpFragment"
                 android:id="@+id/help_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

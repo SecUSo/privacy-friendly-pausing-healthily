@@ -28,7 +28,7 @@
 
 
     <!-- settings for BreakReminder -->
-    <string name= "new_profile">New Profile...</string>
+    <string name="new_profile">New Profile...</string>
     <string name="play_stop" translatable="false">Play/Stop</string>
     <string name="reset" translatable="false">Reset</string>
     <string name="break_reminder_time" translatable="false">30:00</string>

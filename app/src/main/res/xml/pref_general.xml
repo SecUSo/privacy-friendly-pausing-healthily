@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.DynamicListPreference
+    <org.secuso.privacyfriendlybreakreminder.preferences.DynamicListPreference
         android:defaultValue="@string/pref_current_profile_value"
         android:key="current_profile"
         android:title="@string/pref_current_profile" />
@@ -23,7 +23,7 @@
         android:positiveButtonText="@string/dialog_positive"/>
 
 
-    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference
+    <org.secuso.privacyfriendlybreakreminder.preferences.SeekBarPreference
         android:defaultValue="50"
         android:dialogMessage="@string/settings_dialog_message"
         android:key="work_value"
@@ -32,7 +32,7 @@
         android:text="@string/settings_unit"
         android:title="@string/settings_title" />
 
-    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SeekBarPreference
+    <org.secuso.privacyfriendlybreakreminder.preferences.SeekBarPreference
         android:defaultValue="10"
         android:dialogMessage="@string/settings_break_title"
         android:key="break_value"
@@ -46,7 +46,7 @@
         android:key="cont_value"
         android:title="@string/new_profile_continuously" />
 
-    <orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.ExerciseListPreference
+    <org.secuso.privacyfriendlybreakreminder.preferences.ExerciseListPreference
         android:defaultValue="1"
         android:summary="@string/settings_exercise_summary"
         android:entries="@array/type_spinner"

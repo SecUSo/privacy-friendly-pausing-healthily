@@ -3,12 +3,12 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
 
     <header
-        android:fragment="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/pref_header_notifications" />
 

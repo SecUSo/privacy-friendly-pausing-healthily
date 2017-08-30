@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
-    tools:context="orgprivacy_friendly_apps.secuso.privacyfriendlybreakreminder.BreakActivity">
+    tools:context="org.secuso.privacyfriendlybreakreminder.activities.BreakActivity">
 
     <TextView
         android:id="@+id/break_exercise_type"

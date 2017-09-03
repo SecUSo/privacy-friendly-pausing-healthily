@@ -22,6 +22,7 @@ import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
 
 import java.io.FileDescriptor;
+import java.util.Locale;
 import java.util.Timer;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
@@ -74,6 +75,7 @@ public class TimerService extends Service {
             mTimer = createTimer(duration);
             mTimer.start();
             isRunning = true;
+            sendBroadcast(buildBroadcast());
         }
     }
 
@@ -81,6 +83,7 @@ public class TimerService extends Service {
         if(isRunning) {
             mTimer.cancel();
             isRunning = false;
+            sendBroadcast(buildBroadcast());
         }
     }
 
@@ -89,16 +92,28 @@ public class TimerService extends Service {
             mTimer = createTimer(remainingDuration);
             mTimer.start();
             isRunning = true;
+            sendBroadcast(buildBroadcast());
         }
     }
 
     public synchronized void resetTimer() {
         if(isRunning) {
             mTimer.cancel();
-            isRunning = false;
-            remainingDuration = 0;
+            mTimer = createTimer(initialDuration);
+            mTimer.start();
         }
+        remainingDuration = initialDuration;
+        sendBroadcast(buildBroadcast());
     }
+
+    public synchronized void stopAndResetTimer() {
+        if(isRunning) mTimer.cancel();
+        isRunning = false;
+        remainingDuration = initialDuration;
+        sendBroadcast(buildBroadcast());
+    }
+
+    public synchronized boolean isPaused() { return !isRunning && remainingDuration > 0 && remainingDuration != initialDuration; }
 
     public synchronized boolean isRunning() {
         return isRunning;
@@ -111,27 +126,34 @@ public class TimerService extends Service {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                int secondsUntilFinished = (int) Math.ceil(millisUntilFinished / 1000.0);
+                synchronized (TimerService.this) {
+                    remainingDuration = millisUntilFinished;
+                }
 
-                remainingDuration = millisUntilFinished;
-
-                Intent broadcast = new Intent(TIMER_BROADCAST);
-                broadcast.putExtra("onTickMillis", millisUntilFinished);
-                broadcast.putExtra("countdown_seconds", secondsUntilFinished);
-                sendBroadcast(broadcast);
+                sendBroadcast(buildBroadcast());
             }
 
             @Override
             public void onFinish() {
-                // TODO: finish broadcast
-                Intent broadcast = new Intent(TIMER_BROADCAST);
+                Intent broadcast = buildBroadcast();
                 broadcast.putExtra("done", true);
-                broadcast.putExtra("onTickMillis", 0);
-                broadcast.putExtra("countdown_seconds", 0);
-                sendBroadcast(broadcast);
-                resetTimer();
+                sendBroadcast(buildBroadcast());
+
+                stopAndResetTimer();
             }
         };
+    }
+
+    private synchronized Intent buildBroadcast() {
+        int secondsUntilFinished = (int) Math.ceil(remainingDuration / 1000.0);
+
+        Intent broadcast = new Intent(TIMER_BROADCAST);
+        broadcast.putExtra("onTickMillis", remainingDuration);
+        broadcast.putExtra("initialMillis", initialDuration);
+        broadcast.putExtra("countdown_seconds", secondsUntilFinished);
+        broadcast.putExtra("isRunning", isRunning());
+        broadcast.putExtra("isPaused", isPaused());
+        return (broadcast);
     }
 
     @Override
@@ -157,15 +179,9 @@ public class TimerService extends Service {
         int seconds = secondsUntilFinished % 60;
         int minutes = minutesUntilFinished % 60;
 
-        StringBuilder sb = new StringBuilder();
+        String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds);
 
-        if(hours > 0)       sb.append(hours).append(":");
-        if(minutes < 10)    sb.append(0);
-                            sb.append(minutes).append(":");
-        if(seconds < 10)    sb.append(0);
-                            sb.append(seconds);
-
-        builder.setContentText(sb.toString());
+        builder.setContentText(time);
         builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, TimerActivity.class), FLAG_UPDATE_CURRENT));
         builder.setColor(ContextCompat.getColor(this, R.color.colorAccent));
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
@@ -187,6 +203,10 @@ public class TimerService extends Service {
 
     public static void startService(Context context) {
         context.startService(new Intent(context.getApplicationContext(), TimerService.class));
+    }
+
+    public synchronized long getRemainingDuration() {
+        return remainingDuration;
     }
 
     public class TimerServiceBinder extends Binder {

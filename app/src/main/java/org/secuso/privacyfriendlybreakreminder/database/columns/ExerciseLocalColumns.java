@@ -2,7 +2,6 @@ package org.secuso.privacyfriendlybreakreminder.database.columns;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.provider.BaseColumns;
 
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 
@@ -10,7 +9,7 @@ import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
  * Created by Christopher Beckmann on 25.08.2017.
  */
 
-public class ExercisesLocalColumns implements BaseColumns {
+public final class ExerciseLocalColumns {
 
     public static final String TABLE_NAME = "exercises_local";
 
@@ -31,14 +30,14 @@ public class ExercisesLocalColumns implements BaseColumns {
     };
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    public static Exercise getExercise(Cursor c) {
+    public static Exercise fromCursor(Cursor c) {
         Exercise e = new Exercise();
 
-        e.setLocalId(c.getInt(c.getColumnIndexOrThrow(ExercisesLocalColumns._ID)));
-        e.setLanguage(c.getString(c.getColumnIndexOrThrow(ExercisesLocalColumns.LANGUAGE)));
-        e.setDescription(c.getString(c.getColumnIndexOrThrow(ExercisesLocalColumns.DESCRIPTION)));
-        e.setExecution(c.getString(c.getColumnIndexOrThrow(ExercisesLocalColumns.EXECUTION)));
-        e.setName(c.getString(c.getColumnIndexOrThrow(ExercisesLocalColumns.NAME)));
+        e.setLocalId(c.getInt(c.getColumnIndexOrThrow(ExerciseLocalColumns._ID)));
+        e.setLanguage(c.getString(c.getColumnIndexOrThrow(ExerciseLocalColumns.LANGUAGE)));
+        e.setDescription(c.getString(c.getColumnIndexOrThrow(ExerciseLocalColumns.DESCRIPTION)));
+        e.setExecution(c.getString(c.getColumnIndexOrThrow(ExerciseLocalColumns.EXECUTION)));
+        e.setName(c.getString(c.getColumnIndexOrThrow(ExerciseLocalColumns.NAME)));
 
         return e;
     }
@@ -47,13 +46,15 @@ public class ExercisesLocalColumns implements BaseColumns {
         ContentValues values = new ContentValues();
 
         if(record.getLocalId() != -1) {
-            values.put(ExercisesLocalColumns._ID, record.getLocalId());
+            values.put(ExerciseLocalColumns._ID, record.getLocalId());
         }
-        values.put(ExercisesLocalColumns.LANGUAGE, record.getLanguage());
-        values.put(ExercisesLocalColumns.DESCRIPTION, record.getDescription());
-        values.put(ExercisesLocalColumns.EXECUTION, record.getExecution());
-        values.put(ExercisesLocalColumns.NAME, record.getName());
+        values.put(ExerciseLocalColumns.LANGUAGE, record.getLanguage());
+        values.put(ExerciseLocalColumns.DESCRIPTION, record.getDescription());
+        values.put(ExerciseLocalColumns.EXECUTION, record.getExecution());
+        values.put(ExerciseLocalColumns.NAME, record.getName());
 
         return values;
     }
+
+    private ExerciseLocalColumns() {}
 }

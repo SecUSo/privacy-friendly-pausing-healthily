@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.secuso.privacyfriendlybreakreminder.database.DBHandler;
+import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.*;
 import org.secuso.privacyfriendlybreakreminder.R;
 
@@ -35,7 +35,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
     private int currentExercise, breakTime = 0, currentExerciseSection;
     private ImageView image;
     private String[] exercises;
-    private DBHandler dbHandler;
+    private SQLiteHelper SQLiteHelper;
     private List<List<Exercise>> allAvailableExercises;
     private List<Integer> sections;
     private Random random;
@@ -86,7 +86,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
             ct_text.setText(bufferZeroMinute + mins + ":00");
             ct_text.setOnClickListener(this);
 
-            dbHandler = new DBHandler(this);
+            SQLiteHelper = new SQLiteHelper(this);
             random = new Random();
             sections = new ArrayList<>();
             setRandomExercises();
@@ -253,7 +253,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         while (notFoundYet) {
             currentExerciseSection = random.nextInt(exercises.length);
             if (!usedSectionsString.contains(exercises[currentExerciseSection])) {
-                List<Exercise> list = dbHandler.getExercisesFromSection("de",exercises[currentExerciseSection]);
+                List<Exercise> list = SQLiteHelper.getExercisesFromSection("de",exercises[currentExerciseSection]);
                 allAvailableExercises.add(list);
                 usedSectionsString += exercises[currentExerciseSection] + ".";
                 editor.putString("currently_done_exercises", usedSectionsString);
@@ -452,7 +452,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
 
                 //Close database connection
                 if (!noExercises)
-                    dbHandler.close();
+                    SQLiteHelper.close();
                 finish();
             }
         }.start();

@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlybreakreminder.database;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
@@ -27,7 +29,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private Context mContext;
     private static final String DATABASE_NAME = "exercises.sqlite";
     private static final String DATABASE_PATH = "/data/data/org.secuso.privacyfriendlybreakreminder/databases/";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String[] deleteQueryList = {
             ExerciseColumns.SQL_DELETE_ENTRIES,
@@ -64,6 +66,76 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
 
+    public synchronized void deleteExerciseSet(long id) {
+        SQLiteDatabase database = getReadableDatabase();
+        database.delete(ExerciseSetColumns.TABLE_NAME, ExerciseSetColumns._ID + " = ?", new String[]{String.valueOf(id)});
+        database.close();
+    }
+
+    public synchronized long addExerciseSet(String name) {
+        SQLiteDatabase database = getReadableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(ExerciseSetColumns.NAME, name);
+
+        return database.insert(ExerciseSetColumns.TABLE_NAME, null, cv);
+    }
+
+    public synchronized void addExerciseToExerciseSet(int exerciseSetId, int exerciseId) {
+        SQLiteDatabase database = getReadableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(ExerciseSetColumns._ID, exerciseSetId);
+        cv.put(ExerciseColumns._ID, exerciseId);
+
+        database.insert("exercise_set_exercises", null, cv);
+        database.close();
+    }
+
+    public synchronized Cursor getExerciseSetsCursor() {
+        SQLiteDatabase database = getReadableDatabase();
+
+        return database.query(
+                ExerciseSetColumns.TABLE_NAME,
+                ExerciseSetColumns.PROJECTION,
+                null,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public synchronized List<ExerciseSet> getExerciseSetsWithExercises(String language) {
+
+        List<ExerciseSet> result = new LinkedList<>();
+
+        Cursor c = getExerciseSetsCursor();
+
+        if(c != null) {
+            c.moveToFirst();
+
+            while(!c.isAfterLast()) {
+
+                int id = c.getInt(c.getColumnIndex(ExerciseSetColumns._ID));
+
+                ExerciseSet set = getExerciseListForSet(id, language);
+
+                if(set != null) {
+                    result.add(set);
+
+                } else {
+                    ExerciseSet e = new ExerciseSet();
+                    e.setId(id);
+                    e.setName(c.getString(c.getColumnIndexOrThrow(ExerciseSetColumns.NAME)));
+                    result.add(e);
+                }
+                c.moveToNext();
+            }
+        }
+        return result;
+    }
+
+
     public synchronized Cursor getExerciseCursor(String language) {
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(buildQuery(false), new String[]{language});
@@ -78,27 +150,27 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = getReadableDatabase();
 
         String sql = "SELECT *\n" +
-                "FROM exercise_set ES LEFT OUTER JOIN exercise_set_exercises ESE\n" +
-                "\tON ES.exercise_set_id = ESE.exercise_set_id\n" +
-                "LEFT OUTER JOIN exercises E\n" +
-                "\tON ESE.exercise_id = E.exercise_id\n" +
-                "LEFT OUTER JOIN exercises_local L\n" +
-                "\tON E.exercise_id = L.exercise_id\n" +
-                "WHERE ES.exercise_set_id = ? AND L.language = ?\n" +
-                "ORDER BY ESE.exercise_id ASC";
+                "FROM "+ExerciseSetColumns.TABLE_NAME+" ES LEFT OUTER JOIN exercise_set_exercises ESE\n" +
+                "\tON ES."+ExerciseSetColumns._ID+" = ESE."+ExerciseSetColumns._ID+"\n" +
+                "LEFT OUTER JOIN "+ExerciseColumns.TABLE_NAME+" E\n" +
+                "\tON ESE."+ExerciseColumns._ID+" = E."+ExerciseColumns._ID+"\n" +
+                "LEFT OUTER JOIN "+ExerciseLocalColumns.TABLE_NAME+" L\n" +
+                "\tON E."+ExerciseColumns._ID+" = L."+ExerciseLocalColumns.EXERCISE_ID+"\n" +
+                "WHERE ES."+ExerciseSetColumns._ID+" = ? AND L."+ExerciseLocalColumns.LANGUAGE+" = ?\n" +
+                "ORDER BY ESE."+ExerciseColumns._ID+" ASC";
 
-        String sql2 = "SELECT *\n" +
-                "\tFROM (SELECT * \n" +
-                "\t\t\tFROM (SELECT *\n" +
-                "\t\t\t\tFROM "+ExerciseSetColumns.TABLE_NAME+" ES LEFT OUTER JOIN exercise_set_exercises ESE\n" +
-                "\t\t\t\tON ES."+ExerciseSetColumns._ID+" = ESE."+ExerciseSetColumns._ID+"\n" +
-                "\t\t\t\tWHERE ES."+ExerciseSetColumns._ID+" = ?\n" +
-                "\t\t\t\tORDER BY ESE."+ExerciseColumns._ID+" ASC) ES_ESE \n" +
-                "\t\t\tLEFT OUTER JOIN "+ExerciseColumns.TABLE_NAME+" E\n" +
-                "\t\t\tON ES_ESE."+ExerciseColumns._ID+" = E."+ExerciseColumns._ID+") ES_ESE_E \n" +
-                "\t\tLEFT OUTER JOIN "+ExerciseLocalColumns.TABLE_NAME+" L\n" +
-                "\t\tON ES_ESE_E."+ExerciseColumns._ID+" = L."+ExerciseLocalColumns.EXERCISE_ID+"\n" +
-                "\t\tWHERE L."+ExerciseLocalColumns.LANGUAGE+" = ?";
+//        String sql2 = "SELECT *\n" +
+//                "\tFROM (SELECT * \n" +
+//                "\t\t\tFROM (SELECT *\n" +
+//                "\t\t\t\tFROM "+ExerciseSetColumns.TABLE_NAME+" ES LEFT OUTER JOIN exercise_set_exercises ESE\n" +
+//                "\t\t\t\tON ES."+ExerciseSetColumns._ID+" = ESE."+ExerciseSetColumns._ID+"\n" +
+//                "\t\t\t\tWHERE ES."+ExerciseSetColumns._ID+" = ?\n" +
+//                "\t\t\t\tORDER BY ESE."+ExerciseColumns._ID+" ASC) ES_ESE \n" +
+//                "\t\t\tLEFT OUTER JOIN "+ExerciseColumns.TABLE_NAME+" E\n" +
+//                "\t\t\tON ES_ESE."+ExerciseColumns._ID+" = E."+ExerciseColumns._ID+") ES_ESE_E \n" +
+//                "\t\tLEFT OUTER JOIN "+ExerciseLocalColumns.TABLE_NAME+" L\n" +
+//                "\t\tON ES_ESE_E."+ExerciseColumns._ID+" = L."+ExerciseLocalColumns.EXERCISE_ID+"\n" +
+//                "\t\tWHERE L."+ExerciseLocalColumns.LANGUAGE+" = ?";
 
         return database.rawQuery(sql, new String[]{String.valueOf(setId), language});
     }
@@ -112,7 +184,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
             c.moveToFirst();
 
-            result = ExerciseSetColumns.fromCursor(c);
+            if(!c.isAfterLast()) {
+                result = ExerciseSetColumns.fromCursor(c);
+            }
 
             while(!c.isAfterLast()) {
                 result.add(ExerciseColumns.fromCursor(c));
@@ -251,6 +325,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         OutputStream myOutput = null;
         try {
             // Open db packaged as asset as the input stream
+            mContext.deleteDatabase(DATABASE_NAME);
+
             myInput = mContext.getAssets().open(DATABASE_NAME);
 
             // Open the db in the application package context:
@@ -288,4 +364,5 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
     }
+
 }

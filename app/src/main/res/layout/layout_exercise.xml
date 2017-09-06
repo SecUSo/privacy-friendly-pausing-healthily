@@ -16,11 +16,11 @@
         android:text="Name"
         android:textAlignment="viewStart"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/cardView2"
-        app:layout_constraintTop_toTopOf="@+id/cardView2" />
+        app:layout_constraintLeft_toRightOf="@+id/exercise_image_card"
+        app:layout_constraintTop_toTopOf="@+id/exercise_image_card" />
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/exercise_image_card"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginLeft="8dp"

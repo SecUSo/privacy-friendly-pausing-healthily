@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_play_arrow_black_48dp" />
+        app:srcCompat="@drawable/ic_play_arrow_black" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -47,7 +47,7 @@
             android:max="100"
             android:padding="16dp"
             android:progress="66"
-            android:progressDrawable="@drawable/circular_small"
+            android:progressDrawable="@drawable/progress_circular_small"
             android:rotation="270" />
 
         <TextView

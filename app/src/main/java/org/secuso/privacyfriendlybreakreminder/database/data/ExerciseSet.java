@@ -8,17 +8,17 @@ import java.util.List;
  */
 
 public class ExerciseSet {
-    private int id = -1;
+    private long id = -1L;
     private String name = null;
     private List<Exercise> exercises = new ArrayList<>();
 
     public ExerciseSet() {}
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -30,20 +30,26 @@ public class ExerciseSet {
         this.name = name;
     }
 
-    public void add(Exercise exercise) {
+    public boolean add(Exercise exercise) {
         if(!exercises.contains(exercise)) {
             exercises.add(exercise);
+            return true;
         }
+        return false;
     }
 
-    public void remove(Exercise exercise) {
+    public boolean remove(Exercise exercise) {
         if(exercises.contains(exercise)) {
             exercises.remove(exercise);
+            return true;
         }
+        return false;
     }
 
-    public void get(int index) {
-        exercises.get(index);
+    public int indexOf(Exercise e) { return exercises.indexOf(e); }
+
+    public Exercise get(int index) {
+        return exercises.get(index);
     }
 
     public int size() {

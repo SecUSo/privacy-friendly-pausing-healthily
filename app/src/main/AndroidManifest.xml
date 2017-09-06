@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.BreakReminder"
+            android:name=".activities.old.BreakReminder"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -26,23 +26,23 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.BreakReminder"
+            android:parentActivityName=".activities.old.BreakReminder"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.BreakReminder" />
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.old.BreakReminder" />
         </activity>
         <activity
-            android:name=".activities.BreakDeciderActivity"
+            android:name=".activities.old.BreakDeciderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.BreakActivity"
+            android:name=".activities.old.BreakActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ProfileActivity"
+            android:name=".activities.old.ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ExerciseTypeActivity"
+            android:name=".activities.old.ExerciseTypeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AboutActivity"
@@ -64,22 +64,58 @@
         </receiver>
 
         <activity
-            android:name=".activities.TimerActivity"
-            android:launchMode="singleInstance">
+            android:name=".activities.SplashActivity"
+            android:icon="@mipmap/splash_icon"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.tutorial.TutorialActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".service.TimerService"
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".activities.ExerciseSetOverviewActivity" />
-        <activity android:name=".activities.ExerciseActivity"></activity>
+        <activity
+            android:name=".activities.TimerActivity"
+            android:label="@string/activity_title_break_reminder"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.ManageExerciseSetsActivity"
+            android:label="@string/activity_title_manage_exercise_sets"
+            android:parentActivityName=".activities.TimerActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.ExerciseActivity"
+            android:label="@string/activity_title_exercise"
+            android:parentActivityName=".activities.TimerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.EditExerciseSetActivity"
+            android:label="@string/activity_title_edit_exercise_set"
+            android:parentActivityName=".activities.ManageExerciseSetsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity" />
+        </activity>
+
     </application>
 
 </manifest>

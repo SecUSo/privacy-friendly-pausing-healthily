@@ -1,170 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="0dp"
-    android:layout_margin="0dp"
-    tools:context="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <include android:id="@+id/exercise" layout="@layout/layout_exercise_set"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/button_chooseExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        app:fabSize="mini"
-        android:onClick="onClick"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/exercise"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.25" />
+        <include layout="@layout/layout_toolbar"/>
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/relativeLayout"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@id/exercise">
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            android:id="@+id/main_content"
+            android:layout_margin="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity">
 
-        <LinearLayout
-            android:id="@+id/picker_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:divider="@color/colorAccent"
-            android:dividerPadding="4dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="visible">
+            <!-- <include android:id="@+id/exercise" layout="@layout/layout_exercise_set"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" /> -->
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_choose_exercise_set"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
-            <NumberPicker
-                android:id="@+id/hours_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="135dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:theme="@style/AppTheme.NumberPicker" />
-
-            <TextView
+            <!-- <android.support.design.widget.FloatingActionButton
+                android:id="@+id/button_chooseExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=":"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:theme="@style/AppTheme.NumberPicker" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:onClick="onClick"
+                android:src="@drawable/ic_list_white_24dp"
+                android:visibility="gone"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/spinner_choose_exercise_set"
+                app:layout_constraintVertical_bias="0.0" /> -->
 
-            <NumberPicker
-                android:id="@+id/minutes_picker"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/relativeLayout"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_choose_exercise_set">
+
+                <LinearLayout
+                    android:id="@+id/picker_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:divider="@color/colorAccent"
+                    android:dividerPadding="4dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <NumberPicker
+                        android:id="@+id/hours_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="135dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:theme="@style/AppTheme.NumberPicker" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:theme="@style/AppTheme.NumberPicker" />
+
+                    <NumberPicker
+                        android:id="@+id/minutes_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="135dp"
+                        android:theme="@style/AppTheme.NumberPicker" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:theme="@style/AppTheme.NumberPicker" />
+
+                    <NumberPicker
+                        android:id="@+id/seconds_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="135dp"
+                        android:clipChildren="false"
+                        android:theme="@style/AppTheme.NumberPicker" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_alignTop="@+id/timerText"
+                    android:layout_centerHorizontal="true"
+                    android:max="100"
+                    android:onClick="onClick"
+                    android:padding="16dp"
+                    android:progress="66"
+                    android:progressDrawable="@drawable/progress_circular"
+                    android:rotation="270"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/timerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="00:00:00"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
+
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/button_reset"
                 android:layout_width="wrap_content"
-                android:layout_height="135dp"
-                android:theme="@style/AppTheme.NumberPicker" />
+                android:onClick="onClick"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_replay_black_48dp"
+                android:hapticFeedbackEnabled="true"
+                android:tint="@color/darkblue"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="@+id/relativeLayout"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
+                app:layout_constraintHorizontal_bias="0.332"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp" />
 
-            <TextView
+            <ImageButton
+                android:id="@+id/button_playPause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=":"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:theme="@style/AppTheme.NumberPicker" />
+                android:onClick="onClick"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:hapticFeedbackEnabled="true"
+                android:scaleType="fitXY"
+                android:tint="@color/darkblue"
+                app:srcCompat="@drawable/ic_play_arrow_black"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="@+id/relativeLayout"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                android:layout_marginLeft="8dp"
+                app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
+                app:layout_constraintHorizontal_bias="0.654"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp" />
 
-            <NumberPicker
-                android:id="@+id/seconds_picker"
-                android:layout_width="wrap_content"
-                android:layout_height="135dp"
-                android:clipChildren="false"
-                android:theme="@style/AppTheme.NumberPicker" />
+        </android.support.constraint.ConstraintLayout>
 
-        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_alignTop="@+id/timerText"
-            android:layout_centerHorizontal="true"
-            android:max="100"
-            android:onClick="onClick"
-            android:padding="16dp"
-            android:progress="66"
-            android:progressDrawable="@drawable/circular"
-            android:rotation="270"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/timerText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="00:00:00"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:visibility="invisible" />
-
-
-    </RelativeLayout>
-
-    <ImageButton
-        android:id="@+id/button_reset"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        tools:visibility="gone"
         android:layout_width="wrap_content"
-        android:onClick="onClick"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_replay_black_48dp"
-        android:hapticFeedbackEnabled="true"
-        android:tint="@color/darkblue"
-        android:background="?android:selectableItemBackgroundBorderless"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/relativeLayout"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.33"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_drawer" />
 
-    <ImageButton
-        android:id="@+id/button_playPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:background="?android:selectableItemBackgroundBorderless"
-        android:hapticFeedbackEnabled="true"
-        android:scaleType="fitXY"
-        android:tint="@color/darkblue"
-        app:srcCompat="@drawable/ic_play_arrow_black_48dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/relativeLayout"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/relativeLayout"
-        app:layout_constraintHorizontal_bias="0.66"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.DrawerLayout>

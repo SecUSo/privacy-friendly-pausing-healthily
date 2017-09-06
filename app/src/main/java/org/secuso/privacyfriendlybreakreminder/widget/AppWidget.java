@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
-import org.secuso.privacyfriendlybreakreminder.activities.BreakReminder;
+import org.secuso.privacyfriendlybreakreminder.activities.old.BreakReminder;
 import org.secuso.privacyfriendlybreakreminder.R;
 
 /**

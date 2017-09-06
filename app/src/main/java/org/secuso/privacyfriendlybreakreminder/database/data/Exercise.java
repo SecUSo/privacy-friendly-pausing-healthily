@@ -82,13 +82,13 @@ public class Exercise {
         if(!(object instanceof Exercise)) return false;
         Exercise other = (Exercise) object;
 
-        return this.id != other.id
-            || this.localId != other.localId
-            || !this.section.equals(other.section)
-            || !this.execution.equals(other.execution)
-            || !this.description.equals(other.description)
-            || !this.name.equals(other.name)
-            || !this.imageID.equals(other.imageID)
-            || !this.language.equals(other.language);
+        return this.id == other.id
+            && this.localId == other.localId
+            && this.section.equals(other.section)
+            && this.execution.equals(other.execution)
+            && this.description.equals(other.description)
+            && this.name.equals(other.name)
+            && this.imageID.equals(other.imageID)
+            && this.language.equals(other.language);
     }
 }

@@ -13,4 +13,9 @@
     <color name="yellow">#f6d126</color>
     <color name="red">#B71C1C</color>
     <color name="green">#388E3C</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen">#026499</color>
+    <!-- dots active colors -->
+    <color name="dot_light_screen">#448bb2</color>
 </resources>

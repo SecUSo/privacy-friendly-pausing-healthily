@@ -2,7 +2,6 @@ package org.secuso.privacyfriendlybreakreminder.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,30 +10,39 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorRes;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.secuso.privacyfriendlybreakreminder.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
+import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetSpinnerAdapter;
+import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;
+import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
+import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 import org.secuso.privacyfriendlybreakreminder.service.TimerService;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
-public class TimerActivity extends AppCompatActivity {
+public class TimerActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
     private static final String TAG = TimerActivity.class.getSimpleName();
     private static final String PREF_PICKER_SECONDS = TAG + ".PREF_PICKER_SECONDS";
     private static final String PREF_PICKER_MINUTES = TAG + ".PREF_PICKER_MINUTES";
@@ -49,6 +57,8 @@ public class TimerActivity extends AppCompatActivity {
     private NumberPicker minutesPicker;
     private NumberPicker hoursPicker;
     private LinearLayout pickerLayout;
+    private Spinner exerciseSetSpinner;
+    private ExerciseSetSpinnerAdapter exerciseSetAdapter;
 
     // animation
     private int mShortAnimationDuration;
@@ -109,6 +119,12 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
 
         initResources();
+        getSupportLoaderManager().initLoader(0, null, this);
+    }
+
+    @Override
+    protected int getNavigationDrawerID() {
+        return R.id.nav_timer;
     }
 
     @Override
@@ -136,6 +152,8 @@ public class TimerActivity extends AppCompatActivity {
             updateProgress(mTimerService.getInitialDuration());
         }
         updateUI();
+
+        getSupportLoaderManager().restartLoader(0, null, this);
     }
 
     @Override
@@ -160,15 +178,18 @@ public class TimerActivity extends AppCompatActivity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        exerciseSetAdapter = new ExerciseSetSpinnerAdapter(this, R.layout.layout_exercise_set, new LinkedList<ExerciseSet>());
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         timerText = (TextView) findViewById(R.id.timerText);
         playButton = (ImageButton) findViewById(R.id.button_playPause);
         resetButton = (ImageButton) findViewById(R.id.button_reset);
-
+        exerciseSetSpinner = (Spinner) findViewById(R.id.spinner_choose_exercise_set);
+        exerciseSetSpinner.setAdapter(exerciseSetAdapter);
         secondsPicker = (NumberPicker) findViewById(R.id.seconds_picker);
         minutesPicker = (NumberPicker) findViewById(R.id.minutes_picker);
         hoursPicker = (NumberPicker) findViewById(R.id.hours_picker);
+        pickerLayout = (LinearLayout) findViewById(R.id.picker_layout);
 
         secondsPicker.setDisplayedValues(SECONDS_MINUTES);
         secondsPicker.setMinValue(0);
@@ -189,7 +210,6 @@ public class TimerActivity extends AppCompatActivity {
         setDividerColor(minutesPicker, R.color.transparent);
         setDividerColor(hoursPicker,   R.color.transparent);
 
-        pickerLayout = (LinearLayout) findViewById(R.id.picker_layout);
     }
 
     private void updateProgress(long millisUntilFinished) {
@@ -222,9 +242,9 @@ public class TimerActivity extends AppCompatActivity {
             case R.id.button_reset:
                 mTimerService.stopAndResetTimer();
                 break;
-            case R.id.button_chooseExercise:
-                startActivity(new Intent(this, ExerciseSetOverviewActivity.class));
-                break;
+            //case R.id.button_chooseExercise:
+            //    startActivity(new Intent(this, ManageExerciseSetsActivity.class));
+            //    break;
         }
 
         updateUI();
@@ -338,7 +358,7 @@ public class TimerActivity extends AppCompatActivity {
         if(isRunning) {
             playButton.setImageResource(R.drawable.ic_pause_black_48dp);
         } else {
-            playButton.setImageResource(R.drawable.ic_play_arrow_black_48dp);
+            playButton.setImageResource(R.drawable.ic_play_arrow_black);
         }
     }
 
@@ -357,4 +377,31 @@ public class TimerActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public Loader<List<ExerciseSet>> onCreateLoader(int id, final Bundle args) {
+        return new AsyncTaskLoader<List<ExerciseSet>>(this) {
+            @Override
+            public List<ExerciseSet> loadInBackground() {
+                SQLiteHelper helper = new SQLiteHelper(getContext());
+                return helper.getExerciseSetsWithExercises(ExerciseLocale.getLocale());
+            }
+
+            @Override
+            protected void onStartLoading() {
+                forceLoad();
+            }
+
+            @Override
+            protected void onReset() {}
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<ExerciseSet>> loader, List<ExerciseSet> data) {
+        exerciseSetAdapter.updateData(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<ExerciseSet>> loader) {}
 }

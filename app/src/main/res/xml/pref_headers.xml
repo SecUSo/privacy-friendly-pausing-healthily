@@ -4,7 +4,7 @@
 
     <header
         android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/ic_info_black"
         android:title="@string/pref_header_general" />
 
     <header

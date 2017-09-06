@@ -26,7 +26,7 @@ public class ExerciseActivity extends AppCompatActivity {
         if(isRunning) {
             playButton.setImageResource(R.drawable.ic_pause_black_48dp);
         } else {
-            playButton.setImageResource(R.drawable.ic_play_arrow_black_48dp);
+            playButton.setImageResource(R.drawable.ic_play_arrow_black);
         }
     }
 }

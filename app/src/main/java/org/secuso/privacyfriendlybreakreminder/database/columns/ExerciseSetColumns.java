@@ -16,7 +16,7 @@ public final class ExerciseSetColumns {
     public static final String TABLE_NAME = "exercise_set";
 
     public static final String _ID = "exercise_set_id";
-    public static final String NAME = "name";
+    public static final String NAME = "exercise_set_name";
 
     public static final String[] PROJECTION = {
             _ID,

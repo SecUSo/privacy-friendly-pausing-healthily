@@ -32,7 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.secuso.privacyfriendlybreakreminder.ExerciseLocale;
+import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetListAdapter;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;

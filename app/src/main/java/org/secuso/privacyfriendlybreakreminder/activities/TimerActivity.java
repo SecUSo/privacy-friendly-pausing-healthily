@@ -14,15 +14,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.ColorRes;
-import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
@@ -30,7 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.secuso.privacyfriendlybreakreminder.ExerciseLocale;
+import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetSpinnerAdapter;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;
@@ -62,6 +60,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
     // animation
     private int mShortAnimationDuration;
+    private boolean currentStatusIsPickerVisible = false;
 
     private static final String[] SECONDS_MINUTES = new String[60];
     private static final String[] HOURS = new String[24];
@@ -105,11 +104,9 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             boolean isRunning = intent.getBooleanExtra("isRunning", false);
             boolean isPaused = intent.getBooleanExtra("isPaused", false);
 
-            if(mTimerService != null) {
-                updateUI();
-            } else {
-                updateUI(isRunning, isPaused, initialDuration, millisUntilDone);
-            }
+            Log.d(TAG, millisUntilDone + "/" + initialDuration + " (" + (isRunning ? "Running" : "") + (isPaused ? "Paused" : "") + (!isRunning && !isPaused ?  "Stopped" : "") + ")");
+
+            updateUI(isRunning, isPaused, initialDuration, millisUntilDone);
         }
     };
 
@@ -175,7 +172,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     }
 
     private void initResources() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         exerciseSetAdapter = new ExerciseSetSpinnerAdapter(this, R.layout.layout_exercise_set, new LinkedList<ExerciseSet>());
@@ -186,6 +183,14 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         resetButton = (ImageButton) findViewById(R.id.button_reset);
         exerciseSetSpinner = (Spinner) findViewById(R.id.spinner_choose_exercise_set);
         exerciseSetSpinner.setAdapter(exerciseSetAdapter);
+        exerciseSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                pref.edit().putLong("DEFAULT_EXERCISE_SET", id).apply();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
         secondsPicker = (NumberPicker) findViewById(R.id.seconds_picker);
         minutesPicker = (NumberPicker) findViewById(R.id.minutes_picker);
         hoursPicker = (NumberPicker) findViewById(R.id.hours_picker);
@@ -240,14 +245,13 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 handlePlayPressed();
                 break;
             case R.id.button_reset:
-                mTimerService.stopAndResetTimer();
+                if(mTimerService != null)
+                    mTimerService.stopAndResetTimer();
                 break;
             //case R.id.button_chooseExercise:
             //    startActivity(new Intent(this, ManageExerciseSetsActivity.class));
             //    break;
         }
-
-        updateUI();
     }
 
     private void handlePlayPressed() {
@@ -262,7 +266,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 long duration = getCurrentSetDuration();
                 saveCurrentSetDuration();
                 mTimerService.startTimer(duration);
-                progressBar.setMax((int)duration);
+                progressBar.setMax((int) duration);
             }
         }
     }
@@ -289,68 +293,80 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         }
     }
 
-    private void updateUI(boolean running, boolean isPaused, long initialDuration, long remainingDuration) {
+    private synchronized void updateUI(boolean running, boolean isPaused, long initialDuration, long remainingDuration) {
         updatePlayButton(running);
         progressBar.setMax((int) initialDuration);
         updateProgress(remainingDuration);
         showPicker(!running && !isPaused);
     }
 
-    private void showPicker(boolean showPicker) {
-        if(showPicker && pickerLayout.getVisibility() != View.VISIBLE) {
-            pickerLayout.setAlpha(0f);
-            pickerLayout.setVisibility(View.VISIBLE);
-            pickerLayout.animate()
-                    .alpha(1f)
-                    .setStartDelay(mShortAnimationDuration)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(null);
+    private synchronized void showPicker(final boolean showPicker) {
+        if(showPicker != currentStatusIsPickerVisible) {
 
-            timerText.animate()
-                    .alpha(0f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            timerText.setVisibility(View.INVISIBLE);
-                        }
-                    });
+            pickerLayout.clearAnimation();
+            timerText.clearAnimation();
+            progressBar.clearAnimation();
 
-            progressBar.animate()
-                    .alpha(0f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-                    });
+            currentStatusIsPickerVisible = showPicker;
 
-        } else if(!showPicker && pickerLayout.getVisibility() == View.VISIBLE) {
-            pickerLayout.animate()
-                    .alpha(0f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            pickerLayout.setVisibility(View.INVISIBLE);
-                        }
-                    });
+            if (showPicker) {
+                pickerLayout.setAlpha(0f);
+                pickerLayout.setVisibility(View.VISIBLE);
+                pickerLayout.animate()
+                        .alpha(1f)
+                        //.setStartDelay(mShortAnimationDuration)
+                        .setDuration(mShortAnimationDuration)
+                        .setListener(null);
 
-            timerText.setAlpha(0f);
-            timerText.setVisibility(View.VISIBLE);
-            timerText.animate()
-                    .alpha(1f)
-                    .setDuration(mShortAnimationDuration)
-                    .setListener(null);
+                timerText.animate()
+                        .alpha(0f)
+                        .setDuration(mShortAnimationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                if(currentStatusIsPickerVisible)
+                                    timerText.setVisibility(View.INVISIBLE);
+                            }
+                        });
 
-            progressBar.setAlpha(0f);
-            progressBar.setVisibility(View.VISIBLE);
-            progressBar.animate()
-                    .alpha(1f)
-                    .setDuration(mShortAnimationDuration)
-                    .setStartDelay(mShortAnimationDuration)
-                    .setListener(null);
+                progressBar.animate()
+                        .alpha(0f)
+                        .setDuration(mShortAnimationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                if(currentStatusIsPickerVisible)
+                                    progressBar.setVisibility(View.INVISIBLE);
+                            }
+                        });
+
+            } else {
+                pickerLayout.animate()
+                        .alpha(0f)
+                        .setDuration(mShortAnimationDuration)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                if(!currentStatusIsPickerVisible)
+                                    pickerLayout.setVisibility(View.INVISIBLE);
+                            }
+                        });
+
+                timerText.setAlpha(0f);
+                timerText.setVisibility(View.VISIBLE);
+                timerText.animate()
+                        .alpha(1f)
+                        .setDuration(mShortAnimationDuration)
+                        .setListener(null);
+
+                progressBar.setAlpha(0f);
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.animate()
+                        .alpha(1f)
+                        .setDuration(mShortAnimationDuration)
+                        //.setStartDelay(mShortAnimationDuration)
+                        .setListener(null);
+            }
         }
     }
 
@@ -400,6 +416,18 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     @Override
     public void onLoadFinished(Loader<List<ExerciseSet>> loader, List<ExerciseSet> data) {
         exerciseSetAdapter.updateData(data);
+
+        long defaultId = PreferenceManager.getDefaultSharedPreferences(this).getLong("DEFAULT_EXERCISE_SET", 0L);
+
+
+        for(int i = 0; i < data.size(); ++i) {
+            ExerciseSet e = data.get(i);
+
+            if(e.getId() == defaultId) {
+                exerciseSetSpinner.setSelection(i);
+                break;
+            }
+        }
     }
 
     @Override

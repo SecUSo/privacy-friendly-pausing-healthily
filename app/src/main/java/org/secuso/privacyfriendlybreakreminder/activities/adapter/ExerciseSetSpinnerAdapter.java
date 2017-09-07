@@ -3,6 +3,7 @@ package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,7 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
         } else {
             noExercisesText.setVisibility(View.GONE);
         }
+        noExercisesText.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
         //LayoutInflater inflater = (LayoutInflater) getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE);
         //View row = inflater.inflate(resource, parent, false);
 

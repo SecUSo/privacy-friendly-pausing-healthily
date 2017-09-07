@@ -11,14 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlybreakreminder.R;
-import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
-import org.secuso.privacyfriendlybreakreminder.activities.helper.CursorRecyclerViewAdapter;
-import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseColumns;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 /**
- * Created by Christopher Beckmann on 30.08.2017.
+ * This adapter provides the {@link Exercise}s of one {@link ExerciseSet}.
+ * Use {@link ExerciseSetAdapter#add(Exercise)} and {@link ExerciseSetAdapter#remove(Exercise)} to manage the {@link Exercise}s.
+ * @author Christopher Beckmann
+ * @see android.support.v7.widget.RecyclerView.Adapter
  */
 public class ExerciseSetAdapter extends RecyclerView.Adapter<ViewHolder> {
 

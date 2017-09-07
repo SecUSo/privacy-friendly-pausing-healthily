@@ -69,10 +69,10 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.tutorial.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -86,7 +86,6 @@
             android:name=".activities.TimerActivity"
             android:label="@string/activity_title_break_reminder"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activities.ManageExerciseSetsActivity"
             android:label="@string/activity_title_manage_exercise_sets"
@@ -96,7 +95,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
         </activity>
-
         <activity
             android:name=".activities.ExerciseActivity"
             android:label="@string/activity_title_exercise"
@@ -105,7 +103,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
         </activity>
-
         <activity
             android:name=".activities.EditExerciseSetActivity"
             android:label="@string/activity_title_edit_exercise_set"
@@ -116,6 +113,14 @@
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity" />
         </activity>
 
+        <activity android:name=".activities.ChooseExerciseActivity"
+            android:label="@string/activity_title_choose_exercises"
+            android:parentActivityName=".activities.EditExerciseSetActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity" />>
+
+        </activity>
     </application>
 
 </manifest>

@@ -56,4 +56,7 @@ public class ExerciseSet {
         return exercises.size();
     }
 
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
 }

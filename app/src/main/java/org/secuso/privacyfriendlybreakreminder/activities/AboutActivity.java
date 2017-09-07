@@ -35,9 +35,9 @@ public class AboutActivity extends AppCompatActivity {
 
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(R.string.about);
         if (actionBar != null) {
             // Show the Up button in the action bar.
+            actionBar.setTitle(R.string.about);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }

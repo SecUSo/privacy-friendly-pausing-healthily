@@ -23,12 +23,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.secuso.privacyfriendlybreakreminder.ExerciseLocale;
+import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter;
+import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
+import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
-import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetAdapter;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
 public class EditExerciseSetActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
 
@@ -36,19 +43,23 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
     public static final String EXTRA_EXERCISE_SET_ID = "EXTRA_EXERCISE_SET_ID";
     public static final String EXTRA_EXERCISE_SET_NAME = "EXTRA_EXERCISE_SET_NAME";
 
+    private static final int PICK_EXERCISE_REQUEST = 1;  // The request code
+
     // UI
     private TextView exerciseSetNameText;
     private RecyclerView exerciseList;
     private ProgressBar loadingSpinner;
 
-    private ExerciseSetAdapter exerciseSetAdapter;
+    private ExerciseAdapter mAdapter;
     private ActionBar actionBar;
     private Toolbar toolbar;
 
     // exercise set information
     private long exerciseSetId = -1L;
     private String exerciseSetName = "";
+    private boolean nameChanged = false;
     private boolean modificationsDone = false;
+    private SQLiteHelper mDbHelper;
 
     //methods
 
@@ -72,13 +83,13 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
     }
 
     private void initResources() {
+        mDbHelper = new SQLiteHelper(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         exerciseSetNameText = (TextView) findViewById(R.id.exercise_set_name);
         exerciseList = (RecyclerView) findViewById(R.id.exercise_list);
-        exerciseSetAdapter = new ExerciseSetAdapter(this, null);
-        exerciseList.setAdapter(exerciseSetAdapter);
-        //exerciseList.setLayoutManager(new GridLayoutManager(this, 2));
-        exerciseList.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new ExerciseAdapter(this, ID_COMPARATOR);
+        exerciseList.setAdapter(mAdapter);
+        exerciseList.setLayoutManager(new GridLayoutManager(this, 3));
         loadingSpinner = (ProgressBar) findViewById(R.id.loading_spinner);
 
         exerciseSetNameText.setText(exerciseSetName);
@@ -91,7 +102,7 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
 
             @Override
             public void afterTextChanged(Editable editable) {
-                modificationsDone = true;
+                nameChanged = true;
             }
         });
 
@@ -117,9 +128,7 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
         return new AsyncTaskLoader<ExerciseSet>(this) {
             @Override
             public ExerciseSet loadInBackground() {
-                SQLiteHelper helper = new SQLiteHelper(getContext());
-
-                return helper.getExerciseListForSet((int)exerciseSetId, ExerciseLocale.getLocale());
+                return mDbHelper.getExerciseListForSet((int)exerciseSetId, ExerciseLocale.getLocale());
             }
 
             @Override
@@ -142,7 +151,12 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
             }
         });
 
-        exerciseSetAdapter.updateData(set);
+        if(set != null) {
+            mAdapter.replaceAll(set.getExercises());
+        }
+
+        // load data only once
+        getSupportLoaderManager().destroyLoader(0);
     }
 
     @Override
@@ -159,22 +173,40 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                if(modificationsDone) {
+                if(modificationsDone()) {
                     showDiscardDialog();
                 } else {
                     super.onBackPressed();
                 }
                 return true;
             case R.id.save:
-                saveChanges();
-                super.onBackPressed();
+                if(TextUtils.getTrimmedLength(exerciseSetNameText.getText()) == 0) {
+                    Toast.makeText(this, R.string.activity_edit_no_empty_name, Toast.LENGTH_SHORT).show();
+                } else {
+                    saveChanges();
+                    super.onBackPressed();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void saveChanges() {
-        ExerciseSet set = exerciseSetAdapter.getExerciseSet();
+        List<Exercise> set = mAdapter.getExercises();
+
+        if(modificationsDone) {
+            mDbHelper.clearExercisesFromSet((int) exerciseSetId);
+
+            for (Exercise e : set) {
+                mDbHelper.addExerciseToExerciseSet((int) exerciseSetId, e.getId());
+            }
+        }
+        if(nameChanged) {
+            ExerciseSet exerciseSet = new ExerciseSet();
+            exerciseSet.setId(exerciseSetId);
+            exerciseSet.setName(exerciseSetNameText.getText().toString());
+            mDbHelper.updateExerciseSet(exerciseSet);
+        }
 
         // TODO: save changes to database
         // man könnte den unterschied, der gespeichert werden muss rausfinden, indem man nur die änderungen speichert..
@@ -191,11 +223,15 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
 
     @Override
     public void onBackPressed() {
-        if(modificationsDone) {
+        if(modificationsDone()) {
             showDiscardDialog();
         } else {
             super.onBackPressed();
         }
+    }
+
+    private boolean modificationsDone() {
+        return nameChanged || modificationsDone;
     }
 
     private void showDiscardDialog() {
@@ -214,5 +250,84 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
             })
             .setMessage(R.string.dialog_discard_confirmation)
             .create().show();
+    }
+
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.add_button:
+
+                Intent i = new Intent(this, ChooseExerciseActivity.class);
+                i.putExtra(ChooseExerciseActivity.EXTRA_SELECTED_EXERCISES , getSelectedExerciseIds());
+                startActivityForResult(i, PICK_EXERCISE_REQUEST);
+                break;
+        }
+    }
+
+    private int[] getSelectedExerciseIds() {
+        List<Exercise> set = mAdapter.getExercises();
+
+        int[] result = new int[set.size()];
+
+        for(int i = 0; i < set.size(); ++i) {
+            result[i] = set.get(i).getId();
+        }
+        return result;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_EXERCISE_REQUEST) {
+            if(resultCode == RESULT_OK) {
+
+                int[] result = data.getIntArrayExtra(ChooseExerciseActivity.EXTRA_SELECTED_EXERCISES);
+                List<Exercise> oldList = mAdapter.getExercises();
+                // did we make any changes?
+
+                boolean needToUpdate = false;
+
+                if(result.length != oldList.size()) {
+                    modificationsDone = true;
+                    needToUpdate = true;
+                }
+
+                if(!needToUpdate) {
+                    for (int id : result) {
+
+                        boolean found = false;
+
+                        for (Exercise e : oldList) {
+                            if (e.getId() == id) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) {
+                            modificationsDone = true;
+                            needToUpdate = true;
+                            break;
+                        }
+                    }
+                }
+
+                if(needToUpdate) {
+                    List<Exercise> allExercises = mDbHelper.getExerciseList(ExerciseLocale.getLocale());
+                    List<Exercise> newList = new ArrayList<>();
+
+                    for (int id : result) {
+                        for (Exercise e : allExercises) {
+                            if (e.getId() == id) {
+                                newList.add(e);
+                                break;
+                            }
+                        }
+                    }
+
+                    mAdapter.replaceAll(newList);
+                }
+            }
+        }
     }
 }

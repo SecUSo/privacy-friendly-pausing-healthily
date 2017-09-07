@@ -48,7 +48,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"/>
 
             <!-- <android.support.design.widget.FloatingActionButton
                 android:id="@+id/button_chooseExercise"
@@ -99,7 +99,8 @@
                         android:layout_height="135dp"
                         android:clickable="false"
                         android:focusable="false"
-                        android:theme="@style/AppTheme.NumberPicker" />
+                        android:theme="@style/AppTheme.NumberPicker"
+                        android:descendantFocusability="blocksDescendants" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +115,8 @@
                         android:id="@+id/minutes_picker"
                         android:layout_width="wrap_content"
                         android:layout_height="135dp"
-                        android:theme="@style/AppTheme.NumberPicker" />
+                        android:theme="@style/AppTheme.NumberPicker"
+                        android:descendantFocusability="blocksDescendants" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -130,7 +132,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="135dp"
                         android:clipChildren="false"
-                        android:theme="@style/AppTheme.NumberPicker" />
+                        android:theme="@style/AppTheme.NumberPicker"
+                        android:descendantFocusability="blocksDescendants" />
 
                 </LinearLayout>
 
@@ -185,7 +188,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"/>
 
             <ImageButton
                 android:id="@+id/button_playPause"

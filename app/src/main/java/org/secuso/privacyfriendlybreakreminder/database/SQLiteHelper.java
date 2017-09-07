@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseSetColumns;
@@ -72,13 +73,29 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void updateExerciseSet(ExerciseSet exerciseSet) {
+        SQLiteDatabase database = getReadableDatabase();
+        database.update(ExerciseSetColumns.TABLE_NAME, ExerciseSetColumns.getValues(exerciseSet), ExerciseSetColumns._ID + " = ?", new String[]{String.valueOf(exerciseSet.getId())});
+        database.close();
+    }
+
     public synchronized long addExerciseSet(String name) {
         SQLiteDatabase database = getReadableDatabase();
 
         ContentValues cv = new ContentValues();
         cv.put(ExerciseSetColumns.NAME, name);
 
-        return database.insert(ExerciseSetColumns.TABLE_NAME, null, cv);
+        long id = database.insert(ExerciseSetColumns.TABLE_NAME, null, cv);
+        database.close();
+
+        return id;
+    }
+
+
+    public void clearExercisesFromSet(int exerciseSetId) {
+        SQLiteDatabase database = getReadableDatabase();
+        database.delete("exercise_set_exercises", ExerciseSetColumns._ID + " = ?", new String[]{String.valueOf(exerciseSetId)});
+        database.close();
     }
 
     public synchronized void addExerciseToExerciseSet(int exerciseSetId, int exerciseId) {
@@ -131,14 +148,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 }
                 c.moveToNext();
             }
+            c.close();
         }
+        close();
+
         return result;
     }
 
 
     public synchronized Cursor getExerciseCursor(String language) {
         SQLiteDatabase database = getReadableDatabase();
-        return database.rawQuery(buildQuery(false), new String[]{language});
+        return database.rawQuery(buildQuery(0), new String[]{language});
     }
 
     public synchronized List<Exercise> getExerciseList(String language) {
@@ -196,6 +216,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             c.close();
         }
 
+        close();
+
         return result;
     }
 
@@ -214,41 +236,45 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             c.close();
         }
 
+        close();
+
         return result;
     }
 
-
-    private String buildQuery(boolean addSectionCheck) {
-        return buildQuery(addSectionCheck, "");
-    }
-
-    public synchronized List<Exercise> getExercisesFromSection(String language, String section) { // TODO: Rename after old activities are deleted
+    public synchronized List<Exercise> getExerciseListBySections(String language, @NonNull List<String> sections) {
         SQLiteDatabase database = getReadableDatabase();
 
-        Cursor c = database.rawQuery(buildQuery(true), new String[]{language, "%"+section+"%"});
+        String[] argValues = new String[sections.size() + 1];
+
+        argValues[0] = language;
+
+        for(int i = 1; i < argValues.length; ++i) {
+            argValues[i] = "%"+sections.get(i - 1)+"%";
+        }
+
+        Cursor c = database.rawQuery(buildQuery(sections.size()), argValues);
+
+        return buildExerciseList(c);
+    }
+
+    public synchronized List<Exercise> getExercisesFromSection(String language, String section) { // TODO: REMOVE after old activities are deleted
+        SQLiteDatabase database = getReadableDatabase();
+
+        Cursor c = database.rawQuery(buildQuery(1), new String[]{language, "%"+section+"%"});
 
         return buildExerciseList(c);
     }
 
     /**
-     * SELECT
-     *  E._id,
-     *  E.section,
-     *  E.image_id,
-     *  L.local_id,
-     *  L.language,
-     *  L.exercise_id,
-     *  L.name,
-     *  L.description,
-     *  L.execution
+     * SELECT *
      * FROM exercises E LEFT OUTER JOIN exercises_local L
      * ON E._id = L.exercise_id
-     * WHERE L.language = "de" [AND E.section LIKE %?%]
+     * WHERE L.language = "de" [AND E.section LIKE ?]
      * ORDER BY E._id ASC
      *
      * @return the sql query without the ; at the end.
      */
-    private String buildQuery(boolean addSectionCheck, String customWhereClause) {
+    private String buildQuery(int sectionCheck) {
         StringBuilder sqlQuery = new StringBuilder();
 
         sqlQuery.append("SELECT ");
@@ -279,11 +305,22 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         sqlQuery.append(ExerciseLocalColumns.LANGUAGE);
         sqlQuery.append(" = ? ");
 
-        if(addSectionCheck) {
-            sqlQuery.append("AND E.");
+        if(sectionCheck > 0) {
+            sqlQuery.append("AND ( ");
+        }
+
+        for(int i = 0; i < sectionCheck; ++i) {
+            sqlQuery.append("E.");
             sqlQuery.append(ExerciseColumns.SECTION);
             sqlQuery.append(" LIKE ? ");
+
+            if(i + 1 == sectionCheck) {
+                sqlQuery.append(") ");
+            } else {
+                sqlQuery.append("OR ");
+            }
         }
+
 
         sqlQuery.append("ORDER BY E.");
         sqlQuery.append(ExerciseColumns._ID);
@@ -364,5 +401,4 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             }
         }
     }
-
 }

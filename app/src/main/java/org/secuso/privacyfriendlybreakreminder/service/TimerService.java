@@ -28,12 +28,17 @@ import java.util.Timer;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 public class TimerService extends Service {
+
     public static final String TAG = TimerService.class.getSimpleName();
     public static final String NOTIFICATION_BROADCAST = TAG + ".NOTIFICATION_BROADCAST";
     public static final String TIMER_BROADCAST = TAG + ".TIMER_BROADCAST";
 
+    private static final int UPDATE_INTERVAL = 25;
+    private static final int NOTIFICATION_ID = 31337;
+
     private TimerServiceBinder mBinder = new TimerServiceBinder();
     private CountDownTimer mTimer;
+    private NotificationManager notificationManager;
 
     private boolean isRunning = false;
     private long remainingDuration = 0;
@@ -43,14 +48,17 @@ public class TimerService extends Service {
         int lastTime = 0;
         @Override
         public void onReceive(Context context, Intent intent) {
-            if((int) remainingDuration / 1000 != lastTime) {
-                lastTime = (int) remainingDuration / 1000;
-                updateNotification();
-            }
 
-            if(intent.getBooleanExtra("done" ,false)) {
+            // limit the notification updates
+            int remainingSeconds = intent.getIntExtra("countdown_seconds", 0);
+
+            if(remainingSeconds != lastTime) {
+                lastTime = remainingSeconds;
                 updateNotification();
 
+            } else if(intent.getBooleanExtra("done" ,false)) {
+                lastTime = 0;
+                updateNotification();
             }
         }
     };
@@ -72,10 +80,19 @@ public class TimerService extends Service {
     public synchronized void startTimer(long duration) {
         if(!isRunning) {
             initialDuration = duration;
-            mTimer = createTimer(duration);
-            mTimer.start();
-            isRunning = true;
-            sendBroadcast(buildBroadcast());
+
+            if(duration > 0) {
+                mTimer = createTimer(duration);
+                mTimer.start();
+                isRunning = true;
+                sendBroadcast(buildBroadcast());
+
+            } else {
+                remainingDuration = initialDuration;
+                Intent broadcast = buildBroadcast();
+                broadcast.putExtra("done", true);
+                sendBroadcast(broadcast);
+            }
         }
     }
 
@@ -83,6 +100,7 @@ public class TimerService extends Service {
         if(isRunning) {
             mTimer.cancel();
             isRunning = false;
+
             sendBroadcast(buildBroadcast());
         }
     }
@@ -92,6 +110,7 @@ public class TimerService extends Service {
             mTimer = createTimer(remainingDuration);
             mTimer.start();
             isRunning = true;
+
             sendBroadcast(buildBroadcast());
         }
     }
@@ -103,6 +122,7 @@ public class TimerService extends Service {
             mTimer.start();
         }
         remainingDuration = initialDuration;
+
         sendBroadcast(buildBroadcast());
     }
 
@@ -110,10 +130,11 @@ public class TimerService extends Service {
         if(isRunning) mTimer.cancel();
         isRunning = false;
         remainingDuration = initialDuration;
+
         sendBroadcast(buildBroadcast());
     }
 
-    public synchronized boolean isPaused() { return !isRunning && remainingDuration > 0 && remainingDuration != initialDuration; }
+    public synchronized boolean isPaused() { return !isRunning && initialDuration != 0 && remainingDuration > 0 && remainingDuration != initialDuration; }
 
     public synchronized boolean isRunning() {
         return isRunning;
@@ -122,24 +143,29 @@ public class TimerService extends Service {
     private CountDownTimer createTimer(long duration) {
         remainingDuration = duration;
 
-        return new CountDownTimer(duration, 10) {
+        return new CountDownTimer(duration, UPDATE_INTERVAL) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                synchronized (TimerService.this) {
+                if(isRunning) {
                     remainingDuration = millisUntilFinished;
+                    sendBroadcast(buildBroadcast());
                 }
-
-                sendBroadcast(buildBroadcast());
             }
 
             @Override
             public void onFinish() {
+
+                mTimer.cancel();
+                isRunning = false;
+                remainingDuration = 0;
+
                 Intent broadcast = buildBroadcast();
                 broadcast.putExtra("done", true);
-                sendBroadcast(buildBroadcast());
+                sendBroadcast(broadcast);
 
-                stopAndResetTimer();
+                remainingDuration = initialDuration;
+
             }
         };
     }
@@ -153,6 +179,7 @@ public class TimerService extends Service {
         broadcast.putExtra("countdown_seconds", secondsUntilFinished);
         broadcast.putExtra("isRunning", isRunning());
         broadcast.putExtra("isPaused", isPaused());
+
         return (broadcast);
     }
 
@@ -160,13 +187,9 @@ public class TimerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
 
-        setAsForegroundService();
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         return START_STICKY;
-    }
-
-    private void setAsForegroundService() {
-        startForeground(31337, buildNotification());
     }
 
     private Notification buildNotification() {
@@ -187,13 +210,18 @@ public class TimerService extends Service {
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
         builder.setWhen(0);
         builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setOngoing(isRunning() || isPaused());
 
         return builder.build();
     }
 
     private void updateNotification() {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(31337, buildNotification());
+        if(isRunning() || isPaused())
+            startForeground(NOTIFICATION_ID, buildNotification());
+        else
+            stopForeground(false);
+
+        notificationManager.notify(NOTIFICATION_ID, buildNotification());
     }
 
     @Override

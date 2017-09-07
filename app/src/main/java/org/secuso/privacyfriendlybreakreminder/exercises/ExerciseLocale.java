@@ -1,4 +1,4 @@
-package org.secuso.privacyfriendlybreakreminder;
+package org.secuso.privacyfriendlybreakreminder.exercises;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,7 +8,9 @@ import java.util.Locale;
  * This class saves the available languages for the exercises.
  * @author Christopher Beckmann
  */
-public class ExerciseLocale {
+public final class ExerciseLocale {
+
+    private ExerciseLocale() {}
 
     private static final HashSet<String> AVAILABLE_LOCALE = new HashSet<>();
 

@@ -1,6 +1,10 @@
 package org.secuso.privacyfriendlybreakreminder.database.data;
 
 
+import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
+
 public class Exercise {
     private int id;
     private int localId;
@@ -45,6 +49,20 @@ public class Exercise {
     }
     public void setImageID(String imageID) {
         this.imageID = imageID;
+    }
+    public @DrawableRes int[] getImageResIds(Context context) {
+        String[] imageIDSplit = imageID.split(",");
+
+        int[] result = new int[imageIDSplit.length];
+
+        for(int i = 0; i < result.length; ++i) {
+            result[i] = context.getResources().getIdentifier(
+                    "exercise_" + imageIDSplit[i],
+                    "drawable",
+                    context.getPackageName());
+        }
+
+        return result;
     }
 
     public String getSection() {

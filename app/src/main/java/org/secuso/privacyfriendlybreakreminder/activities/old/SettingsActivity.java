@@ -1,5 +1,5 @@
 
-package org.secuso.privacyfriendlybreakreminder.activities;
+package org.secuso.privacyfriendlybreakreminder.activities.old;
 
 
 import android.annotation.TargetApi;

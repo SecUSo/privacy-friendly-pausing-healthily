@@ -73,19 +73,8 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            String imageID = set.get(i).getImageID();
-            String[] imageIDSplit = imageID.split(",");
+            image.setImageResource(set.get(i).getImageResIds(getContext())[0]);
 
-            if(imageIDSplit.length > 1) {
-                imageID = imageIDSplit[0]; // only take the first image as a display image
-            }
-
-            int imageResID = getContext().getResources().getIdentifier(
-                    "exercise_" + imageID,
-                    "drawable",
-                    getContext().getPackageName());
-
-            image.setImageResource(imageResID);
             exerciseList.addView(view);
         }
 

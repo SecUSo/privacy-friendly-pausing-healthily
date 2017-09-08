@@ -14,11 +14,13 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 
 import org.secuso.privacyfriendlybreakreminder.R;
+import org.secuso.privacyfriendlybreakreminder.activities.ExerciseActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
 
 import java.io.FileDescriptor;
@@ -49,6 +51,20 @@ public class TimerService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
 
+            if(intent.getBooleanExtra("done" ,false)) {
+                lastTime = 0;
+                onTimerDone();
+                return;
+            }
+
+            // reset lastTime if we are starting a new timer
+            long initialMillis = intent.getLongExtra("initialMillis", 0);
+            long remainingMillis = intent.getLongExtra("onTickMillis", 0);
+
+            if(initialMillis == remainingMillis) {
+                lastTime = 0;
+            }
+
             // limit the notification updates
             int remainingSeconds = intent.getIntExtra("countdown_seconds", 0);
 
@@ -56,12 +72,33 @@ public class TimerService extends Service {
                 lastTime = remainingSeconds;
                 updateNotification();
 
-            } else if(intent.getBooleanExtra("done" ,false)) {
-                lastTime = 0;
-                updateNotification();
             }
         }
     };
+
+    private void onTimerDone() {
+
+        // send a notification with sound and vibration
+        stopForeground(false);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setContentTitle(getString(R.string.app_name))
+                .setContentText("Take a break now! Click here to do your chosen exercises.")
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_UPDATE_CURRENT))
+                .setColor(ContextCompat.getColor(this, R.color.colorAccent))
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setWhen(0)
+                .setAutoCancel(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setDefaults(Notification.DEFAULT_LIGHTS)
+                .setVibrate(new long[] { 0, 1000, 1000, 1000, 1000, 1000, 1000 })
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setOnlyAlertOnce(false);
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+
+        // TODO: show decider activity?!
+        // maybe rather show a dialog
+    }
 
     @Override
     public void onCreate() {
@@ -155,14 +192,12 @@ public class TimerService extends Service {
 
             @Override
             public void onFinish() {
-
-                mTimer.cancel();
                 isRunning = false;
                 remainingDuration = 0;
 
                 Intent broadcast = buildBroadcast();
                 broadcast.putExtra("done", true);
-                sendBroadcast(broadcast);
+                TimerService.this.sendBroadcast(broadcast);
 
                 remainingDuration = initialDuration;
 

@@ -102,7 +102,7 @@
     <string name="new_profile_success">Exercices créé avec succès!</string>
     <string name="disclaimer_title">Désistement</string>
     <string name="settings_exercise_summary">Sélectionnez les parties du corps pour l\'entrainement</string>
-    <string name="about_author_contributors">et contributeurs</string>
+    <string name="about_author_contributors">%s et contributeurs</string>
     <string name="help_general_breaks">Vous pouvez faire de l\'entrainement dans les pauses, mais vous n\'etes pas forcé! Il suffit de créer un nouveau profil et de ne pas sélectionnez d\'exercices pour faire une pause simple sans exercise.</string>
     <string name="help_general_information">Le \'privacy friendly break reminder\' vous aide à faire des pauses plus régulièrement et se mettre en forme avec des exercise pour toute le corps!</string>
     <string name="help_general_settings">Alternative, les profils et ces exercices peuvent être modifiés dans le paramètres du profils</string>
@@ -119,6 +119,5 @@
     <string name="help_support_clock_title">Horloge interactive</string>
     <string name="help_support_clock_descr"> En appuyant sur l\'horloge à chaque étape de cette application, l\'horloge peut être démarré et arrêté .</string>
     <string name="help_support_next">En cliquant sur le bouton \'next\', l\'application va choisir un nouvel exercice dans la région du corps actuel. Dans le même temps l\'horloge sera remise à zéro sur la minute d\'avant, que le temps sera dépenser pleinement sur les exercices.</string>
-    <string name="about_author_names">Sergej Alexeev, Jannik Schildknecht et contributeurs</string>
 
 </resources>

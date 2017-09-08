@@ -102,7 +102,7 @@
     <string name="new_profile_success">Übungen wurden erfolgreich erstellt!</string>
     <string name="settings_exercise_summary">Wählen Sie die zu trainierenden Körperbereiche aus</string>
     <string name="disclaimer_title">Haftungsausschluss</string>
-    <string name="about_author_contributors">und Mitwirkende</string>
+    <string name="about_author_contributors">%s und Mitwirkende</string>
     <string name="help_general_breaks">Sie können in den Pausen trainieren, müssen dies aber nicht! Erstellen Sie einfach ein Profil, ohne Übungen hinzuzufügen.</string>
     <string name="help_general_information">Der \'Privacy friendly break reminder\' hilft Ihnen, regelmäßiger Pausen zu nehmen und währenddessen zu trainieren!</string>
     <string name="help_general_settings">Alternativ können die Profile und die dazugehörigen Übungen in den Profil-Einstellungen bearbeitet werden</string>
@@ -119,5 +119,4 @@
     <string name="help_support_clock_title">Interaktive Uhr</string>
     <string name="help_support_next">Beim Klicken auf \'Next\' wird eine andere Übung aus der aktuellen Körperregion ausgewählt. Zugleich wird die Uhr wieder auf die letzte volle Minute gesetzt. Somit geht keine Zeit für die Übungen verloren.</string>
     <string name="help_support_title">Bedienungsanleitung</string>
-    <string name="about_author_names">Sergej Alexeev, Jannik Schildknecht und Mitwirkende</string>
 </resources>

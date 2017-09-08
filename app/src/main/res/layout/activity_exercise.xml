@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.secuso.privacyfriendlybreakreminder.activities.ExerciseActivity">
@@ -25,11 +26,53 @@
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_play_arrow_black" />
 
+    <ImageButton
+        android:id="@+id/button_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
+        android:tint="@color/darkblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_skip_next_black_48dp"
+        app:layout_constraintHorizontal_bias="0.75" />
+
+    <ImageButton
+        android:id="@+id/button_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
+        android:tint="@color/darkblue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_skip_previous_black_48dp"
+        app:layout_constraintHorizontal_bias="0.25" />
+
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:id="@+id/progressBarLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:clickable="true"
+        android:onClick="onClick"
         android:layout_marginStart="8dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -68,17 +111,17 @@
 
     <ImageView
         android:id="@+id/exercise_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@drawable/exercise_0"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarLayout"
+        app:srcCompat="@drawable/exercise_0" />
 
     <TextView
         android:id="@+id/execution_title"
@@ -89,7 +132,7 @@
         android:layout_marginTop="0dp"
         android:text="Execution"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/relativeLayout"
+        app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
         app:layout_constraintTop_toBottomOf="@+id/section_card" />
 
     <TextView
@@ -100,7 +143,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:text="sitting or standing"
-        app:layout_constraintLeft_toRightOf="@+id/relativeLayout"
+        app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
         app:layout_constraintTop_toBottomOf="@+id/execution_title" />
 
     <TextView

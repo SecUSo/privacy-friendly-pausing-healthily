@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +47,7 @@ import static android.view.View.VISIBLE;
 
 public class ManageExerciseSetsActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
 
+    private static final String TAG = ManageExerciseSetsActivity.class.getSimpleName();
     private RecyclerView exerciseSetList;
     private ProgressBar loadingSpinner;
     private TextView noExerciseSetsText;
@@ -192,7 +194,7 @@ public class ManageExerciseSetsActivity extends BaseActivity implements android.
                 enableDeleteMode();
                 return true;
             default:
-                Toast.makeText(this, "option selected", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Default option selected?");
                 return super.onOptionsItemSelected(item);
         }
     }

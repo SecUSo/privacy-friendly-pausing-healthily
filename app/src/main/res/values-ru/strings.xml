@@ -101,7 +101,7 @@
     </string-array>
     <string name="disclaimer_title">Дисклеймер </string>
     <string name="settings_exercise_summary">Выберите части тела, которые вы хотите тренировать</string>
-    <string name="about_author_contributors">и соучастники</string>
+    <string name="about_author_contributors">%s и соучастники</string>
     <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
     <string name="help_tipps_title">Рекомендация</string>
     <string name="help_tipps_pomodoro_title">Помодоро</string>
@@ -118,5 +118,4 @@
     <string name="help_support_next">При нажатии на кнопку \'Next\', приложение будет выбрать новое упражнение в текущей области тела. В то же время часы будут сброшены на следующую полную минуту, чтобы провестить время полностью на упражнениях.</string>
     <string name="help_support_clock_title">Интерактивные часы</string>
     <string name="help_support_clock_descr">При нажатии на часы возможно их запустить или остановить.</string>
-    <string name="about_author_names">Sergej Alexeev, Jannik Schildknecht и соучастники</string>
 </resources>

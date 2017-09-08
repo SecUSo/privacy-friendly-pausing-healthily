@@ -39,7 +39,6 @@ import android.widget.TextView;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.AboutActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.HelpActivity;
-import org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity;
 import org.secuso.privacyfriendlybreakreminder.widget.*;
 
 import java.util.Locale;
@@ -304,7 +303,7 @@ public class BreakReminder extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_settings) {
+        /*if (id == R.id.nav_settings) {
             // Handle the profile action
             Intent intent = new Intent(this, SettingsActivity.class);
             this.startActivity(intent);
@@ -320,7 +319,7 @@ public class BreakReminder extends AppCompatActivity
             // Show about page
             Intent intent = new Intent(this, AboutActivity.class);
             this.startActivity(intent);
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -539,7 +538,7 @@ public class BreakReminder extends AppCompatActivity
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
             builder.setView(i.inflate(R.layout.first_dialog, null));
-            builder.setIcon(R.mipmap.ic_drawer_logo);
+            builder.setIcon(R.mipmap.ic_app);
             builder.setTitle(getActivity().getString(R.string.app_name_long));
 
             builder.setPositiveButton(getActivity().getString(R.string.dialog_positive), null);

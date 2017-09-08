@@ -3,6 +3,7 @@ package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ChooseExerciseActivity;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
+import org.secuso.privacyfriendlybreakreminder.dialog.ExerciseDialog;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -99,18 +101,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         final ExerciseViewHolder vh = (ExerciseViewHolder) holder;
 
-        String imageID = exercise.getImageID();
-        String[] imageIDSplit = imageID.split(",");
-
-        if(imageIDSplit.length > 1) {
-            imageID = imageIDSplit[0];
-        }
-
         final View.OnClickListener infoClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Show Details Of the Exercise Now.", Toast.LENGTH_SHORT).show();
-                // TODO: show Fragement ? Dialog? Something with the Information of the Exercise!
+                ExerciseDialog.showExerciseDialog(mContext, exercise);
             }
         };
 
@@ -127,11 +121,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
         };
 
-        int imageResID = mContext.getResources().getIdentifier(
-                "exercise_" + imageID,
-                "drawable",
-                mContext.getPackageName());
-        vh.image.setImageResource(imageResID);
+        vh.image.setImageResource(exercise.getImageResIds(mContext)[0]);
 
         if(checkedIds != null)
             vh.checkbox.setChecked(checkedIds.contains(exercise.getId()));

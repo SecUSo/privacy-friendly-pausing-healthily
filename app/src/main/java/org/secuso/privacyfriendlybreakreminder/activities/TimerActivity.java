@@ -237,6 +237,10 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         //animation.start();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     public void onClick(View view) {
         switch(view.getId()) {

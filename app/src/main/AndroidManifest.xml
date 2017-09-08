@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.secuso.privacyfriendlybreakreminder">
 
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,20 +11,9 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activities.old.BreakReminder"
-            android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".activities.old.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activities.old.BreakReminder"
             android:screenOrientation="portrait">
@@ -32,23 +21,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.old.BreakReminder" />
         </activity>
+
         <activity
             android:name=".activities.old.BreakDeciderActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.old.BreakActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.old.ProfileActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.old.ExerciseTypeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.AboutActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activities.HelpActivity"
             android:screenOrientation="portrait" />
 
         <receiver
@@ -65,8 +40,8 @@
 
         <activity
             android:name=".activities.SplashActivity"
-            android:icon="@mipmap/splash_icon"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,30 +50,35 @@
         </activity>
         <activity
             android:name=".activities.tutorial.TutorialActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <service
-            android:name=".service.TimerService"
-            android:enabled="true"
-            android:exported="false" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activities.TimerActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+        </activity>
 
         <activity
             android:name=".activities.TimerActivity"
             android:label="@string/activity_title_break_reminder"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activities.ManageExerciseSetsActivity"
             android:label="@string/activity_title_manage_exercise_sets"
             android:parentActivityName=".activities.TimerActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
         </activity>
         <activity
             android:name=".activities.ExerciseActivity"
-            android:label="@string/activity_title_exercise"
-            android:parentActivityName=".activities.TimerActivity">
+            android:label=""
+            android:parentActivityName=".activities.TimerActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
@@ -107,20 +87,49 @@
             android:name=".activities.EditExerciseSetActivity"
             android:label="@string/activity_title_edit_exercise_set"
             android:parentActivityName=".activities.ManageExerciseSetsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity" />
         </activity>
 
-        <activity android:name=".activities.ChooseExerciseActivity"
+        <activity
+            android:name=".activities.ChooseExerciseActivity"
             android:label="@string/activity_title_choose_exercises"
-            android:parentActivityName=".activities.EditExerciseSetActivity">
+            android:parentActivityName=".activities.EditExerciseSetActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity" />>
-
         </activity>
+
+        <activity
+            android:name=".activities.AboutActivity"
+            android:label="@string/activity_title_about"
+            android:parentActivityName=".activities.TimerActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.HelpActivity"
+            android:label="@string/activity_title_help"
+            android:parentActivityName=".activities.TimerActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+        </activity>
+
+        <service
+            android:name=".service.TimerService"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

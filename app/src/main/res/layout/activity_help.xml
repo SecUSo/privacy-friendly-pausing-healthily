@@ -4,27 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="orgprivacy_friendly_apps.secusoprivacyfriendlybreakreminder.HelpActivity">
+        tools:context=".activities.HelpActivity">
 
-        <include layout="@layout/app_bar_break_reminder"/>
+        <include layout="@layout/layout_toolbar"/>
 
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:orientation="vertical"
-            tools:context="org.secuso.privacyfriendlybreakreminder.activities.HelpActivity"
+            tools:context=".activities.HelpActivity"
             android:weightSum="1">
             <fragment android:name="org.secuso.privacyfriendlybreakreminder.activities.HelpActivity$HelpFragment"
                 android:id="@+id/help_fragment"
@@ -37,10 +37,12 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
+        tools:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

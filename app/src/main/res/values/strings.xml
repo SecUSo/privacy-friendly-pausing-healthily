@@ -73,10 +73,10 @@
     <!-- settings for AboutActivity -->
     <string name="about">About</string>
     <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
-    <string name="version_number" translatable="false">Version 1.0</string>
-    <string name="about_author">Authors:</string>
-    <string name="about_author_names">Sergej Alexeev, Jannik Schildknecht and contributors.</string>
-    <string name="about_author_contributors">and contributors.</string>
+    <string name="version_number" translatable="false">Version</string>
+    <string name="about_author">Authors: </string>
+    <string name="about_author_names" translatable="false">Christopher Beckmann, Sergej Alexeev, Jannik Schildknecht</string>
+    <string name="about_author_contributors">%s and contributors.</string>
     <string name="about_affiliation">In affiliation with</string>
     <string name="more_info">More Information can be found on:</string>
     <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-break-reminder">Github-Repo</a></string>
@@ -302,6 +302,13 @@
     <string name="exercise_section_legs">Legs</string>
     <string name="activity_title_choose_exercises">Choose Exercises</string>
     <string name="activity_edit_no_empty_name">Please specify a name.</string>
+    <string name="activity_title_help">Help</string>
+    <string name="activity_title_about">About</string>
+    <string name="dialog_leave_break_confirmation">Do you really want to cancel your break?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="exercise">Exercise</string>
+    <string name="remaining_time">Time remaining:</string>
 
 
 </resources>

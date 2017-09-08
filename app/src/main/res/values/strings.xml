@@ -309,6 +309,8 @@
     <string name="no">No</string>
     <string name="exercise">Exercise</string>
     <string name="remaining_time">Time remaining:</string>
+    <string name="activity_timer_choose_time">Select a work duration:</string>
+    <string name="activity_timer_choose_break">Select a break duration:</string>
 
 
 </resources>

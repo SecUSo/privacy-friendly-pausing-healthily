@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="@id/spinner_choose_exercise_set"
                 app:layout_constraintVertical_bias="0.0" /> -->
 
-            <RelativeLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -77,79 +77,152 @@
                 app:layout_constraintTop_toBottomOf="@+id/spinner_choose_exercise_set">
 
                 <LinearLayout
-                    android:id="@+id/picker_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/picker_layout"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:visibility="visible"
                     android:divider="@color/colorAccent"
                     android:dividerPadding="4dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="visible">
-
-                    <NumberPicker
-                        android:id="@+id/hours_picker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="135dp"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:theme="@style/AppTheme.NumberPicker"
-                        android:descendantFocusability="blocksDescendants" />
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:theme="@style/AppTheme.NumberPicker" />
+                        android:text="@string/activity_timer_choose_time"/>
 
-                    <NumberPicker
-                        android:id="@+id/minutes_picker"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="135dp"
-                        android:theme="@style/AppTheme.NumberPicker"
-                        android:descendantFocusability="blocksDescendants" />
+                        android:layout_height="wrap_content"
+                        android:divider="@color/colorAccent"
+                        android:dividerPadding="4dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <NumberPicker
+                            android:id="@+id/hours_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:theme="@style/AppTheme.NumberPicker"
+                            android:descendantFocusability="blocksDescendants" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:theme="@style/AppTheme.NumberPicker" />
+
+                        <NumberPicker
+                            android:id="@+id/minutes_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:theme="@style/AppTheme.NumberPicker"
+                            android:descendantFocusability="blocksDescendants" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:theme="@style/AppTheme.NumberPicker" />
+
+                        <NumberPicker
+                            android:id="@+id/seconds_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:clipChildren="false"
+                            android:theme="@style/AppTheme.NumberPicker"
+                            android:descendantFocusability="blocksDescendants" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=":"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:theme="@style/AppTheme.NumberPicker" />
+                        android:text="@string/activity_timer_choose_break"/>
 
-                    <NumberPicker
-                        android:id="@+id/seconds_picker"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="135dp"
-                        android:clipChildren="false"
-                        android:theme="@style/AppTheme.NumberPicker"
-                        android:descendantFocusability="blocksDescendants" />
+                        android:layout_height="wrap_content"
+                        android:divider="@color/colorAccent"
+                        android:dividerPadding="4dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <NumberPicker
+                            android:id="@+id/minutes_break_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:theme="@style/AppTheme.NumberPicker"
+                            android:descendantFocusability="blocksDescendants" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:theme="@style/AppTheme.NumberPicker" />
+
+                        <NumberPicker
+                            android:id="@+id/seconds_break_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:theme="@style/AppTheme.NumberPicker"
+                            android:descendantFocusability="blocksDescendants" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:layout_alignTop="@+id/timerText"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
                     android:max="100"
                     android:onClick="onClick"
                     android:padding="16dp"
                     android:progress="66"
                     android:progressDrawable="@drawable/progress_circular"
                     android:rotation="270"
-                    android:visibility="invisible" />
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/timerText"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
@@ -159,10 +232,18 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="36sp"
                     android:textStyle="bold"
-                    android:visibility="invisible" />
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toTopOf="@+id/progressBar"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="@+id/progressBar"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="@+id/progressBar"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                    android:layout_marginBottom="8dp" />
 
 
-            </RelativeLayout>
+            </android.support.constraint.ConstraintLayout>
 
             <ImageButton
                 android:id="@+id/button_reset"

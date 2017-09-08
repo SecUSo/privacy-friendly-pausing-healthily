@@ -168,9 +168,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     @Override
     public void onLoadFinished(Loader<ExerciseSet> loader, ExerciseSet set) {
-        this.set = set;
+        if(set != null) {
+            this.set = set;
+        } else {
+            this.set = new ExerciseSet();
+        }
 
-        if(set.size() > 0) {
+        if(this.set.size() > 0) {
             setExercise(0);
         } else {
             // TODO IF THERE ARE NO EXERCISES ONLY SHOW TIMER : showTimer();

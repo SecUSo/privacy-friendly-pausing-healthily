@@ -46,6 +46,9 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private static final String PREF_PICKER_MINUTES = TAG + ".PREF_PICKER_MINUTES";
     private static final String PREF_PICKER_HOURS = TAG + ".PREF_PICKER_HOURS";
 
+    private static final String PREF_BREAK_PICKER_SECONDS = TAG + "PREF_BREAK_PICKER_SECONDS";
+    private static final String PREF_BREAK_PICKER_MINUTES = TAG + "PREF_BREAK_PICKER_MINUTES";
+
     // UI
     private ProgressBar progressBar;
     private TextView timerText;
@@ -54,6 +57,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private NumberPicker secondsPicker;
     private NumberPicker minutesPicker;
     private NumberPicker hoursPicker;
+    private NumberPicker secondsBreakPicker;
+    private NumberPicker minutesBreakPicker;
     private LinearLayout pickerLayout;
     private Spinner exerciseSetSpinner;
     private ExerciseSetSpinnerAdapter exerciseSetAdapter;
@@ -196,24 +201,38 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         hoursPicker = (NumberPicker) findViewById(R.id.hours_picker);
         pickerLayout = (LinearLayout) findViewById(R.id.picker_layout);
 
+        secondsBreakPicker = (NumberPicker) findViewById(R.id.seconds_break_picker);
+        minutesBreakPicker = (NumberPicker) findViewById(R.id.minutes_break_picker);
+
         secondsPicker.setDisplayedValues(SECONDS_MINUTES);
         secondsPicker.setMinValue(0);
         secondsPicker.setMaxValue(SECONDS_MINUTES.length - 1);
         secondsPicker.setValue(pref.getInt(PREF_PICKER_SECONDS, 0));
+        secondsBreakPicker.setDisplayedValues(SECONDS_MINUTES);
+        secondsBreakPicker.setMinValue(0);
+        secondsBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+        secondsBreakPicker.setValue(pref.getInt(PREF_BREAK_PICKER_SECONDS, 0));
 
         minutesPicker.setDisplayedValues(SECONDS_MINUTES);
         minutesPicker.setMinValue(0);
         minutesPicker.setMaxValue(SECONDS_MINUTES.length - 1);
         minutesPicker.setValue(pref.getInt(PREF_PICKER_MINUTES, 30));
+        minutesBreakPicker.setDisplayedValues(SECONDS_MINUTES);
+        minutesBreakPicker.setMinValue(0);
+        minutesBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+        minutesBreakPicker.setValue(pref.getInt(PREF_BREAK_PICKER_MINUTES, 0));
 
         hoursPicker.setDisplayedValues(HOURS);
         hoursPicker.setMinValue(0);
         hoursPicker.setMaxValue(HOURS.length - 1);
         hoursPicker.setValue(pref.getInt(PREF_PICKER_HOURS, 1));
 
+
         setDividerColor(secondsPicker, R.color.transparent);
         setDividerColor(minutesPicker, R.color.transparent);
         setDividerColor(hoursPicker,   R.color.transparent);
+        setDividerColor(secondsBreakPicker,   R.color.transparent);
+        setDividerColor(minutesBreakPicker,   R.color.transparent);
 
     }
 
@@ -271,6 +290,12 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 saveCurrentSetDuration();
                 mTimerService.startTimer(duration);
                 progressBar.setMax((int) duration);
+
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+                pref.edit()
+                        .putInt(PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
+                        .putInt(PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
+                        .putLong("PAUSE TIME", getCurrentSetBreakTime()).apply();
             }
         }
     }
@@ -287,6 +312,12 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         duration += minutesPicker.getValue() * 1000 * 60;
         duration += hoursPicker.getValue() * 1000 * 60 * 60;
         return duration;
+    }
+
+    private long getCurrentSetBreakTime() {
+        long breakTime = secondsBreakPicker.getValue() * 1000;
+        breakTime += minutesBreakPicker.getValue() * 1000 * 60;
+        return breakTime;
     }
 
     private void updateUI() {

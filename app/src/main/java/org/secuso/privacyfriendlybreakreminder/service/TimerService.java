@@ -251,12 +251,12 @@ public class TimerService extends Service {
     }
 
     private void updateNotification() {
-        if(isRunning() || isPaused())
+        if(isRunning() || isPaused()) {
             startForeground(NOTIFICATION_ID, buildNotification());
-        else
-            stopForeground(false);
-
-        notificationManager.notify(NOTIFICATION_ID, buildNotification());
+            notificationManager.notify(NOTIFICATION_ID, buildNotification());
+        } else {
+            stopForeground(true);
+        }
     }
 
     @Override

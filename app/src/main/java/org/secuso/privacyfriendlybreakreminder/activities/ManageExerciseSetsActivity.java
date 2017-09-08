@@ -227,7 +227,7 @@ public class ManageExerciseSetsActivity extends BaseActivity implements android.
                     List<Long> deleteIds = exerciseSetAdapter.getDeleteIdList();
 
                     if(deleteIds.size() == 0) {
-                        Toast.makeText(this, "Please select an item to delete.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, R.string.toast_please_select_an_item_to_delete, Toast.LENGTH_SHORT).show();
                     } else {
                         for (Long l : deleteIds) {
                             helper.deleteExerciseSet(l);
@@ -316,7 +316,7 @@ public class ManageExerciseSetsActivity extends BaseActivity implements android.
                     String text = exerciseSetName.getText().toString();
 
                     if(TextUtils.isEmpty(text)) {
-                        Toast.makeText(getActivity(), "Please specify a name.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.toast_please_specify_a_name, Toast.LENGTH_SHORT).show();
                         return;
                     }
 

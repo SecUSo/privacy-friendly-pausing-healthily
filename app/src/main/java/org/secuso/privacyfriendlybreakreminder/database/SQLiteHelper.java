@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
 import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseSetColumns;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseColumns;
@@ -23,48 +25,48 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class SQLiteHelper extends SQLiteOpenHelper {
+public class SQLiteHelper extends SQLiteAssetHelper {
 
     private static final String TAG = SQLiteHelper.class.getSimpleName();
 
     private Context mContext;
     private static final String DATABASE_NAME = "exercises.sqlite";
     private static final String DATABASE_PATH = "/data/data/org.secuso.privacyfriendlybreakreminder/databases/";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String[] deleteQueryList = {
             ExerciseColumns.SQL_DELETE_ENTRIES,
             ExerciseLocalColumns.SQL_DELETE_ENTRIES,
             ExerciseSetColumns.SQL_DELETE_ENTRIES};
 
-    private boolean onCreate;
-    private boolean onUpgrade;
+//    private boolean onCreate;
+//    private boolean onUpgrade;
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
     }
 
-    @Override
-    public void onOpen(SQLiteDatabase db) {
-        if (onCreate || onUpgrade) {
-            onCreate = onUpgrade = false;
-            copyDatabaseFromAssets(db);
-        }
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        onCreate = true;
-    }
-
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade = true;
-    }
-
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
-    }
+//    @Override
+//    public void onOpen(SQLiteDatabase db) {
+//        if (onCreate || onUpgrade) {
+//            onCreate = onUpgrade = false;
+//            copyDatabaseFromAssets(db);
+//        }
+//    }
+//
+//    @Override
+//    public void onCreate(SQLiteDatabase db) {
+//        onCreate = true;
+//    }
+//
+//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        onUpgrade = true;
+//    }
+//
+//    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        onUpgrade(db, oldVersion, newVersion);
+//    }
 
 
     public synchronized void deleteExerciseSet(long id) {

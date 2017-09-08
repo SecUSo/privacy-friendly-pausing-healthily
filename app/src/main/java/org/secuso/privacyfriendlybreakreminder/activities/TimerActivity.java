@@ -28,6 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetSpinnerAdapter;
@@ -40,14 +41,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.DEFAULT_EXERCISE_SET;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PAUSE_TIME;
+
 public class TimerActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
     private static final String TAG = TimerActivity.class.getSimpleName();
-    private static final String PREF_PICKER_SECONDS = TAG + ".PREF_PICKER_SECONDS";
-    private static final String PREF_PICKER_MINUTES = TAG + ".PREF_PICKER_MINUTES";
-    private static final String PREF_PICKER_HOURS = TAG + ".PREF_PICKER_HOURS";
-
-    private static final String PREF_BREAK_PICKER_SECONDS = TAG + "PREF_BREAK_PICKER_SECONDS";
-    private static final String PREF_BREAK_PICKER_MINUTES = TAG + "PREF_BREAK_PICKER_MINUTES";
 
     // UI
     private ProgressBar progressBar;
@@ -191,7 +189,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         exerciseSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pref.edit().putLong("DEFAULT_EXERCISE_SET", id).apply();
+                pref.edit().putLong(DEFAULT_EXERCISE_SET, id).apply();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -207,25 +205,25 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         secondsPicker.setDisplayedValues(SECONDS_MINUTES);
         secondsPicker.setMinValue(0);
         secondsPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        secondsPicker.setValue(pref.getInt(PREF_PICKER_SECONDS, 0));
+        secondsPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_SECONDS, 0));
         secondsBreakPicker.setDisplayedValues(SECONDS_MINUTES);
         secondsBreakPicker.setMinValue(0);
         secondsBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        secondsBreakPicker.setValue(pref.getInt(PREF_BREAK_PICKER_SECONDS, 0));
+        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
 
         minutesPicker.setDisplayedValues(SECONDS_MINUTES);
         minutesPicker.setMinValue(0);
         minutesPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        minutesPicker.setValue(pref.getInt(PREF_PICKER_MINUTES, 30));
+        minutesPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_MINUTES, 30));
         minutesBreakPicker.setDisplayedValues(SECONDS_MINUTES);
         minutesBreakPicker.setMinValue(0);
         minutesBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        minutesBreakPicker.setValue(pref.getInt(PREF_BREAK_PICKER_MINUTES, 0));
+        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 0));
 
         hoursPicker.setDisplayedValues(HOURS);
         hoursPicker.setMinValue(0);
         hoursPicker.setMaxValue(HOURS.length - 1);
-        hoursPicker.setValue(pref.getInt(PREF_PICKER_HOURS, 1));
+        hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
 
 
         setDividerColor(secondsPicker, R.color.transparent);
@@ -293,18 +291,18 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
                 pref.edit()
-                        .putInt(PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
-                        .putInt(PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
-                        .putLong("PAUSE TIME", getCurrentSetBreakTime()).apply();
+                        .putInt(PrefManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
+                        .putInt(PrefManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
+                        .putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
             }
         }
     }
 
     private void saveCurrentSetDuration() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        pref.edit().putInt(PREF_PICKER_SECONDS, secondsPicker.getValue())
-                .putInt(PREF_PICKER_MINUTES, minutesPicker.getValue())
-                .putInt(PREF_PICKER_HOURS, hoursPicker.getValue()).apply();
+        pref.edit().putInt(PrefManager.PREF_PICKER_SECONDS, secondsPicker.getValue())
+                .putInt(PrefManager.PREF_PICKER_MINUTES, minutesPicker.getValue())
+                .putInt(PrefManager.PREF_PICKER_HOURS, hoursPicker.getValue()).apply();
     }
 
     private long getCurrentSetDuration() {

@@ -1,11 +1,16 @@
 package org.secuso.privacyfriendlybreakreminder.activities;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
@@ -17,11 +22,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlybreakreminder.R;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
@@ -29,7 +36,7 @@ import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 
 import java.util.Locale;
 
-import static android.support.design.R.id.center_horizontal;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.support.design.R.id.center_vertical;
 
 public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet>{
@@ -38,13 +45,26 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     // UI
     private TextView breakTimerText;
-    private ImageView playButton;
     private ProgressBar progressBar;
     private TextView timerText;
     private TextView executionText;
     private TextView descriptionText;
-    private ImageView exerciseImage;
     private TextView sectionText;
+    private ImageView exerciseImage;
+    private ConstraintLayout exerciseContent;
+    private ImageButton playButton;
+    private ImageButton repeatButton;
+    private ImageButton continuousButton;
+    private ImageButton prevButton;
+    private ImageButton nextButton;
+    private ProgressBar progressBarBig;
+    private TextView breakTimerTextBig;
+    private ConstraintLayout bigProgressBarLayout;
+
+    private boolean repeatStatus;
+    private boolean continuousStatus;
+    private boolean showBigTimer = false;
+    private boolean showControlButtons = true;
 
     // exerciseSet info
     private long exerciseSetId;
@@ -53,8 +73,8 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private int currentExercisePart = 0;
 
     // timer
-    private long exerciseTime = 20 * 1000; // TODO - get from exercise?
-    private long pauseDuration = 5 * 60 * 1000; // TODO 5 minutes - get from settings
+    private final long exerciseTime = 20 * 1000;
+    private long pauseDuration;
     private CountDownTimer exerciseTimer;
     private CountDownTimer breakTimer;
     private boolean isBreakTimerRunning;
@@ -62,13 +82,20 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private long remainingBreakDuration;
     private long remainingExerciseDuration;
 
-    // database
+    // database and utility
     private SQLiteHelper dbHelper;
+    private SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        exerciseSetId = pref.getLong(PrefManager.DEFAULT_EXERCISE_SET, 0L);
+        pauseDuration = pref.getLong(PrefManager.PAUSE_TIME, 5 * 60 * 1000);
+        repeatStatus = pref.getBoolean(PrefManager.REPEAT_STATUS, false);
+        continuousStatus = pref.getBoolean(PrefManager.CONTINUOUS_STATUS, false);
 
         initResources();
 
@@ -78,9 +105,6 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             ab.setHomeAsUpIndicator(R.drawable.ic_close_white);
         }
 
-        exerciseSetId = PreferenceManager.getDefaultSharedPreferences(this).getLong("DEFAULT_EXERCISE_SET", 0L);
-        pauseDuration = PreferenceManager.getDefaultSharedPreferences(this).getLong("DEFAULT_PAUSE_DURATION", 0L);
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         getSupportLoaderManager().initLoader(0, null, this);
@@ -88,13 +112,25 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     private void initResources() {
         dbHelper = new SQLiteHelper(this);
-        playButton = (ImageView) findViewById(R.id.button_playPause);
+        playButton = (ImageButton) findViewById(R.id.button_playPause);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         timerText = (TextView) findViewById(R.id.timerText);
         executionText = (TextView) findViewById(R.id.execution);
         descriptionText = (TextView) findViewById(R.id.description);
         exerciseImage = (ImageView) findViewById(R.id.exercise_image);
         sectionText = (TextView) findViewById(R.id.section);
+        repeatButton = (ImageButton) findViewById(R.id.button_repeat);
+        exerciseContent = (ConstraintLayout) findViewById(R.id.exercise_layout);
+        continuousButton = (ImageButton) findViewById(R.id.button_continuous);
+        prevButton = (ImageButton) findViewById(R.id.button_prev);
+        nextButton = (ImageButton) findViewById(R.id.button_next);
+
+        progressBarBig = (ProgressBar) findViewById(R.id.progressBarBig);
+        breakTimerTextBig = (TextView) findViewById(R.id.breakTimerTextBig);
+        bigProgressBarLayout = (ConstraintLayout) findViewById(R.id.bigProgressBarLayout);
+
+        setRepeatButtonStatus(repeatStatus);
+        setContinuousButtonStatus(continuousStatus);
     }
 
     @Override
@@ -133,8 +169,11 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+
                         ExerciseActivity.this.finish();
-                        ExerciseActivity.this.startActivity(new Intent(ExerciseActivity.this, TimerActivity.class));
+                        ExerciseActivity.this.startActivity(intent);
                         ExerciseActivity.this.overridePendingTransition(0, 0);
                     }
                 })
@@ -145,6 +184,30 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                     }
                 })
                 .setMessage(R.string.dialog_leave_break_confirmation)
+                .create().show();
+    }
+
+    private void showEndDialog() {
+        new AlertDialog.Builder(this)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
+                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+
+                        ExerciseActivity.this.finish();
+                        ExerciseActivity.this.startActivity(intent);
+                        ExerciseActivity.this.overridePendingTransition(0, 0);
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setTitle(R.string.dialog_end_break_confirmation_title)
+                .setMessage(R.string.dialog_end_break_confirmation)
                 .create().show();
     }
 
@@ -177,12 +240,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         if(this.set.size() > 0) {
             setExercise(0);
         } else {
-            // TODO IF THERE ARE NO EXERCISES ONLY SHOW TIMER : showTimer();
+            showBigTimer(true);
+            showControlButtons(false);
         }
         // load data only once
         getSupportLoaderManager().destroyLoader(0);
 
-        pauseDuration = PreferenceManager.getDefaultSharedPreferences(ExerciseActivity.this).getLong("PAUSE TIME", 5 * 60 * 1000);
         startBreakTimer();
     }
 
@@ -211,6 +274,83 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         timerText.setText(time);
     }
 
+    private void updateBigProgress(long remainingDuration) {
+        progressBarBig.setMax((int)pauseDuration);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            progressBarBig.setProgress(progressBarBig.getMax() - (int) remainingDuration, true);
+        } else {
+            progressBarBig.setProgress(progressBarBig.getMax() - (int) remainingDuration);
+        }
+
+        int secondsUntilFinished = (int) Math.ceil(remainingDuration / 1000.0);
+        int minutesUntilFinished = secondsUntilFinished / 60;
+        int seconds = secondsUntilFinished % 60;
+        int minutes = minutesUntilFinished % 60;
+
+        String time = String.format(Locale.US, "%02d:%02d", minutes, seconds);
+        breakTimerTextBig.setText(time);
+    }
+
+    private void showBigTimer(boolean show) {
+        if(showBigTimer != show) {
+
+            showBigTimer = show;
+
+            if (show) {
+
+                bigProgressBarLayout.setVisibility(View.VISIBLE);
+                bigProgressBarLayout.animate().alpha(1.0f).setDuration(125).setListener(null);
+
+                exerciseContent.animate().alpha(0.0f).setDuration(125).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        if (!showBigTimer)
+                            exerciseContent.setVisibility(View.GONE);
+                    }
+                });
+
+
+            } else {
+
+                bigProgressBarLayout.animate().alpha(0.0f).setDuration(125).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        if (!showBigTimer)
+                            bigProgressBarLayout.setVisibility(View.GONE);
+                    }
+                });
+
+                exerciseContent.setVisibility(View.VISIBLE);
+                exerciseContent.animate().alpha(1.0f).setDuration(125).setListener(null);
+
+
+            }
+        }
+    }
+
+    private void showControlButtons(boolean show) {
+        if(show != showControlButtons) {
+            showControlButtons = show;
+
+            if(show) {
+                playButton.setVisibility(View.VISIBLE);
+                repeatButton.setVisibility(View.VISIBLE);
+                continuousButton.setVisibility(View.VISIBLE);
+                prevButton.setVisibility(View.VISIBLE);
+                nextButton.setVisibility(View.VISIBLE);
+            } else {
+                playButton.setVisibility(View.GONE);
+                repeatButton.setVisibility(View.GONE);
+                continuousButton.setVisibility(View.GONE);
+                prevButton.setVisibility(View.GONE);
+                nextButton.setVisibility(View.GONE);
+            }
+        }
+    }
+
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.progressBarLayout:
@@ -223,6 +363,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             case R.id.button_prev:
                 handlePrevClicked();
                 break;
+            case R.id.button_repeat:
+                handleRepeatClicked();
+                break;
+            case R.id.button_continuous:
+                handleContinuousClicked();
+                break;
             default:
         }
     }
@@ -233,35 +379,43 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     private boolean nextExercise() {
         if(set != null) {
-            setExercise((currentExercise + 1));
-            return true;
-        }
-        return false;
-    }
-    private boolean previousExercise() {
-        if(set != null) {
-            setExercise(currentExercise - 1);
-            return true;
+            if(showBigTimer && repeatStatus && currentExercise == set.size()) {
+                // repeat status is was turned back on.. and somebody presses next
+                showBigTimer(false);
+                currentExercise = set.size() - 1;
+            }
+
+            if(setExercise((currentExercise + 1))) {
+                return true;
+            } else {
+                showBigTimer(true);
+            }
         }
         return false;
     }
 
-    private void setExercise(int number) {
+    private boolean previousExercise() {
+        if(showBigTimer) {
+            showBigTimer(false);
+        }
+        return set != null && setExercise(currentExercise - 1);
+    }
+
+    private boolean setExercise(int number) {
         if(set != null) {
             if(set.size() != 0) {
 
-                // TODO: stop if we reach the end or loop around
-                boolean loopAround = true;
-
                 if(number < 0) {
-                    currentExercise = loopAround ?
+                    currentExercise = repeatStatus ?
                             (number + set.size()) :
                             0;
 
                 } else if(number >= set.size()) {
-                    currentExercise = loopAround ?
+                    currentExercise = repeatStatus ?
                             (number % set.size()) :
-                            (set.size() -1);
+                            (set.size());
+
+                    if(!repeatStatus) return false;
 
                 } else {
                     currentExercise = number;
@@ -269,8 +423,10 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
                 currentExercisePart = 0;
                 showExercise(set.get(currentExercise), currentExercisePart);
+                return true;
             }
         }
+        return false;
     }
 
     private boolean nextExercisePart() {
@@ -304,11 +460,40 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         sectionText.setText(e.getSection());
         exerciseImage.setImageResource(e.getImageResIds(this)[image]);
 
-        // TODO: continuous play?
-        // if()
-        startExerciseTimer();
-        // else
-        //resetExerciseTimer();
+        if(continuousStatus)
+            startExerciseTimer();
+        else
+            resetExerciseTimer();
+    }
+
+    private void handleRepeatClicked() {
+        repeatStatus = !repeatStatus;
+
+        pref.edit().putBoolean(PrefManager.REPEAT_STATUS, repeatStatus).apply();
+
+        setRepeatButtonStatus(repeatStatus);
+    }
+
+    private void setRepeatButtonStatus(boolean repeatStatus) {
+        repeatButton.setColorFilter(
+                repeatStatus ?
+                        ActivityCompat.getColor(this, R.color.colorPrimary) :
+                        ActivityCompat.getColor(this, R.color.middlegrey));
+    }
+
+    private void handleContinuousClicked() {
+        continuousStatus = !continuousStatus;
+
+        pref.edit().putBoolean(PrefManager.CONTINUOUS_STATUS, continuousStatus).apply();
+
+        setContinuousButtonStatus(continuousStatus);
+    }
+
+    private void setContinuousButtonStatus(boolean continuousStatus) {
+        continuousButton.setColorFilter(
+                continuousStatus ?
+                        ActivityCompat.getColor(this, R.color.colorPrimary) :
+                        ActivityCompat.getColor(this, R.color.middlegrey));
     }
 
     private void handlePrevClicked() {
@@ -340,6 +525,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             public void onTick(long millisUntilFinished) {
                 remainingBreakDuration = millisUntilFinished;
                 updateBreakTimer(remainingBreakDuration);
+                updateBigProgress(remainingBreakDuration);
             }
 
             @Override
@@ -347,7 +533,10 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                 remainingBreakDuration = 0;
                 isBreakTimerRunning = false;
                 updateBreakTimer(remainingBreakDuration);
-                // TODO: show dialog to end the exercises?
+                updateBigProgress(remainingBreakDuration);
+
+                showEndDialog();
+
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
         };
@@ -438,11 +627,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void resetExerciseTimer() {
-        exerciseTimer.cancel();
+        if(exerciseTimer != null) {
+            exerciseTimer.cancel();
+        }
         isExerciseTimerRunning = false;
         remainingExerciseDuration = 0;
 
         updatePlayButton(false);
-        updateProgress(0L);
+        updateProgress(exerciseTime);
     }
 }

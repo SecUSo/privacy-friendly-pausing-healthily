@@ -83,7 +83,6 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
         } else {
             noExercisesText.setVisibility(View.GONE);
         }
-        noExercisesText.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
         //LayoutInflater inflater = (LayoutInflater) getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE);
         //View row = inflater.inflate(resource, parent, false);
 

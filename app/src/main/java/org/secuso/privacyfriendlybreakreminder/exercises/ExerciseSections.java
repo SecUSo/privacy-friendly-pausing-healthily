@@ -2,12 +2,10 @@ package org.secuso.privacyfriendlybreakreminder.exercises;
 
 import android.content.Context;
 import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

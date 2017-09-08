@@ -122,19 +122,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             View view = LayoutInflater.from(mContext).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            String imageID = set.get(i).getImageID();
-            String[] imageIDSplit = imageID.split(",");
-
-            if(imageIDSplit.length > 1) {
-                imageID = imageIDSplit[0]; // only take the first image as a display image
-            }
-
-            int imageResID = mContext.getResources().getIdentifier(
-                    "exercise_" + imageID,
-                    "drawable",
-                    mContext.getPackageName());
-
-            image.setImageResource(imageResID);
+            image.setImageResource(set.get(i).getImageResIds(mContext)[0]);
             vh.exerciseList.addView(view);
         }
 

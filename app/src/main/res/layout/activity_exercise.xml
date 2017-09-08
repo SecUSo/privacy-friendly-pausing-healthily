@@ -44,7 +44,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_skip_next_black_48dp"
-        app:layout_constraintHorizontal_bias="0.75" />
+        app:layout_constraintHorizontal_bias="0.6666" />
 
     <ImageButton
         android:id="@+id/button_prev"
@@ -64,132 +64,242 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_skip_previous_black_48dp"
-        app:layout_constraintHorizontal_bias="0.25" />
+        app:layout_constraintHorizontal_bias="0.3333" />
 
-    <RelativeLayout
-        android:id="@+id/progressBarLayout"
+    <ImageButton
+        android:id="@+id/button_repeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:clickable="true"
-        android:onClick="onClick"
-        android:layout_marginStart="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:layout_alignTop="@+id/timerText"
-            android:layout_centerHorizontal="true"
-            android:max="100"
-            android:padding="16dp"
-            android:progress="66"
-            android:progressDrawable="@drawable/progress_circular_small"
-            android:rotation="270" />
-
-        <TextView
-            android:id="@+id/timerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="00:00"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/exercise_image"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:padding="4dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
+        android:tint="@color/middlegrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.8333"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarLayout"
-        app:srcCompat="@drawable/exercise_0" />
+        app:srcCompat="@drawable/ic_repeat_black_48dp" />
 
-    <TextView
-        android:id="@+id/execution_title"
+    <ImageButton
+        android:id="@+id/button_continuous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        android:text="Execution"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
-        app:layout_constraintTop_toBottomOf="@+id/section_card" />
-
-    <TextView
-        android:id="@+id/execution"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:text="sitting or standing"
-        app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
-        app:layout_constraintTop_toBottomOf="@+id/execution_title" />
-
-    <TextView
-        android:id="@+id/description_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Description"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exercise_image" />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="- do something\n- do something else\n- then do the first something again"
-        app:layout_constraintLeft_toLeftOf="@+id/description_title"
-        app:layout_constraintTop_toBottomOf="@+id/description_title" />
-
-    <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/middleblue"
+        android:padding="4dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
-        app:cardCornerRadius="12dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="onClick"
+        android:scaleType="fitXY"
+        android:tint="@color/middlegrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.1666"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/section_card"
-        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/ic_update_black_40dp" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/exercise_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/section"
+        <RelativeLayout
+            android:id="@+id/progressBarLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:onClick="onClick"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_alignTop="@+id/timerText"
+                android:layout_centerHorizontal="true"
+                android:max="100"
+                android:padding="16dp"
+                android:progress="66"
+                android:progressDrawable="@drawable/progress_circular_small"
+                android:rotation="270" />
+
+            <TextView
+                android:id="@+id/timerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="00:00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/exercise_image"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBarLayout"
+            app:srcCompat="@drawable/exercise_0" />
+
+        <TextView
+            android:id="@+id/execution_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Execution"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
+            app:layout_constraintTop_toBottomOf="@+id/section_card" />
+
+        <TextView
+            android:id="@+id/execution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="sitting or standing"
+            app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
+            app:layout_constraintTop_toBottomOf="@+id/execution_title" />
+
+        <TextView
+            android:id="@+id/description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Description"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exercise_image" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="- do something\n- do something else\n- then do the first something again"
+            app:layout_constraintLeft_toLeftOf="@+id/description_title"
+            app:layout_constraintTop_toBottomOf="@+id/description_title" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/section_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="@color/middleblue"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Neck, Arms"
+                android:textColor="@color/white" />
+        </android.support.v7.widget.CardView>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/bigProgressBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ProgressBar
+            android:id="@+id/progressBarBig"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:max="100"
+            android:onClick="onClick"
+            android:padding="16dp"
+            android:progress="66"
+            android:progressDrawable="@drawable/progress_circular"
+            android:rotation="270"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/breakTimerTextBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Neck, Arms"
-            android:textColor="@color/white" />
-    </android.support.v7.widget.CardView>
+            android:text="00:00"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBarBig"
+            app:layout_constraintLeft_toLeftOf="@+id/progressBarBig"
+            app:layout_constraintRight_toRightOf="@+id/progressBarBig"
+            app:layout_constraintTop_toTopOf="@+id/progressBarBig" />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

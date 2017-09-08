@@ -180,7 +180,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="Execution"
+            android:text="@string/execution"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/progressBarLayout"
             app:layout_constraintTop_toBottomOf="@+id/section_card" />
@@ -203,7 +203,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Description"
+            android:text="@string/description"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exercise_image" />

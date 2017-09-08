@@ -75,7 +75,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:text="This set contains no exercises."
+                android:text="@string/set_contains_no_exercises"
                 android:textColor="@color/black"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"

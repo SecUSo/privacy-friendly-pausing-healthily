@@ -152,7 +152,6 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         breakTimerText.setTextColor(Color.WHITE);
         breakTimerText.setTextSize(20);
         breakTimerText.setGravity(center_vertical);
-        breakTimerText.setText("00:00");
         breakTimerText.setPadding(16, 0, 16, 0);
         //breakTimerText.set(10, 0, 10, 0);
 

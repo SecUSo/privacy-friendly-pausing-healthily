@@ -28,7 +28,7 @@
 
 
     <!-- settings for BreakReminder -->
-    <string name="new_profile">New Profile...</string>
+    <string name="new_profile">New Profile…</string>
     <string name="play_stop" translatable="false">Play/Stop</string>
     <string name="reset" translatable="false">Reset</string>
     <string name="break_reminder_time" translatable="false">30:00</string>
@@ -148,7 +148,7 @@
     <string name="tutorial_reset">Reset the clock</string>
     <string name="tutorial_clock_description">By pressing one of them, the clock starts or stops</string>
     <string name="tutorial_or">or</string>
-    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles...\' and edit the current ones in the settings\nIn the beginning there will be 4 predefined profiles</string>
+    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles…\' and edit the current ones in the settings\nIn the beginning there will be 4 predefined profiles</string>
     <string name="tutorial_clock">Start/Stop the clock</string>
     <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
     <string name="pref_current_profile_value" translatable="false">0</string>
@@ -180,7 +180,7 @@
     <string name="activity_title_new_exercise_set">New Exercise Set</string>
     <string name="dialog_add_exercise_set_setname">exercise set name</string>
     <string name="dialog_add_exercise_set_title">Add New Exercise Set</string>
-    <string name="activity_title_break_reminder">@string/app_name</string>
+    <string name="activity_title_break_reminder" translatable="false">@string/app_name</string>
     <string name="dialog_add_exercise_set_name">Exercise Set Name</string>
     <string name="keep_editing">keep editing</string>
     <string name="discard">discard</string>
@@ -315,6 +315,9 @@
     <string name="toast_please_select_an_item_to_delete">Please select an item to delete.</string>
     <string name="dialog_end_break_confirmation">Do you want to go back to the main menu?</string>
     <string name="dialog_end_break_confirmation_title">Break time is up!</string>
+    <string name="execution">Execution</string>
+    <string name="description">Description</string>
+    <string name="set_contains_no_exercises">This set contains no exercises.</string>
 
 
 </resources>

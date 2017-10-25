@@ -27,7 +27,9 @@ import java.io.FileDescriptor;
 import java.util.Locale;
 import java.util.Timer;
 
+import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class TimerService extends Service {
 
@@ -35,7 +37,7 @@ public class TimerService extends Service {
     public static final String NOTIFICATION_BROADCAST = TAG + ".NOTIFICATION_BROADCAST";
     public static final String TIMER_BROADCAST = TAG + ".TIMER_BROADCAST";
 
-    private static final int UPDATE_INTERVAL = 25;
+    private static final int UPDATE_INTERVAL = 100;
     private static final int NOTIFICATION_ID = 31337;
 
     private TimerServiceBinder mBinder = new TimerServiceBinder();
@@ -83,11 +85,12 @@ public class TimerService extends Service {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle(getString(R.string.app_name))
-                .setContentText("Take a break now! Click here to do your chosen exercises.")
-                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_UPDATE_CURRENT))
+                .setContentText(getString(R.string.take_a_break_now))
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_CANCEL_CURRENT))
                 .setColor(ContextCompat.getColor(this, R.color.colorAccent))
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setWhen(0)
+                .setOngoing(false)
                 .setAutoCancel(true)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setDefaults(Notification.DEFAULT_LIGHTS)
@@ -97,7 +100,6 @@ public class TimerService extends Service {
         notificationManager.notify(NOTIFICATION_ID, builder.build());
 
         // TODO: show decider activity?!
-        // maybe rather show a dialog
     }
 
     @Override
@@ -227,6 +229,8 @@ public class TimerService extends Service {
         return START_STICKY;
     }
 
+
+
     private Notification buildNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle(getString(R.string.app_name));
@@ -240,7 +244,12 @@ public class TimerService extends Service {
         String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds);
 
         builder.setContentText(time);
-        builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, TimerActivity.class), FLAG_UPDATE_CURRENT));
+
+
+        Intent intent = new Intent(this, TimerActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+
+        builder.setContentIntent(PendingIntent.getActivity(this, 0, intent, FLAG_UPDATE_CURRENT));
         builder.setColor(ContextCompat.getColor(this, R.color.colorAccent));
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
         builder.setWhen(0);
@@ -264,12 +273,24 @@ public class TimerService extends Service {
         return mBinder;
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        if(isReset()){
+            stopSelf();
+        }
+        return super.onUnbind(intent);
+    }
+
     public static void startService(Context context) {
         context.startService(new Intent(context.getApplicationContext(), TimerService.class));
     }
 
     public synchronized long getRemainingDuration() {
         return remainingDuration;
+    }
+
+    public boolean isReset() {
+        return !isRunning() && !isPaused();
     }
 
     public class TimerServiceBinder extends Binder {

@@ -119,5 +119,6 @@
     <string name="help_support_clock_title">Horloge interactive</string>
     <string name="help_support_clock_descr"> En appuyant sur l\'horloge à chaque étape de cette application, l\'horloge peut être démarré et arrêté .</string>
     <string name="help_support_next">En cliquant sur le bouton \'next\', l\'application va choisir un nouvel exercice dans la région du corps actuel. Dans le même temps l\'horloge sera remise à zéro sur la minute d\'avant, que le temps sera dépenser pleinement sur les exercices.</string>
+    <string name="activity_title_break_reminder">Break Reminder</string>
 
 </resources>

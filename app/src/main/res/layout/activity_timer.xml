@@ -25,11 +25,6 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity">
 
-            <!-- <include android:id="@+id/exercise" layout="@layout/layout_exercise_set"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintHorizontal_bias="0.5" /> -->
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinner_choose_exercise_set"
                 android:layout_width="0dp"
@@ -112,47 +107,81 @@
                         android:orientation="horizontal"
                         android:visibility="visible">
 
-                        <NumberPicker
+                        <com.shawnlin.numberpicker.NumberPicker
                             android:id="@+id/hours_picker"
                             android:layout_width="wrap_content"
                             android:layout_height="120dp"
+                            android:background="@color/transparent"
                             android:clickable="false"
                             android:focusable="false"
-                            android:theme="@style/AppTheme.NumberPicker"
-                            android:descendantFocusability="blocksDescendants" />
+                            app:np_max="23"
+                            app:np_min="0"/>
+
+                        <!-- <NumberPicker
+                            android:id="@+id/hours_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="110dp"
+                            android:clickable="false"
+                            android:descendantFocusability="blocksDescendants"
+                            android:focusable="false"
+                            android:theme="@style/AppTheme.NumberPicker" /> -->
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/picker_selected_text_size"
+                            android:layout_marginStart="-3dp"
+                            android:layout_marginEnd="-2dp"
                             android:textStyle="bold"
                             android:theme="@style/AppTheme.NumberPicker" />
 
-                        <NumberPicker
+                        <com.shawnlin.numberpicker.NumberPicker
                             android:id="@+id/minutes_picker"
                             android:layout_width="wrap_content"
                             android:layout_height="120dp"
-                            android:theme="@style/AppTheme.NumberPicker"
-                            android:descendantFocusability="blocksDescendants" />
+                            android:background="@color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            app:np_max="59"
+                            app:np_min="0"/>
+
+                        <!-- <NumberPicker
+                            android:id="@+id/minutes_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:theme="@style/AppTheme.NumberPicker" /> -->
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=":"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/picker_selected_text_size"
+                            android:layout_marginStart="-3dp"
+                            android:layout_marginEnd="-2dp"
                             android:textStyle="bold"
                             android:theme="@style/AppTheme.NumberPicker" />
 
-                        <NumberPicker
+                        <com.shawnlin.numberpicker.NumberPicker
+                            android:id="@+id/seconds_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:background="@color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            app:np_max="59"
+                            app:np_min="0"/>
+
+                        <!-- <NumberPicker
                             android:id="@+id/seconds_picker"
                             android:layout_width="wrap_content"
                             android:layout_height="120dp"
                             android:clipChildren="false"
                             android:theme="@style/AppTheme.NumberPicker"
-                            android:descendantFocusability="blocksDescendants" />
+                            android:descendantFocusability="blocksDescendants" /> -->
 
                     </LinearLayout>
 
@@ -173,30 +202,52 @@
                         android:orientation="horizontal"
                         android:visibility="visible">
 
-                        <NumberPicker
+                        <com.shawnlin.numberpicker.NumberPicker
+                            android:id="@+id/minutes_break_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:background="@color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            app:np_max="59"
+                            app:np_min="0"/>
+
+                        <!-- <NumberPicker
                             android:id="@+id/minutes_break_picker"
                             android:layout_width="wrap_content"
                             android:layout_height="120dp"
                             android:clickable="false"
                             android:focusable="false"
                             android:theme="@style/AppTheme.NumberPicker"
-                            android:descendantFocusability="blocksDescendants" />
+                            android:descendantFocusability="blocksDescendants" /> -->
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="-3dp"
+                            android:layout_marginEnd="-2dp"
                             android:text=":"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="24sp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/picker_selected_text_size"
                             android:textStyle="bold"
                             android:theme="@style/AppTheme.NumberPicker" />
 
-                        <NumberPicker
+                        <com.shawnlin.numberpicker.NumberPicker
+                            android:id="@+id/seconds_break_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="120dp"
+                            android:background="@color/transparent"
+                            android:clickable="false"
+                            android:focusable="false"
+                            app:np_max="59"
+                            app:np_min="0"/>
+
+                        <!-- <NumberPicker
                             android:id="@+id/seconds_break_picker"
                             android:layout_width="wrap_content"
                             android:layout_height="120dp"
                             android:theme="@style/AppTheme.NumberPicker"
-                            android:descendantFocusability="blocksDescendants" />
+                            android:descendantFocusability="blocksDescendants" /> -->
 
                     </LinearLayout>
 

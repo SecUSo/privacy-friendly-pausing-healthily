@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +35,8 @@ import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 import org.secuso.privacyfriendlybreakreminder.service.TimerService;
+
+import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -65,17 +66,17 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private int mShortAnimationDuration;
     private boolean currentStatusIsPickerVisible = false;
 
-    private static final String[] SECONDS_MINUTES = new String[60];
-    private static final String[] HOURS = new String[24];
-
-    static {
-        for(int i = 0; i < SECONDS_MINUTES.length; ++i) {
-            SECONDS_MINUTES[i] = String.format(Locale.US, "%02d", i);
-        }
-        for(int i = 0; i < HOURS.length; ++i) {
-            HOURS[i] = String.format(Locale.US, "%02d", i);
-        }
-    }
+//    private static final String[] SECONDS_MINUTES = new String[60];
+//    private static final String[] HOURS = new String[24];
+//
+//    static {
+//        for(int i = 0; i < SECONDS_MINUTES.length; ++i) {
+//            SECONDS_MINUTES[i] = String.format(Locale.US, "%02d", i);
+//        }
+//        for(int i = 0; i < HOURS.length; ++i) {
+//            HOURS[i] = String.format(Locale.US, "%02d", i);
+//        }
+//    }
 
     // Service
     private TimerService mTimerService = null;
@@ -145,7 +146,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     protected void onResume() {
         super.onResume();
 
-        TimerService.startService(this);
         registerReceiver(timerReceiver, new IntentFilter(TimerService.TIMER_BROADCAST));
 
         if(mTimerService != null && !mTimerService.isRunning()) {
@@ -164,6 +164,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     }
 
     private void initServiceBinding() {
+        TimerService.startService(this);
         Intent intent = new Intent(this, TimerService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
@@ -202,36 +203,57 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         secondsBreakPicker = (NumberPicker) findViewById(R.id.seconds_break_picker);
         minutesBreakPicker = (NumberPicker) findViewById(R.id.minutes_break_picker);
 
-        secondsPicker.setDisplayedValues(SECONDS_MINUTES);
-        secondsPicker.setMinValue(0);
-        secondsPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+        setPickerAttributes(secondsPicker);
+        setPickerAttributes(minutesPicker);
+        setPickerAttributes(hoursPicker);
+        setPickerAttributes(secondsBreakPicker);
+        setPickerAttributes(minutesBreakPicker);
+
         secondsPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_SECONDS, 0));
-        secondsBreakPicker.setDisplayedValues(SECONDS_MINUTES);
-        secondsBreakPicker.setMinValue(0);
-        secondsBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
-
-        minutesPicker.setDisplayedValues(SECONDS_MINUTES);
-        minutesPicker.setMinValue(0);
-        minutesPicker.setMaxValue(SECONDS_MINUTES.length - 1);
         minutesPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_MINUTES, 30));
-        minutesBreakPicker.setDisplayedValues(SECONDS_MINUTES);
-        minutesBreakPicker.setMinValue(0);
-        minutesBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 0));
-
-        hoursPicker.setDisplayedValues(HOURS);
-        hoursPicker.setMinValue(0);
-        hoursPicker.setMaxValue(HOURS.length - 1);
         hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
+        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
+        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 5));
 
+//        secondsPicker.setDisplayedValues(SECONDS_MINUTES);
+//        secondsPicker.setMinValue(0);
+//        secondsPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+//        secondsPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_SECONDS, 0));
+//        secondsBreakPicker.setDisplayedValues(SECONDS_MINUTES);
+//        secondsBreakPicker.setMinValue(0);
+//        secondsBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+//        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
+//
+//        minutesPicker.setDisplayedValues(SECONDS_MINUTES);
+//        minutesPicker.setMinValue(0);
+//        minutesPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+//        minutesPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_MINUTES, 30));
+//        minutesBreakPicker.setDisplayedValues(SECONDS_MINUTES);
+//        minutesBreakPicker.setMinValue(0);
+//        minutesBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
+//        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 0));
+//
+//        hoursPicker.setDisplayedValues(HOURS);
+//        hoursPicker.setMinValue(0);
+//        hoursPicker.setMaxValue(HOURS.length - 1);
+//        hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
 
-        setDividerColor(secondsPicker, R.color.transparent);
-        setDividerColor(minutesPicker, R.color.transparent);
-        setDividerColor(hoursPicker,   R.color.transparent);
-        setDividerColor(secondsBreakPicker,   R.color.transparent);
-        setDividerColor(minutesBreakPicker,   R.color.transparent);
+        //setDividerColor(secondsPicker, R.color.transparent);
+        //setDividerColor(minutesPicker, R.color.transparent);
+        //setDividerColor(hoursPicker,   R.color.transparent);
+        //setDividerColor(secondsBreakPicker,   R.color.transparent);
+        //setDividerColor(minutesBreakPicker,   R.color.transparent);
+    }
 
+    private void setPickerAttributes(NumberPicker np) {
+        np.setTextColorResource(R.color.middlegrey);
+        np.setSelectedTextColorResource(R.color.colorAccent);
+        np.setDividerColorResource(R.color.transparent);
+        //np.setDividerDistance(25);
+        np.setSelectedTextSize(R.dimen.picker_selected_text_size);
+        np.setTextSize(R.dimen.picker_text_size);
+        np.setFormatter(NumberPicker.getTwoDigitFormatter());
+        np.setWheelItemCount(5);
     }
 
     private void updateProgress(long millisUntilFinished) {
@@ -254,10 +276,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         //animation.start();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 
     public void onClick(View view) {
         switch(view.getId()) {
@@ -411,21 +429,21 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         }
     }
 
-    private void setDividerColor(NumberPicker picker, @ColorRes int color) {
-        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-        for (java.lang.reflect.Field pf : pickerFields) {
-            if (pf.getName().equals("mSelectionDivider")) {
-                pf.setAccessible(true);
-                try {
-                    ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(this, color));
-                    pf.set(picker, colorDrawable);
-                } catch (IllegalArgumentException | Resources.NotFoundException | IllegalAccessException e) {
-                    Log.e(TAG, e.getMessage(), e);
-                }
-                break;
-            }
-        }
-    }
+//    private void setDividerColor(NumberPicker picker, @ColorRes int color) {
+//        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+//        for (java.lang.reflect.Field pf : pickerFields) {
+//            if (pf.getName().equals("mSelectionDivider")) {
+//                pf.setAccessible(true);
+//                try {
+//                    ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(this, color));
+//                    pf.set(picker, colorDrawable);
+//                } catch (IllegalArgumentException | Resources.NotFoundException | IllegalAccessException e) {
+//                    Log.e(TAG, e.getMessage(), e);
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     @Override
     public Loader<List<ExerciseSet>> onCreateLoader(int id, final Bundle args) {

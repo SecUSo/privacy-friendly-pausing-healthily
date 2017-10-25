@@ -23,4 +23,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="desc_padding">40dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="picker_text_size">16sp</dimen>
+    <dimen name="picker_selected_text_size">18sp</dimen>
 </resources>

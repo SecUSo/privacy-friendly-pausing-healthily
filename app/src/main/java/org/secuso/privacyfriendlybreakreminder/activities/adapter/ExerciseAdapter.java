@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ChooseExerciseActivity;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
@@ -121,7 +123,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
         };
 
-        vh.image.setImageResource(exercise.getImageResIds(mContext)[0]);
+        Glide.with(mContext).load(exercise.getImageResIds(mContext)[0]).into(vh.image);
+        //vh.image.setImageResource(exercise.getImageResIds(mContext)[0]);
 
         if(checkedIds != null)
             vh.checkbox.setChecked(checkedIds.contains(exercise.getId()));

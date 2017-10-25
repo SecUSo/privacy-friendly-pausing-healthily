@@ -16,7 +16,6 @@
             android:shape="ring"
             android:thicknessRatio="12">
             <solid android:color="@color/lightblue"/>
-            <corners android:radius="2dp"/>
         </shape>
     </item>
 </layer-list>

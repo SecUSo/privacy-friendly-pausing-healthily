@@ -12,11 +12,10 @@
     <item android:id="@android:id/progress">
         <shape
             android:innerRadiusRatio="2"
-            android:useLevel="true"
             android:shape="ring"
+            android:useLevel="true"
             android:thicknessRatio="6">
             <solid android:color="@color/lightblue"/>
-            <corners android:radius="2dp"/>
         </shape>
     </item>
 </layer-list>

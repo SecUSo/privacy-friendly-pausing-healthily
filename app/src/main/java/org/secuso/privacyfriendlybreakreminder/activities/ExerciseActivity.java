@@ -32,6 +32,7 @@ import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
+import org.secuso.privacyfriendlybreakreminder.dialog.ExerciseDialog;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 
 import java.util.Locale;
@@ -60,11 +61,16 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private ProgressBar progressBarBig;
     private TextView breakTimerTextBig;
     private ConstraintLayout bigProgressBarLayout;
+    private ImageButton exerciseInfoButton;
+
+    private boolean isActivityVisible = false;
+    private boolean isBreakFinished = false;
 
     private boolean repeatStatus;
     private boolean continuousStatus;
     private boolean showBigTimer = false;
     private boolean showControlButtons = true;
+    private boolean keepScreenOn = true;
 
     // exerciseSet info
     private long exerciseSetId;
@@ -73,7 +79,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private int currentExercisePart = 0;
 
     // timer
-    private final long exerciseTime = 20 * 1000;
+    private long exerciseTime = 20 * 1000;
     private long pauseDuration;
     private CountDownTimer exerciseTimer;
     private CountDownTimer breakTimer;
@@ -96,6 +102,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         pauseDuration = pref.getLong(PrefManager.PAUSE_TIME, 5 * 60 * 1000);
         repeatStatus = pref.getBoolean(PrefManager.REPEAT_STATUS, false);
         continuousStatus = pref.getBoolean(PrefManager.CONTINUOUS_STATUS, false);
+        try {
+            exerciseTime = Long.parseLong(pref.getString(PrefManager.EXERCISE_DURATION, "30")) * 1000;
+        } catch(NumberFormatException e) {
+            exerciseTime = 30L * 1000;
+        }
+        keepScreenOn = pref.getBoolean(PrefManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
 
         initResources();
 
@@ -105,7 +117,9 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             ab.setHomeAsUpIndicator(R.drawable.ic_close_white);
         }
 
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if(keepScreenOn) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
 
         getSupportLoaderManager().initLoader(0, null, this);
     }
@@ -124,6 +138,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         continuousButton = (ImageButton) findViewById(R.id.button_continuous);
         prevButton = (ImageButton) findViewById(R.id.button_prev);
         nextButton = (ImageButton) findViewById(R.id.button_next);
+        exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
 
         progressBarBig = (ProgressBar) findViewById(R.id.progressBarBig);
         breakTimerTextBig = (TextView) findViewById(R.id.breakTimerTextBig);
@@ -137,7 +152,11 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                showConfirmationDialog();
+                if(!isBreakFinished) {
+                    showConfirmationDialog();
+                } else {
+                    finish();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -160,54 +179,62 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     @Override
     public void onBackPressed() {
-        showConfirmationDialog();
+        if(isBreakFinished) {
+            showConfirmationDialog();
+        } else {
+            finish();
+        }
+    }
+
+    @Override
+    public void finish() {
+        Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+
+        super.finish();
+        ExerciseActivity.this.startActivity(intent);
+        ExerciseActivity.this.overridePendingTransition(0, 0);
     }
 
     private void showConfirmationDialog() {
-        new AlertDialog.Builder(this)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
-                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
-
-                        ExerciseActivity.this.finish();
-                        ExerciseActivity.this.startActivity(intent);
-                        ExerciseActivity.this.overridePendingTransition(0, 0);
-                    }
-                })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setMessage(R.string.dialog_leave_break_confirmation)
-                .create().show();
+        if(isActivityVisible) {
+            new AlertDialog.Builder(this)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ExerciseActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .setMessage(R.string.dialog_leave_break_confirmation)
+                    .create().show();
+        }
     }
 
     private void showEndDialog() {
-        new AlertDialog.Builder(this)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
-                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
-
-                        ExerciseActivity.this.finish();
-                        ExerciseActivity.this.startActivity(intent);
-                        ExerciseActivity.this.overridePendingTransition(0, 0);
-                    }
-                })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setTitle(R.string.dialog_end_break_confirmation_title)
-                .setMessage(R.string.dialog_end_break_confirmation)
-                .create().show();
+        if(isActivityVisible) {
+            new AlertDialog.Builder(this)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ExerciseActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .setTitle(R.string.dialog_end_break_confirmation_title)
+                    .setMessage(R.string.dialog_end_break_confirmation)
+                    .create().show();
+        }
     }
 
     @Override
@@ -226,6 +253,28 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             @Override
             protected void onReset() {}
         };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isActivityVisible = true;
+
+        if(isBreakFinished) {
+            showEndDialog();
+        }
+
+        if(keepScreenOn) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isActivityVisible = false;
+
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
@@ -447,17 +496,32 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         return false;
     }
 
-    private void showExercise(Exercise e, int image) {
+    private void showExercise(final Exercise e, int image) {
         int[] images = e.getImageResIds(this);
 
         if (image < 0 || image >= images.length) {
             image = 0;
         }
 
+        View.OnClickListener infoClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pauseExerciseTimer();
+                ExerciseDialog.showExerciseDialog(ExerciseActivity.this, e, new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        resumeExerciseTimer();
+                    }
+                });
+            }
+        };
+
         executionText.setText(e.getExecution());
         descriptionText.setText(e.getDescription());
         sectionText.setText(e.getSection());
         exerciseImage.setImageResource(e.getImageResIds(this)[image]);
+        exerciseImage.setOnClickListener(infoClickListener);
+        exerciseInfoButton.setOnClickListener(infoClickListener);
 
         if(continuousStatus)
             startExerciseTimer();
@@ -529,6 +593,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
             @Override
             public void onFinish() {
+                isBreakFinished = true;
                 remainingBreakDuration = 0;
                 isBreakTimerRunning = false;
                 updateBreakTimer(remainingBreakDuration);

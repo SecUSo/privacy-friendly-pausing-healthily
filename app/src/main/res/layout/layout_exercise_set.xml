@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:background="?android:selectableItemBackgroundBorderless"
+                android:background="?android:selectableItemBackground"
                 android:hapticFeedbackEnabled="true"
                 android:tint="@color/colorAccent"
                 android:visibility="gone"

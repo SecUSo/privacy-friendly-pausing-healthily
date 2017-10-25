@@ -48,12 +48,12 @@
     <string name="pref_title_display_name">Profil Name</string>
     <string name="pref_title_stayOn">Bildschirm bleibt an</string>
     <string name="pref_title_ringtone">Klingelton</string>
-    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil...\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.\nAm Anfang existieren 3 voreingestellte Profile</string>
+    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil…\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.\nAm Anfang existieren 3 voreingestellte Profile</string>
     <string name="tutorial_clock_description">Beim Klicken auf eins der beiden Symbole, startet die Uhr oder hält diese an</string>
     <string name="pref_title_timeLeft">Verbleibende Zeit</string>
     <string name="pref_title_vibrate">Vibration</string>
     <string name="profile_name">Profil Name</string>
-    <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizensiert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
+    <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizenziert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
     <string name="save">Speichern</string>
     <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_dialog_message">Wählen Sie ihre Arbeitszeit aus</string>
@@ -94,7 +94,7 @@
         <item>Haftungsausschluss</item>
     </string-array>
 
-    <string name="new_profile">Neues Profil...</string>
+    <string name="new_profile">Neues Profil…</string>
     <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
     <string name="about">Über</string>
     <string name="tutorial_help">Hilfe öffnen</string>
@@ -119,4 +119,47 @@
     <string name="help_support_clock_title">Interaktive Uhr</string>
     <string name="help_support_next">Beim Klicken auf \'Next\' wird eine andere Übung aus der aktuellen Körperregion ausgewählt. Zugleich wird die Uhr wieder auf die letzte volle Minute gesetzt. Somit geht keine Zeit für die Übungen verloren.</string>
     <string name="help_support_title">Bedienungsanleitung</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="activity_edit_exercise_set_name_hint">Geben Sie einen Namen ein…</string>
+    <string name="exercise_section_torso">Torso</string>
+    <string name="activity_edit_no_empty_name">Bitte geben Sie einen Namen an.</string>
+    <string name="activity_timer_choose_break">Wähle eine Pausendauer:</string>
+    <string name="activity_timer_choose_time">Wähle die Arbeitsdauer:</string>
+    <string name="activity_title_about">Über</string>
+    <string name="activity_title_break_reminder">Break Reminder</string>
+    <string name="activity_title_choose_exercises">Wähle Übungen</string>
+    <string name="activity_title_edit_exercise_set">Übungsset bearbeiten</string>
+    <string name="activity_title_exercise">Übung</string>
+    <string name="activity_title_help">Hilfe</string>
+    <string name="activity_title_manage_exercise_sets">Übungsset</string>
+    <string name="activity_title_new_exercise_set">Neues Übungsset</string>
+    <string name="discard">verwerfen</string>
+    <string name="execution">Ausführung</string>
+    <string name="exercise">Übung</string>
+    <string name="exercise_section_arms">Arme</string>
+    <string name="exercise_section_head">Kopf</string>
+    <string name="exercise_section_legs">Beine</string>
+    <string name="exercise_section_neck">Nacken</string>
+    <string name="exercise_section_pelvis">Becken</string>
+    <string name="exercise_section_spinal">Wirbel</string>
+    <string name="keep_editing">bearbeiten</string>
+    <string name="no">Nein</string>
+    <string name="okay">Okay</string>
+    <string name="no_exercise_sets">Keine Übungssets vorhanden. Bitte erstellen Sie ein neues Übungsset.</string>
+    <string name="remaining_time">Verbleibende Zeit:</string>
+    <string name="set_contains_no_exercises">Dieses Übungsset enthält keine Übungen.</string>
+    <string name="skip">Überspringen</string>
+    <string name="slide1_heading">Willkommen!</string>
+    <string name="title_activity_edit_exercise_set">Übungsset editieren</string>
+    <string name="title_activity_tutorial">Tutorial</string>
+    <string name="toast_please_select_an_item_to_delete">Bitte wählen Sie mindestens einen Eintrag zum Löschen aus.</string>
+    <string name="toast_please_specify_a_name">Bitte geben Sie einen Namen an.</string>
+    <string name="yes">Ja</string>
+    <string name="take_a_break_now">Machen Sie eine Pause! Tippen Sie hier um Ihre ausgewählten Übungen auszuführen.</string>
+    <string name="description">Beschreibung</string>
+    <string name="dialog_add_exercise_set_name">Übungssetname</string>
+    <string name="dialog_leave_break_confirmation">Möchten sie die Pause beenden?</string>
+    <string name="dialog_end_break_confirmation_title">Pausenzeit ist um!</string>
+    <string name="dialog_end_break_confirmation">Möchsten Sie zurück zum Hauptmenü?</string>
+    <string name="dialog_discard_confirmation">Sind Sie sicher, dass Sie die Änderungen verwerfen möchten?</string>
 </resources>

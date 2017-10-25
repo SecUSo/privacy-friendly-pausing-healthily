@@ -1,58 +1,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-    <org.secuso.privacyfriendlybreakreminder.preferences.DynamicListPreference
-        android:defaultValue="@string/pref_current_profile_value"
-        android:key="current_profile"
-        android:title="@string/pref_current_profile" />
-
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_keep_screen_on_during_exercise"
+        android:title="@string/pref_keep_screen_on_during_exercise" />
 
     <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-"
-        android:inputType="textCapWords"
-        android:key="name_text"
-        android:maxLength="12"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_display_name"
-        android:positiveButtonText="@string/dialog_positive"/>
+        android:defaultValue="30"
+        android:inputType="number"
+        android:numeric="integer"
+        android:maxLength="2"
+        android:key="pref_exercise_time"
+        android:title="@string/pref_exercise_time"/>
 
-
-    <org.secuso.privacyfriendlybreakreminder.preferences.SeekBarPreference
-        android:defaultValue="50"
-        android:dialogMessage="@string/settings_dialog_message"
-        android:key="work_value"
-        android:max="119"
-        android:summary="@string/settings_summary"
-        android:text="@string/settings_unit"
-        android:title="@string/settings_title" />
-
-    <org.secuso.privacyfriendlybreakreminder.preferences.SeekBarPreference
-        android:defaultValue="10"
-        android:dialogMessage="@string/settings_break_title"
-        android:key="break_value"
-        android:max="29"
-        android:summary="@string/settings_break_summary"
-        android:text="@string/settings_unit"
-        android:title="@string/settings_break_title" />
-
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="cont_value"
-        android:title="@string/new_profile_continuously" />
-
-    <org.secuso.privacyfriendlybreakreminder.preferences.ExerciseListPreference
-        android:defaultValue="1"
-        android:summary="@string/settings_exercise_summary"
-        android:entries="@array/type_spinner"
-        android:entryValues="@array/value_spinner"
-        android:title="@string/pref_current_exercises"
-        android:positiveButtonText="@string/dialog_positive"/>
-
-
-</PreferenceScreen><!--android:key="exercise"-->
+</PreferenceScreen>

@@ -20,19 +20,16 @@ public class PrefManager {
     public static final String PAUSE_TIME                   = "PAUSE TIME";
     public static final String REPEAT_STATUS                = "REPEAT_STATUS";
     public static final String CONTINUOUS_STATUS            = "CONTINUOUS_STATUS";
+    public static final String EXERCISE_DURATION            = "pref_exercise_time";
+    public static final String KEEP_SCREEN_ON_DURING_EXERCISE = "pref_keep_screen_on_during_exercise";
 
 
     private SharedPreferences pref;
-    private SharedPreferences defaultPref;
-
-    // Shared preferences file name
-    private static final String PREF_NAME = "welcome";
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
     public PrefManager(Context context) {
-        pref = context.getSharedPreferences(PREF_NAME, 0);
-        defaultPref = PreferenceManager.getDefaultSharedPreferences(context);
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public void setFirstTimeLaunch(boolean isFirstTime) {
@@ -43,7 +40,7 @@ public class PrefManager {
         boolean isFirstTimeLaunch = pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
 
         if(isFirstTimeLaunch)
-            defaultPref.edit()
+            pref.edit()
             .putLong(DEFAULT_EXERCISE_SET, 0L)
             .putLong(PAUSE_TIME, 5 * 60 * 1000)
             .putBoolean(REPEAT_STATUS, false)
@@ -53,6 +50,8 @@ public class PrefManager {
             .putInt(PREF_PICKER_SECONDS, 0)
             .putInt(PREF_PICKER_MINUTES, 0)
             .putInt(PREF_PICKER_HOURS, 1)
+            .putString(EXERCISE_DURATION, "30")
+            .putBoolean(KEEP_SCREEN_ON_DURING_EXERCISE, true)
             .apply();
 
         return isFirstTimeLaunch;

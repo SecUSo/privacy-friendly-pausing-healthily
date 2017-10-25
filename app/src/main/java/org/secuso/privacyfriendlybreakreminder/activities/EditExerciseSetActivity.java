@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ import static org.secuso.privacyfriendlybreakreminder.activities.adapter.Exercis
 
 public class EditExerciseSetActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
 
+
+    private static final String TAG = EditExerciseSetActivity.class.getSimpleName();
     // extras
     public static final String EXTRA_EXERCISE_SET_ID = "EXTRA_EXERCISE_SET_ID";
     public static final String EXTRA_EXERCISE_SET_NAME = "EXTRA_EXERCISE_SET_NAME";
@@ -207,11 +210,6 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
             exerciseSet.setName(exerciseSetNameText.getText().toString());
             mDbHelper.updateExerciseSet(exerciseSet);
         }
-
-        // TODO: save changes to database
-        // man könnte den unterschied, der gespeichert werden muss rausfinden, indem man nur die änderungen speichert..
-        // man könnte auch einfach alle dateneinträge zu dem set löschen und neu eintragen
-        // man könnte das exerciseSet clonable machen und eine original kopie abspeichern und dann mit dem aus dem adapter vergleichen
     }
 
     @Override
@@ -260,6 +258,8 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
                 i.putExtra(ChooseExerciseActivity.EXTRA_SELECTED_EXERCISES , getSelectedExerciseIds());
                 startActivityForResult(i, PICK_EXERCISE_REQUEST);
                 break;
+            default:
+                Log.d(TAG, "Unknown Button clicked.");
         }
     }
 

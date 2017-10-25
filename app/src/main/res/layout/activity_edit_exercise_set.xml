@@ -41,21 +41,10 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"
-            android:clickable="true"
-            android:onClick="onClick"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@drawable/ic_edit_white_24dp" />
+        tools:context="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity"
+        android:id="@+id/constraintLayout2">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/exercise_list"
@@ -67,6 +56,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:clickable="false"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,5 +82,19 @@
             android:layout_marginEnd="8dp" />
 
     </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:onClick="onClick"
+        app:fabSize="normal"
+        app:layout_anchor="@id/constraintLayout2"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@drawable/ic_edit_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

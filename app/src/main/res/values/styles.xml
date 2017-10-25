@@ -16,7 +16,7 @@
     <style name="AppTheme.NumberPicker" parent="AppTheme">
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

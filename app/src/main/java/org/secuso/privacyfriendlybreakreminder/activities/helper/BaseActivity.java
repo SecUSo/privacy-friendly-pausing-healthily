@@ -21,7 +21,7 @@ import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.AboutActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.HelpActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
-import org.secuso.privacyfriendlybreakreminder.activities.old.SettingsActivity;
+import org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.TutorialActivity;
 
@@ -158,12 +158,12 @@ public abstract class BaseActivity extends AppCompatActivity implements OnNaviga
                 intent = new Intent(this, HelpActivity.class);
                 createBackStack(intent);
                 break;
-            /*case R.id.nav_settings:
+            case R.id.nav_settings:
                 intent = new Intent(this, SettingsActivity.class);
-                intent.putExtra( PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.GeneralPreferenceFragment.class.getName() );
-                intent.putExtra( PreferenceActivity.EXTRA_NO_HEADERS, true );
+                //intent.putExtra( PreferenceActivity.EXTRA_SHOW_FRAGMENT, SettingsActivity.GeneralPreferenceFragment.class.getName() );
+                //intent.putExtra( PreferenceActivity.EXTRA_NO_HEADERS, true );
                 createBackStack(intent);
-                break;*/
+                break;
             default:
         }
         overridePendingTransition(0,0);

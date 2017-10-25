@@ -45,6 +45,7 @@ public class SQLiteHelper extends SQLiteAssetHelper {
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         mContext = context;
+        super.setForcedUpgrade();
     }
 
 //    @Override

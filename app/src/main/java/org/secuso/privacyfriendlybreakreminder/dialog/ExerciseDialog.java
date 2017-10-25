@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlybreakreminder.dialog;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -22,8 +23,11 @@ public final class ExerciseDialog {
      */
     private ExerciseDialog() {}
 
+    public static void showExerciseDialog(@NonNull final Context context, @NonNull final Exercise e) {
+        showExerciseDialog(context, e, null);
+    }
 
-    public static void showExerciseDialog(@NonNull final Context context,@NonNull final Exercise e) {
+    public static void showExerciseDialog(@NonNull final Context context, @NonNull final Exercise e, DialogInterface.OnDismissListener onDismissListener) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(FragmentActivity.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.dialog_exercise, null);
 
@@ -56,6 +60,7 @@ public final class ExerciseDialog {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(v);
+        builder.setOnDismissListener(onDismissListener);
         builder.show();
     }
 

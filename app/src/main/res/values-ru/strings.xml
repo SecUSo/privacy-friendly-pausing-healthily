@@ -118,4 +118,5 @@
     <string name="help_support_next">При нажатии на кнопку \'Next\', приложение будет выбрать новое упражнение в текущей области тела. В то же время часы будут сброшены на следующую полную минуту, чтобы провестить время полностью на упражнениях.</string>
     <string name="help_support_clock_title">Интерактивные часы</string>
     <string name="help_support_clock_descr">При нажатии на часы возможно их запустить или остановить.</string>
+    <string name="activity_title_break_reminder">Break Reminder</string>
 </resources>

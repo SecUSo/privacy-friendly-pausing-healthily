@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
@@ -73,7 +75,7 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            image.setImageResource(set.get(i).getImageResIds(getContext())[0]);
+            Glide.with(getContext()).load(set.get(i).getImageResIds(getContext())[0]).into(image);
 
             exerciseList.addView(view);
         }

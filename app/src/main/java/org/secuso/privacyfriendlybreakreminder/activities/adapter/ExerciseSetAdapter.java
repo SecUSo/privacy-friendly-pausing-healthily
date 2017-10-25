@@ -46,7 +46,7 @@ public class ExerciseSetAdapter extends RecyclerView.Adapter<ViewHolder> {
         vh.image.setImageResource(exercise.getImageResIds(mContext)[0]);
         vh.executionText.setText(exercise.getExecution());
         vh.descriptionText.setText(exercise.getDescription());
-        vh.section.setText(exercise.getSection());
+        vh.section.setText(exercise.getSection(mContext));
     }
 
     @Override

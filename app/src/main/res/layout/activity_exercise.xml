@@ -286,7 +286,7 @@
             android:id="@+id/progressBarBig"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
-            android:layout_height="16dp"
+            android:layout_height="0dp"
             android:layout_centerHorizontal="true"
             android:max="100"
             android:onClick="onClick"

@@ -94,7 +94,7 @@
         android:onClick="onClick"
         app:fabSize="normal"
         app:layout_anchor="@id/constraintLayout2"
-        app:layout_anchorGravity="bottom|right|end"
+        app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_edit_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

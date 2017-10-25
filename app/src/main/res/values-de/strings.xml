@@ -57,6 +57,7 @@
     <string name="save">Speichern</string>
     <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
     <string name="settings_dialog_message">Wählen Sie ihre Arbeitszeit aus</string>
+    <string name="dialog_add_exercise_set_title">Neues Übungsset hinzufügen</string>
     <string name="settings_break_title">Wählen Sie ihre Pausenzeit aus</string>
     <string name="settings_doubleName">Die Änderungen konnten nicht gespeichert werden, da das dieser Profilname bereits existiert!</string>
     <string name="settings_emptyName">Die Änderungen konnten nicht gespeichert werden, da das Feld für den Profilnamen leer ist! </string>

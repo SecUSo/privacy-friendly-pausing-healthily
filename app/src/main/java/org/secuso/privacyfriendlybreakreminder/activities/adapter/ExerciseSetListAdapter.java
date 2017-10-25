@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
@@ -123,7 +125,8 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             View view = LayoutInflater.from(mContext).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            image.setImageResource(set.get(i).getImageResIds(mContext)[0]);
+            Glide.with(mContext).load(set.get(i).getImageResIds(mContext)[0]).into(image);
+
             vh.exerciseList.addView(view);
         }
 

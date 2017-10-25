@@ -232,7 +232,7 @@
     <string name="set_contains_no_exercises">This set contains no exercises.</string>
     <string name="take_a_break_now">Take a break now! Click here to do your chosen exercises.</string>
 
-    <string name="numberpicker_formatter">%02d</string>
+    <string name="numberpicker_formatter" translatable="false">%02d</string>
     <string name="pref_exercise_time">Exercise time (in Seconds)</string>
     <string name="pref_keep_screen_on_during_exercise">Keep screen on during exercise</string>
 

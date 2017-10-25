@@ -34,18 +34,5 @@ public final class ExerciseColumns {
         return e;
     }
 
-    public static ContentValues getValues(Exercise record) {
-        ContentValues values = new ContentValues();
-        if(record.getId() != -1) {
-            values.put(ExerciseColumns._ID, record.getId());
-        }
-        values.put(ExerciseColumns.SECTION, record.getSection());
-        values.put(ExerciseColumns.IMAGE_ID, record.getImageID());
-
-        values.putAll(ExerciseLocalColumns.getValues(record));
-
-        return values;
-    }
-
     private ExerciseColumns() {}
 }

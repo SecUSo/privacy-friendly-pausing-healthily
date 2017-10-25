@@ -479,7 +479,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     private boolean nextExercisePart() {
         if(set != null) {
-            if(set.size() != 0) {
+            if(set.size() != 0 && currentExercise < set.size()) {
                 int[] images = set.get(currentExercise).getImageResIds(this);
 
                 currentExercisePart = (currentExercisePart + 1);
@@ -518,7 +518,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
         executionText.setText(e.getExecution());
         descriptionText.setText(e.getDescription());
-        sectionText.setText(e.getSection());
+        sectionText.setText(e.getSection(this));
         exerciseImage.setImageResource(e.getImageResIds(this)[image]);
         exerciseImage.setOnClickListener(infoClickListener);
         exerciseInfoButton.setOnClickListener(infoClickListener);

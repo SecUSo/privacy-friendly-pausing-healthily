@@ -287,7 +287,7 @@ public class BreakActivity extends AppCompatActivity implements View.OnClickList
         side_repetition.setText(R.string.exercise_break);
 
         break_exercise_type = (TextView) findViewById(R.id.break_exercise_type);
-        break_exercise_type.setText(exerciseList.get(currentExercise).getSection());
+        break_exercise_type.setText(exerciseList.get(currentExercise).getSection(this));
 
         setExerciseImage();
     }

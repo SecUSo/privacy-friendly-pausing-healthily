@@ -41,7 +41,7 @@ public final class ExerciseDialog {
         if(descriptionText != null)
             descriptionText.setText(e.getDescription());
         if(sectionText != null)
-            sectionText.setText(e.getSection());
+            sectionText.setText(e.getSection(context));
         if(exerciseImage != null) {
             exerciseImage.setOnClickListener(new View.OnClickListener() {
                 int currentlyShownExercise = 0;

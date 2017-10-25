@@ -20,7 +20,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/execution"
-        app:srcCompat="@drawable/exercise_0" />
+        app:srcCompat="@drawable/breakreminder_0" />
 
     <TextView
         android:id="@+id/execution_title"

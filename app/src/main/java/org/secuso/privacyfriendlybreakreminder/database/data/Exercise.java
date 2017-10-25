@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 
+import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseSections;
+
 public class Exercise {
     private int id;
     private int localId;
@@ -65,7 +67,13 @@ public class Exercise {
         return result;
     }
 
-    public String getSection() {
+    public String getSection(Context context) {
+        String section = this.section;
+
+        for(ExerciseSections es : ExerciseSections.getSectionList()) {
+            section = section.replaceAll(es.name(), es.getLocalName(context));
+        }
+
         return section;
     }
     public void setSection(String section) {

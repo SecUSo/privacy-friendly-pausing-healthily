@@ -9,8 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import org.secuso.privacyfriendlybreakreminder.BuildConfig;
 import org.secuso.privacyfriendlybreakreminder.R;
 
+/**
+ * @author Christopher Beckmann
+ * @version 2.0
+ */
 public class AboutActivity extends AppCompatActivity {
 
     Handler mHandler;
@@ -40,6 +45,8 @@ public class AboutActivity extends AppCompatActivity {
 
         TextView authors = (TextView) findViewById(R.id.textFieldAuthorNames);
         authors.setText(getString(R.string.about_author_contributors, getString(R.string.about_author_names)));
+
+        ((TextView)findViewById(R.id.textFieldVersionName)).setText(BuildConfig.VERSION_NAME);
     }
 
     private void setupActionBar() {

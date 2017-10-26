@@ -38,6 +38,12 @@ import java.util.List;
 
 import static org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
+/**
+ * This activity lets you edit the name of an exercise set. To edit what exercises are in that set, {@link ChooseExerciseActivity} is called.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @see ChooseExerciseActivity
+ */
 public class EditExerciseSetActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
 
 

@@ -45,6 +45,14 @@ import java.util.List;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+/**
+ * This is the overview activity that shows a list of all the exercise sets.
+ * This activity lets you create new, start editing or delete multiple exercise sets.
+ * Exercise set editing is handled by calling {@link EditExerciseSetActivity}.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @see EditExerciseSetActivity
+ */
 public class ManageExerciseSetsActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
 
     private static final String TAG = ManageExerciseSetsActivity.class.getSimpleName();

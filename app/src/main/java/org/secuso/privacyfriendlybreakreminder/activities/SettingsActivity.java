@@ -21,6 +21,10 @@ import android.view.MenuItem;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;
 import org.secuso.privacyfriendlybreakreminder.R;
 
+/**
+ * @author Christopher Beckmann
+ * @version 2.0
+ */
 public class SettingsActivity extends BaseActivity {
 
     @Override

@@ -9,7 +9,10 @@ import android.view.MenuItem;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.BaseActivity;
 
-
+/**
+ * @author Christopher Beckmann
+ * @version 2.0
+ */
 public class HelpActivity extends BaseActivity {
 
     @Override

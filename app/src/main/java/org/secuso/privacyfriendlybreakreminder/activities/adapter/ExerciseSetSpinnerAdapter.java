@@ -21,9 +21,11 @@ import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 import java.util.List;
 
 /**
- * Created by Christopher Beckmann on 05.09.2017.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 05.09.2017
+ * created 05.09.2017
  */
-
 public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
 
     private int resource;
@@ -85,11 +87,6 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
         } else {
             noExercisesText.setVisibility(View.GONE);
         }
-        //LayoutInflater inflater = (LayoutInflater) getContext().getSystemService( Context.LAYOUT_INFLATER_SERVICE);
-        //View row = inflater.inflate(resource, parent, false);
-
-//        ImageView image = (ImageView) row.findViewById(R.id.browserIcon);
-//        TextView label= (TextView) row.findViewById(R.id.browserName);
 
         return row;
     }

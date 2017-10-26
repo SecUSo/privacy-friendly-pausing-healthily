@@ -28,10 +28,12 @@ import org.secuso.privacyfriendlybreakreminder.activities.tutorial.TutorialActiv
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 /**
- * @author Chris
- * @version 20161225
+ *
  * This class is a parent class of all activities that can be accessed from the
- * Navigation Drawer (example see MainActivity.java)
+ * Navigation Drawer
+ *
+ * @author Christopher Beckmann
+ * @version 20161225
  */
 public abstract class BaseActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 

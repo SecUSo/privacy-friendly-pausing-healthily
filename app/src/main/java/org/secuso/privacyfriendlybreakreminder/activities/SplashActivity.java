@@ -8,9 +8,11 @@ import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.TutorialActivity;
 
 /**
- * Created by yonjuni on 22.10.16.
+ * @author yonjuni
+ * @version 1.0
+ * @since 22.10.16
+ * created 22.10.16
  */
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override

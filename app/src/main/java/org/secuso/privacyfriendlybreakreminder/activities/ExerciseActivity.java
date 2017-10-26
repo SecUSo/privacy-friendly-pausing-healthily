@@ -40,6 +40,11 @@ import java.util.Locale;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.support.design.R.id.center_vertical;
 
+/**
+ * This activity handles showing the exercises and the exercise timer.
+ * @author Christopher Beckmann
+ * @version 2.0
+ */
 public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet>{
 
     private static final String TAG = ExerciseActivity.class.getSimpleName();

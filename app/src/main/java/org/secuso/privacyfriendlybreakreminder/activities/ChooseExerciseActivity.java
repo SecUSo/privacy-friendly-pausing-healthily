@@ -34,6 +34,12 @@ import java.util.List;
 
 import static org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
+/**
+ * This activity lets you choose exercises. The result is then sent back to {@link EditExerciseSetActivity}
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @see EditExerciseSetActivity
+ */
 public class ChooseExerciseActivity extends AppCompatActivity {
 
     private static final String TAG = ChooseExerciseActivity.class.getSimpleName();

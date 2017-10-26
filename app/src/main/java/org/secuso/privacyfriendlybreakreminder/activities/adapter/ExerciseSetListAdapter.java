@@ -24,9 +24,11 @@ import java.util.List;
 
 
 /**
- * Created by Christopher Beckmann on 04.09.2017.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 04.09.2017
+ * created 04.09.2017
  */
-
 public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     List<ExerciseSet> data = new LinkedList<ExerciseSet>();

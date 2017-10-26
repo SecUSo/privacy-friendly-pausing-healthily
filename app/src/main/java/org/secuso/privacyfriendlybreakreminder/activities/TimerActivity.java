@@ -45,6 +45,13 @@ import java.util.Locale;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.DEFAULT_EXERCISE_SET;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PAUSE_TIME;
 
+/**
+ * This is the main break reminder activity. It lets you choose exercise and work times, as well as the exercises you want to perform during the break.
+ * When a time is chosen and the "play" buttin is pressed. It displays a big Countdown. The timing itself is handled by the {@link TimerService}.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @see TimerService
+ */
 public class TimerActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
     private static final String TAG = TimerActivity.class.getSimpleName();
 
@@ -65,18 +72,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     // animation
     private int mShortAnimationDuration;
     private boolean currentStatusIsPickerVisible = false;
-
-//    private static final String[] SECONDS_MINUTES = new String[60];
-//    private static final String[] HOURS = new String[24];
-//
-//    static {
-//        for(int i = 0; i < SECONDS_MINUTES.length; ++i) {
-//            SECONDS_MINUTES[i] = String.format(Locale.US, "%02d", i);
-//        }
-//        for(int i = 0; i < HOURS.length; ++i) {
-//            HOURS[i] = String.format(Locale.US, "%02d", i);
-//        }
-//    }
 
     // Service
     private TimerService mTimerService = null;
@@ -108,7 +103,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             boolean isRunning = intent.getBooleanExtra("isRunning", false);
             boolean isPaused = intent.getBooleanExtra("isPaused", false);
 
-            Log.d(TAG, millisUntilDone + "/" + initialDuration + " (" + (isRunning ? "Running" : "") + (isPaused ? "Paused" : "") + (!isRunning && !isPaused ?  "Stopped" : "") + ")");
+            //Log.d(TAG, millisUntilDone + "/" + initialDuration + " (" + (isRunning ? "Running" : "") + (isPaused ? "Paused" : "") + (!isRunning && !isPaused ?  "Stopped" : "") + ")");
 
             updateUI(isRunning, isPaused, initialDuration, millisUntilDone);
         }
@@ -214,42 +209,12 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
         secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
         minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 5));
-
-//        secondsPicker.setDisplayedValues(SECONDS_MINUTES);
-//        secondsPicker.setMinValue(0);
-//        secondsPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-//        secondsPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_SECONDS, 0));
-//        secondsBreakPicker.setDisplayedValues(SECONDS_MINUTES);
-//        secondsBreakPicker.setMinValue(0);
-//        secondsBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-//        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
-//
-//        minutesPicker.setDisplayedValues(SECONDS_MINUTES);
-//        minutesPicker.setMinValue(0);
-//        minutesPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-//        minutesPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_MINUTES, 30));
-//        minutesBreakPicker.setDisplayedValues(SECONDS_MINUTES);
-//        minutesBreakPicker.setMinValue(0);
-//        minutesBreakPicker.setMaxValue(SECONDS_MINUTES.length - 1);
-//        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 0));
-//
-//        hoursPicker.setDisplayedValues(HOURS);
-//        hoursPicker.setMinValue(0);
-//        hoursPicker.setMaxValue(HOURS.length - 1);
-//        hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
-
-        //setDividerColor(secondsPicker, R.color.transparent);
-        //setDividerColor(minutesPicker, R.color.transparent);
-        //setDividerColor(hoursPicker,   R.color.transparent);
-        //setDividerColor(secondsBreakPicker,   R.color.transparent);
-        //setDividerColor(minutesBreakPicker,   R.color.transparent);
     }
 
     private void setPickerAttributes(NumberPicker np) {
         np.setTextColorResource(R.color.middlegrey);
         np.setSelectedTextColorResource(R.color.colorAccent);
         np.setDividerColorResource(R.color.transparent);
-        //np.setDividerDistance(25);
         np.setSelectedTextSize(R.dimen.picker_selected_text_size);
         np.setTextSize(R.dimen.picker_text_size);
         np.setFormatter(NumberPicker.getTwoDigitFormatter());
@@ -267,13 +232,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
         String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds);
         timerText.setText(time);
-
-        //progressBar.setMax(1000);
-        //ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 1000 * percentFinished); // see this max value coming back here, we animale towards that value
-
-        //animation.setDuration(5000); //in milliseconds
-        //animation.setInterpolator(new LinearInterpolator());
-        //animation.start();
     }
 
 
@@ -428,22 +386,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             playButton.setImageResource(R.drawable.ic_play_arrow_black);
         }
     }
-
-//    private void setDividerColor(NumberPicker picker, @ColorRes int color) {
-//        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-//        for (java.lang.reflect.Field pf : pickerFields) {
-//            if (pf.getName().equals("mSelectionDivider")) {
-//                pf.setAccessible(true);
-//                try {
-//                    ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(this, color));
-//                    pf.set(picker, colorDrawable);
-//                } catch (IllegalArgumentException | Resources.NotFoundException | IllegalAccessException e) {
-//                    Log.e(TAG, e.getMessage(), e);
-//                }
-//                break;
-//            }
-//        }
-//    }
 
     @Override
     public Loader<List<ExerciseSet>> onCreateLoader(int id, final Bundle args) {

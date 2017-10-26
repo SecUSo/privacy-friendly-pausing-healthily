@@ -29,9 +29,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Christopher Beckmann on 06.09.2017.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 06.09.2017
+ * created 06.09.2017
  */
-
 public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context mContext;

@@ -7,6 +7,7 @@ import java.util.Locale;
 /**
  * This class saves the available languages for the exercises.
  * @author Christopher Beckmann
+ * @version 2.0
  */
 public final class ExerciseLocale {
 

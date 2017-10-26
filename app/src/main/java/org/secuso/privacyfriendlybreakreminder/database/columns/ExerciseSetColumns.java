@@ -8,9 +8,12 @@ import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 /**
- * Created by Christopher Beckmann on 03.09.2017.
+ * Database columns and utility methods for exercise sets.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 03.09.2017
+ * created 03.09.2017
  */
-
 public final class ExerciseSetColumns {
 
     public static final String TABLE_NAME = "exercise_set";

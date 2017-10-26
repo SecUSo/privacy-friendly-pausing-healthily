@@ -14,6 +14,8 @@ import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 
 /**
+ * @author Christopher Beckmann
+ * @version 2.0
  * Use {@link ExerciseDialog#showExerciseDialog(Context, Exercise)} to show the dialog.
  */
 public final class ExerciseDialog {

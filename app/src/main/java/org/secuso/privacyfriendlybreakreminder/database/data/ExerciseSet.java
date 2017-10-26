@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Christopher Beckmann on 03.09.2017.
+ * Model for an exercise set. It holds {@link Exercise}s.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 03.09.2017
+ * created 03.09.2017
  */
-
 public class ExerciseSet {
     private long id = -1L;
     private String name = null;

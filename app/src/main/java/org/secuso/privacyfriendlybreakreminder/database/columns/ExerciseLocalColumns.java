@@ -6,9 +6,12 @@ import android.database.Cursor;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 
 /**
- * Created by Christopher Beckmann on 25.08.2017.
+ * Localised strings of an exercise.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 25.08.2017
+ * created 25.08.2017
  */
-
 public final class ExerciseLocalColumns {
 
     public static final String TABLE_NAME = "exercises_local";

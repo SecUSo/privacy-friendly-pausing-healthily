@@ -6,9 +6,12 @@ import android.database.Cursor;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 
 /**
- * Created by Christopher Beckmann on 23.08.2017.
+ * Database representation of an exercise.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @since 23.08.2017
+ * created 23.08.2017
  */
-
 public final class ExerciseColumns {
 
     public static final String TABLE_NAME = "exercises";

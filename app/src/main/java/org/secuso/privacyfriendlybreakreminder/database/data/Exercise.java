@@ -7,6 +7,11 @@ import android.support.annotation.IdRes;
 
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseSections;
 
+/**
+ * Model for an exercise.
+ * @author Christopher Beckmann
+ * @version 2.0
+ */
 public class Exercise {
     private int id;
     private int localId;

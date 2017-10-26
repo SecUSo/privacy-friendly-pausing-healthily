@@ -31,6 +31,13 @@ import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
+/**
+ * The main timer service. It handles the work timer and sends updates to the notification and the {@link TimerActivity}.
+ * When the work time is up, an alarm will fire to start the exercises.
+ * @author Christopher Beckmann
+ * @version 2.0
+ * @see TimerActivity
+ */
 public class TimerService extends Service {
 
     public static final String TAG = TimerService.class.getSimpleName();

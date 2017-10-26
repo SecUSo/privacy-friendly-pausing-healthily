@@ -30,7 +30,7 @@ public class HelpActivity extends BaseActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            addPreferencesFromResource(R.xml.pref_help);
+            //addPreferencesFromResource(R.xml.pref_help);
         }
     }
 

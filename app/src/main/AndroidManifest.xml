@@ -24,18 +24,6 @@
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
         </activity>
 
-        <receiver
-            android:name=".widget.AppWidget"
-            android:label="Resizable Widget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget2x1_info" />
-        </receiver>
-
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme"

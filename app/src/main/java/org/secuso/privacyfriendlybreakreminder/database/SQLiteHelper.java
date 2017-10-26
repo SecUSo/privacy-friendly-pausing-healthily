@@ -98,7 +98,7 @@ public class SQLiteHelper extends SQLiteAssetHelper {
                 null,
                 null,
                 null,
-                null);
+                ExerciseSetColumns._ID + " DESC");
     }
 
     public synchronized List<ExerciseSet> getExerciseSetsWithExercises(String language) {

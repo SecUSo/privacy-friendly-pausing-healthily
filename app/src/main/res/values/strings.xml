@@ -25,7 +25,7 @@
     <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
     <string name="version_number" translatable="false">Version</string>
     <string name="about_author">Authors: </string>
-    <string name="about_author_names" translatable="false">Christopher Beckmann, Sergej Alexeev, Jannik Schildknecht</string>
+    <string name="about_author_names" translatable="false">Christopher Beckmann, Sergej Alexeev,\nJannik Schildknecht</string>
     <string name="about_author_contributors">%s and contributors.</string>
     <string name="about_affiliation">In affiliation with</string>
     <string name="more_info">More Information can be found on:</string>

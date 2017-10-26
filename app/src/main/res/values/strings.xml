@@ -8,32 +8,6 @@
     <string name="information">Information</string>
     <string name="help">Help</string>
 
-    <!-- General settings -->
-    <!-- Strings for the Interval-Slider -->
-    <string name="settings_dialog_message">Select your work time</string>
-    <string name="settings_summary">Current value is $1</string>
-    <string name="settings_unit">Minutes</string>
-    <string name="settings_title">Select your work time</string>
-
-    <!-- Strings for the Break-Slider -->
-    <string name="settings_break_summary">Current value is $1</string>
-    <string name="settings_break_title">Select your break time</string>
-
-    <!-- Strings for Name -->
-    <string name="pref_header_general">Edit Profiles</string>
-    <string name="pref_title_display_name">Profile name</string>
-    <string name="pref_default_display_name">Random</string>
-    <string name="pref_current_profile">Select profile</string>
-    <string name="pref_current_exercises">Select exercises</string>
-
-
-    <!-- settings for BreakReminder -->
-    <string name="new_profile">New Profile…</string>
-    <string name="play_stop" translatable="false">Play/Stop</string>
-    <string name="reset" translatable="false">Reset</string>
-    <string name="break_reminder_time" translatable="false">30:00</string>
-    <string name="standard_profile">Random,90,5,false,Arms.Legs.Head.Neck.Pelvis.Spinal Column.Torso.;Upper-Body,90,15,true,Arms.Neck.Head.;Torso,30,5,true,Spinal Column.Torso.;Lower-Body,30,5,true,Legs.Pelvis.;</string>
-
     <!-- settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
     <string name="pref_title_ringtone">Ringtone</string>
@@ -42,33 +16,9 @@
     <string name="pref_title_timeLeft">Time left</string>
     <string name="pref_title_vibrate">Vibration</string>
 
-    <!-- settings for ProfileActivity -->
-    <string name="_0" translatable="false">0</string>
-    <string name="type">Type</string>
     <string name="add">Add</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="profile_name">Profile Name</string>
-    <string name="interval">Work-Time</string>
-
-    <!-- settings for BreakDeciderActivity -->
-    <string name="take_the_break">Take the Break</string>
-    <string name="skip_the_break">Skip the Break</string>
-    <string name="do_you_want_to_take_the_break">Do you want to take the break?</string>
-
-    <!--settings for SettingsActivity -->
-    <string name="settings_emptyName">The changes could not be applied because the name for the profile was empty!</string>
-    <string name="settings_doubleName">The changes could not be applied because there is already a profile with the same name!</string>
-    <string name="settings_exercise_summary">Choose the body parts, you want to exercise</string>
-
-    <!--settings for ProfileActivity -->
-    <string name="new_profile_break">Break</string>
-    <string name="new_profile_select">Select</string>
-    <string name="new_profile_continuously">Start pause automatically</string>
-    <string name="new_profile_emptyName">Please enter a name for the profile!</string>
-    <string name="new_profile_doubleName">Enter another name, there is already a profile with the same name!</string>
-    <string name="continuously">If checked, there will be no possibility to skip the break</string>
-    <string name="exercise_description">Make sure to select some exercises! If nothing is selected, there will be no exercises in the break!</string>
 
     <!-- settings for AboutActivity -->
     <string name="about">About</string>
@@ -82,26 +32,6 @@
     <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-break-reminder">Github-Repo</a></string>
     <string name="url" translatable="false"><a href="https://www.secuso.org/pfa">SECUSO-Website</a></string>
 
-    <!-- settings for ExerciseTypeActivity -->
-    <string name="exercise_summary">Your break will contain exercises for the following body sections:</string>
-    <string-array name="type_spinner">
-        <item>Head</item>
-        <item>Neck</item>
-        <item>Arms</item>
-        <item>Torso</item>
-        <item>Spinal Column</item>
-        <item>Pelvis</item>
-        <item>Legs</item>
-    </string-array>
-    <string-array name="value_spinner" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-    </string-array>
 
     <string-array name="help_overview_strings">
         <item>Main Screen</item>
@@ -114,16 +44,8 @@
     </string-array>
 
     <!-- settings for BreakActivity -->
-    <string name="_10_00" translatable="false">10:00</string>
-    <string name="break_next" translatable="false">Next</string>
     <string name="break_description">Description:</string>
-    <string name="break_explanation">Description of the Exercise</string>
-    <string name="break_ex">Execution of the Exercise</string>
     <string name="break_execution">Execution:</string>
-    <string name="exercise_type">Exercise Type</string>
-    <string name="exercise_break">Break</string>
-    <string name="exercise_side">Side</string>
-    <string name="exercise_repetition">Repetition</string>
 
     <!-- settings for HelpActivity -->
     <string name="help_start_screen">1. Spinner to select the profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button starts and stops the time. \n4. Resets the time</string>
@@ -178,7 +100,6 @@
     <string name="activity_title_manage_exercise_sets">Exercise Sets</string>
     <string name="activity_title_edit_exercise_set">Edit Exercise Set</string>
     <string name="activity_title_new_exercise_set">New Exercise Set</string>
-    <string name="dialog_add_exercise_set_setname">exercise set name</string>
     <string name="dialog_add_exercise_set_title">Add New Exercise Set</string>
     <string name="activity_title_break_reminder">Break Reminder</string>
     <string name="dialog_add_exercise_set_name">Exercise Set Name</string>

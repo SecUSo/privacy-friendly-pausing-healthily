@@ -61,6 +61,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public void disableDeleteMode() {
         deleteMode = false;
+        deleteIds.clear();
         notifyDataSetChanged();
     }
 

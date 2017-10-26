@@ -24,10 +24,6 @@
                 android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
         </activity>
 
-        <activity
-            android:name=".activities.old.BreakDeciderActivity"
-            android:screenOrientation="portrait" />
-
         <receiver
             android:name=".widget.AppWidget"
             android:label="Resizable Widget">

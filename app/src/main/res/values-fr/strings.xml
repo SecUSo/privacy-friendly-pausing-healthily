@@ -32,7 +32,7 @@
     <string name="pref_current_exercises">Choisissez des exercices</string>
     <string name="pref_current_profile">Choisissez un profil</string>
     <string name="pref_default_display_name">Hasard</string>
-    <string name="pref_header_general">Modifier les profils</string>
+    <string name="pref_header_exercises">Modifier les profils</string>
     <string name="pref_header_notifications">Notifications</string>
     <string name="pref_ringtone_silent">Silencieux</string>
     <string name="pref_title_display_name">Nom du profil</string>

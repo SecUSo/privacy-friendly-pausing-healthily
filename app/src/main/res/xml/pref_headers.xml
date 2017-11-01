@@ -3,8 +3,13 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$ExercisePreferenceFragment"
         android:icon="@drawable/ic_info_black"
-        android:title="@string/pref_header_general" />
+        android:title="@string/pref_header_exercises" />
+
+    <header
+        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$TimerPreferenceFragment"
+        android:icon="@drawable/ic_alarm_black"
+        android:title="@string/pref_header_schedule" />
 
 </preference-headers>

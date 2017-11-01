@@ -103,10 +103,9 @@ public class TimerService extends Service {
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setVibrate(new long[] { 0, 1000, 1000, 1000, 1000, 1000, 1000 })
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                .setOnlyAlertOnce(false);
+                .setOnlyAlertOnce(false)
+                .setDeleteIntent(PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(this, NotificationDeletedReceiver.class), 0));
         notificationManager.notify(NOTIFICATION_ID, builder.build());
-
-        // TODO: show decider activity?!
     }
 
     @Override

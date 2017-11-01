@@ -21,13 +21,51 @@
             android:id="@+id/main_content"
             android:layout_height="match_parent">
 
-            <fragment
-                android:name="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$GeneralPreferenceFragment"
-                android:id="@+id/activity_settings_general_preference_fragment"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="0px"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/headers"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ListView android:id="@android:id/list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clipToPadding="false"
+                        android:drawSelectorOnTop="false"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:listPreferredItemHeight="48dp"
+                        android:scrollbarAlwaysDrawVerticalTrack="true" />
+
+                    <FrameLayout android:id="@+id/list_footer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/prefs_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <android.preference.PreferenceFrameLayout android:id="@+id/prefs"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
 
         </android.support.constraint.ConstraintLayout>
+
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

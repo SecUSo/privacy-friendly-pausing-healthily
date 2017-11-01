@@ -1,16 +1,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="pref_keep_screen_on_during_exercise"
-        android:title="@string/pref_keep_screen_on_during_exercise" />
+    <PreferenceCategory android:title="@string/pref_category_exercise">
 
-    <EditTextPreference
-        android:defaultValue="30"
-        android:inputType="number"
-        android:numeric="integer"
-        android:maxLength="2"
-        android:key="pref_exercise_time"
-        android:title="@string/pref_exercise_time"/>
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="pref_keep_screen_on_during_exercise"
+            android:title="@string/pref_keep_screen_on_during_exercise" />
+
+        <EditTextPreference
+            android:defaultValue="30"
+            android:inputType="number"
+            android:numeric="integer"
+            android:maxLength="2"
+            android:key="pref_exercise_time"
+            android:title="@string/pref_exercise_time"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

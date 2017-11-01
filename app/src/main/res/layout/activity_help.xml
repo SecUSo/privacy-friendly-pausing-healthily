@@ -26,10 +26,14 @@
             android:orientation="vertical"
             tools:context=".activities.HelpActivity"
             android:weightSum="1">
-            <fragment android:name="org.secuso.privacyfriendlybreakreminder.activities.HelpActivity$HelpFragment"
-                android:id="@+id/help_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+
+            <ExpandableListView
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp"
+                android:id="@+id/generalExpandableListView"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
 
         </LinearLayout>
 

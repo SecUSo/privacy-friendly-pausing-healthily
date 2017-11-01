@@ -42,7 +42,7 @@
     <string name="pref_current_exercises">Auswahl der Übungen</string>
     <string name="pref_current_profile">Auswahl des Profils</string>
     <string name="pref_default_display_name">Zufall</string>
-    <string name="pref_header_general">Profile bearbeiten</string>
+    <string name="pref_header_exercises">Profile bearbeiten</string>
     <string name="pref_header_notifications">Benachrichtigungen</string>
     <string name="pref_ringtone_silent">Lautlos</string>
     <string name="pref_title_display_name">Profil Name</string>

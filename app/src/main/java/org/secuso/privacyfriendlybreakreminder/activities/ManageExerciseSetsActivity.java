@@ -181,7 +181,6 @@ public class ManageExerciseSetsActivity extends BaseActivity implements android.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(!enabled);
-            actionBar.setDefaultDisplayHomeAsUpEnabled(!enabled);
             actionBar.setDisplayShowHomeEnabled(enabled);
             actionBar.setHomeButtonEnabled(enabled);
         }

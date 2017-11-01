@@ -156,6 +156,81 @@
     <string name="numberpicker_formatter" translatable="false">%02d</string>
     <string name="pref_exercise_time">Exercise time (in Seconds)</string>
     <string name="pref_keep_screen_on_during_exercise">Keep screen on during exercise</string>
+    <string name="pref_category_exercise">exercise settings</string>
+    <string name="pref_category_schedule">schedule an exercise</string>
+    <string name="pref_schedule_exercise_switch">enable exercise schedule</string>
+    <string name="pref_schedule_exercise_time">Schedule Time</string>
+    <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
+    <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
+    <string name="help_permission">Which permissions does the app require?</string>
+    <string name="help_permission_answer">The app only requests permission to control the vibration of the device to make the break alarm more distinct.</string>
+    <string name="pref_header_schedule">Schedule Times</string>
+    <string name="pref_header_exercises">Exercise Settings</string>
+    <string name="title_activity_settings2">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
 
 
 </resources>

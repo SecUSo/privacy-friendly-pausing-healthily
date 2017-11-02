@@ -111,9 +111,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity
-            android:name=".SettingsActivity2"
-            android:label="@string/title_activity_settings2"></activity>
     </application>
 
 </manifest>

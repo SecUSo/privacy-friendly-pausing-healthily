@@ -15,6 +15,12 @@
             android:key="pref_exercise_time"
             android:title="@string/pref_exercise_time"/>
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pref_exercise_continuous"
+            android:title="@string/pref_exercise_continuous"
+            android:summary="@string/pref_exercise_continuous_summary"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -231,6 +231,8 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_exercise_continuous">Continuous Exercises</string>
+    <string name="pref_exercise_continuous_summary">Start the next timer automatically</string>
 
 
 </resources>

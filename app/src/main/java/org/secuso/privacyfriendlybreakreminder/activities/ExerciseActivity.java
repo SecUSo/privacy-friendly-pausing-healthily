@@ -2,11 +2,13 @@ package org.secuso.privacyfriendlybreakreminder.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -17,7 +19,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,10 +45,11 @@ import static org.secuso.privacyfriendlybreakreminder.service.TimerService.ACTIO
 
 /**
  * This activity handles showing the exercises and the exercise timer.
+ *
  * @author Christopher Beckmann
  * @version 2.0
  */
-public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet>{
+public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
 
     private static final String TAG = ExerciseActivity.class.getSimpleName();
 
@@ -115,7 +117,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         continuousStatus = pref.getBoolean(PrefManager.REPEAT_EXERCISES, false);
         try {
             exerciseTime = Long.parseLong(pref.getString(PrefManager.EXERCISE_DURATION, "30")) * 1000;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             exerciseTime = 30L * 1000;
         }
         keepScreenOn = pref.getBoolean(PrefManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
@@ -123,12 +125,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         initResources();
 
         ActionBar ab = getSupportActionBar();
-        if(ab != null) {
+        if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
             ab.setHomeAsUpIndicator(R.drawable.ic_close_white);
         }
 
-        if(keepScreenOn) {
+        if (keepScreenOn) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
@@ -137,23 +139,23 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     private void initResources() {
         dbHelper = new SQLiteHelper(this);
-        playButton = (ImageButton) findViewById(R.id.button_playPause);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        timerText = (TextView) findViewById(R.id.timerText);
-        executionText = (TextView) findViewById(R.id.execution);
-        descriptionText = (TextView) findViewById(R.id.description);
-        exerciseImage = (ImageView) findViewById(R.id.exercise_image);
-        sectionText = (TextView) findViewById(R.id.section);
-        repeatButton = (ImageButton) findViewById(R.id.button_repeat);
-        exerciseContent = (ConstraintLayout) findViewById(R.id.exercise_layout);
-        continuousButton = (ImageButton) findViewById(R.id.button_continuous);
-        prevButton = (ImageButton) findViewById(R.id.button_prev);
-        nextButton = (ImageButton) findViewById(R.id.button_next);
-        exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
+        playButton = findViewById(R.id.button_playPause);
+        progressBar = findViewById(R.id.progressBar);
+        timerText = findViewById(R.id.timerText);
+        executionText = findViewById(R.id.execution);
+        descriptionText = findViewById(R.id.description);
+        exerciseImage = findViewById(R.id.exercise_image);
+        sectionText = findViewById(R.id.section);
+        repeatButton = findViewById(R.id.button_repeat);
+        exerciseContent = findViewById(R.id.exercise_layout);
+        continuousButton = findViewById(R.id.button_continuous);
+        prevButton = findViewById(R.id.button_prev);
+        nextButton = findViewById(R.id.button_next);
+        exerciseInfoButton = findViewById(R.id.exercise_info_button);
 
-        progressBarBig = (ProgressBar) findViewById(R.id.progressBarBig);
-        breakTimerTextBig = (TextView) findViewById(R.id.breakTimerTextBig);
-        bigProgressBarLayout = (ConstraintLayout) findViewById(R.id.bigProgressBarLayout);
+        progressBarBig = findViewById(R.id.progressBarBig);
+        breakTimerTextBig = findViewById(R.id.breakTimerTextBig);
+        bigProgressBarLayout = findViewById(R.id.bigProgressBarLayout);
 
         setRepeatButtonStatus(repeatStatus);
         setContinuousButtonStatus(continuousStatus);
@@ -163,8 +165,8 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                if(!isBreakFinished) {
-                    showConfirmationDialog();
+                if (!isBreakFinished) {
+                    showConfirmationDialog(this);
                 } else {
                     finish();
                 }
@@ -190,8 +192,8 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     @Override
     public void onBackPressed() {
-        if(isBreakFinished) {
-            showConfirmationDialog();
+        if (isBreakFinished) {
+            showConfirmationDialog(this);
         } else {
             finish();
         }
@@ -207,13 +209,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         ExerciseActivity.this.overridePendingTransition(0, 0);
     }
 
-    private void showConfirmationDialog() {
-        if(isActivityVisible) {
-            new AlertDialog.Builder(this)
+    private static void showConfirmationDialog(final ExerciseActivity activity) {
+        if (activity.isActivityVisible) {
+            new AlertDialog.Builder(activity)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            ExerciseActivity.this.finish();
+                            activity.finish();
                         }
                     })
                     .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -227,13 +229,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         }
     }
 
-    private void showEndDialog() {
-        if(isActivityVisible) {
-            new AlertDialog.Builder(this)
+    private static void showEndDialog(final ExerciseActivity activity) {
+        if (activity.isActivityVisible) {
+            new AlertDialog.Builder(activity)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            ExerciseActivity.this.finish();
+                            activity.finish();
                         }
                     })
                     .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -250,20 +252,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     @Override
     public Loader<ExerciseSet> onCreateLoader(int id, final Bundle args) {
-        return new AsyncTaskLoader<ExerciseSet>(this) {
-            @Override
-            public ExerciseSet loadInBackground() {
-                return dbHelper.getExerciseListForSet((int)exerciseSetId, ExerciseLocale.getLocale());
-            }
-
-            @Override
-            protected void onStartLoading() {
-                forceLoad();
-            }
-
-            @Override
-            protected void onReset() {}
-        };
+        return new ExerciseSetLoader(this, (int)exerciseSetId);
     }
 
     @Override
@@ -271,11 +260,11 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         super.onResume();
         isActivityVisible = true;
 
-        if(isBreakFinished) {
-            showEndDialog();
+        if (isBreakFinished) {
+            showEndDialog(this);
         }
 
-        if(keepScreenOn) {
+        if (keepScreenOn) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
     }
@@ -290,13 +279,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     @Override
     public void onLoadFinished(Loader<ExerciseSet> loader, ExerciseSet set) {
-        if(set != null) {
+        if (set != null) {
             this.set = set;
         } else {
             this.set = new ExerciseSet();
         }
 
-        if(this.set.size() > 0) {
+        if (this.set.size() > 0) {
             setExercise(0);
         } else {
             showBigTimer(true);
@@ -309,11 +298,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     @Override
-    public void onLoaderReset(Loader<ExerciseSet> loader) {}
+    public void onLoaderReset(Loader<ExerciseSet> loader) {
+    }
 
 
     private void updatePlayButton(boolean isRunning) {
-        if(isRunning) {
+        if (isRunning) {
             playButton.setImageResource(R.drawable.ic_pause_black_48dp);
         } else {
             playButton.setImageResource(R.drawable.ic_play_arrow_black);
@@ -321,7 +311,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void updateProgress(long remainingDuration) {
-        progressBar.setMax((int)exerciseTime);
+        progressBar.setMax((int) exerciseTime);
         progressBar.setProgress(progressBar.getMax() - (int) remainingDuration);
 
         int secondsUntilFinished = (int) Math.ceil(remainingDuration / 1000.0);
@@ -334,7 +324,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void updateBigProgress(long remainingDuration) {
-        progressBarBig.setMax((int)pauseDuration);
+        progressBarBig.setMax((int) pauseDuration);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             progressBarBig.setProgress(progressBarBig.getMax() - (int) remainingDuration, true);
@@ -352,12 +342,10 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void showBigTimer(boolean show) {
-        if(showBigTimer != show) {
-
+        if (showBigTimer != show) {
             showBigTimer = show;
 
             if (show) {
-
                 bigProgressBarLayout.setVisibility(View.VISIBLE);
                 bigProgressBarLayout.animate().alpha(1.0f).setDuration(125).setListener(null);
 
@@ -369,10 +357,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                             exerciseContent.setVisibility(View.GONE);
                     }
                 });
-
-
             } else {
-
                 bigProgressBarLayout.animate().alpha(0.0f).setDuration(125).setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
@@ -384,17 +369,15 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
                 exerciseContent.setVisibility(View.VISIBLE);
                 exerciseContent.animate().alpha(1.0f).setDuration(125).setListener(null);
-
-
             }
         }
     }
 
     private void showControlButtons(boolean show) {
-        if(show != showControlButtons) {
+        if (show != showControlButtons) {
             showControlButtons = show;
 
-            if(show) {
+            if (show) {
                 playButton.setVisibility(View.VISIBLE);
                 repeatButton.setVisibility(View.VISIBLE);
                 continuousButton.setVisibility(View.VISIBLE);
@@ -411,7 +394,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     public void onClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.progressBarLayout:
             case R.id.button_playPause:
                 handlePlayPauseClicked();
@@ -437,14 +420,14 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private boolean nextExercise() {
-        if(set != null) {
-            if(showBigTimer && repeatStatus && currentExercise == set.size()) {
+        if (set != null) {
+            if (showBigTimer && repeatStatus && currentExercise == set.size()) {
                 // repeat status is was turned back on.. and somebody presses next
                 showBigTimer(false);
                 currentExercise = set.size() - 1;
             }
 
-            if(setExercise((currentExercise + 1))) {
+            if (setExercise((currentExercise + 1))) {
                 return true;
             } else {
                 showBigTimer(true);
@@ -454,27 +437,27 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private boolean previousExercise() {
-        if(showBigTimer) {
+        if (showBigTimer) {
             showBigTimer(false);
         }
         return set != null && setExercise(currentExercise - 1);
     }
 
     private boolean setExercise(int number) {
-        if(set != null) {
-            if(set.size() != 0) {
+        if (set != null) {
+            if (set.size() != 0) {
 
-                if(number < 0) {
+                if (number < 0) {
                     currentExercise = repeatStatus ?
                             (number + set.size()) :
                             0;
 
-                } else if(number >= set.size()) {
+                } else if (number >= set.size()) {
                     currentExercise = repeatStatus ?
                             (number % set.size()) :
                             (set.size());
 
-                    if(!repeatStatus) return false;
+                    if (!repeatStatus) return false;
 
                 } else {
                     currentExercise = number;
@@ -489,13 +472,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private boolean nextExercisePart() {
-        if(set != null) {
-            if(set.size() != 0 && currentExercise < set.size()) {
+        if (set != null) {
+            if (set.size() != 0 && currentExercise < set.size()) {
                 int[] images = set.get(currentExercise).getImageResIds(this);
 
                 currentExercisePart = (currentExercisePart + 1);
 
-                if(currentExercisePart >= images.length) {
+                if (currentExercisePart >= images.length) {
                     currentExercisePart = 0;
                     return false;
                 }
@@ -534,7 +517,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         exerciseImage.setOnClickListener(infoClickListener);
         exerciseInfoButton.setOnClickListener(infoClickListener);
 
-        if(continuousStatus)
+        if (continuousStatus)
             startExerciseTimer();
         else
             resetExerciseTimer();
@@ -579,11 +562,10 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void handlePlayPauseClicked() {
-        if(isExercisePaused()) {
+        if (isExercisePaused()) {
             resumeExerciseTimer();
             updatePlayButton(true);
-        }
-        else if(isExerciseTimerRunning){
+        } else if (isExerciseTimerRunning) {
             pauseExerciseTimer();
             updatePlayButton(false);
         } else {
@@ -610,7 +592,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                 updateBreakTimer(remainingBreakDuration);
                 updateBigProgress(remainingBreakDuration);
 
-                showEndDialog();
+                showEndDialog(ExerciseActivity.this);
 
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
@@ -625,7 +607,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
         String time = String.format(Locale.US, "%02d:%02d", minutes, seconds);
         time = getString(R.string.remaining_time) + " " + time;
-        if(breakTimerText != null) {
+        if (breakTimerText != null) {
             breakTimerText.setText(time);
         }
     }
@@ -656,7 +638,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     public void startExerciseTimer() {
-        if(exerciseTimer != null) {
+        if (exerciseTimer != null) {
             exerciseTimer.cancel();
         }
         exerciseTimer = createExerciseTimer(exerciseTime);
@@ -667,21 +649,21 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void pauseBreakTimer() {
-        if(isBreakTimerRunning) {
+        if (isBreakTimerRunning) {
             breakTimer.cancel();
             isBreakTimerRunning = false;
         }
     }
 
     private void pauseExerciseTimer() {
-        if(isExerciseTimerRunning) {
+        if (isExerciseTimerRunning) {
             exerciseTimer.cancel();
             isExerciseTimerRunning = false;
         }
     }
 
     public void resumeBreakTimer() {
-        if(!isBreakTimerRunning & remainingBreakDuration > 0) {
+        if (!isBreakTimerRunning & remainingBreakDuration > 0) {
             breakTimer = createExerciseTimer(remainingBreakDuration);
             breakTimer.start();
             isBreakTimerRunning = true;
@@ -689,7 +671,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     public void resumeExerciseTimer() {
-        if(!isExerciseTimerRunning & remainingExerciseDuration > 0) {
+        if (!isExerciseTimerRunning & remainingExerciseDuration > 0) {
             exerciseTimer = createExerciseTimer(remainingExerciseDuration);
             exerciseTimer.start();
             isExerciseTimerRunning = true;
@@ -702,7 +684,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void resetExerciseTimer() {
-        if(exerciseTimer != null) {
+        if (exerciseTimer != null) {
             exerciseTimer.cancel();
         }
         isExerciseTimerRunning = false;
@@ -711,4 +693,27 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         updatePlayButton(false);
         updateProgress(exerciseTime);
     }
+
+    private static class ExerciseSetLoader extends AsyncTaskLoader<ExerciseSet> {
+        int exerciseSetId;
+
+        ExerciseSetLoader(Context context, int exerciseSetId) {
+            super(context);
+            this.exerciseSetId = exerciseSetId;
+        }
+
+        @Override
+        public ExerciseSet loadInBackground() {
+            return new SQLiteHelper(getContext()).getExerciseListForSet(exerciseSetId, ExerciseLocale.getLocale());
+        }
+
+        @Override
+        protected void onStartLoading() {
+            forceLoad();
+        }
+
+        @Override
+        protected void onReset() {
+        }
+    };
 }

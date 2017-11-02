@@ -21,6 +21,8 @@ import android.support.v4.content.ContextCompat;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ExerciseActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
+import org.secuso.privacyfriendlybreakreminder.receivers.NotificationDeletedReceiver;
+import org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver;
 
 import java.util.Locale;
 
@@ -29,6 +31,9 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.WORK_TIME;
+import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationDeletedReceiver.ACTION_NOTIFICATION_DELETED;
+import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver.ACTION_PREF_CHANGE;
+import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver.EXTRA_DISABLE_CONTINUOUS;
 
 /**
  * The main timer service. It handles the work timer and sends updates to the notification and the {@link TimerActivity}.
@@ -47,10 +52,6 @@ public class TimerService extends Service {
     public static final String ACTION_RESUME_TIMER = TAG + "ACTION_RESUME_TIMER";
     public static final String ACTION_STOP_TIMER = TAG + "ACTION_STOP_TIMER";
     public static final String ACTION_SNOOZE_TIMER = TAG + "ACTION_SNOOZE_TIMER";
-
-    public static final String ACTION_PREF_CHANGE = "org.secuso.privacyfriendlybreakreminder.ACTION_PREF_CHANGE";
-    public static final String EXTRA_DISABLE_CONTINUOUS = "EXTRA_DISABLE_CONTINUOUS";
-    public static final String ACTION_NOTIFICATION_DELETED = "org.secuso.privacyfriendlybreakreminder.NotificationDeleted";
 
     private static final int UPDATE_INTERVAL = 100;
     public static final int NOTIFICATION_ID = 31337;
@@ -91,57 +92,8 @@ public class TimerService extends Service {
             }
         }
     };
-    private BroadcastReceiver notificationDeletedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-
-            if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
-                Intent serviceIntent = new Intent(context, TimerService.class);
-                serviceIntent.setAction(TimerService.ACTION_START_TIMER);
-                context.startService(serviceIntent);
-            }
-        }
-    };
-    private BroadcastReceiver notificationPreferenceChangedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if(intent == null) return;
-
-            Bundle bundle = intent.getExtras();
-
-            if(bundle == null) return;
-
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-//        Map<String, ?> prefMap = pref.getAll();
-
-            for(String key : intent.getExtras().keySet()) {
-
-                if(EXTRA_DISABLE_CONTINUOUS.equals(key)) {
-                    pref.edit().putBoolean(PREF_EXERCISE_CONTINUOUS, false).apply();
-                }
-
-//            if(prefMap.containsKey(key)) {
-//
-//                Object bundleValue = bundle.get(key);
-//
-//                if(prefMap.get(key).getClass().isInstance(bundleValue)) {
-//                    if(bundleValue instanceof String) {
-//                        pref.edit().putString(key, (String)bundleValue).apply();
-//                    } else if(bundleValue instanceof Boolean) {
-//                        pref.edit().putBoolean(key, (Boolean)bundleValue).apply();
-//                    }
-//                }
-//            }
-            }
-
-            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            if(manager != null) {
-                manager.cancel(TimerService.NOTIFICATION_ID);
-            }
-        }
-    };
+    private BroadcastReceiver notificationDeletedReceiver = new NotificationDeletedReceiver();
+    private BroadcastReceiver notificationPreferenceChangedReceiver = new NotificationPreferenceChangedReceiver();
 
     private void onTimerDone() {
 

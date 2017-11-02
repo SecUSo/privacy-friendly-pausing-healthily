@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,6 @@ import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import java.util.Locale;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static android.support.design.R.id.center_vertical;
 
 /**
  * This activity handles showing the exercises and the exercise timer.
@@ -106,7 +106,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         exerciseSetId = pref.getLong(PrefManager.DEFAULT_EXERCISE_SET, 0L);
         pauseDuration = pref.getLong(PrefManager.PAUSE_TIME, 5 * 60 * 1000);
         repeatStatus = pref.getBoolean(PrefManager.REPEAT_STATUS, false);
-        continuousStatus = pref.getBoolean(PrefManager.CONTINUOUS_STATUS, false);
+        continuousStatus = pref.getBoolean(PrefManager.REPEAT_EXERCISES, false);
         try {
             exerciseTime = Long.parseLong(pref.getString(PrefManager.EXERCISE_DURATION, "30")) * 1000;
         } catch(NumberFormatException e) {
@@ -175,7 +175,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         breakTimerText = (TextView) MenuItemCompat.getActionView(timerItem);
         breakTimerText.setTextColor(Color.WHITE);
         breakTimerText.setTextSize(20);
-        breakTimerText.setGravity(center_vertical);
+        breakTimerText.setGravity(Gravity.CENTER_HORIZONTAL);
         breakTimerText.setPadding(16, 0, 16, 0);
         //breakTimerText.set(10, 0, 10, 0);
 
@@ -552,7 +552,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private void handleContinuousClicked() {
         continuousStatus = !continuousStatus;
 
-        pref.edit().putBoolean(PrefManager.CONTINUOUS_STATUS, continuousStatus).apply();
+        pref.edit().putBoolean(PrefManager.REPEAT_EXERCISES, continuousStatus).apply();
 
         setContinuousButtonStatus(continuousStatus);
     }

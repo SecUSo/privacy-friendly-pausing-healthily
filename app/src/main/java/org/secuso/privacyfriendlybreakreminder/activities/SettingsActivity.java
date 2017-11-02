@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -18,7 +19,11 @@ import android.view.MenuItem;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.AppCompatPreferenceActivity;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Christopher Beckmann
@@ -26,8 +31,6 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
-    // Helper
-    private Handler mHandler;
     protected SharedPreferences mSharedPreferences;
 
     @Override
@@ -35,7 +38,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.onCreate(savedInstanceState);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mHandler = new Handler();
 
         overridePendingTransition(0, 0);
     }
@@ -94,6 +96,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             String stringValue = value.toString();
 
             if (preference instanceof ListPreference) {
+
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
@@ -104,6 +107,42 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         index >= 0
                                 ? listPreference.getEntries()[index]
                                 : null);
+            } if(preference instanceof MultiSelectListPreference) {
+                MultiSelectListPreference mslPreference = (MultiSelectListPreference) preference;
+
+                if(stringValue.length() >= 2) {
+                    stringValue = stringValue.substring(1, stringValue.length() - 1);
+                }
+
+                String[] setValues = stringValue.split(",");
+
+                if(setValues.length == 7) {
+                    mslPreference.setSummary(preference.getContext().getString(R.string.pref_schedule_exercise_days_allselectedsummary));
+                    return true;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                for(int i = 0; i < mslPreference.getEntries().length; i++) {
+                    String preferenceEntryString = mslPreference.getEntryValues()[i].toString();
+
+                    for(String chosenValue : setValues) {
+                        if (chosenValue.trim().equals(preferenceEntryString)) {
+                            sb.append(mslPreference.getEntries()[i]);
+                            sb.append(", ");
+                            break;
+                        }
+                    }
+                }
+
+                if(sb.length() > 0) {
+                    sb.setLength(sb.length() - 2);
+                }
+
+                if(sb.length() == 0) {
+                    sb.append(preference.getContext().getString(R.string.pref_schedule_exercise_days_defaultsummary));
+                }
+
+                mslPreference.setSummary(sb.toString());
 
             } else {
                 // For all other preferences, set the summary to the value's
@@ -129,10 +168,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         // Trigger the listener immediately with the preference's
         // current value.
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
-                PreferenceManager
-                        .getDefaultSharedPreferences(preference.getContext())
-                        .getString(preference.getKey(), ""));
+        if(preference instanceof MultiSelectListPreference) {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, PreferenceManager
+                    .getDefaultSharedPreferences(preference.getContext())
+                    .getStringSet(preference.getKey(), new HashSet<String>()));
+        } else {
+            sBindPreferenceSummaryToValueListener.onPreferenceChange(preference, PreferenceManager
+                    .getDefaultSharedPreferences(preference.getContext())
+                    .getString(preference.getKey(), ""));
+        }
     }
 
     protected int getNavigationDrawerID() {
@@ -161,6 +205,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_scheduler);
             setHasOptionsMenu(true);
+
+            bindPreferenceSummaryToValue(findPreference("pref_schedule_exercise_days"));
         }
     }
 }

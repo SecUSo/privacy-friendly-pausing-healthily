@@ -156,10 +156,10 @@
     <string name="numberpicker_formatter" translatable="false">%02d</string>
     <string name="pref_exercise_time">Exercise time (in Seconds)</string>
     <string name="pref_keep_screen_on_during_exercise">Keep screen on during exercise</string>
-    <string name="pref_category_exercise">exercise settings</string>
+    <string name="pref_category_exercise">Exercise Settings</string>
     <string name="pref_category_schedule">schedule an exercise</string>
-    <string name="pref_schedule_exercise_switch">enable exercise schedule</string>
-    <string name="pref_schedule_exercise_time">Schedule Time</string>
+    <string name="pref_schedule_exercise_switch">Enable exercise schedule</string>
+    <string name="pref_schedule_exercise_time">Schedule time</string>
     <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
     <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
     <string name="help_permission">Which permissions does the app require?</string>
@@ -231,8 +231,17 @@
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <string name="pref_title_new_message_notifications">New message notifications</string>
-    <string name="pref_exercise_continuous">Continuous Exercises</string>
+    <string name="pref_exercise_continuous">Continuous exercises</string>
     <string name="pref_exercise_continuous_summary">Start the next timer automatically</string>
+    <string name="pref_schedule_exercise_days">Choose days</string>
+    <string name="pref_schedule_exercise_daystrigger">Only trigger on certain days</string>
+    <string name="pref_schedule_exercise_days_defaultsummary">No days selected.</string>
+    <string name="pref_schedule_exercise_days_allselectedsummary">every day</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="dismiss_and_dont_repeat">Dismiss and don\'t start again</string>
 
 
 </resources>

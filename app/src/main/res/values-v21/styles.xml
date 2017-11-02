@@ -1,9 +1,35 @@
 <resources>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:timePickerStyle">@style/TimePickerDialogStyle</item>
+
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:timePickerMode">clock</item>
+        <item name="android:headerBackground">@color/white</item>
+        <item name="android:headerTimeTextAppearance">@style/TextAppearance.TimePickerDialogStyle.TimeLabel</item>
+    </style>
+
+    <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
+        <item name="android:textSize">60sp</item> <!-- from -->
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="timePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:headerBackground">@color/white</item>
+        <item name="android:textColorPrimary">#ff0000</item>
+    </style>
+
 </resources>

@@ -7,14 +7,34 @@
             android:defaultValue="false"
             android:key="pref_schedule_exercise"/>
 
-        <EditTextPreference
+        <!-- <EditTextPreference
             android:defaultValue="30"
             android:inputType="number"
             android:numeric="integer"
             android:maxLength="2"
             android:dependency="pref_schedule_exercise"
             android:key="pref_schedule_exercise_time"
+            android:title="@string/pref_schedule_exercise_time"/> -->
+
+        <org.secuso.privacyfriendlybreakreminder.preferences.TimePreference
+            android:dependency="pref_schedule_exercise"
+            android:defaultValue="32400000"
+            android:key="pref_schedule_exercise_time"
             android:title="@string/pref_schedule_exercise_time"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_schedule_exercise"
+            android:title="@string/pref_schedule_exercise_daystrigger"
+            android:key="pref_schedule_exercise_daystrigger"/>
+
+        <MultiSelectListPreference
+            android:dependency="pref_schedule_exercise_daystrigger"
+            android:entries="@array/pref_schedule_exercise_days"
+            android:entryValues="@array/pref_schedule_exercise_days_entries"
+            android:title="@string/pref_schedule_exercise_days"
+            android:key="pref_schedule_exercise_days"/>
+
 
     </PreferenceCategory>
 </PreferenceScreen>

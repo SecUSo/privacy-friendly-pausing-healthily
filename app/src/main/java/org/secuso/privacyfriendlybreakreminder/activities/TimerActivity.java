@@ -278,7 +278,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         pref.edit().putInt(PrefManager.PREF_PICKER_SECONDS, secondsPicker.getValue())
                 .putInt(PrefManager.PREF_PICKER_MINUTES, minutesPicker.getValue())
-                .putInt(PrefManager.PREF_PICKER_HOURS, hoursPicker.getValue()).apply();
+                .putInt(PrefManager.PREF_PICKER_HOURS, hoursPicker.getValue())
+                .putLong(PrefManager.WORK_TIME, getCurrentSetDuration()).apply();
     }
 
     private long getCurrentSetDuration() {

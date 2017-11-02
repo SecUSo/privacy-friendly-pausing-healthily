@@ -1,9 +1,18 @@
 package org.secuso.privacyfriendlybreakreminder.service;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
+
+import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
+
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
 
 /**
  * @author Christopher Beckmann
@@ -18,8 +27,12 @@ public class NotificationDeletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        // TODO: Notification was swiped away.
-        Log.d(TAG, "Notification swiped away");
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
 
+        if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
+            Intent serviceIntent = new Intent(context, TimerService.class);
+            serviceIntent.setAction(TimerService.ACTION_START_TIMER);
+            context.startService(serviceIntent);
+        }
     }
 }

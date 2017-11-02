@@ -35,10 +35,12 @@ import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 import org.secuso.privacyfriendlybreakreminder.dialog.ExerciseDialog;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
+import org.secuso.privacyfriendlybreakreminder.service.TimerService;
 
 import java.util.Locale;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static org.secuso.privacyfriendlybreakreminder.service.TimerService.ACTION_STOP_TIMER;
 
 /**
  * This activity handles showing the exercises and the exercise timer.
@@ -101,6 +103,10 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
+
+        Intent stopTimer = new Intent(this, TimerService.class);
+        stopTimer.setAction(ACTION_STOP_TIMER);
+        startService(stopTimer);
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         exerciseSetId = pref.getLong(PrefManager.DEFAULT_EXERCISE_SET, 0L);

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -28,8 +29,6 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.WORK_TIME;
-import static org.secuso.privacyfriendlybreakreminder.service.PreferenceChangeReceiver.ACTION_PREF_CHANGE;
-import static org.secuso.privacyfriendlybreakreminder.service.PreferenceChangeReceiver.EXTRA_DISABLE_CONTINUOUS;
 
 /**
  * The main timer service. It handles the work timer and sends updates to the notification and the {@link TimerActivity}.
@@ -41,7 +40,6 @@ import static org.secuso.privacyfriendlybreakreminder.service.PreferenceChangeRe
 public class TimerService extends Service {
 
     public static final String TAG = TimerService.class.getSimpleName();
-    public static final String NOTIFICATION_BROADCAST = TAG + ".NOTIFICATION_BROADCAST";
     public static final String TIMER_BROADCAST = TAG + ".TIMER_BROADCAST";
 
     public static final String ACTION_START_TIMER = TAG + "ACTION_START_TIMER";
@@ -50,7 +48,9 @@ public class TimerService extends Service {
     public static final String ACTION_STOP_TIMER = TAG + "ACTION_STOP_TIMER";
     public static final String ACTION_SNOOZE_TIMER = TAG + "ACTION_SNOOZE_TIMER";
 
-    public static final String NOTIFICATION_DELETED_ACTION = "org.secuso.privacyfriendlybreakreminder.NotificationDeleted";
+    public static final String ACTION_PREF_CHANGE = "org.secuso.privacyfriendlybreakreminder.ACTION_PREF_CHANGE";
+    public static final String EXTRA_DISABLE_CONTINUOUS = "EXTRA_DISABLE_CONTINUOUS";
+    public static final String ACTION_NOTIFICATION_DELETED = "org.secuso.privacyfriendlybreakreminder.NotificationDeleted";
 
     private static final int UPDATE_INTERVAL = 100;
     public static final int NOTIFICATION_ID = 31337;
@@ -91,6 +91,57 @@ public class TimerService extends Service {
             }
         }
     };
+    private BroadcastReceiver notificationDeletedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+
+            if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
+                Intent serviceIntent = new Intent(context, TimerService.class);
+                serviceIntent.setAction(TimerService.ACTION_START_TIMER);
+                context.startService(serviceIntent);
+            }
+        }
+    };
+    private BroadcastReceiver notificationPreferenceChangedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(intent == null) return;
+
+            Bundle bundle = intent.getExtras();
+
+            if(bundle == null) return;
+
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+//        Map<String, ?> prefMap = pref.getAll();
+
+            for(String key : intent.getExtras().keySet()) {
+
+                if(EXTRA_DISABLE_CONTINUOUS.equals(key)) {
+                    pref.edit().putBoolean(PREF_EXERCISE_CONTINUOUS, false).apply();
+                }
+
+//            if(prefMap.containsKey(key)) {
+//
+//                Object bundleValue = bundle.get(key);
+//
+//                if(prefMap.get(key).getClass().isInstance(bundleValue)) {
+//                    if(bundleValue instanceof String) {
+//                        pref.edit().putString(key, (String)bundleValue).apply();
+//                    } else if(bundleValue instanceof Boolean) {
+//                        pref.edit().putBoolean(key, (Boolean)bundleValue).apply();
+//                    }
+//                }
+//            }
+            }
+
+            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            if(manager != null) {
+                manager.cancel(TimerService.NOTIFICATION_ID);
+            }
+        }
+    };
 
     private void onTimerDone() {
 
@@ -117,7 +168,7 @@ public class TimerService extends Service {
                 .setVibrate(new long[] { 0, 1000, 1000, 1000, 1000, 1000, 1000 })
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                 .setOnlyAlertOnce(false)
-                .setDeleteIntent(PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFICATION_DELETED_ACTION), FLAG_UPDATE_CURRENT));
+                .setDeleteIntent(PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(ACTION_NOTIFICATION_DELETED), FLAG_UPDATE_CURRENT));
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
@@ -137,6 +188,8 @@ public class TimerService extends Service {
         super.onCreate();
 
         registerReceiver(timerReceiver, new IntentFilter(TIMER_BROADCAST));
+        registerReceiver(notificationDeletedReceiver, new IntentFilter(ACTION_NOTIFICATION_DELETED));
+        registerReceiver(notificationPreferenceChangedReceiver, new IntentFilter(ACTION_PREF_CHANGE));
     }
 
     @Override
@@ -144,6 +197,8 @@ public class TimerService extends Service {
         super.onDestroy();
 
         unregisterReceiver(timerReceiver);
+        unregisterReceiver(notificationDeletedReceiver);
+        unregisterReceiver(notificationPreferenceChangedReceiver);
     }
 
     public synchronized void startTimer(long duration) {

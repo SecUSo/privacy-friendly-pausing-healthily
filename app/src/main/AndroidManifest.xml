@@ -111,20 +111,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <receiver
-            android:name=".service.NotificationDeletedReceiver">
-            <intent-filter>
-                <action android:name="org.secuso.privacyfriendlybreakreminder.NotificationDeleted" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".service.PreferenceChangeReceiver">
-            <intent-filter>
-                <action android:name="org.secuso.privacyfriendlybreakreminder.ACTION_PREF_CHANGE" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

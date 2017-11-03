@@ -139,23 +139,23 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
     private void initResources() {
         dbHelper = new SQLiteHelper(this);
-        playButton = findViewById(R.id.button_playPause);
-        progressBar = findViewById(R.id.progressBar);
-        timerText = findViewById(R.id.timerText);
-        executionText = findViewById(R.id.execution);
-        descriptionText = findViewById(R.id.description);
-        exerciseImage = findViewById(R.id.exercise_image);
-        sectionText = findViewById(R.id.section);
-        repeatButton = findViewById(R.id.button_repeat);
-        exerciseContent = findViewById(R.id.exercise_layout);
-        continuousButton = findViewById(R.id.button_continuous);
-        prevButton = findViewById(R.id.button_prev);
-        nextButton = findViewById(R.id.button_next);
-        exerciseInfoButton = findViewById(R.id.exercise_info_button);
+        playButton = (ImageButton) findViewById(R.id.button_playPause);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        timerText = (TextView) findViewById(R.id.timerText);
+        executionText = (TextView) findViewById(R.id.execution);
+        descriptionText = (TextView) findViewById(R.id.description);
+        exerciseImage = (ImageView) findViewById(R.id.exercise_image);
+        sectionText = (TextView) findViewById(R.id.section);
+        repeatButton = (ImageButton) findViewById(R.id.button_repeat);
+        exerciseContent = (ConstraintLayout) findViewById(R.id.exercise_layout);
+        continuousButton = (ImageButton) findViewById(R.id.button_continuous);
+        prevButton = (ImageButton) findViewById(R.id.button_prev);
+        nextButton = (ImageButton) findViewById(R.id.button_next);
+        exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
 
-        progressBarBig = findViewById(R.id.progressBarBig);
-        breakTimerTextBig = findViewById(R.id.breakTimerTextBig);
-        bigProgressBarLayout = findViewById(R.id.bigProgressBarLayout);
+        progressBarBig = (ProgressBar) findViewById(R.id.progressBarBig);
+        breakTimerTextBig = (TextView) findViewById(R.id.breakTimerTextBig);
+        bigProgressBarLayout = (ConstraintLayout) findViewById(R.id.bigProgressBarLayout);
 
         setRepeatButtonStatus(repeatStatus);
         setContinuousButtonStatus(continuousStatus);

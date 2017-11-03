@@ -52,6 +52,8 @@ import static org.secuso.privacyfriendlybreakreminder.service.TimerService.ACTIO
 public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
 
     private static final String TAG = ExerciseActivity.class.getSimpleName();
+    private static boolean confirmationDialogShown = false;
+    private static boolean endDialogShown = false;
 
     // UI
     private TextView breakTimerText;
@@ -204,13 +206,25 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         Intent intent = new Intent(ExerciseActivity.this, TimerActivity.class);
         intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
 
+        // start the next timer if continuous is activated
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if(pref.getBoolean(PrefManager.PREF_EXERCISE_CONTINUOUS, false)) {
+            Intent timerServiceIntent = new Intent(this.getApplicationContext(), TimerService.class);
+            timerServiceIntent.setAction(TimerService.ACTION_START_TIMER);
+            startService(timerServiceIntent);
+        }
+
         super.finish();
-        ExerciseActivity.this.startActivity(intent);
-        ExerciseActivity.this.overridePendingTransition(0, 0);
+
+        if(isActivityVisible) {
+            ExerciseActivity.this.startActivity(intent);
+            ExerciseActivity.this.overridePendingTransition(0, 0);
+        }
     }
 
     private static void showConfirmationDialog(final ExerciseActivity activity) {
-        if (activity.isActivityVisible) {
+        if (activity.isActivityVisible && !confirmationDialogShown) {
+            confirmationDialogShown = true;
             new AlertDialog.Builder(activity)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
@@ -225,12 +239,19 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                         }
                     })
                     .setMessage(R.string.dialog_leave_break_confirmation)
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            confirmationDialogShown = false;
+                        }
+                    })
                     .create().show();
         }
     }
 
     private static void showEndDialog(final ExerciseActivity activity) {
-        if (activity.isActivityVisible) {
+        if (activity.isActivityVisible && !endDialogShown) {
+            endDialogShown = true;
             new AlertDialog.Builder(activity)
                     .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                         @Override
@@ -246,6 +267,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                     })
                     .setTitle(R.string.dialog_end_break_confirmation_title)
                     .setMessage(R.string.dialog_end_break_confirmation)
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            endDialogShown = false;
+                        }
+                    })
                     .create().show();
         }
     }
@@ -273,6 +300,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     protected void onPause() {
         super.onPause();
         isActivityVisible = false;
+
+        if(isBreakFinished) {
+            // TODO: Either start a short Timer to see if the user comes back - or start the next work time rand finish this activity
+            // TODO: for now we just finish
+            finish();
+        }
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -592,7 +625,11 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                 updateBreakTimer(remainingBreakDuration);
                 updateBigProgress(remainingBreakDuration);
 
-                showEndDialog(ExerciseActivity.this);
+                if(isActivityVisible) {
+                    showEndDialog(ExerciseActivity.this);
+                } else {
+                    finish();
+                }
 
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }

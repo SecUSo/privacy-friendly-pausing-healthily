@@ -82,8 +82,8 @@
     <string name="pref_schedule_exercise_time">Zeit auswählen</string>
     <string name="pref_header_schedule">Zeitpläne</string>
     <string name="pref_header_exercises">Übungseinstellungen</string>
-    <string name="pref_exercise_continuous">Fortlaufende Intervalle</string>
-    <string name="pref_exercise_continuous_summary">Starte das nächste Arbeitsinterval automatisch</string>
+    <string name="pref_exercise_continuous">Fortlaufende Arbeitsintervalle</string>
+    <string name="pref_exercise_continuous_summary">Starte das nächste Arbeitsintervall automatisch</string>
     <string name="pref_schedule_exercise_days">Tage auswählen</string>
     <string name="pref_schedule_exercise_daystrigger">Nur an bestimmten Tagen auslösen</string>
     <string name="pref_schedule_exercise_days_defaultsummary">Keine Tage ausgewählt</string>
@@ -134,7 +134,7 @@
     <string name="snooze">Später</string>
     <string name="start_break">Pause starten</string>
     <string name="okay">Okay</string>
-    <string name="next">Nächste</string>
+    <string name="next">Weiter</string>
     <string name="skip">Überspringen</string>
     <string name="help">Hilfe</string>
     <string name="save">Speichern</string>

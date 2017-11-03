@@ -19,27 +19,12 @@ import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefMa
  * created 02.11.2017
  */
 
-public class NotificationPreferenceChangedReceiver extends BroadcastReceiver {
+public class NotificationCancelReceiver extends BroadcastReceiver {
 
-    public static final String ACTION_PREF_CHANGE = "org.secuso.privacyfriendlybreakreminder.ACTION_PREF_CHANGE";
-    public static final String EXTRA_DISABLE_CONTINUOUS = "EXTRA_DISABLE_CONTINUOUS";
+    public static final String ACTION_NOTIFICATION_CANCELED = "org.secuso.privacyfriendlybreakreminder.ACTION_NOTIFICATION_CANCELED";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent == null) return;
-
-        Bundle bundle = intent.getExtras();
-
-        if (bundle == null) return;
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-
-        for (String key : intent.getExtras().keySet()) {
-            if (EXTRA_DISABLE_CONTINUOUS.equals(key)) {
-                pref.edit().putBoolean(PREF_EXERCISE_CONTINUOUS, false).apply();
-            }
-        }
-
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (manager != null) {
             manager.cancel(TimerService.NOTIFICATION_ID);

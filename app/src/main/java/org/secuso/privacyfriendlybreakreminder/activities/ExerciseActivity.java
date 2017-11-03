@@ -214,6 +214,9 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
             startService(timerServiceIntent);
         }
 
+        if(breakTimer != null) breakTimer.cancel();
+        if(exerciseTimer != null) exerciseTimer.cancel();
+
         super.finish();
 
         if(isActivityVisible) {

@@ -69,6 +69,9 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private Spinner exerciseSetSpinner;
     private ExerciseSetSpinnerAdapter exerciseSetAdapter;
 
+
+    private boolean isActivityVisible = false;
+
     // animation
     private int mShortAnimationDuration;
     private boolean currentStatusIsPickerVisible = false;
@@ -103,6 +106,10 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             boolean isRunning = intent.getBooleanExtra("isRunning", false);
             boolean isPaused = intent.getBooleanExtra("isPaused", false);
 
+            //if(intent.getBooleanExtra("done" ,false)) {
+                // TODO: show a dialog here to start the exercise?
+            //}
+
             //Log.d(TAG, millisUntilDone + "/" + initialDuration + " (" + (isRunning ? "Running" : "") + (isPaused ? "Paused" : "") + (!isRunning && !isPaused ?  "Stopped" : "") + ")");
 
             updateUI(isRunning, isPaused, initialDuration, millisUntilDone);
@@ -134,12 +141,16 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     protected void onPause() {
         super.onPause();
 
+        isActivityVisible = false;
+
         unregisterReceiver(timerReceiver);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        isActivityVisible = true;
 
         registerReceiver(timerReceiver, new IntentFilter(TimerService.TIMER_BROADCAST));
 

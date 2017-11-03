@@ -71,8 +71,8 @@
     <string name="pref_schedule_exercise_time">Schedule time</string>
     <string name="pref_header_schedule">Schedule Times</string>
     <string name="pref_header_exercises">Exercise Settings</string>
-    <string name="pref_exercise_continuous">Continuous exercises</string>
-    <string name="pref_exercise_continuous_summary">Start the next timer automatically</string>
+    <string name="pref_exercise_continuous">Continuous work intervals</string>
+    <string name="pref_exercise_continuous_summary">Start the next work timer automatically</string>
     <string name="pref_schedule_exercise_days">Choose days</string>
     <string name="pref_schedule_exercise_daystrigger">Only trigger on certain days</string>
     <string name="pref_schedule_exercise_days_defaultsummary">No days selected.</string>

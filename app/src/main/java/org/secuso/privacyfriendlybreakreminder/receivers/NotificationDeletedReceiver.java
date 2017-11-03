@@ -22,6 +22,9 @@ public class NotificationDeletedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        //boolean disableContinuous = intent.getBooleanExtra(EXTRA_DISABLE_CONTINUOUS, false);
+
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
 
         if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {

@@ -10,12 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
-import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
@@ -24,8 +20,8 @@ import android.support.v4.content.ContextCompat;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ExerciseActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
+import org.secuso.privacyfriendlybreakreminder.receivers.NotificationCancelReceiver;
 import org.secuso.privacyfriendlybreakreminder.receivers.NotificationDeletedReceiver;
-import org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver;
 
 import java.util.Locale;
 
@@ -34,9 +30,8 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
 import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.WORK_TIME;
+import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationCancelReceiver.ACTION_NOTIFICATION_CANCELED;
 import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationDeletedReceiver.ACTION_NOTIFICATION_DELETED;
-import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver.ACTION_PREF_CHANGE;
-import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationPreferenceChangedReceiver.EXTRA_DISABLE_CONTINUOUS;
 
 /**
  * The main timer service. It handles the work timer and sends updates to the notification and the {@link TimerActivity}.
@@ -96,7 +91,7 @@ public class TimerService extends Service {
         }
     };
     private BroadcastReceiver notificationDeletedReceiver = new NotificationDeletedReceiver();
-    private BroadcastReceiver notificationPreferenceChangedReceiver = new NotificationPreferenceChangedReceiver();
+    private BroadcastReceiver notificationPreferenceChangedReceiver = new NotificationCancelReceiver();
 
     private void onTimerDone() {
 
@@ -127,9 +122,7 @@ public class TimerService extends Service {
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
-            Intent prefIntent = new Intent(ACTION_PREF_CHANGE);
-            prefIntent.putExtra(EXTRA_DISABLE_CONTINUOUS, false);
-            builder.addAction(0, getString(R.string.dismiss_and_dont_repeat), PendingIntent.getBroadcast(getApplicationContext(), 0, prefIntent, FLAG_UPDATE_CURRENT));
+            builder.addAction(0, getString(R.string.dismiss_and_dont_repeat), PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(ACTION_NOTIFICATION_CANCELED), FLAG_UPDATE_CURRENT));
         }
 
         builder.addAction(R.drawable.ic_replay_black_48dp, getString(R.string.snooze), snoozeExercise);
@@ -144,7 +137,7 @@ public class TimerService extends Service {
 
         registerReceiver(timerReceiver, new IntentFilter(TIMER_BROADCAST));
         registerReceiver(notificationDeletedReceiver, new IntentFilter(ACTION_NOTIFICATION_DELETED));
-        registerReceiver(notificationPreferenceChangedReceiver, new IntentFilter(ACTION_PREF_CHANGE));
+        registerReceiver(notificationPreferenceChangedReceiver, new IntentFilter(ACTION_NOTIFICATION_CANCELED));
     }
 
     @Override

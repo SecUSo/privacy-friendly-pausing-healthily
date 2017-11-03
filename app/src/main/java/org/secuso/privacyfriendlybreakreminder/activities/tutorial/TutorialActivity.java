@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlybreakreminder.R;
+import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
 
 /**
@@ -35,6 +36,9 @@ public class TutorialActivity extends AppCompatActivity {
             R.layout.tutorial_slide1,
             R.layout.tutorial_slide2,
             R.layout.tutorial_slide3,
+            R.layout.tutorial_slide4,
+            R.layout.tutorial_slide5,
+            R.layout.tutorial_slide6
     };
 
     private ViewPager viewPager;
@@ -62,10 +66,10 @@ public class TutorialActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_tutorial);
 
-        viewPager = (ViewPager)         findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout)     findViewById(R.id.layoutDots);
-        btnSkip = (Button)              findViewById(R.id.btn_skip);
-        btnNext = (Button)              findViewById(R.id.btn_next);
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
+        btnSkip = (Button) findViewById(R.id.btn_skip);
+        btnNext = (Button) findViewById(R.id.btn_next);
 
         // adding bottom dots
         addBottomDots(0);
@@ -130,8 +134,8 @@ public class TutorialActivity extends AppCompatActivity {
     private void launchHomeScreen() {
 
         if(prefManager.isFirstTimeLaunch()) {
-            Intent intent = new Intent(TutorialActivity.this, TimerActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            Intent intent = new Intent(TutorialActivity.this, ManageExerciseSetsActivity.class);
+            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             prefManager.setFirstTimeLaunch(false);
             startActivity(intent);
         }

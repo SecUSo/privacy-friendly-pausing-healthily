@@ -3,128 +3,32 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <!-- Strings related to Settings -->
-    <string name="title_activity_settings">Settings</string>
-    <string name="information">Information</string>
-    <string name="help">Help</string>
+    <!-- Tutorial -->
+    <string name="slide1_heading">Welcome to the Privacy Friendly Break Reminder!</string>
+    <string name="slide1_text">This app reminds you to regularly take breaks during your work. Additionally, you can choose from a set of exercises, that can help you to spend your break more active.</string>
 
-    <!-- settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-    <string name="pref_title_stayOn">Screen stays on</string>
-    <string name="pref_title_timeLeft">Time left</string>
-    <string name="pref_title_vibrate">Vibration</string>
+    <string name="slide2_heading">Create Exercise Sets</string>
+    <string name="slide2_text">
+        First you specify, what type of exercise you want to complete.
+        For that, you can create exercise sets, that contain a group of exercises.
+        To create a new exercise set, tap the plus icon on the lower right.
+        Then just specify a name for the set and tap "save".
+    </string>
 
-    <string name="add">Add</string>
-    <string name="save">Save</string>
-    <string name="cancel">Cancel</string>
+    <string name="slide3_heading">Add Exercises</string>
+    <string name="slide3_text">With the edit button in the lower right you can add new exercises to a set by tapping the checkboxes below the pictures of the exercises. Every exercise is set to be done 30 seconds. This duration can be changed in the settings. You can also filter the exercise list using the filter buttons at the top.</string>
 
-    <!-- settings for AboutActivity -->
-    <string name="about">About</string>
-    <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
-    <string name="version_number" translatable="false">Version</string>
-    <string name="about_author">Authors: </string>
-    <string name="about_author_names" translatable="false">Christopher Beckmann, Sergej Alexeev,\nJannik Schildknecht</string>
-    <string name="about_author_contributors">%s and contributors.</string>
-    <string name="about_affiliation">In affiliation with</string>
-    <string name="more_info">More Information can be found on:</string>
-    <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-break-reminder">Github-Repo</a></string>
-    <string name="url" translatable="false"><a href="https://www.secuso.org/pfa">SECUSO-Website</a></string>
+    <string name="slide4_heading">Choose Exercise Set</string>
+    <string name="slide4_text">You can choose the exercise set you want to use during the breaks by tapping the little arrow icon in the top right corner. Select how long you want to work and how long your break should be. Start the timer by pressing the play button.</string>
+
+    <string name="slide5_heading">Time For A Break</string>
+    <string name="slide5_text">As soon as it\'s time for the break, the break reminder will notify you. Tap the notification to start the break. You can see how much time is left for the break in the top left corner.</string>
+
+    <string name="slide6_heading">Active Break</string>
+    <string name="slide6_text">To start with the exercises, tap the play button. If you want to skip an exercise, press the skip button. With the back button you can repeat an exercise or go back to one you have already done. If you activate the clock within the circular arrow button, the exercises will start to run automatically after the previous is completed. Normally the exercises are shown until every exercise has been done once. By activating the repeat button on the right, the exercise set will be repeated until the break is over.</string>
 
 
-    <string-array name="help_overview_strings">
-        <item>Main Screen</item>
-        <item>Settings Screen - Overview</item>
-        <item>Settings Screen - Profile Settings</item>
-        <item>Settings Screen - Notification</item>
-        <item>New Profile Screen</item>
-        <item>Break Screen</item>
-        <item>Disclaimer</item>
-    </string-array>
-
-    <!-- settings for BreakActivity -->
-    <string name="break_description">Description:</string>
-    <string name="break_execution">Execution:</string>
-
-    <!-- settings for HelpActivity -->
-    <string name="help_start_screen">1. Spinner to select the profile \n2. Clock shows time and is clickable. Can starts and stop the time. \n3. Button starts and stops the time. \n4. Resets the time</string>
-    <string name="help_start_screen_title">Main Screen</string>
-    <string name="help_settings_screen">1. Open the drawer and select \'Settings\' \n2. Select \'General\' to enter the profile settings. There you can change name, time and exercises of the profile. \n3. Select \'Notifications\' to activate or deactivate notifications. </string>
-    <string name="help_settings_screen2">1. Select a ringtone. \n2. Choose if the mobile phone should vibrate, when the countdown ends. \n3. Choose if you want message notifications.\n4. If the flag is set the screen will stay on, while on main screen.</string>
-    <string name="help_settings_screen1">1. Choose the profile to change \n2. Enter the new name \n3. Alter the working time \n4. Alter the break time \n5. Choose if the \'Continuously\' flag is set or not. If it is, the break will start directly. If not, you can choose to take or to skip it. \n6. Choose the sections you want to train in the breaks.</string>
-    <string name="help_settings_screen_title">Settings Screen</string>
-    <string name="help_create_profile_screen">1. Choose the name of the profile \n2. Choose your work-time\n3. Choose the break-time of this profile \n4. Press on \'Select\', if you want to enter the exercise screen to select the training region of your profile. Ignore it, if you don\'t want to train on this profile. \n5. Check it if you want to take the break directly. Uncheck it, if you want to decide every time if you\'ll take the break.</string>
-    <string name="help_create_profile_screen_title">Create New Profile Screen</string>
-    <string name="help_break_screen_title">Break Screen</string>
-    <string name="help_break_screen">1. Body section for your current exercise. \n2. Clock shows remaining time for the break. If you click on it, it starts or stops.\n3. If it shows \'Break\', it means you have currently break between the exercises and you see the image for the next exercise. If it shows \'Side left or Side right\' then you have to perform the exercise as shown in the picture. If it shows \'Repetition\' then you just repeat current exercise.\n4. Explanation of how the exercise should be performed.\n5. Description of current exercise.</string>
-    <string name="help_click_information">To see the images in real size simply click on them. To return back to this view re-click on the image!</string>
-
-    <!-- settings for Disclaimer -->
-    <string name="disclaimer">DISCLAIMER PLACEHOLDER</string>
-    <string name="disclaimer_title">Disclaimer</string>
-
-    <!-- settings for TutorialActivity -->
-    <string name="tutorial_profiles">Select profiles</string>
-    <string name="tutorial_reset_description">Press the button to reset the clock</string>
-    <string name="tutorial_reset">Reset the clock</string>
-    <string name="tutorial_clock_description">By pressing one of them, the clock starts or stops</string>
-    <string name="tutorial_or">or</string>
-    <string name="tutorial_profile_description">By clicking on the current profile (\'Random\'), you will see all the currently available profiles. \nYou can add new profiles by clicking on \'New Profiles…\' and edit the current ones in the settings\nIn the beginning there will be 4 predefined profiles</string>
-    <string name="tutorial_clock">Start/Stop the clock</string>
-    <string name="tutorial_description">Welcome to the Privacy Friendly Break Reminder</string>
-    <string name="pref_current_profile_value" translatable="false">0</string>
-    <string name="tutorial_help">View Help</string>
-
-    <string name="all_exercises">Legs.Arms.Pelvis.Spinal Column.Torso.Neck.Head.</string>
-    <string name="dialog_positive">Okay</string>
-    <string name="new_profile_success">Exercises successfully created!</string>
-    <string name="help_general_title">General</string>
-    <string name="help_general_information">The privacy friendly break reminder helps you to take more regularly breaks and to exercise and get fit!</string>
-    <string name="help_general_breaks">You can work out during the breaks, but you don\'t have to! Just create a new profile without exercises to take a simple break.</string>
-    <string name="help_general_settings">Alternatively the break profiles and their exercises can be changed in the profile settings</string>
-    <string name="help_tipps_title">Tips</string>
-    <string name="help_tipps_pomodoro">Scientific studies have shown, that after a 30 minute work-time we start to lose concentration. To optimize your workflow take a 5 minute break every 30 minutes!</string>
-    <string name="help_tipps_brac">Other scientific studies have shown, that after 70 minute of work most people have a down time of 20 minutes. To cut of this effect, try to make a 10 minute break after 60 minute of work, to be more efficient.</string>
-    <string name="help_protection_title">Information for data protection</string>
-    <string name="help_protection_permission">Permissions</string>
-    <string name="help_protection_text">The Privacy Friendly Break Reminder only uses the permission for vibration</string>
-    <string name="help_tipps_pomodoro_title">Pomodoro</string>
-    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
-    <string name="help_support_clock_title">Interactive clock</string>
-    <string name="help_support_clock_descr">By pressing the clock in every stage of this app, the clock can be started and stopped.</string>
-    <string name="help_support_next">By clicking on the \'next\' button, the app will choose a new exercise in the current body region. At the same time the clock will be reset on the next full minute, so the time will be spend fully on the exercises.</string>
-    <string name="help_support_title">Instruction manual</string>
-    <string name="privacy_friendly">This application belongs to the group of Privacy Friendly Apps developed by Technische Universität Darmstadt. Sourcecode licensed under GPLv3. Images copyright TU Darmstadt and Google Inc.</string>
-    <string name="no_exercise_sets">No exercise sets available. Please create a new one.</string>
-    <string name="activity_title_manage_exercise_sets">Exercise Sets</string>
-    <string name="activity_title_edit_exercise_set">Edit Exercise Set</string>
-    <string name="activity_title_new_exercise_set">New Exercise Set</string>
-    <string name="dialog_add_exercise_set_title">Add New Exercise Set</string>
-    <string name="activity_title_break_reminder">Break Reminder</string>
-    <string name="dialog_add_exercise_set_name">Exercise Set Name</string>
-    <string name="keep_editing">keep editing</string>
-    <string name="discard">discard</string>
-    <string name="dialog_discard_confirmation">Are you sure you want to discard the changes?</string>
-    <string name="activity_title_exercise">Exercise</string>
-    <string name="title_activity_tutorial">Tutorial</string>
-
-    <string name="okay">Okay</string>
-    <string name="next">Next</string>
-    <string name="skip">Skip</string>
-
-    <!-- ### TUTORIAL DIALOG ### -->
-    <string name="slide1_heading">Welcome!</string>
-    <string name="slide1_text">This App serves as a guideline to see the basic design of Privacy Friendly Apps. Here introduce your app in one or two sentences.</string>
-
-    <string name="slide2_heading">Key Elements</string>
-    <string name="slide2_text">Introduce key elements of your app. Do not introduce too many details.</string>
-
-    <string name="slide3_heading">Github and Guide</string>
-    <string name="slide3_text">The sourcecode of this app is available at GitHub. For further explanations have a look at the Privacy Friendly App Guide.</string>
-    <string name="title_activity_edit_exercise_set">Edit Exercise Set</string>
-
-    <string name="action_settings">Settings</string>
+    <!-- Strings -->
     <string name="activity_edit_exercise_set_name_hint">Enter a name …</string>
     <string name="exercise_section_head">Head</string>
     <string name="exercise_section_neck">Neck</string>
@@ -138,9 +42,6 @@
     <string name="activity_title_help">Help</string>
     <string name="activity_title_about">About</string>
     <string name="dialog_leave_break_confirmation">Do you really want to cancel your break?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="exercise">Exercise</string>
     <string name="remaining_time">Time remaining:</string>
     <string name="activity_timer_choose_time">Select a work duration:</string>
     <string name="activity_timer_choose_break">Select a break duration:</string>
@@ -152,28 +53,52 @@
     <string name="description">Description</string>
     <string name="set_contains_no_exercises">This set contains no exercises.</string>
     <string name="take_a_break_now">Take a break now! Click here to do your chosen exercises.</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="no_exercise_sets">No exercise sets available. Please create a new one.</string>
+    <string name="activity_title_manage_exercise_sets">Exercise Sets</string>
+    <string name="activity_title_edit_exercise_set">Edit Exercise Set</string>
+    <string name="dialog_add_exercise_set_title">Add New Exercise Set</string>
+    <string name="activity_title_break_reminder">Break Reminder</string>
+    <string name="dialog_add_exercise_set_name">Exercise Set Name</string>
+    <string name="dialog_discard_confirmation">Are you sure you want to discard the changes?</string>
+    <string name="title_activity_tutorial">Tutorial</string>
 
-    <string name="numberpicker_formatter" translatable="false">%02d</string>
+    <!-- Preference Text -->
     <string name="pref_exercise_time">Exercise time (in Seconds)</string>
     <string name="pref_keep_screen_on_during_exercise">Keep screen on during exercise</string>
     <string name="pref_category_exercise">Exercise Settings</string>
     <string name="pref_category_schedule">schedule an exercise</string>
     <string name="pref_schedule_exercise_switch">Enable exercise schedule</string>
     <string name="pref_schedule_exercise_time">Schedule time</string>
-    <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
-    <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
-    <string name="help_permission">Which permissions does the app require?</string>
-    <string name="help_permission_answer">The app only requests permission to control the vibration of the device to make the break alarm more distinct.</string>
     <string name="pref_header_schedule">Schedule Times</string>
     <string name="pref_header_exercises">Exercise Settings</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
     <string name="pref_exercise_continuous">Continuous exercises</string>
     <string name="pref_exercise_continuous_summary">Start the next timer automatically</string>
     <string name="pref_schedule_exercise_days">Choose days</string>
     <string name="pref_schedule_exercise_daystrigger">Only trigger on certain days</string>
     <string name="pref_schedule_exercise_days_defaultsummary">No days selected.</string>
     <string name="pref_schedule_exercise_days_allselectedsummary">every day</string>
+
+    <!-- About -->
+    <string name="about">About</string>
+    <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
+    <string name="version_number" translatable="false">Version</string>
+    <string name="about_author">Authors: </string>
+    <string name="about_author_names" translatable="false">Christopher Beckmann, Sergej Alexeev,\nJannik Schildknecht</string>
+    <string name="about_author_contributors">%s and contributors.</string>
+    <string name="about_affiliation">In affiliation with</string>
+    <string name="more_info">More Information can be found on:</string>
+    <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-break-reminder">Github-Repo</a></string>
+    <string name="url" translatable="false"><a href="https://www.secuso.org/pfa">SECUSO-Website</a></string>
+    <string name="privacy_friendly">This application belongs to the group of Privacy Friendly Apps developed by Technische Universität Darmstadt. Sourcecode licensed under GPLv3. Images copyright TU Darmstadt and Google Inc.</string>
+
+    <!-- Help -->
+    <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
+    <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
+    <string name="help_permission">Which permissions does the app require?</string>
+    <string name="help_permission_answer">The app only requests permission to control the vibration of the device to make the break alarm more distinct.</string>
+
+    <!-- Button text -->
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="stop">Stop</string>
@@ -181,6 +106,16 @@
     <string name="dismiss_and_dont_repeat">Dismiss &amp; don\'t restart</string>
     <string name="snooze">Snooze</string>
     <string name="start_break">Start Break</string>
+    <string name="okay">Okay</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="help">Help</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="keep_editing">keep editing</string>
+    <string name="discard">discard</string>
 
 
 </resources>

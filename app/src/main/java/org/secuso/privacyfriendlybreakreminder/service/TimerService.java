@@ -12,7 +12,10 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
@@ -115,7 +118,7 @@ public class TimerService extends Service {
                 .setWhen(0)
                 .setOngoing(false)
                 .setAutoCancel(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_notification)
                 .setDefaults(Notification.DEFAULT_LIGHTS)
                 .setVibrate(new long[] { 0, 1000, 1000, 1000, 1000, 1000, 1000 })
                 .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
@@ -153,7 +156,7 @@ public class TimerService extends Service {
         unregisterReceiver(notificationPreferenceChangedReceiver);
     }
 
-    public synchronized void startTimer(long duration) {
+    public synchronized void startTimer(final long duration) {
         if(!isRunning) {
             initialDuration = duration;
 
@@ -170,10 +173,11 @@ public class TimerService extends Service {
                 sendBroadcast(broadcast);
             }
         }
+
     }
 
     public synchronized void pauseTimer() {
-        if(isRunning) {
+        if (isRunning) {
             mTimer.cancel();
             isRunning = false;
 
@@ -192,7 +196,7 @@ public class TimerService extends Service {
     }
 
     public synchronized void resetTimer() {
-        if(isRunning) {
+        if (isRunning) {
             mTimer.cancel();
             mTimer = createTimer(initialDuration);
             mTimer.start();
@@ -203,7 +207,7 @@ public class TimerService extends Service {
     }
 
     public synchronized void stopAndResetTimer() {
-        if(isRunning) mTimer.cancel();
+        if (isRunning) mTimer.cancel();
         isRunning = false;
         remainingDuration = initialDuration;
 
@@ -263,7 +267,7 @@ public class TimerService extends Service {
 
         if (intent != null) {
 
-            String action = intent.getAction();
+            final String action = intent.getAction();
 
             if      (ACTION_START_TIMER.equals(action))     handleRestartTimer();
             else if (ACTION_PAUSE_TIMER.equals(action))     pauseTimer();
@@ -314,7 +318,7 @@ public class TimerService extends Service {
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
         builder.setWhen(0);
         builder.setProgress((int) initialDuration, (int) (initialDuration - remainingDuration), false);
-        builder.setSmallIcon(R.mipmap.ic_launcher);
+        builder.setSmallIcon(R.mipmap.ic_notification);
         builder.setOngoing(isRunning() || isPaused());
 
         Intent intent = new Intent(this, TimerActivity.class);

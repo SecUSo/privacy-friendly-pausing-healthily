@@ -3,6 +3,8 @@
     package="org.secuso.privacyfriendlybreakreminder">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -110,6 +112,14 @@
             android:name=".service.TimerService"
             android:enabled="true"
             android:exported="false" />
+
+        <receiver android:name=".receivers.OnBootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receivers.TimerSchedulerReceiver"/>
 
     </application>
 

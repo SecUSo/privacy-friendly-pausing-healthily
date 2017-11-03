@@ -25,7 +25,10 @@ public class PrefManager {
     public static final String REPEAT_EXERCISES             = "REPEAT_EXERCISES";
     public static final String EXERCISE_DURATION            = "pref_exercise_time";
     public static final String KEEP_SCREEN_ON_DURING_EXERCISE = "pref_keep_screen_on_during_exercise";
+    public static final String PREF_SCHEDULE_EXERCISE_ENABLED = "pref_schedule_exercise";
+    public static final String PREF_SCHEDULE_EXERCISE_DAYS_ENABLED = "pref_schedule_exercise_daystrigger";
     public static final String PREF_SCHEDULE_EXERCISE_DAYS  = "pref_schedule_exercise_days";
+    public static final String PREF_SCHEDULE_EXERCISE_TIME  = "pref_schedule_exercise_time";
     public static final String PREF_EXERCISE_CONTINUOUS     = "pref_exercise_continuous";
     public static final String WORK_TIME                    = "WORK_TIME";
 
@@ -58,6 +61,9 @@ public class PrefManager {
             .putInt(PREF_PICKER_HOURS, 1)
             .putLong(WORK_TIME, 1000L * 60L * 60L) // 1 hour
             .putString(EXERCISE_DURATION, "30")
+            .putBoolean(PREF_SCHEDULE_EXERCISE_DAYS_ENABLED, false)
+            .putBoolean(PREF_SCHEDULE_EXERCISE_ENABLED, false)
+            .putLong(PREF_SCHEDULE_EXERCISE_TIME, 32400000L)
             .putBoolean(KEEP_SCREEN_ON_DURING_EXERCISE, true)
             .putBoolean(PREF_EXERCISE_CONTINUOUS, false)
             .putStringSet(PREF_SCHEDULE_EXERCISE_DAYS, new HashSet<String>(Arrays.asList("Mo","Di","Mi","Do","Fr","Sa","So")))

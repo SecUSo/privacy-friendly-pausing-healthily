@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Break Reminder</string>
+    <string name="app_name">Pausen-Tool</string>
+
+    <!-- Tutorial -->
+    <string name="slide1_heading">Willkommen</string>
+    <string name="slide1_text">
+        Willkommen bei Privacy Friendly Pausen-Tool!
+        Diese App erinnert Sie daran, regelmäßig während der Arbeit Pausen einzulegen.
+        Zusätzlich können Sie sich Übungen aussuchen, mit denen Sie Ihre Pause aktiv gestalten können.
+    </string>
+
+    <string name="slide2_heading">Übungsset erstellen</string>
+    <string name="slide2_text">
+        Zuerst legen Sie fest, welche Art von Übungen Sie durchführen möchten. Dafür können Sie sich eigene „Übungssets“, also eigene Gruppen von Übungen, erstellen.
+        Um ein neues Übungsset zu erstellen, klicken Sie rechts unten auf das Plus-Symbol. Geben Sie dann einen Namen für das Set ein und klicken Sie auf „Speichern“.
+    </string>
+
+    <string name="slide3_heading">Übungen hinzufügen</string>
+    <string name="slide3_text">
+        Über den Editieren-Button unten rechts können Sie neue Übungen in das Set einfügen, indem Sie das Kästchen unter den bildlich dargestellten Übungen anklicken.
+        Jede Übung dauert 30 Sekunden, die Dauer kann über die App-Einstellungen angepasst werden. Über die im oberen Bildschirmbereich aufgeführten Kategorien können Sie die Übungen filtern.
+    </string>
+
+    <string name="slide4_heading">Übungsset auswählen</string>
+    <string name="slide4_text">Bei jedem Start der App wählen Sie über den Pfeil oben rechts das Übungsset aus, das Sie in den nächsten Pausen verwenden möchten. Wählen Sie danach aus, in welchem Abstand Sie Pausen einlegen möchten und wie lange die Pause jeweils dauern soll. Starten Sie danach den Timer über den Play-Button.</string>
+
+    <string name="slide5_heading">Zeit für eine Pause</string>
+    <string name="slide5_text">
+        Sobald es Zeit für die erste Pause ist, meldet sich das Privacy Friendly Pausen-Tool.
+        Tippen Sie auf die Benachrichtigung, um die Pause zu starten. Oben rechts sehen Sie, wie lange die Pause noch andauert.
+    </string>
+
+    <string name="slide6_heading">Aktive Pause</string>
+    <string name="slide6_text">
+        Um mit den Übungen zu beginnen, klicken Sie auf das Play-Symbol. Möchten Sie eine Übung überspringen, klicken Sie auf das „Weiter“-Symbol, mit dem „Zurück“-Symbol können Sie eine Übung wiederholen.
+        Mit dem ersten Symbol stellen Sie ein, dass die Übung automatisch mit Beginn der Pause startet, ohne dass Sie auf das Play-Symbol klicken müssen. Normalerweise werden so lange Übungen angezeigt, bis das Set einmal durchlaufen ist, auch wenn die Pause noch länger dauert. Durch Aktivieren des letzten Symbols wird das Übungsset so lange wiederholt, bis die Pause vorbei ist.
+    </string>
+
+
     <string name="about_affiliation">In Zusammenarbeit mit</string>
     <string name="about_author">Die Autoren:</string>
     <string name="add">Hinzufügen</string>
@@ -30,7 +67,6 @@
     <string name="help_start_screen_title">Starttbildschirm</string>
     <string name="help_settings_screen_title">Einstellungsbildschirm</string>
     <string name="help_start_screen">1. Klicken Sie auf die Fläche, um die Profile einzusehen und auszuwählen.\n2. Die Uhr zeigt die Zeit an und fungiert als Knopf, der die Zeit starten und stoppen kann.\n3. Der Knopf startet und stopt die Zeit.\n4. Der Knopf setzt die Zeit zurück.</string>
-    <string name="information">Information</string>
     <string name="interval">Arbeitszeit</string>
     <string name="disclaimer">DISCLAIMER Platzhalter</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
@@ -43,14 +79,9 @@
     <string name="pref_current_profile">Auswahl des Profils</string>
     <string name="pref_default_display_name">Zufall</string>
     <string name="pref_header_exercises">Profile bearbeiten</string>
-    <string name="pref_header_notifications">Benachrichtigungen</string>
-    <string name="pref_ringtone_silent">Lautlos</string>
     <string name="pref_title_display_name">Profil Name</string>
-    <string name="pref_title_stayOn">Bildschirm bleibt an</string>
-    <string name="pref_title_ringtone">Klingelton</string>
     <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil…\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.\nAm Anfang existieren 3 voreingestellte Profile</string>
     <string name="tutorial_clock_description">Beim Klicken auf eins der beiden Symbole, startet die Uhr oder hält diese an</string>
-    <string name="pref_title_timeLeft">Verbleibende Zeit</string>
     <string name="pref_title_vibrate">Vibration</string>
     <string name="profile_name">Profil Name</string>
     <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizenziert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
@@ -75,27 +106,6 @@
     <string name="tutorial_reset_description">Drücken Sie den Knopf, um die Uhr zurückzusetzen</string>
     <string name="type">Typ</string>
 
-    <string-array name="type_spinner">
-        <item>Kopf</item>
-        <item>Nacken</item>
-        <item>Arme</item>
-        <item>Rumpf</item>
-        <item>Wirbelsäule</item>
-        <item>Becken</item>
-        <item>Beine</item>
-    </string-array>
-
-    <string-array name="help_overview_strings">
-        <item>Startbildschirm</item>
-        <item>Einstellungen - Übersicht</item>
-        <item>Einstellungen - Profile Settings</item>
-        <item>Einstellungen - Benachrichtigungen</item>
-        <item>Neues Profil Bildschirm</item>
-        <item>Pausenbildschirm</item>
-        <item>Haftungsausschluss</item>
-    </string-array>
-
-    <string name="new_profile">Neues Profil…</string>
     <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
     <string name="about">Über</string>
     <string name="tutorial_help">Hilfe öffnen</string>
@@ -150,7 +160,6 @@
     <string name="remaining_time">Verbleibende Zeit:</string>
     <string name="set_contains_no_exercises">Dieses Übungsset enthält keine Übungen.</string>
     <string name="skip">Überspringen</string>
-    <string name="slide1_heading">Willkommen!</string>
     <string name="title_activity_edit_exercise_set">Übungsset editieren</string>
     <string name="title_activity_tutorial">Tutorial</string>
     <string name="toast_please_select_an_item_to_delete">Bitte wählen Sie mindestens einen Eintrag zum Löschen aus.</string>

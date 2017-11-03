@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:text="@string/slide1_heading"
             android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:gravity="center"
             android:textSize="@dimen/slide_title"
             android:textStyle="bold" />
 

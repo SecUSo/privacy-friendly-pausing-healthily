@@ -66,8 +66,10 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
     public static void scheduleNextAlarm(@NonNull Context context) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
 
+        // delete any previous set alarm
+        deleteScheduledAlarm(context);
+
         if(!pref.getBoolean(PREF_SCHEDULE_EXERCISE_ENABLED, false)) {
-            deleteScheduledAlarm(context);
             return;
         }
 

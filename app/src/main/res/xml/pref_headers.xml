@@ -8,7 +8,7 @@
         android:title="@string/pref_header_exercises" />
 
     <header
-        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$TimerPreferenceFragment"
+        android:fragment="org.secuso.privacyfriendlybreakreminder.activities.SettingsActivity$TimerSchedulePreferenceFragment"
         android:icon="@drawable/ic_alarm_black"
         android:title="@string/pref_header_schedule" />
 

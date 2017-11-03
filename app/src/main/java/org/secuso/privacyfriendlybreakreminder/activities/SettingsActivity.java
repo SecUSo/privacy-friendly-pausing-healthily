@@ -5,10 +5,10 @@ package org.secuso.privacyfriendlybreakreminder.activities;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -18,12 +18,13 @@ import android.view.MenuItem;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.AppCompatPreferenceActivity;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
+import org.secuso.privacyfriendlybreakreminder.receivers.TimerSchedulerReceiver;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_ENABLED;
 
 /**
  * @author Christopher Beckmann
@@ -82,7 +83,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return ExercisePreferenceFragment.class.getName().equals(fragmentName)
-                || TimerPreferenceFragment.class.getName().equals(fragmentName);
+                || TimerSchedulePreferenceFragment.class.getName().equals(fragmentName);
     }
 
 
@@ -199,7 +200,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-    public static class TimerPreferenceFragment extends PreferenceFragment {
+    public static class TimerSchedulePreferenceFragment extends PreferenceFragment {
+
+        private OnSharedPreferenceChangeListener listener = new OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                // if anything changed with this settings .. reset the alarm
+                TimerSchedulerReceiver.scheduleNextAlarm(getActivity().getApplicationContext());
+            }
+        };
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -207,6 +217,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             setHasOptionsMenu(true);
 
             bindPreferenceSummaryToValue(findPreference("pref_schedule_exercise_days"));
+
+            PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext())
+                    .registerOnSharedPreferenceChangeListener(listener);
         }
+
+        @Override
+        public void onDetach() {
+            PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext())
+                    .unregisterOnSharedPreferenceChangeListener(listener);
+
+            super.onDetach();
+        }
+
+
     }
 }

@@ -27,7 +27,6 @@
     <string name="slide6_heading">Active Break</string>
     <string name="slide6_text">To start with the exercises, tap the play button. If you want to skip an exercise, press the skip button. With the back button you can repeat an exercise or go back to one you have already done. If you activate the clock within the circular arrow button, the exercises will start to run automatically after the previous is completed. Normally the exercises are shown until every exercise has been done once. By activating the repeat button on the right, the exercise set will be repeated until the break is over.</string>
 
-
     <!-- Strings -->
     <string name="activity_edit_exercise_set_name_hint">Enter a name …</string>
     <string name="exercise_section_head">Head</string>
@@ -95,9 +94,24 @@
     <!-- Help -->
     <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
     <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
+    <string name="help_select_exercises">How do I select exercises, so that I can execute them during the break?</string>
+    <string name="help_select_exercises_answer">
+        Exercises have to be added to an exercise set, to be selectable.
+        As soon as you have created an exercise set, you can add new exercises by tapping \"Exercise Sets\" in the side menu and selecting the set you want to add exercises to.
+        You can then add or remove exercises by pressing the edit icon in the lower right corner, then select the exercises you want.\n
+    </string>
+    <string name="help_create_sets">How do I create exercise sets?</string>
+    <string name="help_create_sets_answer">
+        To create an exercise set, select \"Exercise Sets\" in the side menu and tap the \"+\"-Icon in the lower right corner. After you have set a name, you can add exercises to the set.
+    </string>
     <string name="help_permission">Which permissions does the app require?</string>
-    <string name="help_permission_answer">The app only requests permission to control the vibration of the device to make the break alarm more distinct.</string>
-
+    <string name="help_permission_answer">
+        The App needs three permissions.\n
+        1. VIBRATE - to start an vibration alarm, when the break should start.\n
+        2. WAKE_LOCK - to be able to set automatically starting timers.\n
+        3. RECEIVE_BOOT_COMPLETED - to be able to set automatically starting timers after a reboot correctly.\n
+        No further permissions are needed.
+    </string>
     <!-- Button text -->
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>

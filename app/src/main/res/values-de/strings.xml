@@ -37,134 +37,34 @@
         Mit dem ersten Symbol stellen Sie ein, dass die Übung automatisch mit Beginn der Pause startet, ohne dass Sie auf das Play-Symbol klicken müssen. Normalerweise werden so lange Übungen angezeigt, bis das Set einmal durchlaufen ist, auch wenn die Pause noch länger dauert. Durch Aktivieren des letzten Symbols wird das Übungsset so lange wiederholt, bis die Pause vorbei ist.
     </string>
 
-
-    <string name="about_affiliation">In Zusammenarbeit mit</string>
-    <string name="about_author">Die Autoren:</string>
-    <string name="add">Hinzufügen</string>
-    <string name="break_description">Beschreibung:</string>
-    <string name="break_ex">Ausführung der Übung</string>
-    <string name="break_execution">Ausführung:</string>
-    <string name="break_explanation">Beschreibung der Übung:</string>
-    <string name="cancel">Abbrechen</string>
-    <string name="continuously">Falls gesetzt, gibt es keine Möglichkeit die Pause zu überspringen</string>
-    <string name="do_you_want_to_take_the_break">Möchten Sie die Pause nehmen?</string>
-    <string name="exercise_break">Pause</string>
-    <string name="exercise_description">Stellen Sie sicher, dass sie einige Übungen ausgewählt haben! Sollte nichts ausgewählt sein, wird es keine Übungen in der Pause geben</string>
-    <string name="exercise_repetition">Wiederholung</string>
-    <string name="exercise_side">Seite</string>
-    <string name="exercise_summary">Deine Pause wird Übungen für folgende Regionen enthalten:</string>
-    <string name="exercise_type">Übungstyp</string>
-    <string name="help">Hilfe</string>
-    <string name="help_break_screen">1. Körperbereich ihrer aktuellen Übung.\n2. Die Uhr zeigt die verbleibende Zeit für die Pause an. Beim Klicken darauf startet oder hält die Zeit an.\n3. Zeigt der Bildschirm den Schriftzug \'Pause\' an, befindet man sich in einer 10Sek Pause. Dabei sieht man ein Vorschaubild der kommenden Übung. Sollte \'Seite 1/2\' oder \'Wiederholung 1/2\' angezeigt werden, soll die gezeigte und beschriebene Übung ausgeführt werden.\n4. Erläuterung der Ausgangslage.\n5. Beschreibung der Übung </string>
-    <string name="help_break_screen_title">Pausenbildschirm</string>
-    <string name="help_click_information">Um die Bilder in voller Größe zu betrachten, klicken sie auf die Bilder. Um die Bilder auf ursprüngliche Größe zu verkleinern, klicken Sie erneut auf das Bild!</string>
-    <string name="help_create_profile_screen">1. Wähle den Namen des Profils aus.\n2. Wählen Sie ihre Arbeitsdauer aus.\n3. Wählen Sie eine Pausenlänge aus.\n4. Drücken Sie auf \'Auswählen\', um für Sie passende Übung auszuwählen. Sollten Sie keine Übungen in ihre Pause wünschen, ignorieren Sie diesen Knopf.\n5. Falls Sie diese Option auswählen, können Sie die Pause nicht überspringen.</string>
-    <string name="help_create_profile_screen_title">Erstellen eines neuen Profil Bildschirms</string>
-    <string name="help_settings_screen">1. Öffnen Sie das Seitenmenü oben links und wählen Sie \'Einstellungen\' aus.\n2. Wählen Sie \'Allgemein\' aus, um die Einstellungen des Profils zu öffnen.\n3. Wählen Sie \'Benachrichtigungen\' aus, um die Benachrichtigungen ein- oder auszuschalten.</string>
-    <string name="help_settings_screen1">1. Wählen Sie das zu ändernde Profil aus.\n2. Geben Sie den neuen Namen ein.\n3. Ändern des Arbeitsinvalls.\n4. Ändern der Pausenzeit.\n5. Wählen Sie \'Kontinuierlich\' aus, falls Sie die Pause nicht überspringen wollen.\n6. Wählen Sie die Körperbereiche aus, die Sie in der Pause ansprechen wollen.</string>
-    <string name="tutorial_or">oder</string>
-    <string name="help_settings_screen2">1. Wählen Sie den Klingelton aus.\n2. Falls ausgewählt, vibriert ihr Gerät.\n3. Entscheiden Sie, ob Sie die Benachrichtung haben wollen, wie lange es bis zu der Pause dauert beziehungsweise wie lange Sie noch zu arbeiten haben.\n4. Sollte diese Option ausgewählt sein, bleibt der Startbildschirm an</string>
-    <string name="help_start_screen_title">Starttbildschirm</string>
-    <string name="help_settings_screen_title">Einstellungsbildschirm</string>
-    <string name="help_start_screen">1. Klicken Sie auf die Fläche, um die Profile einzusehen und auszuwählen.\n2. Die Uhr zeigt die Zeit an und fungiert als Knopf, der die Zeit starten und stoppen kann.\n3. Der Knopf startet und stopt die Zeit.\n4. Der Knopf setzt die Zeit zurück.</string>
-    <string name="interval">Arbeitszeit</string>
-    <string name="disclaimer">DISCLAIMER Platzhalter</string>
-    <string name="more_info">Mehr Information finden Sie hier:</string>
-    <string name="new_profile_break">Pause</string>
-    <string name="new_profile_continuously">Pause automatisch starten</string>
-    <string name="new_profile_doubleName">Geben Sie einen anderen Namen ein! Es existiert schon ein Profil mit demselben Namen!</string>
-    <string name="new_profile_emptyName">Bitte geben Sie einen Namen für das Profil ein!</string>
-    <string name="new_profile_select">Auswählen</string>
-    <string name="pref_current_exercises">Auswahl der Übungen</string>
-    <string name="pref_current_profile">Auswahl des Profils</string>
-    <string name="pref_default_display_name">Zufall</string>
-    <string name="pref_header_exercises">Profile bearbeiten</string>
-    <string name="pref_title_display_name">Profil Name</string>
-    <string name="tutorial_profile_description">Beim Klicken auf das aktuell ausgewählte Profils (\'Zufall\'), werden alle verfügbare Profile angezeigt.\n Sie können ein neues Profil durch das Klicken auf \'Neues Profil…\' erstellen.\n Die verfügbaren Profile können Sie in den Einstellungen ändern.\nAm Anfang existieren 3 voreingestellte Profile</string>
-    <string name="tutorial_clock_description">Beim Klicken auf eins der beiden Symbole, startet die Uhr oder hält diese an</string>
-    <string name="pref_title_vibrate">Vibration</string>
-    <string name="profile_name">Profil Name</string>
-    <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizenziert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
-    <string name="save">Speichern</string>
-    <string name="settings_break_summary">Derzeitiger Wert ist $1</string>
-    <string name="settings_dialog_message">Wählen Sie ihre Arbeitszeit aus</string>
-    <string name="dialog_add_exercise_set_title">Neues Übungsset hinzufügen</string>
-    <string name="settings_break_title">Wählen Sie ihre Pausenzeit aus</string>
-    <string name="settings_doubleName">Die Änderungen konnten nicht gespeichert werden, da das dieser Profilname bereits existiert!</string>
-    <string name="settings_emptyName">Die Änderungen konnten nicht gespeichert werden, da das Feld für den Profilnamen leer ist! </string>
-    <string name="settings_title">Wählen Sie ihren Arbeitszeit aus</string>
-    <string name="settings_summary">Derzeitiger Wert ist $1</string>
-    <string name="settings_unit">Minuten</string>
-    <string name="skip_the_break">Überspringen</string>
-    <string name="standard_profile">Zufall,90,5,false,Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.;Oberkoerper,90,15,true,Arme.Nacken.Kopf.;Rumpf,30,5,true,Wirbelsäule.Rumpf.;Unterkoerper,30,5,true,Beine.Becken.;</string>
-    <string name="take_the_break">Pause nehmen</string>
-    <string name="title_activity_settings">Einstellungen</string>
-    <string name="tutorial_clock">Starten/Anhalten der Uhr</string>
-    <string name="tutorial_description">Willkommen zur Privacy Friendly Break Reminder</string>
-    <string name="tutorial_profiles">Auswahl des Profils</string>
-    <string name="tutorial_reset">Zurücksetzen der Uhr</string>
-    <string name="tutorial_reset_description">Drücken Sie den Knopf, um die Uhr zurückzusetzen</string>
-    <string name="type">Typ</string>
-
-    <string name="all_exercises">Arme.Beine.Kopf.Nacken.Becken.Wirbelsäule.Rumpf.</string>
-    <string name="about">Über</string>
-    <string name="tutorial_help">Hilfe öffnen</string>
-    <string name="dialog_positive">Okay</string>
-    <string name="new_profile_success">Übungen wurden erfolgreich erstellt!</string>
-    <string name="settings_exercise_summary">Wählen Sie die zu trainierenden Körperbereiche aus</string>
-    <string name="disclaimer_title">Haftungsausschluss</string>
-    <string name="about_author_contributors">%s und Mitwirkende</string>
-    <string name="help_general_breaks">Sie können in den Pausen trainieren, müssen dies aber nicht! Erstellen Sie einfach ein Profil, ohne Übungen hinzuzufügen.</string>
-    <string name="help_general_information">Der \'Privacy friendly break reminder\' hilft Ihnen, regelmäßiger Pausen zu nehmen und währenddessen zu trainieren!</string>
-    <string name="help_general_settings">Alternativ können die Profile und die dazugehörigen Übungen in den Profil-Einstellungen bearbeitet werden</string>
-    <string name="help_general_title">Allgemein</string>
-    <string name="help_protection_permission">Berechtigungen</string>
-    <string name="help_protection_text">Der Privacy Friendly Break Reminder benötigt nur die Berechtigung für die Vibration</string>
-    <string name="help_protection_title">Datenschutz Informationen</string>
-    <string name="help_tipps_brac">Weitere wissenschaftliche Studien haben belegt, dass nach 70 Minuten Arbeitszeit eine unproduktive, 20 Minuten lange Phase folgt. Um diese zu umgehen, versuchen sie nach 60 Minuten arbeit, eine 10 Minuten Pause einzulegen, um effizienter zu arbeiten!</string>
-    <string name="help_tipps_pomodoro">Wissenschaftliche Studien haben gezeigt, dass nach 30 Minuten Arbeit die Konzentration leicht nachlässt. Um ihren Arbeitsablauf zu optimieren, nehmen sie alle 30 Minuten eine 5 Minuten Auszeit!</string>
-    <string name="help_tipps_title">Tipps</string>
-    <string name="help_tipps_pomodoro_title">Pomodoro</string>
-    <string name="help_tepps_brac_title">Basic Rest Activity Circle</string>
-    <string name="help_support_clock_descr">Das Drücken der Uhr kann in jedem Layout die Uhr starten und wieder stoppen</string>
-    <string name="help_support_clock_title">Interaktive Uhr</string>
-    <string name="help_support_next">Beim Klicken auf \'Next\' wird eine andere Übung aus der aktuellen Körperregion ausgewählt. Zugleich wird die Uhr wieder auf die letzte volle Minute gesetzt. Somit geht keine Zeit für die Übungen verloren.</string>
-    <string name="help_support_title">Bedienungsanleitung</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="activity_edit_exercise_set_name_hint">Geben Sie einen Namen ein…</string>
-    <string name="exercise_section_torso">Torso</string>
-    <string name="activity_edit_no_empty_name">Bitte geben Sie einen Namen an.</string>
-    <string name="activity_timer_choose_break">Wähle eine Pausendauer:</string>
-    <string name="activity_timer_choose_time">Wähle die Arbeitsdauer:</string>
-    <string name="activity_title_about">Über</string>
-    <string name="activity_title_break_reminder">Break Reminder</string>
-    <string name="activity_title_choose_exercises">Wähle Übungen</string>
-    <string name="activity_title_edit_exercise_set">Übungsset bearbeiten</string>
-    <string name="activity_title_exercise">Übung</string>
-    <string name="activity_title_help">Hilfe</string>
-    <string name="activity_title_manage_exercise_sets">Übungsset</string>
-    <string name="activity_title_new_exercise_set">Neues Übungsset</string>
-    <string name="discard">verwerfen</string>
-    <string name="execution">Ausführung</string>
-    <string name="exercise">Übung</string>
+    <!-- Strings -->
     <string name="exercise_section_arms">Arme</string>
     <string name="exercise_section_head">Kopf</string>
     <string name="exercise_section_legs">Beine</string>
     <string name="exercise_section_neck">Nacken</string>
     <string name="exercise_section_pelvis">Becken</string>
     <string name="exercise_section_spinal">Wirbel</string>
-    <string name="keep_editing">bearbeiten</string>
-    <string name="no">Nein</string>
-    <string name="okay">Okay</string>
+    <string name="exercise_section_torso">Torso</string>
+    <string name="activity_edit_no_empty_name">Bitte geben Sie einen Namen an.</string>
+    <string name="activity_title_break_reminder">@string/app_name</string>
+    <string name="dialog_add_exercise_set_title">Neues Übungsset hinzufügen</string>
+    <string name="title_activity_settings">Einstellungen</string>
+    <string name="activity_edit_exercise_set_name_hint">Geben Sie einen Namen ein…</string>
+    <string name="activity_timer_choose_break">Wähle eine Pausendauer:</string>
+    <string name="activity_timer_choose_time">Wähle die Arbeitsdauer:</string>
+    <string name="activity_title_about">Über</string>
+    <string name="activity_title_choose_exercises">Wähle Übungen</string>
+    <string name="activity_title_edit_exercise_set">Übungsset bearbeiten</string>
+    <string name="activity_title_help">Hilfe</string>
+    <string name="activity_title_manage_exercise_sets">Übungssets</string>
+    <string name="execution">Ausführung</string>
     <string name="no_exercise_sets">Keine Übungssets vorhanden. Bitte erstellen Sie ein neues Übungsset.</string>
     <string name="remaining_time">Verbleibende Zeit:</string>
     <string name="set_contains_no_exercises">Dieses Übungsset enthält keine Übungen.</string>
-    <string name="skip">Überspringen</string>
     <string name="title_activity_edit_exercise_set">Übungsset editieren</string>
     <string name="title_activity_tutorial">Tutorial</string>
     <string name="toast_please_select_an_item_to_delete">Bitte wählen Sie mindestens einen Eintrag zum Löschen aus.</string>
     <string name="toast_please_specify_a_name">Bitte geben Sie einen Namen an.</string>
-    <string name="yes">Ja</string>
     <string name="take_a_break_now">Machen Sie eine Pause! Tippen Sie hier um Ihre ausgewählten Übungen auszuführen.</string>
     <string name="description">Beschreibung</string>
     <string name="dialog_add_exercise_set_name">Übungssetname</string>
@@ -172,4 +72,75 @@
     <string name="dialog_end_break_confirmation_title">Pausenzeit ist um!</string>
     <string name="dialog_end_break_confirmation">Möchsten Sie zurück zum Hauptmenü?</string>
     <string name="dialog_discard_confirmation">Sind Sie sicher, dass Sie die Änderungen verwerfen möchten?</string>
+
+    <!-- Preference Text -->
+    <string name="pref_exercise_time">Übungszeit (in Sekunden)</string>
+    <string name="pref_keep_screen_on_during_exercise">Bildschirm bleibt an während der Übungen</string>
+    <string name="pref_category_exercise">Übungseinstellungen</string>
+    <string name="pref_category_schedule">Zeitplan für Arbeits- und Übungstimer</string>
+    <string name="pref_schedule_exercise_switch">Zeitpläne aktivieren</string>
+    <string name="pref_schedule_exercise_time">Zeit auswählen</string>
+    <string name="pref_header_schedule">Zeitpläne</string>
+    <string name="pref_header_exercises">Übungseinstellungen</string>
+    <string name="pref_exercise_continuous">Fortlaufende Intervalle</string>
+    <string name="pref_exercise_continuous_summary">Starte das nächste Arbeitsinterval automatisch</string>
+    <string name="pref_schedule_exercise_days">Tage auswählen</string>
+    <string name="pref_schedule_exercise_daystrigger">Nur an bestimmten Tagen auslösen</string>
+    <string name="pref_schedule_exercise_days_defaultsummary">Keine Tage ausgewählt</string>
+    <string name="pref_schedule_exercise_days_allselectedsummary">jeden Tag</string>
+
+    <!-- About -->
+    <string name="about">Über</string>
+    <string name="about_author">Autoren: </string>
+    <string name="about_author_contributors">%s und Mitwirkende</string>
+    <string name="about_affiliation">In Zusammenarbeit mit</string>
+    <string name="more_info">Mehr Information finden Sie hier:</string>
+    <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizenziert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
+
+    <!-- Help -->
+    <string name="help_whatis">Was ist das Privacy Friendly Pausen-Tool</string>
+    <string name="help_whatis_answer">
+        Das Privacy Friendly Pausen-Tool ist eine App, die Sie daran erinnert Pausen während der Arbeit einzulegen.
+        Es erlaubt Ihnen Übungen während der Pausen auszuführen, die Sie im Vorfeld auswählen können.
+    </string>
+
+    <string name="help_select_exercises">Wie wähle ich Übungen aus, damit ich sie in der Pause durchführen kann?</string>
+    <string name="help_select_exercises_answer">
+        Übungen müssen in einem Übungsset zusammengestellt werden, damit sie für die Pause ausgewählt werden können.
+        Sobald sie ein Übungsset erstellt haben, können sie Übungen hinzufügen indem Sie den Menüpunkt \"Übungssets\", dann das gewünsche Übungsset auswählen und dann auf das Editieren-Icon in der unteren rechten Ecke drücken.
+        Nun makieren sie die gewünschten Übungen.
+    </string>
+
+    <string name="help_create_sets">Wie erstelle ich neue Übungssets?</string>
+    <string name="help_create_sets_answer">
+        Um ein Übungsset zu erstellen wählen Sie im Seitenmenü den Punkt \"Übungssets\" aus und tippen auf das \"+\"-Icon in der unteren rechten Ecke. Nachdem sie einen Namen vergeben haben, können sie dem Übungsset Übungen hinzufügen.
+    </string>
+
+    <string name="help_permission">Welche Berechtigungen benötigt die App?</string>
+    <string name="help_permission_answer">
+        Die App benötigt drei Berechtigungen.\n
+        1. VIBRATE - um einen Vibrationsalarm zu starten, wenn die Pausenzeit beginnt.\n
+        2. WAKE_LOCK - um das automatische Starten von Timern zu ermöglichen.\n
+        3. RECEIVE_BOOT_COMPLETED - um das automatische Starten von Timern auch nach einem Neustart korrekt durchführen zu können.\n
+        Es werden keine weiteren Berechtigungen benötigt.
+    </string>
+
+    <!-- Button text -->
+    <string name="pause">Pause</string>
+    <string name="resume">Fortsetzen</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="dismiss_and_dont_repeat">Ignorieren / kein Neustart</string>
+    <string name="snooze">Später</string>
+    <string name="start_break">Pause starten</string>
+    <string name="okay">Okay</string>
+    <string name="next">Nächste</string>
+    <string name="skip">Überspringen</string>
+    <string name="help">Hilfe</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="keep_editing">bearbeiten</string>
+    <string name="discard">verwerfen</string>
 </resources>

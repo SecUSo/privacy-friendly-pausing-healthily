@@ -92,14 +92,16 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        if(pref.getBoolean(PREF_SCHEDULE_EXERCISE_DAYS_ENABLED, false)) {
+        boolean done = false;
+        boolean scheduleExerciseDaysEnabled = pref.getBoolean(PREF_SCHEDULE_EXERCISE_DAYS_ENABLED, false);
+
+        if(scheduleExerciseDaysEnabled) {
 
             Set<String> daySet = pref.getStringSet(PREF_SCHEDULE_EXERCISE_DAYS, new HashSet<String>(Arrays.asList("Mo","Di","Mi","Do","Fr","Sa","So")));
-            boolean done = false;
 
             for(int i = 0; i < 7; i++) {
                 String currentDay;
-                // TODO skip days that are not selected
+                // skip days that are not selected
                 switch (calendar.get(Calendar.DAY_OF_WEEK)) {
                     case Calendar.MONDAY:
                         currentDay = "Mo";
@@ -141,11 +143,12 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
             }
         }
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), automaticTimerPending);
-        } else  {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), automaticTimerPending);
+        if(done || !scheduleExerciseDaysEnabled) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), automaticTimerPending);
+            } else {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), automaticTimerPending);
+            }
         }
     }
 

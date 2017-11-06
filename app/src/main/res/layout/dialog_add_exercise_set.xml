@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="336dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"

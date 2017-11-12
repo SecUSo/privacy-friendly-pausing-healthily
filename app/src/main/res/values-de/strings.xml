@@ -57,7 +57,6 @@
     <string name="no_exercise_sets">Keine Übungssets vorhanden. Bitte erstellen Sie ein neues Übungsset.</string>
     <string name="remaining_time">Verbleibende Zeit:</string>
     <string name="set_contains_no_exercises">Dieses Übungsset enthält keine Übungen.</string>
-    <string name="title_activity_edit_exercise_set">Übungsset editieren</string>
     <string name="title_activity_tutorial">Tutorial</string>
     <string name="toast_please_select_an_item_to_delete">Bitte wählen Sie mindestens einen Eintrag zum Löschen aus.</string>
     <string name="toast_please_specify_a_name">Bitte geben Sie einen Namen an.</string>

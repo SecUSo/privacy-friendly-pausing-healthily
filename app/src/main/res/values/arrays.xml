@@ -9,7 +9,7 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
-    <string-array name="pref_schedule_exercise_days_entries">
+    <string-array translatable="false" name="pref_schedule_exercise_days_entries">
         <item>Mo</item>
         <item>Di</item>
         <item>Mi</item>

@@ -271,7 +271,7 @@ public class TimerService extends Service {
 
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     private void handleSnoozeTimer() {

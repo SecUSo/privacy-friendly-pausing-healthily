@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Pausen-Tool</string>
+    <string name="app_name">Aktive Pause</string>
 
     <!-- Tutorial -->
     <string name="slide1_heading">Willkommen</string>
-    <string name="slide1_text">
-        Willkommen bei Privacy Friendly Pausen-Tool!
-        Diese App erinnert Sie daran, regelmäßig während der Arbeit Pausen einzulegen.
-        Zusätzlich können Sie sich Übungen aussuchen, mit denen Sie Ihre Pause aktiv gestalten können.
-    </string>
+    <string name="slide1_text">Willkommen bei Privacy Friendly Aktive Pause! Diese App erinnert Sie daran, regelmäßig während der Arbeit Pausen einzulegen. Zusätzlich können Sie sich Übungen aussuchen, mit denen Sie Ihre Pause aktiv gestalten können.</string>
 
     <string name="slide2_heading">Übungsset erstellen</string>
     <string name="slide2_text">
@@ -27,7 +23,7 @@
 
     <string name="slide5_heading">Zeit für eine Pause</string>
     <string name="slide5_text">
-        Sobald es Zeit für die erste Pause ist, meldet sich das Privacy Friendly Pausen-Tool.
+        Sobald es Zeit für die erste Pause ist, meldet sich die Privacy Friendly Aktive Pause App.
         Tippen Sie auf die Benachrichtigung, um die Pause zu starten. Oben rechts sehen Sie, wie lange die Pause noch andauert.
     </string>
 
@@ -92,15 +88,16 @@
     <!-- About -->
     <string name="about">Über</string>
     <string name="about_author">Autoren: </string>
+    <string name="about_graphics_by">Grafiken und Bilder:</string>
     <string name="about_author_contributors">%s und Mitwirkende</string>
     <string name="about_affiliation">In Zusammenarbeit mit</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
     <string name="privacy_friendly">Diese Applikation gehört der Gruppe von Privacy Friendly Apps, entwickelt von der Technische Universität Darmstadt. Quellcode lizenziert unter GPLv3. Bilder Copyright TU Darmstadt und Google Inc.</string>
 
     <!-- Help -->
-    <string name="help_whatis">Was ist das Privacy Friendly Pausen-Tool</string>
+    <string name="help_whatis">Was ist Privacy Friendly Aktive Pause?</string>
     <string name="help_whatis_answer">
-        Das Privacy Friendly Pausen-Tool ist eine App, die Sie daran erinnert Pausen während der Arbeit einzulegen.
+        Privacy Friendly Aktive Pause ist eine App, die Sie daran erinnert Pausen während der Arbeit einzulegen.
         Es erlaubt Ihnen Übungen während der Pausen auszuführen, die Sie im Vorfeld auswählen können.
     </string>
 

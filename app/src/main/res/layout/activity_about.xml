@@ -72,24 +72,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:text="@string/about_author" />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/textFieldAuthorNames"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="@string/about_author_names" />
+
+        <TextView
+            android:id="@+id/about_graphics_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:gravity="center">
+            android:layout_marginTop="8dp"
+            android:text="@string/about_graphics_by" />
 
-            <TextView
-                android:id="@+id/textFieldAuthorNames"
-                android:layout_width="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:text="@string/about_author_names" />
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/about_graphics_names"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/about_graphics_names" />
 
 
         <TextView
@@ -97,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/about_affiliation"
             android:textStyle="bold" />
 

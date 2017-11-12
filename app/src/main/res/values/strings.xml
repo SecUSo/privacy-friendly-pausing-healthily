@@ -130,6 +130,8 @@
     <string name="no">No</string>
     <string name="keep_editing">keep editing</string>
     <string name="discard">discard</string>
+    <string name="about_graphics_by">Graphics &amp; images:</string>
+    <string name="about_graphics_names" translatable="false">Tatjana Albrandt</string>
 
 
 </resources>

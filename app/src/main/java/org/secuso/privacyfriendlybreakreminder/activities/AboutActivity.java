@@ -13,6 +13,8 @@ import org.secuso.privacyfriendlybreakreminder.BuildConfig;
 import org.secuso.privacyfriendlybreakreminder.R;
 
 /**
+ * About Page :)
+ *
  * @author Christopher Beckmann
  * @version 2.0
  */

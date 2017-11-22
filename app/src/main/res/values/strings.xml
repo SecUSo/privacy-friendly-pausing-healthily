@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Break Reminder</string>
+    <string name="app_name">Pausing Healthily</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <!-- Tutorial -->
-    <string name="slide1_heading">Welcome to the Privacy Friendly Break Reminder!</string>
+    <string name="slide1_heading">Welcome to the Privacy Friendly Pausing Healthily App!</string>
     <string name="slide1_text">This app reminds you to regularly take breaks during your work. Additionally, you can choose from a set of exercises, that can help you to spend your break more active.</string>
 
     <string name="slide2_heading">Create Exercise Sets</string>
@@ -22,9 +22,9 @@
     <string name="slide4_text">You can choose the exercise set you want to use during the breaks by tapping the little arrow icon in the top right corner. Select how long you want to work and how long your break should be. Start the timer by pressing the play button.</string>
 
     <string name="slide5_heading">Time For A Break</string>
-    <string name="slide5_text">As soon as it\'s time for the break, the break reminder will notify you. Tap the notification to start the break. You can see how much time is left for the break in the top left corner.</string>
+    <string name="slide5_text">As soon as it\'s time for the break, the Pausing Healthily App will notify you. Tap the notification to start the break. You can see how much time is left for the break in the top left corner.</string>
 
-    <string name="slide6_heading">Active Break</string>
+    <string name="slide6_heading">Healthy Break</string>
     <string name="slide6_text">To start with the exercises, tap the play button. If you want to skip an exercise, press the skip button. With the back button you can repeat an exercise or go back to one you have already done. If you activate the clock within the circular arrow button, the exercises will start to run automatically after the previous is completed. Normally the exercises are shown until every exercise has been done once. By activating the repeat button on the right, the exercise set will be repeated until the break is over.</string>
 
     <!-- Strings -->
@@ -47,7 +47,7 @@
     <string name="toast_please_specify_a_name">Please specify a name.</string>
     <string name="toast_please_select_an_item_to_delete">Please select an item to delete.</string>
     <string name="dialog_end_break_confirmation">Do you want to go back to the main menu?</string>
-    <string name="dialog_end_break_confirmation_title">Break time is up!</string>
+    <string name="dialog_end_break_confirmation_title">Pause time is up!</string>
     <string name="execution">Execution</string>
     <string name="description">Description</string>
     <string name="set_contains_no_exercises">This set contains no exercises.</string>
@@ -57,7 +57,7 @@
     <string name="activity_title_manage_exercise_sets">Exercise Sets</string>
     <string name="activity_title_edit_exercise_set">Edit Exercise Set</string>
     <string name="dialog_add_exercise_set_title">Add New Exercise Set</string>
-    <string name="activity_title_break_reminder">Break Reminder</string>
+    <string name="activity_title_break_reminder">Pausing Healthily</string>
     <string name="dialog_add_exercise_set_name">Exercise Set Name</string>
     <string name="dialog_discard_confirmation">Are you sure you want to discard the changes?</string>
     <string name="title_activity_tutorial">Tutorial</string>
@@ -80,7 +80,7 @@
 
     <!-- About -->
     <string name="about">About</string>
-    <string name="app_name_long" translatable="false">Privacy Friendly Break Reminder</string>
+    <string name="app_name_long" translatable="false">Privacy Friendly Pausing Healthily</string>
     <string name="version_number" translatable="false">Version</string>
     <string name="about_author">Authors: </string>
     <string name="about_author_names" translatable="false">Christopher Beckmann</string>
@@ -92,8 +92,8 @@
     <string name="privacy_friendly">This application belongs to the group of Privacy Friendly Apps developed by Technische Universität Darmstadt. Sourcecode licensed under GPLv3. Images copyright TU Darmstadt and Google Inc.</string>
 
     <!-- Help -->
-    <string name="help_whatis">What is Privacy Friendly Break Reminder?</string>
-    <string name="help_whatis_answer">Privacy Friendly Break Reminder is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
+    <string name="help_whatis">What is Privacy Friendly Pausing Healthily?</string>
+    <string name="help_whatis_answer">Privacy Friendly Pausing Healthily is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
     <string name="help_select_exercises">How do I select exercises, so that I can execute them during the break?</string>
     <string name="help_select_exercises_answer">
         Exercises have to be added to an exercise set, to be selectable.

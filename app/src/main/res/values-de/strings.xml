@@ -149,4 +149,11 @@
 
     <string name="exercise_set_can_not_be_deleted">Dieses Set kann nicht gelöscht werden. In den Einstellungen können die voreingespeicherten Sets ausgeblendet werden.</string>
 
+    <string name="activity_exercise_button_prev">vorherige Übung</string>
+    <string name="activity_exercise_button_next">nächste Übung</string>
+    <string name="activity_exercise_button_repeat_on">Übungen wiederholen</string>
+    <string name="activity_exercise_button_repeat_off">Übungen nicht wiederholen</string>
+    <string name="activity_exercise_button_continuous_on">Zeit automatisch starten</string>
+    <string name="activity_exercise_button_continuous_off">Zeit manuell starten</string>
+
 </resources>

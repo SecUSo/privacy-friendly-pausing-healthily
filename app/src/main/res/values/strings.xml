@@ -145,5 +145,12 @@
 
     <string name="exercise_set_can_not_be_deleted">This set can not be deleted. These sets can be hidden via the settings page.</string>
 
+    <string name="activity_exercise_button_prev">previous exercise</string>
+    <string name="activity_exercise_button_next">next exercise</string>
+    <string name="activity_exercise_button_repeat_on">repeat exercises</string>
+    <string name="activity_exercise_button_repeat_off">repeat exercises off</string>
+    <string name="activity_exercise_button_continuous_on">start timers automatically</string>
+    <string name="activity_exercise_button_continuous_off">start timers manually</string>
+
 
 </resources>

@@ -106,11 +106,11 @@ public class FirstLaunchManager {
             }
         }
 
-        long id1 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_1));
-        long id2 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_2));
-        long id3 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_3));
-        long id4 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_4));
         long id5 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_5));
+        long id4 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_4));
+        long id3 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_3));
+        long id2 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_2));
+        long id1 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_1));
 
         dbHandler.addExerciseToExerciseSet((int) id1, 1);
         dbHandler.addExerciseToExerciseSet((int) id1, 2);

@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
@@ -41,6 +42,7 @@ import org.secuso.privacyfriendlybreakreminder.service.TimerService;
 import java.util.Locale;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.view.Gravity.CENTER_HORIZONTAL;
 import static org.secuso.privacyfriendlybreakreminder.service.TimerService.ACTION_STOP_TIMER;
 
 /**
@@ -73,6 +75,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private TextView breakTimerTextBig;
     private ConstraintLayout bigProgressBarLayout;
     private ImageButton exerciseInfoButton;
+    private Toast toast;
 
     private boolean isActivityVisible = false;
     private boolean isBreakFinished = false;
@@ -154,6 +157,8 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         prevButton = (ImageButton) findViewById(R.id.button_prev);
         nextButton = (ImageButton) findViewById(R.id.button_next);
         exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+        toast.setGravity(toast.getGravity(), 0, 250);
 
         progressBarBig = (ProgressBar) findViewById(R.id.progressBarBig);
         breakTimerTextBig = (TextView) findViewById(R.id.breakTimerTextBig);
@@ -185,7 +190,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         breakTimerText = (TextView) MenuItemCompat.getActionView(timerItem);
         breakTimerText.setTextColor(Color.WHITE);
         breakTimerText.setTextSize(20);
-        breakTimerText.setGravity(Gravity.CENTER_HORIZONTAL);
+        breakTimerText.setGravity(CENTER_HORIZONTAL);
         breakTimerText.setPadding(16, 0, 16, 0);
         //breakTimerText.set(10, 0, 10, 0);
 
@@ -564,6 +569,9 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
         pref.edit().putBoolean(FirstLaunchManager.REPEAT_STATUS, repeatStatus).apply();
 
+        toast.setText(repeatStatus ? R.string.activity_exercise_button_repeat_on : R.string.activity_exercise_button_repeat_off);
+        toast.show();
+
         setRepeatButtonStatus(repeatStatus);
     }
 
@@ -579,6 +587,9 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
         pref.edit().putBoolean(FirstLaunchManager.REPEAT_EXERCISES, continuousStatus).apply();
 
+        toast.setText(continuousStatus ? R.string.activity_exercise_button_continuous_on : R.string.activity_exercise_button_continuous_off);
+        toast.show();
+
         setContinuousButtonStatus(continuousStatus);
     }
 
@@ -590,10 +601,14 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private void handlePrevClicked() {
+        toast.setText(R.string.activity_exercise_button_prev);
+        toast.show();
         previousExercise();
     }
 
     private void handleSkipClicked() {
+        toast.setText(R.string.activity_exercise_button_next);
+        toast.show();
         nextExercise();
     }
 

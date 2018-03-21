@@ -280,4 +280,17 @@ public class SQLiteHelper extends SQLiteAssetHelper {
 
         return sqlQuery.toString();
     }
+
+    public long addDefaultExerciseSet(String name) {
+        SQLiteDatabase database = getReadableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(ExerciseSetColumns.NAME, name);
+        cv.put(ExerciseSetColumns.DEFAULT, 1);
+
+        long id = database.insert(ExerciseSetColumns.TABLE_NAME, null, cv);
+        database.close();
+
+        return id;
+    }
 }

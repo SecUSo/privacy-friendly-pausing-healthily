@@ -14,6 +14,7 @@ public class ExerciseSet {
     private long id = -1L;
     private String name = null;
     private List<Exercise> exercises = new ArrayList<>();
+    private boolean isDefaultSet = false;
 
     public ExerciseSet() {}
 
@@ -61,5 +62,13 @@ public class ExerciseSet {
 
     public List<Exercise> getExercises() {
         return exercises;
+    }
+
+    public boolean isDefaultSet() {
+        return isDefaultSet;
+    }
+
+    public void setDefaultSet(boolean defaultSet) {
+        isDefaultSet = defaultSet;
     }
 }

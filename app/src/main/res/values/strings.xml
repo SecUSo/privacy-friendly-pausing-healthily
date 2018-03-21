@@ -140,6 +140,10 @@
     <string name="set_default_3">Back</string>
     <string name="set_default_4">Hips</string>
     <string name="set_default_5">Knee</string>
+    <string name="pref_category_default_exercise_sets">Default Exercise Sets</string>
+    <string name="pref_hide_default_exercise_sets">Hide default exercise sets</string>
+
+    <string name="exercise_set_can_not_be_deleted">This set can not be deleted. These sets can be hidden via the settings page.</string>
 
 
 </resources>

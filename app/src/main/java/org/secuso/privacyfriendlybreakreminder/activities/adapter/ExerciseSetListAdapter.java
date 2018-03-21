@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +12,17 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,9 +46,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         mContext = context;
 
-        if(data != null) {
-            this.data = data;
-        }
+        setData(data);
 
         setHasStableIds(true);
     }
@@ -52,7 +54,19 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void setData(List<ExerciseSet> data) {
         if(data != null) {
             this.data = data;
+
+            boolean hideDefaultSets = PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(FirstLaunchManager.PREF_HIDE_DEFAULT_SETS, false);
+            if(hideDefaultSets) {
+
+                Iterator<ExerciseSet> iter = this.data.iterator();
+                while(iter.hasNext()) {
+                    ExerciseSet set = iter.next();
+
+                    if(set.isDefaultSet()) iter.remove();
+                }
+            }
         }
+
         notifyDataSetChanged();
     }
 
@@ -77,7 +91,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
         final ExerciseSet set = data.get(position);
 
-        vh.deleteCheckBox.setVisibility(deleteMode ? View.VISIBLE : View.GONE);
+        vh.deleteCheckBox.setVisibility((deleteMode && !set.isDefaultSet()) ? View.VISIBLE : View.GONE);
         vh.deleteCheckBox.setChecked(false);
 
         vh.name.setText(set.getName());
@@ -85,6 +99,11 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             @Override
             public void onClick(View view) {
                 if(deleteMode) {
+
+                    if(set.isDefaultSet()) {
+                        Toast.makeText(mContext, R.string.exercise_set_can_not_be_deleted, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     if(vh.deleteCheckBox.isChecked()) {
                         deleteIds.remove(set.getId());
@@ -106,6 +125,11 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             @Override
             public boolean onLongClick(View view) {
                 if(deleteMode) {
+
+                    if(set.isDefaultSet()) {
+                        Toast.makeText(mContext, R.string.exercise_set_can_not_be_deleted, Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
 
                     if(vh.deleteCheckBox.isChecked()) {
                         deleteIds.remove(set.getId());

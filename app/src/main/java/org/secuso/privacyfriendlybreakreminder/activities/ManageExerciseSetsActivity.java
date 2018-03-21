@@ -33,6 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetListAdapter;
@@ -41,6 +42,7 @@ import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 import java.util.List;
+import java.util.Set;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -113,7 +115,18 @@ public class ManageExerciseSetsActivity extends BaseActivity implements android.
     @Override
     public void onLoadFinished(Loader<List<ExerciseSet>> loader, List<ExerciseSet> data) {
 
-        boolean hasElements = data.size() > 0;
+        boolean hasElements = false;
+
+        if(mSharedPreferences.getBoolean(FirstLaunchManager.PREF_HIDE_DEFAULT_SETS, false)) {
+            for(ExerciseSet s : data) {
+                if(!s.isDefaultSet()) {
+                    hasElements = true;
+                    break;
+                }
+            }
+        } else {
+            hasElements = data.size() > 0;
+        }
 
         setLoading(false, hasElements);
 

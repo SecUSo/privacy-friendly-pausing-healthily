@@ -419,7 +419,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
         long defaultId = PreferenceManager.getDefaultSharedPreferences(this).getLong("DEFAULT_EXERCISE_SET", 0L);
 
-
         for(int i = 0; i < data.size(); ++i) {
             ExerciseSet e = data.get(i);
 

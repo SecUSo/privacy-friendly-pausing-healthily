@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -16,8 +17,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import org.secuso.privacyfriendlybreakreminder.R;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -93,6 +96,18 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
 
     public void updateData(@NonNull List<ExerciseSet> data) {
         this.sets = data;
+
+        boolean hideDefaultSets = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(FirstLaunchManager.PREF_HIDE_DEFAULT_SETS, false);
+        if(hideDefaultSets) {
+
+            Iterator<ExerciseSet> iter = this.sets.iterator();
+            while(iter.hasNext()) {
+                ExerciseSet set = iter.next();
+
+                if(set.isDefaultSet()) iter.remove();
+            }
+        }
+
         notifyDataSetChanged();
     }
 

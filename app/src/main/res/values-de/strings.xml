@@ -46,8 +46,8 @@
     <string name="dialog_add_exercise_set_title">Neues Übungsset hinzufügen</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="activity_edit_exercise_set_name_hint">Geben Sie einen Namen ein…</string>
-    <string name="activity_timer_choose_break">Wähle eine Pausendauer:</string>
-    <string name="activity_timer_choose_time">Wähle die Arbeitsdauer:</string>
+    <string name="activity_timer_choose_break">Dauer der Pause</string>
+    <string name="activity_timer_choose_time">Arbeitsdauer bis zur Pause</string>
     <string name="activity_title_about">Über</string>
     <string name="activity_title_choose_exercises">Wähle Übungen</string>
     <string name="activity_title_edit_exercise_set">Übungsset bearbeiten</string>
@@ -146,5 +146,7 @@
     <string name="set_default_3">Rückenbeschwerden</string>
     <string name="set_default_4">Hüftbeschwerden</string>
     <string name="set_default_5">Kniebeschwerden</string>
+
+    <string name="exercise_set_can_not_be_deleted">Dieses Set kann nicht gelöscht werden. In den Einstellungen können die voreingespeicherten Sets ausgeblendet werden.</string>
 
 </resources>

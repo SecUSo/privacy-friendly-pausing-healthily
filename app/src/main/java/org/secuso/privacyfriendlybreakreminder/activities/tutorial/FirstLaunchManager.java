@@ -37,6 +37,7 @@ public class FirstLaunchManager {
     public static final String PREF_SCHEDULE_EXERCISE_DAYS  = "pref_schedule_exercise_days";
     public static final String PREF_SCHEDULE_EXERCISE_TIME  = "pref_schedule_exercise_time";
     public static final String PREF_EXERCISE_CONTINUOUS     = "pref_exercise_continuous";
+    public static final String PREF_HIDE_DEFAULT_SETS       = "pref_hide_default_exercise_sets";
     public static final String WORK_TIME                    = "WORK_TIME";
 
     private final SQLiteHelper dbHandler;
@@ -66,6 +67,7 @@ public class FirstLaunchManager {
                     .putLong(PAUSE_TIME, 5 * 60 * 1000) // 5 minutes
                     .putBoolean(REPEAT_STATUS, false)
                     .putBoolean(REPEAT_EXERCISES, false)
+                    .putBoolean(PREF_HIDE_DEFAULT_SETS, false)
                     .putInt(PREF_BREAK_PICKER_SECONDS, 0)
                     .putInt(PREF_BREAK_PICKER_MINUTES, 5)
                     .putInt(PREF_PICKER_SECONDS, 0)
@@ -104,11 +106,11 @@ public class FirstLaunchManager {
             }
         }
 
-        long id1 = dbHandler.addExerciseSet(context.getString(R.string.set_default_1));
-        long id2 = dbHandler.addExerciseSet(context.getString(R.string.set_default_2));
-        long id3 = dbHandler.addExerciseSet(context.getString(R.string.set_default_3));
-        long id4 = dbHandler.addExerciseSet(context.getString(R.string.set_default_4));
-        long id5 = dbHandler.addExerciseSet(context.getString(R.string.set_default_5));
+        long id1 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_1));
+        long id2 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_2));
+        long id3 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_3));
+        long id4 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_4));
+        long id5 = dbHandler.addDefaultExerciseSet(context.getString(R.string.set_default_5));
 
         dbHandler.addExerciseToExerciseSet((int) id1, 1);
         dbHandler.addExerciseToExerciseSet((int) id1, 2);

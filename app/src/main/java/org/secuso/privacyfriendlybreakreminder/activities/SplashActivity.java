@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.TutorialActivity;
 
 /**
@@ -21,9 +21,10 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent mainIntent = null;
 
-        PrefManager firstStartPref = new PrefManager(this);
+        FirstLaunchManager firstStartPref = new FirstLaunchManager(this);
 
         if(firstStartPref.isFirstTimeLaunch()) {
+            firstStartPref.initFirstTimeLaunch();
             mainIntent = new Intent(this, TutorialActivity.class);
         } else {
             mainIntent = new Intent(this, TimerActivity.class);

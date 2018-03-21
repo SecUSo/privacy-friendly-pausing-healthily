@@ -30,7 +30,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.secuso.privacyfriendlybreakreminder.R;
-import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
@@ -113,16 +113,16 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         startService(stopTimer);
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        exerciseSetId = pref.getLong(PrefManager.DEFAULT_EXERCISE_SET, 0L);
-        pauseDuration = pref.getLong(PrefManager.PAUSE_TIME, 5 * 60 * 1000);
-        repeatStatus = pref.getBoolean(PrefManager.REPEAT_STATUS, false);
-        continuousStatus = pref.getBoolean(PrefManager.REPEAT_EXERCISES, false);
+        exerciseSetId = pref.getLong(FirstLaunchManager.DEFAULT_EXERCISE_SET, 0L);
+        pauseDuration = pref.getLong(FirstLaunchManager.PAUSE_TIME, 5 * 60 * 1000);
+        repeatStatus = pref.getBoolean(FirstLaunchManager.REPEAT_STATUS, false);
+        continuousStatus = pref.getBoolean(FirstLaunchManager.REPEAT_EXERCISES, false);
         try {
-            exerciseTime = Long.parseLong(pref.getString(PrefManager.EXERCISE_DURATION, "30")) * 1000;
+            exerciseTime = Long.parseLong(pref.getString(FirstLaunchManager.EXERCISE_DURATION, "30")) * 1000;
         } catch (NumberFormatException e) {
             exerciseTime = 30L * 1000;
         }
-        keepScreenOn = pref.getBoolean(PrefManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
+        keepScreenOn = pref.getBoolean(FirstLaunchManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
 
         initResources();
 
@@ -208,7 +208,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
 
         // start the next timer if continuous is activated
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        if(pref.getBoolean(PrefManager.PREF_EXERCISE_CONTINUOUS, false)) {
+        if(pref.getBoolean(FirstLaunchManager.PREF_EXERCISE_CONTINUOUS, false)) {
             Intent timerServiceIntent = new Intent(this.getApplicationContext(), TimerService.class);
             timerServiceIntent.setAction(TimerService.ACTION_START_TIMER);
             startService(timerServiceIntent);
@@ -562,7 +562,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private void handleRepeatClicked() {
         repeatStatus = !repeatStatus;
 
-        pref.edit().putBoolean(PrefManager.REPEAT_STATUS, repeatStatus).apply();
+        pref.edit().putBoolean(FirstLaunchManager.REPEAT_STATUS, repeatStatus).apply();
 
         setRepeatButtonStatus(repeatStatus);
     }
@@ -577,7 +577,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private void handleContinuousClicked() {
         continuousStatus = !continuousStatus;
 
-        pref.edit().putBoolean(PrefManager.REPEAT_EXERCISES, continuousStatus).apply();
+        pref.edit().putBoolean(FirstLaunchManager.REPEAT_EXERCISES, continuousStatus).apply();
 
         setContinuousButtonStatus(continuousStatus);
     }

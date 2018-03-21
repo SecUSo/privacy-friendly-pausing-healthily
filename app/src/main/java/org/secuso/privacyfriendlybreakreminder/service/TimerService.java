@@ -28,8 +28,8 @@ import java.util.Locale;
 import static android.app.PendingIntent.FLAG_CANCEL_CURRENT;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.WORK_TIME;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_EXERCISE_CONTINUOUS;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.WORK_TIME;
 import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationCancelReceiver.ACTION_NOTIFICATION_CANCELED;
 import static org.secuso.privacyfriendlybreakreminder.receivers.NotificationDeletedReceiver.ACTION_NOTIFICATION_DELETED;
 

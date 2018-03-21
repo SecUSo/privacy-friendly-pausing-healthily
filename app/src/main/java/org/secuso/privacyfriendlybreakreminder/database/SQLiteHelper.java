@@ -5,9 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -17,10 +15,6 @@ import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseColumns;
 import org.secuso.privacyfriendlybreakreminder.database.columns.ExerciseLocalColumns;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

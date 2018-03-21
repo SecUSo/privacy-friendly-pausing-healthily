@@ -20,11 +20,11 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_DAYS;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_DAYS_ENABLED;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_ENABLED;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_TIME;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.WORK_TIME;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_SCHEDULE_EXERCISE_DAYS;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_SCHEDULE_EXERCISE_DAYS_ENABLED;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_SCHEDULE_EXERCISE_ENABLED;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_SCHEDULE_EXERCISE_TIME;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.WORK_TIME;
 
 /**
  * @author Christopher Beckmann

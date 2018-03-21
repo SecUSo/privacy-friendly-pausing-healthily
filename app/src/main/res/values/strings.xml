@@ -134,4 +134,12 @@
     <string name="about_graphics_names" translatable="false">Tatjana Albrandt</string>
 
 
+    <!-- default set names -->
+    <string name="set_default_1">Neck-Head</string>
+    <string name="set_default_2">Shoulder and Arms</string>
+    <string name="set_default_3">Back</string>
+    <string name="set_default_4">Hips</string>
+    <string name="set_default_5">Knee</string>
+
+
 </resources>

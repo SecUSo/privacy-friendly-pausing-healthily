@@ -21,7 +21,6 @@ import android.widget.TextView;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
-import org.secuso.privacyfriendlybreakreminder.activities.TimerActivity;
 
 /**
  * Class structure taken from tutorial at http://www.androidhive.info/2016/05/android-build-intro-slider-app/
@@ -46,7 +45,7 @@ public class TutorialActivity extends AppCompatActivity {
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private Button btnSkip, btnNext;
-    private PrefManager prefManager;
+    private FirstLaunchManager firstLaunchManager;
 
     private static final String TAG = TutorialActivity.class.getSimpleName();
     public static final String ACTION_SHOW_ANYWAYS = TAG + ".ACTION_SHOW_ANYWAYS";
@@ -56,7 +55,7 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Checking for first time launch - before calling setContentView()
-        prefManager = new PrefManager(this);
+        firstLaunchManager = new FirstLaunchManager(this);
         Intent i = getIntent();
 
         // Making notification bar transparent
@@ -133,10 +132,10 @@ public class TutorialActivity extends AppCompatActivity {
 
     private void launchHomeScreen() {
 
-        if(prefManager.isFirstTimeLaunch()) {
+        if(firstLaunchManager.isFirstTimeLaunch()) {
             Intent intent = new Intent(TutorialActivity.this, ManageExerciseSetsActivity.class);
             //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            prefManager.setFirstTimeLaunch(false);
+            firstLaunchManager.setFirstTimeLaunch(false);
             startActivity(intent);
         }
 

@@ -139,4 +139,12 @@
     <string name="no">Nein</string>
     <string name="keep_editing">bearbeiten</string>
     <string name="discard">verwerfen</string>
+
+    <!-- default sets -->
+    <string name="set_default_1">Nacken-Kopf-Beschwerden</string>
+    <string name="set_default_2">Schulter-Arm-Beschwerden</string>
+    <string name="set_default_3">Rückenbeschwerden</string>
+    <string name="set_default_4">Hüftbeschwerden</string>
+    <string name="set_default_5">Kniebeschwerden</string>
+
 </resources>

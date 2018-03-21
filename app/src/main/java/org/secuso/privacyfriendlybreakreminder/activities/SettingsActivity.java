@@ -18,13 +18,10 @@ import android.view.MenuItem;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.AppCompatPreferenceActivity;
-import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
 import org.secuso.privacyfriendlybreakreminder.receivers.TimerSchedulerReceiver;
 
 import java.util.HashSet;
 import java.util.List;
-
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_SCHEDULE_EXERCISE_ENABLED;
 
 /**
  * @author Christopher Beckmann

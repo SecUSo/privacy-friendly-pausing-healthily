@@ -9,16 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.drawable.ColorDrawable;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.ColorRes;
 import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -27,7 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseSetSpinnerAdapter;
@@ -42,8 +37,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.DEFAULT_EXERCISE_SET;
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PAUSE_TIME;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.DEFAULT_EXERCISE_SET;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PAUSE_TIME;
 
 /**
  * This is the main break reminder activity. It lets you choose exercise and work times, as well as the exercises you want to perform during the break.
@@ -215,11 +210,11 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         setPickerAttributes(secondsBreakPicker);
         setPickerAttributes(minutesBreakPicker);
 
-        secondsPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_SECONDS, 0));
-        minutesPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_MINUTES, 30));
-        hoursPicker.setValue(pref.getInt(PrefManager.PREF_PICKER_HOURS, 1));
-        secondsBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_SECONDS, 0));
-        minutesBreakPicker.setValue(pref.getInt(PrefManager.PREF_BREAK_PICKER_MINUTES, 5));
+        secondsPicker.setValue(pref.getInt(FirstLaunchManager.PREF_PICKER_SECONDS, 0));
+        minutesPicker.setValue(pref.getInt(FirstLaunchManager.PREF_PICKER_MINUTES, 30));
+        hoursPicker.setValue(pref.getInt(FirstLaunchManager.PREF_PICKER_HOURS, 1));
+        secondsBreakPicker.setValue(pref.getInt(FirstLaunchManager.PREF_BREAK_PICKER_SECONDS, 0));
+        minutesBreakPicker.setValue(pref.getInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, 5));
     }
 
     private void setPickerAttributes(NumberPicker np) {
@@ -278,8 +273,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
                 SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
                 pref.edit()
-                        .putInt(PrefManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
-                        .putInt(PrefManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
+                        .putInt(FirstLaunchManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
+                        .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
                         .putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
             }
         }
@@ -287,10 +282,10 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
     private void saveCurrentSetDuration() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        pref.edit().putInt(PrefManager.PREF_PICKER_SECONDS, secondsPicker.getValue())
-                .putInt(PrefManager.PREF_PICKER_MINUTES, minutesPicker.getValue())
-                .putInt(PrefManager.PREF_PICKER_HOURS, hoursPicker.getValue())
-                .putLong(PrefManager.WORK_TIME, getCurrentSetDuration()).apply();
+        pref.edit().putInt(FirstLaunchManager.PREF_PICKER_SECONDS, secondsPicker.getValue())
+                .putInt(FirstLaunchManager.PREF_PICKER_MINUTES, minutesPicker.getValue())
+                .putInt(FirstLaunchManager.PREF_PICKER_HOURS, hoursPicker.getValue())
+                .putLong(FirstLaunchManager.WORK_TIME, getCurrentSetDuration()).apply();
     }
 
     private long getCurrentSetDuration() {

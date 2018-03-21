@@ -8,7 +8,7 @@ import android.preference.PreferenceManager;
 
 import org.secuso.privacyfriendlybreakreminder.service.TimerService;
 
-import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.PrefManager.PREF_EXERCISE_CONTINUOUS;
+import static org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager.PREF_EXERCISE_CONTINUOUS;
 
 /**
  * @author Christopher Beckmann

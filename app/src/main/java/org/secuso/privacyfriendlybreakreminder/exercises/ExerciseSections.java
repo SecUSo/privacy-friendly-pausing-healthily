@@ -34,5 +34,5 @@ public enum ExerciseSections {
     public String getLocalName(Context context) {
         return context.getString(nameResId);
     }
-    public static List<ExerciseSections> getSectionList() { return Arrays.asList( Head, Neck, Arms, Torso, Spinal, Pelvis, Legs ); }
+    public static List<ExerciseSections> getSectionList() { return Arrays.asList( Head, Neck, Arms, Torso, Pelvis, Legs ); }
 }

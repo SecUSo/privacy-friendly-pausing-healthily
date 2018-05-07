@@ -25,6 +25,7 @@ public final class ExerciseColumns {
             SECTION,
             IMAGE_ID,
     };
+
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     public static Exercise fromCursor(Cursor c) {

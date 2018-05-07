@@ -15,13 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
+import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Christopher Beckmann
@@ -68,6 +71,7 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
         TextView name = (TextView) row.findViewById(R.id.exercise_set_name);
         LinearLayout exerciseList = (LinearLayout) row.findViewById(R.id.exercise_list);
         TextView noExercisesText = (TextView) row.findViewById(R.id.exercise_none_available);
+        TextView exerciseTime = (TextView) row.findViewById(R.id.exercise_set_time_short);
 
         card.setClickable(false);
         card.setLongClickable(false);
@@ -80,15 +84,26 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            Glide.with(getContext()).load(set.get(i).getImageResIds(getContext())[0]).into(image);
+            Glide.with(getContext()).load(set.get(i).getImageResIds(getContext())[0]).transition(DrawableTransitionOptions.withCrossFade()).into(image);
 
             exerciseList.addView(view);
         }
 
         if(set.size() == 0) {
             noExercisesText.setVisibility(View.VISIBLE);
+            exerciseTime.setVisibility(View.GONE);
         } else {
             noExercisesText.setVisibility(View.GONE);
+            exerciseTime.setVisibility(View.VISIBLE);
+
+            int result = 0;
+            for(Exercise e : set.getExercises()) {
+                result += e.getImageID().split(",").length;
+            }
+
+            long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(getContext()).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
+            int seconds = (int) (result * exerciseDuration);
+            exerciseTime.setText(String.format(Locale.getDefault(), "%02d:%02d", (seconds / 60), (seconds % 60)));
         }
 
         return row;

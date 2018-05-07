@@ -144,6 +144,7 @@
     <string name="pref_hide_default_exercise_sets">Hide default exercise sets</string>
 
     <string name="exercise_set_can_not_be_deleted">This set can not be deleted. These sets can be hidden via the settings page.</string>
+    <string name="exercise_set_can_not_be_edited">This set can not be edited.</string>
 
     <string name="activity_exercise_button_prev">previous exercise</string>
     <string name="activity_exercise_button_next">next exercise</string>
@@ -151,6 +152,7 @@
     <string name="activity_exercise_button_repeat_off">repeat exercises off</string>
     <string name="activity_exercise_button_continuous_on">start timers automatically</string>
     <string name="activity_exercise_button_continuous_off">start timers manually</string>
+    <string name="exercise_time">Execise Time:\n%s</string>
 
 
 </resources>

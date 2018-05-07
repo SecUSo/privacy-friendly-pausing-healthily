@@ -48,7 +48,6 @@ public class TutorialActivity extends AppCompatActivity {
     private FirstLaunchManager firstLaunchManager;
 
     private static final String TAG = TutorialActivity.class.getSimpleName();
-    public static final String ACTION_SHOW_ANYWAYS = TAG + ".ACTION_SHOW_ANYWAYS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,14 +79,12 @@ public class TutorialActivity extends AppCompatActivity {
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-        btnSkip.setOnClickListener(new View.OnClickListener()
-
-    {
-        @Override
-        public void onClick (View v){
-        launchHomeScreen();
-    }
-    });
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v){
+                    launchHomeScreen();
+                }
+            });
 
         btnNext.setOnClickListener(new View.OnClickListener()
 

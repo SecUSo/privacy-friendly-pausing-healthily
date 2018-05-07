@@ -157,6 +157,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         prevButton = (ImageButton) findViewById(R.id.button_prev);
         nextButton = (ImageButton) findViewById(R.id.button_next);
         exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
+
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         toast.setGravity(toast.getGravity(), 0, 250);
 

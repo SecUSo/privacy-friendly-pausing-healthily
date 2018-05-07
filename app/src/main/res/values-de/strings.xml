@@ -147,7 +147,11 @@
     <string name="set_default_4">Hüftbeschwerden</string>
     <string name="set_default_5">Kniebeschwerden</string>
 
+    <string name="pref_category_default_exercise_sets">Standard Übungssets</string>
+    <string name="pref_hide_default_exercise_sets">Standard Übungssets verstecken</string>
+
     <string name="exercise_set_can_not_be_deleted">Dieses Set kann nicht gelöscht werden. In den Einstellungen können die voreingespeicherten Sets ausgeblendet werden.</string>
+    <string name="exercise_set_can_not_be_edited">Dieses Set kann nicht editiert werden.</string>
 
     <string name="activity_exercise_button_prev">vorherige Übung</string>
     <string name="activity_exercise_button_next">nächste Übung</string>

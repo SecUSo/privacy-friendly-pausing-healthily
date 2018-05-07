@@ -15,16 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity;
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
+import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -114,6 +117,11 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     }
 
                 } else {
+                    if(set.isDefaultSet()) {
+                        Toast.makeText(mContext, R.string.exercise_set_can_not_be_edited, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     Intent i = new Intent(mContext, EditExerciseSetActivity.class);
                     i.putExtra(EditExerciseSetActivity.EXTRA_EXERCISE_SET_ID, set.getId());
                     i.putExtra(EditExerciseSetActivity.EXTRA_EXERCISE_SET_NAME, set.getName());
@@ -152,15 +160,26 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             View view = LayoutInflater.from(mContext).inflate(R.layout.layout_round_exercise_image, null, false);
             ImageView image = (ImageView) view.findViewById(R.id.exercise_image);
 
-            Glide.with(mContext).load(set.get(i).getImageResIds(mContext)[0]).into(image);
+            Glide.with(mContext).load(set.get(i).getImageResIds(mContext)[0]).transition(DrawableTransitionOptions.withCrossFade()).into(image);
 
             vh.exerciseList.addView(view);
         }
 
         if(set.size() == 0) {
             vh.noExercisesText.setVisibility(View.VISIBLE);
+            vh.exerciseTime.setVisibility(View.GONE);
         } else {
             vh.noExercisesText.setVisibility(View.GONE);
+            vh.exerciseTime.setVisibility(View.VISIBLE);
+
+            int result = 0;
+            for(Exercise e : set.getExercises()) {
+                result += e.getImageID().split(",").length;
+            }
+
+            long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(mContext).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
+            int seconds = (int) (result * exerciseDuration);
+            vh.exerciseTime.setText(String.format(Locale.getDefault(), "%02d:%02d", (seconds / 60), (seconds % 60)));
         }
     }
 
@@ -193,6 +212,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         CardView card;
         TextView noExercisesText;
         CheckBox deleteCheckBox;
+        TextView exerciseTime;
 
         public ExerciseSetViewHolder(View itemView) {
             super(itemView);
@@ -202,6 +222,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             exerciseList = (LinearLayout) itemView.findViewById(R.id.exercise_list);
             noExercisesText = (TextView) itemView.findViewById(R.id.exercise_none_available);
             deleteCheckBox = (CheckBox) itemView.findViewById(R.id.delete_check_box);
+            exerciseTime = (TextView) itemView.findViewById(R.id.exercise_set_time_short);
         }
     }
 }

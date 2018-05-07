@@ -57,6 +57,20 @@
                 app:srcCompat="@drawable/ic_mode_edit_black_24dp" />
 
             <TextView
+                android:id="@+id/exercise_set_time_short"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_alarm_black"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/exercise_set_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

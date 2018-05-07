@@ -1,6 +1,7 @@
 package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
@@ -16,17 +17,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.ChooseExerciseActivity;
+import org.secuso.privacyfriendlybreakreminder.activities.helper.IExerciseTimeUpdateable;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 import org.secuso.privacyfriendlybreakreminder.dialog.ExerciseDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Christopher Beckmann
@@ -36,6 +42,7 @@ import java.util.List;
  */
 public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private IExerciseTimeUpdateable mListener;
     private Context mContext;
     private List<Integer> checkedIds = new ArrayList<>();
     private boolean mShowCheckboxes = false;
@@ -43,12 +50,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final Comparator<Exercise> ID_COMPARATOR = new Comparator<Exercise>() {
         @Override
         public int compare(Exercise a, Exercise b) {
-            return (a.getId() < b.getId()) ? -1 : ((a.getId() == b.getId()) ? 0 : 1);
+            return Integer.compare(a.getId(), b.getId());
         }
     };
 
     private final LayoutInflater mInflater;
     private final Comparator<Exercise> mComparator;
+    private final List<Exercise> mAllExercises = new ArrayList<>();
     private final SortedList<Exercise> mSortedList = new SortedList<>(Exercise.class, new SortedList.Callback<Exercise>() {
         @Override
         public void onInserted(int position, int count) {
@@ -86,7 +94,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     });
 
-    public ExerciseAdapter(Context context, Comparator<Exercise> comparator) {
+    public ExerciseAdapter(Context context, Comparator<Exercise> comparator, IExerciseTimeUpdateable listener) {
+        this.mListener = listener;
         this.mContext = context;
         this.mComparator = comparator;
         this.mInflater = LayoutInflater.from(context);
@@ -122,10 +131,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
 
                 vh.checkbox.setChecked(!vh.checkbox.isChecked());
+                notifyListeners();
             }
         };
 
-        Glide.with(mContext).load(exercise.getImageResIds(mContext)[0]).into(vh.image);
+
+        Glide.with(mContext).load(exercise.getImageResIds(mContext)[0]).transition(DrawableTransitionOptions.withCrossFade()).into(vh.image);
         //vh.image.setImageResource(exercise.getImageResIds(mContext)[0]);
 
         if(checkedIds != null)
@@ -146,6 +157,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         vh.infoButton.setOnClickListener(infoClick);
     }
 
+    private void notifyListeners() {
+        if(mListener != null) {
+            mListener.update(getExerciseCount(null));
+        }
+    }
+
     @Override
     public int getItemCount() {
         return mSortedList.size();
@@ -161,6 +178,16 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         mSortedList.addAll(exercises);
         mSortedList.endBatchedUpdates();
+        setAllExercises(exercises);
+        notifyListeners();
+    }
+
+    public void setAllExercises(List<Exercise> exercises) {
+        for(Exercise e : exercises) {
+            if(!mAllExercises.contains(e)) {
+                mAllExercises.add(e);
+            }
+        }
     }
 
     public List<Integer> getCheckedIds() {
@@ -169,14 +196,19 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void add(Exercise model) {
         mSortedList.add(model);
+        setAllExercises(Collections.singletonList(model));
+        notifyListeners();
     }
 
     public void remove(Exercise model) {
         mSortedList.remove(model);
+        notifyListeners();
     }
 
     public void add(List<Exercise> models) {
         mSortedList.addAll(models);
+        setAllExercises(models);
+        notifyListeners();
     }
 
     public void remove(List<Exercise> models) {
@@ -185,10 +217,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mSortedList.remove(model);
         }
         mSortedList.endBatchedUpdates();
+        notifyListeners();
     }
 
     public void setCheckedItems(@NonNull List<Integer> checkedItems) {
         this.checkedIds = checkedItems;
+        notifyListeners();
     }
 
     public List<Exercise> getExercises() {
@@ -200,6 +234,31 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         return result;
+    }
+
+    public int getExerciseCount(List<Integer> specificIds) {
+        int result = 0;
+
+        for (int id : (specificIds == null ? checkedIds : specificIds)) {
+            for (Exercise e : mAllExercises) {
+                if (e.getId() == id) {
+                    result += e.getImageID().split(",").length;
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public String getExerciseTimeString() {
+        return getExerciseTimeString(null);
+    }
+
+    public String getExerciseTimeString(List<Integer> specificIds) {
+        long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(mContext).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
+        int seconds = (int) (getExerciseCount(specificIds) * exerciseDuration);
+        return String.format(Locale.getDefault(), "%02d:%02d", (seconds / 60), (seconds % 60));
     }
 
     public class ExerciseViewHolder extends RecyclerView.ViewHolder {

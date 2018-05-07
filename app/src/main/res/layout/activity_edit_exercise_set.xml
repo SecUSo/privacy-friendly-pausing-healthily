@@ -7,6 +7,7 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,21 +23,48 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-        <EditText
-            android:id="@+id/exercise_set_name"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:background="@color/transparent"
-            android:hint="@string/activity_edit_exercise_set_name_hint"
-            android:inputType="textAutoCorrect"
-            android:maxLength="40"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"/>
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/exercise_set_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/transparent"
+                android:hint="@string/activity_edit_exercise_set_name_hint"
+                android:inputType="textAutoCorrect"
+                android:maxLength="35"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/exercise_set_time"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+              android:id="@+id/exercise_set_time"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_gravity="center"
+              android:layout_marginBottom="8dp"
+              android:layout_marginEnd="8dp"
+              android:layout_marginTop="8dp"
+              android:drawableStart="@drawable/ic_alarm_white"
+              android:gravity="center"
+              android:text="@string/exercise_time"
+              android:textColor="@color/white"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+      </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -50,12 +78,8 @@
             android:id="@+id/exercise_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -83,12 +107,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:focusable="true"
         android:onClick="onClick"
         app:fabSize="normal"
-        app:layout_anchor="@id/constraintLayout2"
-        app:layout_anchorGravity="bottom|end"
+        android:layout_gravity="bottom|end"
         app:srcCompat="@drawable/ic_edit_white_24dp" />
 
     </android.support.design.widget.CoordinatorLayout>

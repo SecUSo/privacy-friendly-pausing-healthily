@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.ActionBar;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter;
+import org.secuso.privacyfriendlybreakreminder.activities.helper.IExerciseTimeUpdateable;
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.R;
@@ -34,7 +37,15 @@ import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.ExerciseSet;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.xml.datatype.Duration;
 
 import static org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
@@ -69,6 +80,7 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
     private boolean nameChanged = false;
     private boolean modificationsDone = false;
     private SQLiteHelper mDbHelper;
+    private TextView exerciseSetTimeText;
 
     //methods
 
@@ -89,6 +101,16 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
         initResources();
 
         getSupportLoaderManager().initLoader(0, null, this);
+
+        updateExerciseTime();
+    }
+
+    private void updateExerciseTime() {
+        List<Integer> ids = new LinkedList<>();
+        for(Exercise e : mAdapter.getExercises()) {
+            ids.add(e.getId());
+        }
+        exerciseSetTimeText.setText(getString(R.string.exercise_time, mAdapter.getExerciseTimeString(ids)));
     }
 
     private void initResources() {
@@ -96,10 +118,11 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         exerciseSetNameText = (TextView) findViewById(R.id.exercise_set_name);
         exerciseList = (RecyclerView) findViewById(R.id.exercise_list);
-        mAdapter = new ExerciseAdapter(this, ID_COMPARATOR);
+        mAdapter = new ExerciseAdapter(this, ID_COMPARATOR, null);
         exerciseList.setAdapter(mAdapter);
         exerciseList.setLayoutManager(new GridLayoutManager(this, 3));
         loadingSpinner = (ProgressBar) findViewById(R.id.loading_spinner);
+        exerciseSetTimeText = (TextView) findViewById(R.id.exercise_set_time);
 
         exerciseSetNameText.setText(exerciseSetName);
         exerciseSetNameText.addTextChangedListener(new TextWatcher() {
@@ -165,6 +188,7 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
         if(set != null) {
             mAdapter.replaceAll(set.getExercises());
         }
+        updateExerciseTime();
 
         // load data only once
         getSupportLoaderManager().destroyLoader(0);
@@ -334,6 +358,7 @@ public class EditExerciseSetActivity extends AppCompatActivity implements androi
                     }
 
                     mAdapter.replaceAll(newList);
+                    updateExerciseTime();
                 }
             }
         }

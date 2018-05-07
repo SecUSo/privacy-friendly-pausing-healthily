@@ -1,6 +1,8 @@
 package org.secuso.privacyfriendlybreakreminder.activities;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBar;
@@ -20,6 +22,7 @@ import android.widget.ToggleButton;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter;
+import org.secuso.privacyfriendlybreakreminder.activities.helper.IExerciseTimeUpdateable;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
 import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
 import com.nex3z.flowlayout.FlowLayout;
@@ -40,7 +43,7 @@ import static org.secuso.privacyfriendlybreakreminder.activities.adapter.Exercis
  * @version 2.0
  * @see EditExerciseSetActivity
  */
-public class ChooseExerciseActivity extends AppCompatActivity {
+public class ChooseExerciseActivity extends AppCompatActivity implements IExerciseTimeUpdateable {
 
     private static final String TAG = ChooseExerciseActivity.class.getSimpleName();
 
@@ -48,6 +51,7 @@ public class ChooseExerciseActivity extends AppCompatActivity {
 
     FlowLayout filterButtonLayout;
     RecyclerView exerciseList;
+    TextView exerciseSetTimeText;
 
     ExerciseAdapter exerciseAdapter;
     SQLiteHelper databaseHelper;
@@ -76,12 +80,19 @@ public class ChooseExerciseActivity extends AppCompatActivity {
         exerciseAdapter.setCheckedItems(chosenExercisesList);
     }
 
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+
+        update(0);
+    }
+
     private void initResources() {
         databaseHelper = new SQLiteHelper(this);
 
         filterButtonLayout = (FlowLayout) findViewById(R.id.layout_filter_buttons);
         exerciseList = (RecyclerView) findViewById(R.id.exercise_list);
-        exerciseAdapter = new ExerciseAdapter(this, ID_COMPARATOR);
+        exerciseAdapter = new ExerciseAdapter(this, ID_COMPARATOR, this);
         exerciseAdapter.showCheckboxes(true);
 
         GridLayoutManager gridLayout = new GridLayoutManager(this, 3);
@@ -120,12 +131,16 @@ public class ChooseExerciseActivity extends AppCompatActivity {
 
                     exerciseAdapter.replaceAll(databaseHelper.getExerciseListBySections(ExerciseLocale.getLocale(), filterSections));
                     exerciseList.scrollToPosition(0);
+                    update(0);
                 }
             });
 
             buttons.add(button);
             filterButtonLayout.addView(view);
         }
+
+        exerciseSetTimeText = (TextView) findViewById(R.id.exercise_set_time);
+        update(0);
     }
 
 
@@ -170,5 +185,10 @@ public class ChooseExerciseActivity extends AppCompatActivity {
 
         result.putExtra(EXTRA_SELECTED_EXERCISES, selectedIds);
         setResult(RESULT_OK, result);
+    }
+
+    @Override
+    public void update(int i) {
+        exerciseSetTimeText.setText(getString(R.string.exercise_time, exerciseAdapter.getExerciseTimeString()));
     }
 }

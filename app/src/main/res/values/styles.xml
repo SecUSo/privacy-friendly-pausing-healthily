@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:alertDialogTheme">@style/AppTheme.AlertDialog</item>
+        <item name="android:timePickerStyle">@style/TimePickerDialogStyle</item>
     </style>
 
     <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog">
@@ -24,6 +25,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
     <style name="AppTheme.NumberPicker" parent="AppTheme">
@@ -40,6 +42,18 @@
     <style name="SplashTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
         <item name="android:windowBackground">@drawable/bg_splash_screen</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:timePickerMode">clock</item>
+        <item name="android:headerBackground">@color/white</item>
+        <item name="android:headerTimeTextAppearance">@style/TextAppearance.TimePickerDialogStyle.TimeLabel</item>
+    </style>
+
+    <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
+        <item name="android:textSize">60sp</item> <!-- from -->
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>

@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     tools:context="org.secuso.privacyfriendlybreakreminder.activities.ChooseExerciseActivity">
 
-    <com.nex3z.flowlayout.FlowLayout
+    <android.support.design.chip.ChipGroup
         android:id="@+id/layout_filter_buttons"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_width="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:flChildSpacing="8dp"
-        app:flChildSpacingForLastRow="align"
-        app:flRowSpacing="8dp"
+        app:chipSpacing="4dp"
+        app:singleSelection="true"
+        app:singleLine="false"
         app:layout_constraintEnd_toStartOf="@+id/exercise_set_time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.design.chip.ChipGroup>
 
     <TextView
         android:id="@+id/exercise_set_time"
@@ -43,16 +44,15 @@
         android:id="@+id/exercise_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_filter_buttons"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="4dp" />
+        tools:listitem="@layout/layout_exercise_grid_item" />
 
 </android.support.constraint.ConstraintLayout>

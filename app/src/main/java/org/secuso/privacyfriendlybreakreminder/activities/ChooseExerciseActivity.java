@@ -3,38 +3,31 @@ package org.secuso.privacyfriendlybreakreminder.activities;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.design.chip.Chip;
+import android.support.design.chip.ChipGroup;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.util.SortedList;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter;
 import org.secuso.privacyfriendlybreakreminder.activities.helper.IExerciseTimeUpdateable;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
-import org.secuso.privacyfriendlybreakreminder.database.data.Exercise;
-import com.nex3z.flowlayout.FlowLayout;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseSections;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static org.secuso.privacyfriendlybreakreminder.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
 /**
@@ -49,14 +42,14 @@ public class ChooseExerciseActivity extends AppCompatActivity implements IExerci
 
     public static final String EXTRA_SELECTED_EXERCISES = TAG+".EXTRA_SELECTED_EXERCISES";
 
-    FlowLayout filterButtonLayout;
+    ChipGroup filterButtonLayout;
     RecyclerView exerciseList;
     TextView exerciseSetTimeText;
 
     ExerciseAdapter exerciseAdapter;
     SQLiteHelper databaseHelper;
 
-    List<ToggleButton> buttons;
+    List<Chip> buttons;
     boolean[] buttonStates;
 
     @Override
@@ -90,7 +83,7 @@ public class ChooseExerciseActivity extends AppCompatActivity implements IExerci
     private void initResources() {
         databaseHelper = new SQLiteHelper(this);
 
-        filterButtonLayout = (FlowLayout) findViewById(R.id.layout_filter_buttons);
+        filterButtonLayout = (ChipGroup) findViewById(R.id.layout_filter_buttons);
         exerciseList = (RecyclerView) findViewById(R.id.exercise_list);
         exerciseAdapter = new ExerciseAdapter(this, ID_COMPARATOR, this);
         exerciseAdapter.showCheckboxes(true);
@@ -99,25 +92,22 @@ public class ChooseExerciseActivity extends AppCompatActivity implements IExerci
         exerciseList.setLayoutManager(gridLayout);
         exerciseList.setAdapter(exerciseAdapter);
 
-        filterButtonLayout.removeAllViews();
-
         final List<ExerciseSections> sections = ExerciseSections.getSectionList();
         buttonStates = new boolean[sections.size()];
-        buttons = new ArrayList<>(sections.size());
+        buttons = new ArrayList<Chip>(sections.size());
 
         for(int i = 0; i < sections.size(); ++i) {
             ExerciseSections section = sections.get(i);
 
-            View view = LayoutInflater.from(this).inflate(R.layout.layout_section_filter_button, null, false);
-            ToggleButton button = (ToggleButton) view.findViewById(R.id.button);
-
             String sectionText = section.getLocalName(this);
 
+            Chip button = new Chip(this);
+
+            button.setCheckable(true);
             button.setClickable(true);
             button.setChecked(false);
-            button.setTextOff(sectionText);
-            button.setTextOn(sectionText);
-            button.setText(sectionText);
+            button.setElegantTextHeight(true);
+            button.setChipText(sectionText);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -136,7 +126,7 @@ public class ChooseExerciseActivity extends AppCompatActivity implements IExerci
             });
 
             buttons.add(button);
-            filterButtonLayout.addView(view);
+            filterButtonLayout.addView(button);
         }
 
         exerciseSetTimeText = (TextView) findViewById(R.id.exercise_set_time);

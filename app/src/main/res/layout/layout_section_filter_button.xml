@@ -1,26 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.chip.Chip
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <ToggleButton
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        android:background="@drawable/button_section"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
-        android:text="Section"
-        android:minWidth="65dp"
-        android:minHeight="45dp"
-        android:textColor="@drawable/button_section_textcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="wrap_content"
+    android:text="Section" />

@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -107,6 +108,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     // database and utility
     private SQLiteHelper dbHelper;
     private SharedPreferences pref;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,8 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         Intent stopTimer = new Intent(this, TimerService.class);
         stopTimer.setAction(ACTION_STOP_TIMER);
         startService(stopTimer);
+
+        mHandler = new Handler();
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         exerciseSetId = pref.getLong(FirstLaunchManager.DEFAULT_EXERCISE_SET, 0L);
@@ -665,7 +669,13 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                     finish();
                 }
 
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    }
+                }, 1000 * 5);
             }
         };
     }

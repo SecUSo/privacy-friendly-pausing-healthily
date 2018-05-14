@@ -5,15 +5,19 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -21,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlybreakreminder.exercises.ExerciseLocale;
@@ -64,7 +69,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private Spinner exerciseSetSpinner;
     private ExerciseSetSpinnerAdapter exerciseSetAdapter;
 
-
     private boolean isActivityVisible = false;
 
     // animation
@@ -88,6 +92,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             mTimerService = null;
         }
     };
+    private ExerciseSet currentExerciseSet;
 
     private void onServiceConnected() {
         updateUI();
@@ -191,7 +196,16 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         exerciseSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentExerciseSet = (ExerciseSet) exerciseSetSpinner.getAdapter().getItem(position);
                 pref.edit().putLong(DEFAULT_EXERCISE_SET, id).apply();
+
+                if(mTimerService != null && mTimerService.isRunning()) {
+                    if(currentExerciseSet.getExerciseSetTime(TimerActivity.this)*1000 > getCurrentSetBreakTime()) {
+                        Toast toast = Toast.makeText(TimerActivity.this, R.string.toast_not_enough_exercise_time, Toast.LENGTH_SHORT);
+                        toast.setGravity(toast.getGravity(), 0, 250);
+                        toast.show();
+                    }
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
@@ -266,18 +280,52 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 mTimerService.pauseTimer();
 
             } else {
-                long duration = getCurrentSetDuration();
+                final long duration = getCurrentSetDuration();
                 saveCurrentSetDuration();
-                mTimerService.startTimer(duration);
-                progressBar.setMax((int) duration);
 
-                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-                pref.edit()
-                        .putInt(FirstLaunchManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
-                        .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
-                        .putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
+                ExerciseSet set = getCurrentSelectedExerciseSet();
+                long seconds = set.getExerciseSetTime(this);
+                if(seconds * 1000 > getCurrentSetBreakTime()) {
+
+                    showTimeWarningDialog(new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            mTimerService.startTimer(duration);
+                            progressBar.setMax((int) duration);
+                            saveCurrentSetBreakTime();
+                        }
+                    });
+
+                } else {
+                    mTimerService.startTimer(duration);
+                    progressBar.setMax((int) duration);
+
+                    saveCurrentSetBreakTime();
+                }
             }
         }
+    }
+
+    private void showTimeWarningDialog(DialogInterface.OnClickListener listener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.warning);
+        builder.setMessage(R.string.dialog_warning_not_enough_exercise_time);
+        Drawable icon = getDrawable(R.drawable.ic_about);
+        if (icon != null) {
+            icon.setTint(ActivityCompat.getColor(this, R.color.yellow));
+            builder.setIcon(icon);
+        }
+        builder.setPositiveButton(R.string.start, listener);
+        builder.setNegativeButton(R.string.cancel, null);
+        builder.create().show();
+    }
+
+    private void saveCurrentSetBreakTime() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        pref.edit()
+                .putInt(FirstLaunchManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
+                .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
+                .putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
     }
 
     private void saveCurrentSetDuration() {
@@ -424,6 +472,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
             if(e.getId() == defaultId) {
                 exerciseSetSpinner.setSelection(i);
+                if(exerciseSetSpinner.getOnItemSelectedListener() != null)
+                    exerciseSetSpinner.getOnItemSelectedListener().onItemSelected(null, null, i, e.getId());
                 break;
             }
         }
@@ -431,4 +481,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
     @Override
     public void onLoaderReset(Loader<List<ExerciseSet>> loader) {}
+
+    public ExerciseSet getCurrentSelectedExerciseSet() {
+        return currentExerciseSet;
+    }
 }

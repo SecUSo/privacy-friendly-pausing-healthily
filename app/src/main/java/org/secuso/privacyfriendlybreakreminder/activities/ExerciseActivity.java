@@ -672,7 +672,6 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                     }
                 }, 1000 * 5);

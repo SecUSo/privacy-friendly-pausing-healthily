@@ -96,13 +96,7 @@ public class ExerciseSetSpinnerAdapter extends ArrayAdapter<ExerciseSet> {
             noExercisesText.setVisibility(View.GONE);
             exerciseTime.setVisibility(View.VISIBLE);
 
-            int result = 0;
-            for(Exercise e : set.getExercises()) {
-                result += e.getImageID().split(",").length;
-            }
-
-            long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(getContext()).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
-            int seconds = (int) (result * exerciseDuration);
+            int seconds = (int) set.getExerciseSetTime(getContext());
             exerciseTime.setText(String.format(Locale.getDefault(), "%02d:%02d", (seconds / 60), (seconds % 60)));
         }
 

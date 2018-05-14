@@ -1,5 +1,10 @@
 package org.secuso.privacyfriendlybreakreminder.database.data;
 
+import android.content.Context;
+import android.preference.PreferenceManager;
+
+import org.secuso.privacyfriendlybreakreminder.activities.tutorial.FirstLaunchManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,5 +75,14 @@ public class ExerciseSet {
 
     public void setDefaultSet(boolean defaultSet) {
         isDefaultSet = defaultSet;
+    }
+
+    public long getExerciseSetTime(Context context) {
+        int result = 0;
+        for(Exercise e : getExercises()) {
+            result += e.getImageID().split(",").length;
+        }
+        long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(context).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
+        return (result * exerciseDuration);
     }
 }

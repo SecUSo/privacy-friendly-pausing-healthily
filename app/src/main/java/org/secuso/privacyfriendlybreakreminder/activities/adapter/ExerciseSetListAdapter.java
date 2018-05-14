@@ -172,13 +172,7 @@ public class ExerciseSetListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             vh.noExercisesText.setVisibility(View.GONE);
             vh.exerciseTime.setVisibility(View.VISIBLE);
 
-            int result = 0;
-            for(Exercise e : set.getExercises()) {
-                result += e.getImageID().split(",").length;
-            }
-
-            long exerciseDuration = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(mContext).getString(FirstLaunchManager.EXERCISE_DURATION, "30"));
-            int seconds = (int) (result * exerciseDuration);
+            int seconds = (int) set.getExerciseSetTime(mContext);
             vh.exerciseTime.setText(String.format(Locale.getDefault(), "%02d:%02d", (seconds / 60), (seconds % 60)));
         }
     }

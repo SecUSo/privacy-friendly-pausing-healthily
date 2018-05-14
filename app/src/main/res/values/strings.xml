@@ -4,7 +4,7 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <!-- Tutorial -->
-    <string name="slide1_heading">Welcome to the Privacy Friendly Pausing Healthily App!</string>
+    <string name="slide1_heading">Welcome to Privacy Friendly Pausing Healthily!</string>
     <string name="slide1_text">This app reminds you to regularly take breaks during your work. Additionally, you can choose from a set of exercises, that can help you to spend your break more active.</string>
 
     <string name="slide2_heading">Create Exercise Sets</string>

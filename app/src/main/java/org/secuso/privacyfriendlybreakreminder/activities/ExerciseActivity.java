@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
@@ -458,7 +460,20 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     }
 
     private boolean next() {
-        return nextExercisePart() || nextExercise();
+        boolean result = nextExercisePart() || nextExercise();
+
+        if(result) vibrate();
+
+        return result;
+    }
+
+    private void vibrate() {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
+        }else{
+            v.vibrate(500);
+        }
     }
 
     private boolean nextExercise() {

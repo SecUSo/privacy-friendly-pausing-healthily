@@ -74,7 +74,7 @@ public class FirstLaunchManager {
                     .putInt(PREF_PICKER_MINUTES, 0)
                     .putInt(PREF_PICKER_HOURS, 1)
                     .putLong(WORK_TIME, 1000L * 60L * 60L) // 1 hour
-                    .putString(EXERCISE_DURATION, "20")
+                    .putString(EXERCISE_DURATION, "30")
                     .putBoolean(PREF_SCHEDULE_EXERCISE_DAYS_ENABLED, false)
                     .putBoolean(PREF_SCHEDULE_EXERCISE_ENABLED, false)
                     .putLong(PREF_SCHEDULE_EXERCISE_TIME, 32400000L)

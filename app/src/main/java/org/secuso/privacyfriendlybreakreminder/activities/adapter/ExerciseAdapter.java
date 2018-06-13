@@ -1,10 +1,13 @@
 package org.secuso.privacyfriendlybreakreminder.activities.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -154,6 +157,11 @@ public class ExerciseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
         });
 
+        Drawable icon = mContext.getDrawable(R.drawable.ic_about);
+        if (icon != null) {
+            icon.setTint(ActivityCompat.getColor(mContext, R.color.black));
+            vh.infoButton.setImageDrawable(icon);
+        }
         vh.infoButton.setOnClickListener(infoClick);
     }
 

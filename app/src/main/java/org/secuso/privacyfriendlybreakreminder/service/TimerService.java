@@ -104,7 +104,7 @@ public class TimerService extends Service {
         PendingIntent startExercises = PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_CANCEL_CURRENT);
         PendingIntent snoozeExercise = PendingIntent.getService(this, 0, snoozeIntent, FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "timer_done");
         builder.setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.take_a_break_now))
                 .setContentIntent(startExercises)
@@ -293,7 +293,7 @@ public class TimerService extends Service {
 
 
     private Notification buildNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "timer_running");
         builder.setContentTitle(getString(R.string.app_name));
 
         int secondsUntilFinished = (int) Math.ceil(remainingDuration / 1000.0);

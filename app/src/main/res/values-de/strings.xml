@@ -70,7 +70,7 @@
 
     <!-- Preference Text -->
     <string name="pref_exercise_time">Übungszeit (in Sekunden)</string>
-    <string name="pref_keep_screen_on_during_exercise">Bildschirm bleibt an während der Übungen</string>
+    <string name="pref_keep_screen_on_during_exercise">Bildschirm bleibt an während Übungen</string>
     <string name="pref_category_exercise">Übungseinstellungen</string>
     <string name="pref_category_schedule">Zeitplan für Arbeits- und Übungstimer</string>
     <string name="pref_schedule_exercise_switch">Zeitpläne aktivieren</string>

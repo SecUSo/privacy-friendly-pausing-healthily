@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -163,6 +164,12 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         prevButton = (ImageButton) findViewById(R.id.button_prev);
         nextButton = (ImageButton) findViewById(R.id.button_next);
         exerciseInfoButton = (ImageButton) findViewById(R.id.exercise_info_button);
+
+        Drawable icon = getDrawable(R.drawable.ic_about);
+        if (icon != null) {
+            icon.setTint(ActivityCompat.getColor(this, R.color.black));
+            exerciseInfoButton.setImageDrawable(icon);
+        }
 
         toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
         toast.setGravity(toast.getGravity(), 0, 250);

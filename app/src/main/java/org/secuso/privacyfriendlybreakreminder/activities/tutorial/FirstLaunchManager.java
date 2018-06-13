@@ -1,9 +1,17 @@
 package org.secuso.privacyfriendlybreakreminder.activities.tutorial;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 
 import org.secuso.privacyfriendlybreakreminder.R;
 import org.secuso.privacyfriendlybreakreminder.database.SQLiteHelper;
@@ -84,7 +92,33 @@ public class FirstLaunchManager {
                     .apply();
 
             loadInitialExerciseSets();
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createNotificationChannels();
+            }
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotificationChannels() {
+        String groupId = "timer_group";
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // group
+        notificationManager.createNotificationChannelGroup(new NotificationChannelGroup(groupId, "Timer Notifications"));
+
+        // channels
+        NotificationChannel timerRunningChannel = new NotificationChannel("timer_running", "Timer Running Notification", NotificationManager.IMPORTANCE_DEFAULT);
+        timerRunningChannel.setVibrationPattern(new long[] { 0 });
+        timerRunningChannel.setGroup(groupId);
+
+        NotificationChannel timerDoneChannel = new NotificationChannel("timer_done", "Timer Done Notification", NotificationManager.IMPORTANCE_HIGH);
+        timerDoneChannel.setVibrationPattern(new long[] { 0, 1000, 1000, 1000, 1000, 1000, 1000 });
+        timerDoneChannel.setGroup(groupId);
+
+        notificationManager.createNotificationChannel(timerRunningChannel);
+        notificationManager.createNotificationChannel(timerDoneChannel);
     }
 
     private void loadInitialExerciseSets() {

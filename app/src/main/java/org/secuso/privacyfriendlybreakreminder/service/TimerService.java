@@ -51,7 +51,7 @@ public class TimerService extends Service {
     public static final String ACTION_STOP_TIMER = TAG + "ACTION_STOP_TIMER";
     public static final String ACTION_SNOOZE_TIMER = TAG + "ACTION_SNOOZE_TIMER";
 
-    private static final int UPDATE_INTERVAL = 100;
+    private static final int UPDATE_INTERVAL = 125;
     public static final int NOTIFICATION_ID = 31337;
 
     private TimerServiceBinder mBinder = new TimerServiceBinder();

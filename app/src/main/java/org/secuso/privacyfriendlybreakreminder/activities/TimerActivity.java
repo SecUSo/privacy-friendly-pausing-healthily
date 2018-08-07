@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
@@ -204,6 +205,7 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                         Toast toast = Toast.makeText(TimerActivity.this, R.string.toast_not_enough_exercise_time, Toast.LENGTH_SHORT);
                         toast.setGravity(toast.getGravity(), 0, 250);
                         toast.show();
+                        saveCurrentSetBreakTime();
                     }
                 }
             }
@@ -322,10 +324,19 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
 
     private void saveCurrentSetBreakTime() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        pref.edit()
+
+
+        SharedPreferences.Editor editor = pref.edit()
                 .putInt(FirstLaunchManager.PREF_BREAK_PICKER_SECONDS, secondsBreakPicker.getValue())
-                .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue())
-                .putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
+                .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue());
+
+        ExerciseSet set = getCurrentSelectedExerciseSet();
+        long seconds = set.getExerciseSetTime(this);
+        if(seconds * 1000 > getCurrentSetBreakTime()) {
+            editor.putLong(PAUSE_TIME, seconds * 1000).apply();
+        } else {
+            editor.putLong(PAUSE_TIME, getCurrentSetBreakTime()).apply();
+        }
     }
 
     private void saveCurrentSetDuration() {

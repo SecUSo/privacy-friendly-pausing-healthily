@@ -74,7 +74,7 @@ public class FirstLaunchManager {
                     .putLong(DEFAULT_EXERCISE_SET, 0L)
                     .putLong(PAUSE_TIME, 5 * 60 * 1000) // 5 minutes
                     .putBoolean(REPEAT_STATUS, false)
-                    .putBoolean(REPEAT_EXERCISES, false)
+                    .putBoolean(REPEAT_EXERCISES, true)
                     .putBoolean(PREF_HIDE_DEFAULT_SETS, false)
                     .putInt(PREF_BREAK_PICKER_SECONDS, 0)
                     .putInt(PREF_BREAK_PICKER_MINUTES, 5)

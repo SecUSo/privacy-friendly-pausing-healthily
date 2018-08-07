@@ -159,5 +159,9 @@
     <string name="activity_exercise_button_repeat_off">Übungen nicht wiederholen</string>
     <string name="activity_exercise_button_continuous_on">Zeit automatisch starten</string>
     <string name="activity_exercise_button_continuous_off">Zeit manuell starten</string>
+    <string name="exercise_time">Übungszeit: %s</string>
+    <string name="dialog_warning_not_enough_exercise_time">Die ausgewählte Übungszeit ist zu kurz, um das gewählte Übungsset abzuschließen. Die Übungszeit wird automatisch angepasst. Möchten Sie den Timer starten?</string>
+    <string name="warning">Achtung</string>
+    <string name="toast_not_enough_exercise_time">Die gewählte Übungszeit ist nicht ausreichend, um das gewählte Übungsset abzuschließen. Die Zeit wurde automatisch angepasst.</string>
 
 </resources>

@@ -22,7 +22,7 @@
         <item name="android:textColorSecondary">@color/black</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -34,10 +34,6 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.DarkActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light" />
 
     <style name="SplashTheme" parent="@android:style/Theme.NoTitleBar.Fullscreen">
         <item name="android:windowBackground">@drawable/bg_splash_screen</item>
@@ -54,6 +50,13 @@
     <style name="TextAppearance.TimePickerDialogStyle.TimeLabel" parent="@android:style/TextAppearance.Material">
         <item name="android:textSize">60sp</item> <!-- from -->
         <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="AppTheme">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:textColorPrimaryInverse">#fff</item>
+        <item name="android:textColorSecondary">#fff</item>
+        <item name="actionMenuTextColor">#fff</item>
     </style>
 
 </resources>

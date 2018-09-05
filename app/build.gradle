@@ -5,11 +5,11 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "org.secuso.privacyfriendlybreakreminder"
+        applicationId "org.secuso.privacyfriendlypausinghealthily"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 4
-        versionName "2.2"
+        versionCode 1
+        versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }
     lintOptions {

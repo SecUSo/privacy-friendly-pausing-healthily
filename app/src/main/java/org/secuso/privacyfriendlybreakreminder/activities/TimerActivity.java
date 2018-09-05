@@ -286,7 +286,10 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 saveCurrentSetDuration();
 
                 ExerciseSet set = getCurrentSelectedExerciseSet();
-                long seconds = set.getExerciseSetTime(this);
+
+                long seconds = 0;
+                if(set != null) seconds = set.getExerciseSetTime(this);
+
                 if(seconds * 1000 > getCurrentSetBreakTime()) {
 
                     showTimeWarningDialog(new DialogInterface.OnClickListener() {
@@ -331,7 +334,12 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
                 .putInt(FirstLaunchManager.PREF_BREAK_PICKER_MINUTES, minutesBreakPicker.getValue());
 
         ExerciseSet set = getCurrentSelectedExerciseSet();
-        long seconds = set.getExerciseSetTime(this);
+
+        long seconds = 0;
+        if(set != null) {
+            seconds = set.getExerciseSetTime(this);
+        }
+
         if(seconds * 1000 > getCurrentSetBreakTime()) {
             editor.putLong(PAUSE_TIME, seconds * 1000).apply();
         } else {

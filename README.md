@@ -36,7 +36,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-The app uses icons from [Google Design Material Icons](https://design.google.com/icons/index.html) licensed under Apache License Version 2.0. All other images (the logo of Privacy Friendly Apps, the SECUSO logo, the App icon and the exercise Images) copyright [Karlsruhe Institute of Technology (KIT)](www.kit.edu) (2018).
+The app uses icons from [Google Design Material Icons](https://design.google.com/icons/index.html) licensed under Apache License Version 2.0. All other images (the logo of Privacy Friendly Apps, the SECUSO logo, the App icon and the exercise Images) copyright [Karlsruhe Institute of Technology (KIT)](https://www.kit.edu) (2018).
 
 ## Contributors
 

@@ -91,7 +91,7 @@
     <string name="about_author_contributors">%s und Mitwirkende</string>
     <string name="about_affiliation">In Zusammenarbeit mit</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
-    <string name="privacy_friendly">Diese Applikation gehört zu der Gruppe der Privacy Friendly Apps, entwickelt von dem Karlsruher Institut für Technologie (KIT). Quellcode lizenziert unter GPLv3. Bilder Copyright KIT und Google Inc.</string>
+    <string name="privacy_friendly">Diese Applikation gehört zur Gruppe der Privacy Friendly Apps und wurde vom Karlsruher Institut für Technologie (KIT) entwickelt. Quellcode lizenziert unter GPLv3. Bilder Copyright KIT und Google Inc.</string>
 
     <!-- Help -->
     <string name="help_whatis">Was ist Privacy Friendly Aktive Pause?</string>

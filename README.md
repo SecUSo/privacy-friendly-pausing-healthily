@@ -15,7 +15,7 @@ Further development requires Android Studio, we recommend to use at least versio
  
 ### API Reference
 
-Mininum SDK: 21
+Mininum SDK: 21<br />
 Target SDK: 27 
 
 ## License
@@ -41,10 +41,11 @@ The app uses icons from [Google Design Material Icons](https://design.google.com
 ## Contributors
 
 Icons: <br />
-Markus Hau<br />
-Tatjana Albrandt<br/>
+	- Tatjana Albrandt<br/>
 
 Authors (Github-Users): <br />
-Christopher Beckmann (Kamuno) <br />
-(Badric) <br />
-(Lechendary)
+	- Christopher Beckmann (Kamuno) <br />
+	- (Badric) <br />
+	- (Lechendary) <br />
+
+Exercises by Eduardo Fontao <br />

@@ -41,11 +41,11 @@ The app uses icons from [Google Design Material Icons](https://design.google.com
 ## Contributors
 
 Icons: <br />
-	- Tatjana Albrandt<br/>
+- Tatjana Albrandt<br/>
 
 Authors (Github-Users): <br />
-	- Christopher Beckmann (Kamuno) <br />
-	- (Badric) <br />
-	- (Lechendary) <br />
+- Christopher Beckmann (Kamuno) <br />
+- (Badric) <br />
+- (Lechendary) <br />
 
 Exercises by Eduardo Fontao <br />

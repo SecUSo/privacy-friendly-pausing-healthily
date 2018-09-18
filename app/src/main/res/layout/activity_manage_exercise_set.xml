@@ -12,7 +12,7 @@
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity">
+        tools:context="org.secuso.privacyfriendlypausinghealthily.activities.EditExerciseSetActivity">
 
         <include layout="@layout/layout_toolbar"/>
 

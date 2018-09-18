@@ -5,7 +5,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.secuso.privacyfriendlybreakreminder.activities.ExerciseActivity">
+    tools:context="org.secuso.privacyfriendlypausinghealthily.activities.ExerciseActivity">
 
     <ImageButton
         android:id="@+id/button_playPause"

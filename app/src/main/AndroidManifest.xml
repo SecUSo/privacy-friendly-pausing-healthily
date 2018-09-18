@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.secuso.privacyfriendlybreakreminder">
+    package="org.secuso.privacyfriendlypausinghealthily">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.TimerActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -34,92 +34,92 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.tutorial.TutorialActivity"
-            android:parentActivityName=".activities.TimerActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.tutorial.TutorialActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
         <activity
-            android:name=".activities.TimerActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:label="@string/activity_title_break_reminder"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.ManageExerciseSetsActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.ManageExerciseSetsActivity"
             android:label="@string/activity_title_manage_exercise_sets"
-            android:parentActivityName=".activities.TimerActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
         <activity
-            android:name=".activities.ExerciseActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.ExerciseActivity"
             android:label=""
-            android:parentActivityName=".activities.TimerActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
         <activity
-            android:name=".activities.EditExerciseSetActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.EditExerciseSetActivity"
             android:label="@string/activity_title_edit_exercise_set"
-            android:parentActivityName=".activities.ManageExerciseSetsActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.ManageExerciseSetsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.ManageExerciseSetsActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.ManageExerciseSetsActivity" />
         </activity>
         <activity
-            android:name=".activities.ChooseExerciseActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.ChooseExerciseActivity"
             android:label="@string/activity_title_choose_exercises"
-            android:parentActivityName=".activities.EditExerciseSetActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.EditExerciseSetActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.EditExerciseSetActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.EditExerciseSetActivity" />
             >
         </activity>
         <activity
-            android:name=".activities.AboutActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.AboutActivity"
             android:label="@string/activity_title_about"
-            android:parentActivityName=".activities.TimerActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
         <activity
-            android:name=".activities.HelpActivity"
+            android:name="org.secuso.privacyfriendlypausinghealthily.activities.HelpActivity"
             android:label="@string/activity_title_help"
-            android:parentActivityName=".activities.TimerActivity"
+            android:parentActivityName="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.secuso.privacyfriendlybreakreminder.activities.TimerActivity" />
+                android:value="org.secuso.privacyfriendlypausinghealthily.activities.TimerActivity" />
         </activity>
 
         <service
-            android:name=".service.TimerService"
+            android:name="org.secuso.privacyfriendlypausinghealthily.service.TimerService"
             android:enabled="true"
             android:exported="false" />
 
-        <receiver android:name=".receivers.OnBootCompletedReceiver">
+        <receiver android:name="org.secuso.privacyfriendlypausinghealthily.receivers.OnBootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receivers.TimerSchedulerReceiver"/>
+        <receiver android:name="org.secuso.privacyfriendlypausinghealthily.receivers.TimerSchedulerReceiver"/>
 
     </application>
 

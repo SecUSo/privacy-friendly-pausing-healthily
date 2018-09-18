@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.secuso.privacyfriendlybreakreminder.activities.ChooseExerciseActivity">
+    tools:context="org.secuso.privacyfriendlypausinghealthily.activities.ChooseExerciseActivity">
 
     <android.support.design.chip.ChipGroup
         android:id="@+id/layout_filter_buttons"

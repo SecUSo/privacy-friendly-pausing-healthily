@@ -16,7 +16,7 @@
             android:key="pref_schedule_exercise_time"
             android:title="@string/pref_schedule_exercise_time"/> -->
 
-        <org.secuso.privacyfriendlybreakreminder.preferences.TimePreference
+        <org.secuso.privacyfriendlypausinghealthily.preferences.TimePreference
             android:dependency="pref_schedule_exercise"
             android:defaultValue="32400000"
             android:key="pref_schedule_exercise_time"

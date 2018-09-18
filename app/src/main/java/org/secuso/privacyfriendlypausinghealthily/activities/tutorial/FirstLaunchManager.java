@@ -44,6 +44,7 @@ public class FirstLaunchManager {
     public static final String PREF_EXERCISE_CONTINUOUS     = "pref_exercise_continuous";
     public static final String PREF_HIDE_DEFAULT_SETS       = "pref_hide_default_exercise_sets";
     public static final String WORK_TIME                    = "WORK_TIME";
+    public static final String PREF_SCHEDULE_RANDOM_EXERCISE= "pref_schedule_random_exercise";
 
     private final SQLiteHelper dbHandler;
     private Context context;
@@ -85,6 +86,7 @@ public class FirstLaunchManager {
                     .putLong(PREF_SCHEDULE_EXERCISE_TIME, 32400000L)
                     .putBoolean(KEEP_SCREEN_ON_DURING_EXERCISE, true)
                     .putBoolean(PREF_EXERCISE_CONTINUOUS, false)
+                    .putBoolean(PREF_SCHEDULE_RANDOM_EXERCISE, false)
                     .putStringSet(PREF_SCHEDULE_EXERCISE_DAYS, new HashSet<String>(Arrays.asList("Mo", "Di", "Mi", "Do", "Fr", "Sa", "So")))
                     .apply();
 
@@ -108,6 +110,7 @@ public class FirstLaunchManager {
         // channels
         NotificationChannel timerRunningChannel = new NotificationChannel("timer_running", "Timer Running Notification", NotificationManager.IMPORTANCE_DEFAULT);
         timerRunningChannel.setVibrationPattern(new long[] { 0 });
+        timerRunningChannel.setSound(null, null);
         timerRunningChannel.setGroup(groupId);
 
         NotificationChannel timerDoneChannel = new NotificationChannel("timer_done", "Timer Done Notification", NotificationManager.IMPORTANCE_HIGH);

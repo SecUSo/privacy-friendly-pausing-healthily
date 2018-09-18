@@ -35,6 +35,12 @@
             android:title="@string/pref_schedule_exercise_days"
             android:key="pref_schedule_exercise_days"/>
 
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="pref_schedule_exercise"
+            android:title="@string/pref_schedule_random_exercise"
+            android:key="pref_schedule_random_exercise"/>
+
 
     </PreferenceCategory>
 </PreferenceScreen>

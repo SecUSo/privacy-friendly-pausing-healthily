@@ -92,6 +92,7 @@ public class TimerService extends Service {
     };
     private BroadcastReceiver notificationDeletedReceiver = new NotificationDeletedReceiver();
     private BroadcastReceiver notificationPreferenceChangedReceiver = new NotificationCancelReceiver();
+    private boolean scheduled = false;
 
     private void onTimerDone() {
 
@@ -101,7 +102,10 @@ public class TimerService extends Service {
         Intent snoozeIntent = new Intent(this, TimerService.class);
         snoozeIntent.setAction(ACTION_SNOOZE_TIMER);
 
-        PendingIntent startExercises = PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_CANCEL_CURRENT);
+        Intent exerciseIntent = new Intent(this, ExerciseActivity.class);
+        exerciseIntent.putExtra("SCHEDULED", scheduled);
+
+        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT);
         PendingIntent snoozeExercise = PendingIntent.getService(this, 0, snoozeIntent, FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "timer_done");
@@ -149,7 +153,17 @@ public class TimerService extends Service {
         unregisterReceiver(notificationPreferenceChangedReceiver);
     }
 
-    public synchronized void startTimer(final long duration) {
+    public void startTimer(final long duration, boolean scheduled) {
+        this.scheduled = scheduled;
+        startTimerInternal(duration);
+    }
+
+    public void startTimer(final long duration) {
+        this.scheduled = false;
+        startTimerInternal(duration);
+    }
+
+    private synchronized void startTimerInternal(final long duration) {
         if(!isRunning) {
             initialDuration = duration;
 
@@ -262,7 +276,7 @@ public class TimerService extends Service {
 
             final String action = intent.getAction();
 
-            if      (ACTION_START_TIMER.equals(action))     handleRestartTimer();
+            if      (ACTION_START_TIMER.equals(action))     handleRestartTimer(intent);
             else if (ACTION_PAUSE_TIMER.equals(action))     pauseTimer();
             else if (ACTION_RESUME_TIMER.equals(action))    resumeTimer();
             else if (ACTION_STOP_TIMER.equals(action))      stopAndResetTimer();
@@ -282,12 +296,19 @@ public class TimerService extends Service {
         startTimer(snoozeTime);
     }
 
+    private void handleRestartTimer(Intent intent) {
+        if(intent != null) {
+            scheduled = intent.getBooleanExtra("SCHEDULE", false);
+        }
+        handleRestartTimer();
+    }
+
     private void handleRestartTimer() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         if(pref.getBoolean(PREF_EXERCISE_CONTINUOUS, false)) {
             long duration = pref.getLong(WORK_TIME, 1000 * 60 * 60);
-            startTimer(duration);
+            startTimerInternal(duration);
         }
     }
 
@@ -304,11 +325,15 @@ public class TimerService extends Service {
 
         String time = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds);
 
-        PendingIntent startExercises = PendingIntent.getActivity(this, 0, new Intent(this, ExerciseActivity.class), FLAG_CANCEL_CURRENT);
+        Intent exerciseIntent = new Intent(this, ExerciseActivity.class);
+        exerciseIntent.putExtra("SCHEDULED", scheduled);
+        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT);
 
         builder.setContentText(time);
         builder.setColor(ContextCompat.getColor(this, R.color.colorAccent));
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setOnlyAlertOnce(true);
+        builder.setSound(null);
         builder.setWhen(0);
         builder.setProgress((int) initialDuration, (int) (initialDuration - remainingDuration), false);
         builder.setSmallIcon(R.mipmap.ic_notification);

@@ -1,7 +1,5 @@
 package org.secuso.privacyfriendlypausinghealthily.activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -76,8 +74,11 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private boolean isActivityVisible = false;
 
     // animation
-    private int mShortAnimationDuration;
     private boolean currentStatusIsPickerVisible = false;
+
+    private ExerciseSet currentExerciseSet;
+    private ConstraintSet constraintSetPicker;
+    private ConstraintSet constraintSetRunning;
 
     // Service
     private TimerService mTimerService = null;
@@ -96,7 +97,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
             mTimerService = null;
         }
     };
-    private ExerciseSet currentExerciseSet;
 
     private void onServiceConnected() {
         updateUI();
@@ -126,7 +126,26 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
         setContentView(R.layout.activity_timer);
 
         initResources();
+        initAnimations();
         getSupportLoaderManager().initLoader(0, null, this);
+    }
+
+    /**
+     * Must be called <b>after</b> {@link #initResources()}
+     */
+    private void initAnimations() {
+        constraintSetPicker = new ConstraintSet();
+        constraintSetPicker.clone(mainContent);
+
+        constraintSetRunning = new ConstraintSet();
+        constraintSetRunning.clone(mainContent);
+        int[] chainViews = {R.id.button_reset, R.id.button_playPause};
+        float[] chainWeights = {0.5f, 0.5f};
+        constraintSetRunning.createHorizontalChain(0, ConstraintSet.LEFT, 0, ConstraintSet.RIGHT, chainViews, chainWeights, ConstraintSet.CHAIN_PACKED);
+        constraintSetRunning.setVisibility(R.id.button_reset, View.VISIBLE);
+        constraintSetRunning.setVisibility(R.id.picker_layout, View.INVISIBLE);
+        constraintSetRunning.setVisibility(R.id.progressBar, View.VISIBLE);
+        constraintSetRunning.setVisibility(R.id.timerText, View.VISIBLE);
     }
 
     @Override
@@ -188,8 +207,6 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private void initResources() {
         final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 
-
-        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         exerciseSetAdapter = new ExerciseSetSpinnerAdapter(this, R.layout.layout_exercise_set, new LinkedList<ExerciseSet>());
 
         mainContent = findViewById(R.id.main_content);
@@ -391,25 +408,8 @@ public class TimerActivity extends BaseActivity implements android.support.v4.ap
     private synchronized void showPicker(final boolean showPicker) {
         if(showPicker != currentStatusIsPickerVisible) {
 
-            ConstraintSet constraintSet1 = new ConstraintSet();
-            constraintSet1.clone(mainContent);
-            constraintSet1.setHorizontalBias(R.id.button_playPause, 0.5f);
-            constraintSet1.setVisibility(R.id.button_reset, View.INVISIBLE);
-            constraintSet1.setVisibility(R.id.picker_layout, View.VISIBLE);
-            constraintSet1.setVisibility(R.id.progressBar, View.INVISIBLE);
-            constraintSet1.setVisibility(R.id.timerText, View.INVISIBLE);
-
-
-            ConstraintSet constraintSet2 = new ConstraintSet();
-            constraintSet2.clone(mainContent);
-            constraintSet2.setHorizontalBias(R.id.button_playPause, 0.66f);
-            constraintSet2.setVisibility(R.id.button_reset, View.VISIBLE);
-            constraintSet2.setVisibility(R.id.picker_layout, View.INVISIBLE);
-            constraintSet2.setVisibility(R.id.progressBar, View.VISIBLE);
-            constraintSet2.setVisibility(R.id.timerText, View.VISIBLE);
-
             TransitionManager.beginDelayedTransition(mainContent);
-            ConstraintSet constraint = showPicker ? constraintSet1 : constraintSet2;
+            ConstraintSet constraint = showPicker ? constraintSetPicker : constraintSetRunning;
             constraint.applyTo(mainContent);
 
             //pickerLayout.clearAnimation();

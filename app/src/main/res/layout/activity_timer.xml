@@ -291,9 +291,7 @@
                 android:tint="@color/darkblue"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.33"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:srcCompat="@drawable/ic_replay_black_48dp" />
 
             <ImageButton
@@ -308,9 +306,10 @@
                 android:onClick="onClick"
                 android:scaleType="fitXY"
                 android:tint="@color/darkblue"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:srcCompat="@drawable/ic_play_arrow_black" />
 
         </android.support.constraint.ConstraintLayout>

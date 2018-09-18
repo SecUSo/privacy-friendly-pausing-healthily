@@ -42,7 +42,9 @@ import org.secuso.privacyfriendlypausinghealthily.dialog.ExerciseDialog;
 import org.secuso.privacyfriendlypausinghealthily.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlypausinghealthily.service.TimerService;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.view.Gravity.CENTER_HORIZONTAL;
@@ -88,6 +90,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
     private boolean showBigTimer = false;
     private boolean showControlButtons = true;
     private boolean keepScreenOn = true;
+    private boolean scheduledExercise = false;
 
     // exerciseSet info
     private long exerciseSetId;
@@ -125,15 +128,25 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         exerciseSetId = pref.getLong(FirstLaunchManager.DEFAULT_EXERCISE_SET, 0L);
         pauseDuration = pref.getLong(FirstLaunchManager.PAUSE_TIME, 5 * 60 * 1000);
         repeatStatus = pref.getBoolean(FirstLaunchManager.REPEAT_STATUS, false);
+        keepScreenOn = pref.getBoolean(FirstLaunchManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
         continuousStatus = pref.getBoolean(FirstLaunchManager.REPEAT_EXERCISES, false);
         try {
             exerciseTime = Long.parseLong(pref.getString(FirstLaunchManager.EXERCISE_DURATION, "30")) * 1000;
         } catch (NumberFormatException e) {
             exerciseTime = 30L * 1000;
         }
-        keepScreenOn = pref.getBoolean(FirstLaunchManager.KEEP_SCREEN_ON_DURING_EXERCISE, true);
 
         initResources();
+
+        // this must be called after init resources because the database is needed
+        // TODO: this call should probably not be done on the UI thread
+        boolean randomScheduleExercise = pref.getBoolean(FirstLaunchManager.PREF_SCHEDULE_RANDOM_EXERCISE, false);
+        scheduledExercise = getIntent().getBooleanExtra("SCHEDULED", false);
+
+        if(scheduledExercise && randomScheduleExercise) {
+            List<ExerciseSet> set = dbHelper.getExerciseSets(pref.getBoolean(FirstLaunchManager.PREF_HIDE_DEFAULT_SETS, false));
+            exerciseSetId = set.get((new Random()).nextInt(set.size())).getId(); // random from available sets
+        }
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -229,6 +242,7 @@ public class ExerciseActivity extends AppCompatActivity implements android.suppo
         if(pref.getBoolean(FirstLaunchManager.PREF_EXERCISE_CONTINUOUS, false)) {
             Intent timerServiceIntent = new Intent(this.getApplicationContext(), TimerService.class);
             timerServiceIntent.setAction(TimerService.ACTION_START_TIMER);
+            timerServiceIntent.putExtra("SCHEDULE", scheduledExercise);
             startService(timerServiceIntent);
         }
 

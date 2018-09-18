@@ -60,7 +60,7 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
     }
 
     private void startTimer() {
-        mTimerService.startTimer(mPref.getLong(WORK_TIME, 1000L * 60L * 60L));
+        mTimerService.startTimer(mPref.getLong(WORK_TIME, 1000L * 60L * 60L), true);
     }
 
     public static void scheduleNextAlarm(@NonNull Context context) {

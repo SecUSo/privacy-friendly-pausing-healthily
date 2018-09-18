@@ -181,6 +181,29 @@ public class SQLiteHelper extends SQLiteAssetHelper {
         return result;
     }
 
+    public synchronized List<ExerciseSet> getExerciseSets(boolean hideDefaults) {
+        Cursor c = getExerciseSetsCursor();
+
+        List<ExerciseSet> result = new ArrayList<>();
+
+        if(c != null) {
+
+            c.moveToFirst();
+
+            while(!c.isAfterLast()) {
+                ExerciseSet set = ExerciseSetColumns.fromCursor(c);
+                if(!hideDefaults || !set.isDefaultSet()) {
+                    result.add(set);
+                }
+                c.moveToNext();
+            }
+
+            c.close();
+        }
+
+        return result;
+    }
+
     private List<Exercise> buildExerciseList(Cursor c) {
         List<Exercise> result = new ArrayList<>();
 

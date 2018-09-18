@@ -25,4 +25,4 @@ public class NotificationCancelReceiver extends BroadcastReceiver {
             manager.cancel(TimerService.NOTIFICATION_ID);
         }
     }
-};
+}

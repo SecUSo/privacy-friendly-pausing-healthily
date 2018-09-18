@@ -156,6 +156,7 @@
     <string name="dialog_warning_not_enough_exercise_time">The chosen exercise time is too short to finish the selected exercise set. The time will automatically be adjusted. Are you sure you want to start the timer?</string>
     <string name="warning">Warning</string>
     <string name="toast_not_enough_exercise_time">The currently selected exercise time is not sufficient to complete the chosen exercise set. The time has been adjusted.</string>
+    <string name="pref_schedule_random_exercise">Use random exercise sets</string>
 
 
 </resources>

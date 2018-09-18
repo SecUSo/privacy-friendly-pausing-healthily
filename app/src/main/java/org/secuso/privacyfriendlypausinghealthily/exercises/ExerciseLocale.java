@@ -21,7 +21,7 @@ public final class ExerciseLocale {
                         "en", "de"
                 )
         );
-    };
+    }
 
     /**
      * @return the available language. If the default language of the device is not available. {@code "en"} will be returned.

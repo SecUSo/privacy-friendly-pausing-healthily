@@ -2,12 +2,13 @@ package org.secuso.privacyfriendlypausinghealthily.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.secuso.privacyfriendlypausinghealthily.BuildConfig;
 import org.secuso.privacyfriendlypausinghealthily.R;

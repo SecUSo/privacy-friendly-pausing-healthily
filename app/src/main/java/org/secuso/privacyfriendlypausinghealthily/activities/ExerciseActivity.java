@@ -2,6 +2,7 @@ package org.secuso.privacyfriendlypausinghealthily.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,14 +16,16 @@ import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,7 +59,7 @@ import static org.secuso.privacyfriendlypausinghealthily.service.TimerService.AC
  * @author Christopher Beckmann
  * @version 2.0
  */
-public class ExerciseActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
+public class ExerciseActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ExerciseSet> {
 
     private static final String TAG = ExerciseActivity.class.getSimpleName();
     private static boolean confirmationDialogShown = false;

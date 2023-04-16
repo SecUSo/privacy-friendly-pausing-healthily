@@ -10,8 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.content.WakefulBroadcastReceiver;
+import androidx.annotation.NonNull;
+import androidx.legacy.content.WakefulBroadcastReceiver;
 
 import org.secuso.privacyfriendlypausinghealthily.service.TimerService;
 

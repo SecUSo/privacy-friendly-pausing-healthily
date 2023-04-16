@@ -14,8 +14,8 @@ import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.secuso.privacyfriendlypausinghealthily.R;
 import org.secuso.privacyfriendlypausinghealthily.activities.ExerciseActivity;
@@ -105,7 +105,7 @@ public class TimerService extends Service {
         Intent exerciseIntent = new Intent(this, ExerciseActivity.class);
         exerciseIntent.putExtra("SCHEDULED", scheduled);
 
-        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT);
+        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         PendingIntent snoozeExercise = PendingIntent.getService(this, 0, snoozeIntent, FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "timer_done");
@@ -327,7 +327,7 @@ public class TimerService extends Service {
 
         Intent exerciseIntent = new Intent(this, ExerciseActivity.class);
         exerciseIntent.putExtra("SCHEDULED", scheduled);
-        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT);
+        PendingIntent startExercises = PendingIntent.getActivity(this, 0, exerciseIntent, FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         builder.setContentText(time);
         builder.setColor(ContextCompat.getColor(this, R.color.colorAccent));

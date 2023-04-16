@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
@@ -20,11 +20,11 @@
         android:hapticFeedbackEnabled="true"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:tint="@color/darkblue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_play_arrow_black" />
+        app:srcCompat="@drawable/ic_play_arrow_black"
+        app:tint="@color/darkblue" />
 
     <ImageButton
         android:id="@+id/button_next"
@@ -39,12 +39,12 @@
         android:hapticFeedbackEnabled="true"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:tint="@color/darkblue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_skip_next_black_48dp"
-        app:layout_constraintHorizontal_bias="0.6666" />
+        app:layout_constraintHorizontal_bias="0.6666"
+        app:tint="@color/darkblue" />
 
     <ImageButton
         android:id="@+id/button_prev"
@@ -59,12 +59,12 @@
         android:hapticFeedbackEnabled="true"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:tint="@color/darkblue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_skip_previous_black_48dp"
-        app:layout_constraintHorizontal_bias="0.3333" />
+        app:layout_constraintHorizontal_bias="0.3333"
+        app:tint="@color/darkblue" />
 
     <ImageButton
         android:id="@+id/button_repeat"
@@ -80,12 +80,12 @@
         android:hapticFeedbackEnabled="true"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:tint="@color/middlegrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.8333"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_repeat_black_48dp" />
+        app:srcCompat="@drawable/ic_repeat_black_48dp"
+        app:tint="@color/middlegrey" />
 
     <ImageButton
         android:id="@+id/button_continuous"
@@ -101,14 +101,14 @@
         android:hapticFeedbackEnabled="true"
         android:onClick="onClick"
         android:scaleType="fitXY"
-        android:tint="@color/middlegrey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1666"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_update_black_40dp" />
+        app:srcCompat="@drawable/ic_update_black_40dp"
+        app:tint="@color/middlegrey" />
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/exercise_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -157,7 +157,7 @@
 
         </RelativeLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exercise_image_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -199,9 +199,9 @@
                 app:layout_constraintRight_toRightOf="@+id/exercise_image"
                 app:layout_constraintTop_toTopOf="@+id/exercise_image"
                 app:srcCompat="@drawable/ic_about"
-                android:tint="@color/black"/>
+                app:tint="@color/black" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/execution_title"
@@ -241,7 +241,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/description_title"
             app:layout_constraintTop_toBottomOf="@+id/description_title" />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/section_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -264,12 +264,12 @@
                 android:gravity="center"
                 android:text="Neck, Arms"
                 android:textColor="@color/white" />
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bigProgressBarLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -322,6 +322,6 @@
             app:layout_constraintLeft_toLeftOf="@+id/progressBarBig"
             app:layout_constraintRight_toRightOf="@+id/progressBarBig"
             app:layout_constraintTop_toTopOf="@+id/progressBarBig" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

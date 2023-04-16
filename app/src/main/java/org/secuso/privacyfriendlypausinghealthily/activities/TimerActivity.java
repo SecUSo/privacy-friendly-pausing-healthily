@@ -1,5 +1,6 @@
 package org.secuso.privacyfriendlypausinghealthily.activities;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,13 +12,15 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.app.ActivityCompat;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,7 +56,7 @@ import static org.secuso.privacyfriendlypausinghealthily.activities.tutorial.Fir
  * @version 2.0
  * @see TimerService
  */
-public class TimerActivity extends BaseActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
+public class TimerActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<List<ExerciseSet>> {
     private static final String TAG = TimerActivity.class.getSimpleName();
 
     // UI

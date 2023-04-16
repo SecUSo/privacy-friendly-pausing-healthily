@@ -2,7 +2,7 @@ package org.secuso.privacyfriendlypausinghealthily.database.data;
 
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 
 import org.secuso.privacyfriendlypausinghealthily.exercises.ExerciseSections;
 

@@ -79,7 +79,7 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Intent automaticTimerIntent = new Intent(context, TimerSchedulerReceiver.class);
-        PendingIntent automaticTimerPending = PendingIntent.getBroadcast(context, 0, automaticTimerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent automaticTimerPending = PendingIntent.getBroadcast(context, 0, automaticTimerIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timestamp);
@@ -156,7 +156,7 @@ public class TimerSchedulerReceiver extends WakefulBroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Intent automaticTimerIntent = new Intent(context, TimerSchedulerReceiver.class);
-        PendingIntent automaticTimerPending = PendingIntent.getBroadcast(context, 0, automaticTimerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent automaticTimerPending = PendingIntent.getBroadcast(context, 0, automaticTimerIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         alarmManager.cancel(automaticTimerPending);
     }

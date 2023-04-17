@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 33
-    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "org.secuso.privacyfriendlypausinghealthily"
@@ -28,6 +28,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'org.secuso.privacyfriendlypausinghealthily'
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
 }
 
 repositories {
@@ -52,6 +57,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     // https://github.com/ShawnLin013/NumberPicker
     implementation 'com.shawnlin:number-picker:2.4.4'
+
+    // Backup
+    implementation project(path: ':backup-api')
+    def work_version = "2.4.0"
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+    implementation 'androidx.sqlite:sqlite-ktx:2.3.1'
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {

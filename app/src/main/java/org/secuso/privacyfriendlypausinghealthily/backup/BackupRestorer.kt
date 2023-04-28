@@ -84,7 +84,7 @@ class BackupRestorer : IBackupRestorer {
                 "REPEAT_EXERCISES" -> preferences.putBoolean(name, reader.nextBoolean())
                 "pref_exercise_time" -> preferences.putString(name, reader.nextString())
                 "FirstLaunchManager.PREF_PICKER_SECONDS",
-                "FirstLaunchManager.PREF_PICKER_Minutes",
+                "FirstLaunchManager.PREF_PICKER_MINUTES",
                 "FirstLaunchManager.PREF_BREAK_PICKER_SECONDS",
                 "FirstLaunchManager.PREF_PICKER_HOURS",
                 "FirstLaunchManager.PREF_BREAK_PICKER_MINUTES" -> preferences.putInt(name, reader.nextInt())

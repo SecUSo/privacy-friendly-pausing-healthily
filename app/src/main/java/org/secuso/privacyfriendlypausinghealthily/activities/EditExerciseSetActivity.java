@@ -2,17 +2,10 @@ package org.secuso.privacyfriendlypausinghealthily.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -38,13 +31,22 @@ import java.util.List;
 
 import static org.secuso.privacyfriendlypausinghealthily.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * This activity lets you edit the name of an exercise set. To edit what exercises are in that set, {@link ChooseExerciseActivity} is called.
  * @author Christopher Beckmann
  * @version 2.0
  * @see ChooseExerciseActivity
  */
-public class EditExerciseSetActivity extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<ExerciseSet> {
+public class EditExerciseSetActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ExerciseSet> {
 
 
     private static final String TAG = EditExerciseSetActivity.class.getSimpleName();

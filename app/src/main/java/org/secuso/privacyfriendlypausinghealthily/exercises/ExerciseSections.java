@@ -1,7 +1,7 @@
 package org.secuso.privacyfriendlypausinghealthily.exercises;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
 import org.secuso.privacyfriendlypausinghealthily.R;
 

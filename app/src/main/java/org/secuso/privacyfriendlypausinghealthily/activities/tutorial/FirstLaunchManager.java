@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import org.secuso.privacyfriendlypausinghealthily.R;
 import org.secuso.privacyfriendlypausinghealthily.database.SQLiteHelper;

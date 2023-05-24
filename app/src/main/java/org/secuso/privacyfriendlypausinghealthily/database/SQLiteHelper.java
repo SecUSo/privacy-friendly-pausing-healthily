@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -27,7 +27,7 @@ public class SQLiteHelper extends SQLiteAssetHelper {
 
     private static final String TAG = SQLiteHelper.class.getSimpleName();
 
-    private static final String DATABASE_NAME = "exercises.sqlite";
+    public static final String DATABASE_NAME = "exercises.sqlite";
     private static final int DATABASE_VERSION = 1;
 
     private static final String[] deleteQueryList = {

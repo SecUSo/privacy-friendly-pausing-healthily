@@ -3,11 +3,12 @@ package org.secuso.privacyfriendlypausinghealthily.activities.adapter;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SortedList;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

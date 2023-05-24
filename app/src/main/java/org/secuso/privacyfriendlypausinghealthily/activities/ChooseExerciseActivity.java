@@ -2,16 +2,15 @@ package org.secuso.privacyfriendlypausinghealthily.activities;
 
 import android.content.Intent;
 import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.design.chip.Chip;
-import android.support.design.chip.ChipGroup;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.secuso.privacyfriendlypausinghealthily.activities.adapter.ExerciseAdapter.ID_COMPARATOR;
+
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 
 /**
  * This activity lets you choose exercises. The result is then sent back to {@link EditExerciseSetActivity}

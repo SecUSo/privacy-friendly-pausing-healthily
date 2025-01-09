@@ -77,7 +77,7 @@ dependencies {
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     testImplementation 'junit:junit:4.12'
     // https://github.com/ShawnLin013/NumberPicker
-    implementation 'com.shawnlin:number-picker:2.4.4'
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
     def lifecycle_version = "2.6.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"

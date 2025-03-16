@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<declare-styleable name="AppTheme">
+		<attr name="secusoLogoDrawable" format="reference"/>
+	</declare-styleable>
     <declare-styleable name="FlowLayout">
         <attr name="horizontalSpacing" format="dimension" />
         <attr name="verticalSpacing" format="dimension" />

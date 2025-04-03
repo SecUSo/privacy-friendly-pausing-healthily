@@ -9,8 +9,8 @@ android {
         applicationId "org.secuso.privacyfriendlypausinghealthily"
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 9
-        versionName "1.4.1"
+        versionCode 10
+        versionName "1.4.2"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {

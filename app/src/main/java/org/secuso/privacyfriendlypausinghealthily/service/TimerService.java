@@ -221,6 +221,12 @@ public class TimerService extends Service {
         sendBroadcast(buildBroadcast());
     }
 
+    public synchronized void skipTimer () {
+        Intent exerciseIntent = new Intent(this, ExerciseActivity.class);
+        exerciseIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(exerciseIntent);
+    }
+
     public synchronized boolean isPaused() { return !isRunning && initialDuration != 0 && remainingDuration > 0 && remainingDuration != initialDuration; }
 
     public synchronized boolean isRunning() {

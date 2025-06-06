@@ -16,7 +16,7 @@
      
 ## Privacy Friendly Pausing Healthily
 
-[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/repository/browse/?fdid=org.secuso.privacyfriendlypausinghealthily)<a href="https://play.google.com/store/apps/details?id=org.secuso.privacyfriendlypausinghealthily"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
+[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60">](https://f-droid.org/repository/browse/?fdid=org.secuso.privacyfriendlypausinghealthily)
 
 This application contains the functionality for a privacy friendly break reminder.
 It includes a countdown timer, the possibility to choose exercises and define exercise sets. 

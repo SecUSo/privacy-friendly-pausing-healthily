@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_title_about">Hakkında</string>
+    <string name="description">Tanım</string>
+    <string name="title_activity_settings">Ayarlar</string>
+    <string name="about">Hakkında</string>
+    <string name="about_author">Yazarlar:</string>
+    <string name="about_author_contributors">%s ve katkıda bulunanlar.</string>
+    <string name="resume">Sürdür</string>
+    <string name="cancel">İptal</string>
+    <string name="yes">Evet</string>
+    <string name="set_default_3">Geri</string>
+    <string name="activity_title_help">Yardım</string>
+    <string name="save">Kaydet</string>
+    <string name="title_activity_tutorial">Öğretici</string>
+    <string name="help">Yardım</string>
+    <string name="no">Hayır</string>
+    <string name="pause">Duraklat</string>
+    <string name="okay">Tmm</string>
+    <string name="about_affiliation">ile bağlantılı olarak</string>
+    <string name="start">Başla</string>
+</resources>

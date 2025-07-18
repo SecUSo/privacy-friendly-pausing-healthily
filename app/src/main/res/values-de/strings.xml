@@ -1,38 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Aktive Pause</string>
-
     <!-- Tutorial -->
-    <string name="slide1_heading">Willkommen</string>
+    <string name="slide1_heading">Willkommen!</string>
     <string name="slide1_text">Willkommen bei der Privacy Friendly Aktive Pause App. Diese App erinnert Sie daran, regelmäßig während der Arbeit Pausen einzulegen. Zusätzlich können Sie sich Übungen aussuchen, mit denen Sie Ihre Pause aktiv gestalten können.</string>
-
     <string name="slide2_heading">Übungsset erstellen</string>
     <string name="slide2_text">
         Zuerst legen Sie fest, welche Art von Übungen Sie durchführen möchten. Dafür können Sie sich eigene „Übungssets“, also eigene Gruppen von Übungen, erstellen.
         Um ein neues Übungsset zu erstellen, klicken Sie rechts unten auf das Plus-Symbol. Geben Sie dann einen Namen für das Set ein und klicken Sie auf „Speichern“.
     </string>
-
     <string name="slide3_heading">Übungen hinzufügen</string>
     <string name="slide3_text">
         Über den Editieren-Button unten rechts können Sie neue Übungen in das Set einfügen, indem Sie das Kästchen unter den bildlich dargestellten Übungen anklicken.
         Jede Übung dauert 30 Sekunden, die Dauer kann über die App-Einstellungen angepasst werden. Über die im oberen Bildschirmbereich aufgeführten Kategorien können Sie die Übungen filtern.
     </string>
-
     <string name="slide4_heading">Übungsset auswählen</string>
     <string name="slide4_text">Bei jedem Start der App wählen Sie über den Pfeil oben rechts das Übungsset aus, das Sie in den nächsten Pausen verwenden möchten. Wählen Sie danach aus, in welchem Abstand Sie Pausen einlegen möchten und wie lange die Pause jeweils dauern soll. Starten Sie danach den Timer über den Play-Button.</string>
-
     <string name="slide5_heading">Zeit für eine Pause</string>
     <string name="slide5_text">
         Sobald es Zeit für die erste Pause ist, meldet sich die Privacy Friendly Aktive Pause App.
         Tippen Sie auf die Benachrichtigung, um die Pause zu starten. Oben rechts sehen Sie, wie lange die Pause noch andauert.
     </string>
-
     <string name="slide6_heading">Aktive Pause</string>
     <string name="slide6_text">
         Um mit den Übungen zu beginnen, klicken Sie auf das Play-Symbol. Möchten Sie eine Übung überspringen, klicken Sie auf das „Weiter“-Symbol, mit dem „Zurück“-Symbol können Sie eine Übung wiederholen.
         Mit dem ersten Symbol stellen Sie ein, dass die Übung automatisch mit Beginn der Pause startet, ohne dass Sie auf das Play-Symbol klicken müssen. Normalerweise werden so lange Übungen angezeigt, bis das Set einmal durchlaufen ist, auch wenn die Pause noch länger dauert. Durch Aktivieren des letzten Symbols wird das Übungsset so lange wiederholt, bis die Pause vorbei ist.
     </string>
-
     <!-- Strings -->
     <string name="exercise_section_arms">Arme</string>
     <string name="exercise_section_head">Kopf</string>
@@ -40,14 +33,14 @@
     <string name="exercise_section_neck">Nacken</string>
     <string name="exercise_section_pelvis">Becken</string>
     <string name="exercise_section_spinal">Wirbel</string>
-    <string name="exercise_section_torso">Torso</string>
+    <string name="exercise_section_torso">Rumpf</string>
     <string name="activity_edit_no_empty_name">Bitte geben Sie einen Namen an.</string>
     <string name="activity_title_break_reminder">@string/app_name</string>
     <string name="dialog_add_exercise_set_title">Neues Übungsset hinzufügen</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="activity_edit_exercise_set_name_hint">Geben Sie einen Namen ein…</string>
-    <string name="activity_timer_choose_break">Dauer der Pause</string>
-    <string name="activity_timer_choose_time">Arbeitsdauer bis zur Pause</string>
+    <string name="activity_timer_choose_break">Pausendauer auswählen:</string>
+    <string name="activity_timer_choose_time">Arbeitsdauer auswählen:</string>
     <string name="activity_title_about">Über</string>
     <string name="activity_title_choose_exercises">Wähle Übungen</string>
     <string name="activity_title_edit_exercise_set">Übungsset bearbeiten</string>
@@ -67,7 +60,6 @@
     <string name="dialog_end_break_confirmation_title">Pausenzeit ist um!</string>
     <string name="dialog_end_break_confirmation">Möchsten Sie zurück zum Hauptmenü?</string>
     <string name="dialog_discard_confirmation">Sind Sie sicher, dass Sie die Änderungen verwerfen möchten?</string>
-
     <!-- Preference Text -->
     <string name="pref_exercise_time">Übungszeit (in Sekunden)</string>
     <string name="pref_keep_screen_on_during_exercise">Bildschirm bleibt an während Übungen</string>
@@ -81,37 +73,32 @@
     <string name="pref_exercise_continuous_summary">Starte das nächste Arbeitsintervall automatisch</string>
     <string name="pref_schedule_exercise_days">Tage auswählen</string>
     <string name="pref_schedule_exercise_daystrigger">Nur an bestimmten Tagen auslösen</string>
-    <string name="pref_schedule_exercise_days_defaultsummary">Keine Tage ausgewählt</string>
+    <string name="pref_schedule_exercise_days_defaultsummary">Keine Tage ausgewählt.</string>
     <string name="pref_schedule_exercise_days_allselectedsummary">jeden Tag</string>
-
     <!-- About -->
     <string name="about">Über</string>
     <string name="about_author">Autoren: </string>
     <string name="about_graphics_by">Grafiken und Bilder:</string>
-    <string name="about_author_contributors">%s und Mitwirkende</string>
+    <string name="about_author_contributors">%s und Mitwirkende.</string>
     <string name="about_affiliation">In Zusammenarbeit mit</string>
     <string name="more_info">Mehr Information finden Sie hier:</string>
     <string name="privacy_friendly">Diese Applikation gehört zur Gruppe der Privacy Friendly Apps und wurde vom Karlsruher Institut für Technologie (KIT) entwickelt. Quellcode lizenziert unter GPLv3. Bilder Copyright KIT und Google Inc.</string>
-
     <!-- Help -->
     <string name="help_whatis">Was ist Privacy Friendly Aktive Pause?</string>
     <string name="help_whatis_answer">
         Privacy Friendly Aktive Pause ist eine App, die Sie daran erinnert Pausen während der Arbeit einzulegen.
         Es erlaubt Ihnen Übungen während der Pausen auszuführen, die Sie im Vorfeld auswählen können.
     </string>
-
     <string name="help_select_exercises">Wie wähle ich Übungen aus, damit ich sie in der Pause durchführen kann?</string>
     <string name="help_select_exercises_answer">
         Übungen müssen in einem Übungsset zusammengestellt werden, damit sie für die Pause ausgewählt werden können.
         Sobald sie ein Übungsset erstellt haben, können sie Übungen hinzufügen indem Sie den Menüpunkt \"Übungssets\", dann das gewünsche Übungsset auswählen und dann auf das Editieren-Icon in der unteren rechten Ecke drücken.
         Nun makieren sie die gewünschten Übungen.
     </string>
-
     <string name="help_create_sets">Wie erstelle ich neue Übungssets?</string>
     <string name="help_create_sets_answer">
         Um ein Übungsset zu erstellen wählen Sie im Seitenmenü den Punkt \"Übungssets\" aus und tippen auf das \"+\"-Icon in der unteren rechten Ecke. Nachdem sie einen Namen vergeben haben, können sie dem Übungsset Übungen hinzufügen.
     </string>
-
     <string name="help_permission">Welche Berechtigungen benötigt die App?</string>
     <string name="help_permission_answer">
         Die App benötigt drei Berechtigungen.\n
@@ -120,14 +107,13 @@
         3. RECEIVE_BOOT_COMPLETED - um das automatische Starten von Timern auch nach einem Neustart korrekt durchführen zu können.\n
         Es werden keine weiteren Berechtigungen benötigt.
     </string>
-
     <!-- Button text -->
     <string name="pause">Pause</string>
     <string name="resume">Fortsetzen</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
     <string name="dismiss_and_dont_repeat">Ignorieren / kein Neustart</string>
-    <string name="snooze">Später</string>
+    <string name="snooze">Schlummern</string>
     <string name="start_break">Pause starten</string>
     <string name="okay">Okay</string>
     <string name="next">Weiter</string>
@@ -139,30 +125,25 @@
     <string name="no">Nein</string>
     <string name="keep_editing">bearbeiten</string>
     <string name="discard">verwerfen</string>
-
     <!-- default sets -->
     <string name="set_default_1">Nacken-Kopf-Beschwerden</string>
     <string name="set_default_2">Schulter-Arm-Beschwerden</string>
     <string name="set_default_3">Rückenbeschwerden</string>
     <string name="set_default_4">Hüftbeschwerden</string>
     <string name="set_default_5">Kniebeschwerden</string>
-
     <string name="pref_category_default_exercise_sets">Standard Übungssets</string>
     <string name="pref_hide_default_exercise_sets">Standard Übungssets verstecken</string>
-
     <string name="exercise_set_can_not_be_deleted">Dieses Set kann nicht gelöscht werden. In den Einstellungen können die voreingespeicherten Sets ausgeblendet werden.</string>
     <string name="exercise_set_can_not_be_edited">Dieses Set kann nicht editiert werden.</string>
-
     <string name="activity_exercise_button_prev">vorherige Übung</string>
     <string name="activity_exercise_button_next">nächste Übung</string>
     <string name="activity_exercise_button_repeat_on">Übungen wiederholen</string>
     <string name="activity_exercise_button_repeat_off">Übungen nicht wiederholen</string>
     <string name="activity_exercise_button_continuous_on">Zeit automatisch starten</string>
     <string name="activity_exercise_button_continuous_off">Zeit manuell starten</string>
-    <string name="exercise_time">Übungszeit: %s</string>
+    <string name="exercise_time">Übungszeit:\n%s</string>
     <string name="dialog_warning_not_enough_exercise_time">Die ausgewählte Übungszeit ist zu kurz, um das gewählte Übungsset abzuschließen. Die Übungszeit wird automatisch angepasst. Möchten Sie den Timer starten?</string>
     <string name="warning">Achtung</string>
     <string name="toast_not_enough_exercise_time">Die gewählte Übungszeit ist nicht ausreichend, um das gewählte Übungsset abzuschließen. Die Zeit wurde automatisch angepasst.</string>
     <string name="pref_schedule_random_exercise">Verwende zufällige Übungssets</string>
-
 </resources>

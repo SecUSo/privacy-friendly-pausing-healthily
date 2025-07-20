@@ -55,7 +55,7 @@
     <string name="pref_schedule_exercise_days_defaultsummary">Дни не выбраны.</string>
     <string name="pref_schedule_exercise_days_allselectedsummary">каждый день</string>
     <string name="help_whatis">Что такое Перерывы для отдыха (PFA)?</string>
-    <string name="about">О приложении</string>
+    <string name="about">О программе</string>
     <string name="about_author">Авторы：</string>
     <string name="about_author_contributors">и %s других участников.</string>
     <string name="about_affiliation">В сотрудничестве с</string>
@@ -74,9 +74,9 @@
     <string name="okay">Ладно</string>
     <string name="next">Далее</string>
     <string name="skip">Пропустить</string>
-    <string name="help">Справка</string>
+    <string name="help">Помощь</string>
     <string name="save">Сохранить</string>
-    <string name="cancel">Отмена</string>
+    <string name="cancel">Отменить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="keep_editing">продолжить редактирование</string>

@@ -33,6 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.secuso.privacyfriendlypausinghealthily.GoodbyeGoogleHelperKt;
 import org.secuso.privacyfriendlypausinghealthily.activities.tutorial.FirstLaunchManager;
 import org.secuso.privacyfriendlypausinghealthily.exercises.ExerciseLocale;
 import org.secuso.privacyfriendlypausinghealthily.R;
@@ -78,6 +79,7 @@ public class ManageExerciseSetsActivity extends BaseActivity implements LoaderMa
 
         initResources();
         getSupportLoaderManager().initLoader(0, null, this);
+        GoodbyeGoogleHelperKt.checkGoodbyeGoogle(this, getLayoutInflater());
     }
 
     private void initResources() {

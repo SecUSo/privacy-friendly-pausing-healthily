@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
@@ -178,7 +179,7 @@ public class TimerActivity extends BaseActivity implements LoaderManager.LoaderC
 
         isActivityVisible = true;
 
-        registerReceiver(timerReceiver, new IntentFilter(TimerService.TIMER_BROADCAST));
+        ContextCompat.registerReceiver(this, timerReceiver, new IntentFilter(TimerService.TIMER_BROADCAST), ContextCompat.RECEIVER_NOT_EXPORTED);
 
         if(mTimerService != null && !mTimerService.isRunning()) {
             updateProgress(mTimerService.getInitialDuration());

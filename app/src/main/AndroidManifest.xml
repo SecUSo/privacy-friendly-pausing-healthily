@@ -117,7 +117,8 @@
         <service
             android:name="org.secuso.privacyfriendlypausinghealthily.service.TimerService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="specialUse" />
 
         <receiver android:name="org.secuso.privacyfriendlypausinghealthily.receivers.OnBootCompletedReceiver"
             android:exported="true">

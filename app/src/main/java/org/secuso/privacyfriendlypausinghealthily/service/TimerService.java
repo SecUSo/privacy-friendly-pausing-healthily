@@ -139,9 +139,9 @@ public class TimerService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        registerReceiver(timerReceiver, new IntentFilter(TIMER_BROADCAST));
-        registerReceiver(notificationDeletedReceiver, new IntentFilter(ACTION_NOTIFICATION_DELETED));
-        registerReceiver(notificationPreferenceChangedReceiver, new IntentFilter(ACTION_NOTIFICATION_CANCELED));
+        ContextCompat.registerReceiver(this, timerReceiver, new IntentFilter(TIMER_BROADCAST), ContextCompat.RECEIVER_NOT_EXPORTED);
+        ContextCompat.registerReceiver(this, notificationDeletedReceiver, new IntentFilter(ACTION_NOTIFICATION_DELETED), ContextCompat.RECEIVER_NOT_EXPORTED);
+        ContextCompat.registerReceiver(this, notificationPreferenceChangedReceiver, new IntentFilter(ACTION_NOTIFICATION_CANCELED), ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     @Override

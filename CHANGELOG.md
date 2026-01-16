@@ -1,5 +1,18 @@
 # Changelog
 
+<a id="v1.4.3"></a>
+## [Pausing Healthily (Privacy Friendly) v1.4.3](https://github.com/SecUSo/privacy-friendly-pausing-healthily/releases/tag/v1.4.3) - 2025-07-20
+
+## What's Changed
+* Updates changelog and adds ci workflow by [@coderPaddyS](https://github.com/coderPaddyS) in [#48](https://github.com/SecUSo/privacy-friendly-pausing-healthily/pull/48)
+* Change versionCode to differentiate from last Google Play version by [@coderPaddyS](https://github.com/coderPaddyS) in [#49](https://github.com/SecUSo/privacy-friendly-pausing-healthily/pull/49)
+
+
+**Full Changelog**: https://github.com/SecUSo/privacy-friendly-pausing-healthily/compare/v1.4.2...v1.4.3
+
+[Changes][v1.4.3]
+
+
 <a id="v1.4"></a>
 ## [Pausing Healthily (Privacy Friendly) v1.4](https://github.com/SecUSo/privacy-friendly-pausing-healthily/releases/tag/v1.4) - 2023-05-28
 
@@ -64,6 +77,7 @@ Privacy Friendly Pausing Healthily is an app that allows you to structure your w
 [Changes][v1.0]
 
 
+[v1.4.3]: https://github.com/SecUSo/privacy-friendly-pausing-healthily/compare/v1.4...v1.4.3
 [v1.4]: https://github.com/SecUSo/privacy-friendly-pausing-healthily/compare/v1.3...v1.4
 [v1.3]: https://github.com/SecUSo/privacy-friendly-pausing-healthily/compare/v1.2.3...v1.3
 [v1.2.3]: https://github.com/SecUSo/privacy-friendly-pausing-healthily/compare/v1.2.2...v1.2.3

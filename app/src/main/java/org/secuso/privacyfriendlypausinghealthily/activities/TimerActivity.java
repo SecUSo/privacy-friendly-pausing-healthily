@@ -66,6 +66,7 @@ public class TimerActivity extends BaseActivity implements LoaderManager.LoaderC
     private TextView timerText;
     private ImageButton playButton;
     private ImageButton resetButton;
+    private ImageButton skipButton;
     private NumberPicker secondsPicker;
     private NumberPicker minutesPicker;
     private NumberPicker hoursPicker;
@@ -143,10 +144,11 @@ public class TimerActivity extends BaseActivity implements LoaderManager.LoaderC
 
         constraintSetRunning = new ConstraintSet();
         constraintSetRunning.clone(mainContent);
-        int[] chainViews = {R.id.button_reset, R.id.button_playPause};
-        float[] chainWeights = {0.5f, 0.5f};
+        int[] chainViews = {R.id.button_reset, R.id.button_playPause, R.id.button_skip};
+        float[] chainWeights = {0.5f, 0.5f, 0.5f};
         constraintSetRunning.createHorizontalChain(0, ConstraintSet.LEFT, 0, ConstraintSet.RIGHT, chainViews, chainWeights, ConstraintSet.CHAIN_PACKED);
         constraintSetRunning.setVisibility(R.id.button_reset, View.VISIBLE);
+        constraintSetRunning.setVisibility(R.id.button_skip, View.VISIBLE);
         constraintSetRunning.setVisibility(R.id.picker_layout, View.INVISIBLE);
         constraintSetRunning.setVisibility(R.id.progressBar, View.VISIBLE);
         constraintSetRunning.setVisibility(R.id.timerText, View.VISIBLE);
@@ -218,6 +220,7 @@ public class TimerActivity extends BaseActivity implements LoaderManager.LoaderC
         timerText = (TextView) findViewById(R.id.timerText);
         playButton = (ImageButton) findViewById(R.id.button_playPause);
         resetButton = (ImageButton) findViewById(R.id.button_reset);
+        skipButton = (ImageButton) findViewById(R.id.button_skip);
         exerciseSetSpinner = (Spinner) findViewById(R.id.spinner_choose_exercise_set);
         exerciseSetSpinner.setAdapter(exerciseSetAdapter);
         exerciseSetSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -292,6 +295,10 @@ public class TimerActivity extends BaseActivity implements LoaderManager.LoaderC
             case R.id.button_reset:
                 if(mTimerService != null)
                     mTimerService.stopAndResetTimer();
+                break;
+            case R.id.button_skip:
+                if(mTimerService != null)
+                    mTimerService.skipTimer();
                 break;
             //case R.id.button_chooseExercise:
             //    startActivity(new Intent(this, ManageExerciseSetsActivity.class));

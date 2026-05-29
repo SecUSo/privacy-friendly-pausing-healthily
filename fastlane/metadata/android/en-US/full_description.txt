@@ -1,7 +1,7 @@
 The application Privacy Friendly Pausing Healthily is an app that allows you to structure your work. It reminds you to take breaks during your work and offers many helpful exercises that can be combined to form exercise sets. The exercises can be performed during your break and help you to pause healthily.
 
 
-Feel free to contact us via:
-Twitter - @SECUSOResearch https://twitter.com/secusoresearch
+You can reach us via
+BlueSky - https://bsky.app/profile/secusoresearch.bsky.social
 Mastodon - @SECUSO_Research@bawü.social https://xn--baw-joa.social/@SECUSO_Research/
-Job opening - https://secuso.aifb.kit.edu/english/Job_Offers_1557.php
+Job opening - https://secuso.aifb.kit.edu/english/Job_Offers.php

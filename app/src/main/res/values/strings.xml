@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Pausing Healthily</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-
     <!-- Tutorial -->
     <string name="slide1_heading">Welcome to Privacy Friendly Pausing Healthily!</string>
     <string name="slide1_text">This app reminds you to regularly take breaks during your work. Additionally, you can choose from a set of exercises, that can help you to spend your break more active.</string>
-
     <string name="slide2_heading">Create Exercise Sets</string>
     <string name="slide2_text">
         First you specify, what type of exercise you want to complete.
@@ -14,19 +13,14 @@
         To create a new exercise set, tap the plus icon on the lower right.
         Then just specify a name for the set and tap "save".
     </string>
-
     <string name="slide3_heading">Add Exercises</string>
     <string name="slide3_text">With the edit button in the lower right you can add new exercises to a set by tapping the checkboxes below the pictures of the exercises. Every exercise is set to be done 30 seconds. This duration can be changed in the settings. You can also filter the exercise list using the filter buttons at the top.</string>
-
     <string name="slide4_heading">Choose Exercise Set</string>
     <string name="slide4_text">You can choose the exercise set you want to use during the breaks by tapping the little arrow icon in the top right corner. Select how long you want to work and how long your break should be. Start the timer by pressing the play button.</string>
-
     <string name="slide5_heading">Time For A Break</string>
     <string name="slide5_text">As soon as it\'s time for the break, the Pausing Healthily App will notify you. Tap the notification to start the break. You can see how much time is left for the break in the top left corner.</string>
-
     <string name="slide6_heading">Healthy Break</string>
     <string name="slide6_text">To start with the exercises, tap the play button. If you want to skip an exercise, press the skip button. With the back button you can repeat an exercise or go back to one you have already done. If you activate the clock within the circular arrow button, the exercises will start to run automatically after the previous is completed. Normally the exercises are shown until every exercise has been done once. By activating the repeat button on the right, the exercise set will be repeated until the break is over.</string>
-
     <!-- Strings -->
     <string name="activity_edit_exercise_set_name_hint">Enter a name …</string>
     <string name="exercise_section_head">Head</string>
@@ -61,7 +55,6 @@
     <string name="dialog_add_exercise_set_name">Exercise Set Name</string>
     <string name="dialog_discard_confirmation">Are you sure you want to discard the changes?</string>
     <string name="title_activity_tutorial">Tutorial</string>
-
     <!-- Preference Text -->
     <string name="pref_exercise_time">Exercise time (in Seconds)</string>
     <string name="pref_keep_screen_on_during_exercise">Keep screen on during exercise</string>
@@ -77,7 +70,6 @@
     <string name="pref_schedule_exercise_daystrigger">Only trigger on certain days</string>
     <string name="pref_schedule_exercise_days_defaultsummary">No days selected.</string>
     <string name="pref_schedule_exercise_days_allselectedsummary">every day</string>
-
     <!-- About -->
     <string name="about">About</string>
     <string name="app_name_long" translatable="false">Privacy Friendly Pausing Healthily</string>
@@ -90,7 +82,6 @@
     <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-pausing-healthily">Github-Repo</a></string>
     <string name="url" translatable="false"><a href="https://www.secuso.org/pfa">SECUSO-Website</a></string>
     <string name="privacy_friendly">This application belongs to the group of Privacy Friendly Apps developed by the Karlsruhe Institute of Technology (KIT). Sourcecode licensed under GPLv3. Images copyright KIT and Google Inc.</string>
-
     <!-- Help -->
     <string name="help_whatis">What is Privacy Friendly Pausing Healthily?</string>
     <string name="help_whatis_answer">Privacy Friendly Pausing Healthily is an app, that reminds you to take breaks during your work sessions. It allows you to select exercises, that are then shown during your break time.</string>
@@ -132,8 +123,6 @@
     <string name="discard">discard</string>
     <string name="about_graphics_by">Graphics &amp; images:</string>
     <string name="about_graphics_names" translatable="false">Tatjana Albrandt</string>
-
-
     <!-- default set names -->
     <string name="set_default_1">Neck-Head</string>
     <string name="set_default_2">Shoulder and Arms</string>
@@ -142,10 +131,8 @@
     <string name="set_default_5">Knee</string>
     <string name="pref_category_default_exercise_sets">Default Exercise Sets</string>
     <string name="pref_hide_default_exercise_sets">Hide default exercise sets</string>
-
     <string name="exercise_set_can_not_be_deleted">This set can not be deleted. These sets can be hidden via the settings page.</string>
     <string name="exercise_set_can_not_be_edited">This set can not be edited.</string>
-
     <string name="activity_exercise_button_prev">previous exercise</string>
     <string name="activity_exercise_button_next">next exercise</string>
     <string name="activity_exercise_button_repeat_on">repeat exercises</string>
@@ -157,6 +144,4 @@
     <string name="warning">Warning</string>
     <string name="toast_not_enough_exercise_time">The currently selected exercise time is not sufficient to complete the chosen exercise set. The time has been adjusted.</string>
     <string name="pref_schedule_random_exercise">Use random exercise sets</string>
-
-
 </resources>
